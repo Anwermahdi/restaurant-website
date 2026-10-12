@@ -1,0 +1,6865 @@
+{
+  "at": "2026-10-04T17:51:26.792Z",
+  "count": 108,
+  "results": [
+    {
+      "id": "aseeri-star",
+      "name": "Aseeri Star",
+      "current": {
+        "cuisine": "Grill",
+        "address": "4FVV+GH6, Hamad Town",
+        "branches": [
+          "Hamad Town"
+        ],
+        "phone": "+973 1741 2643",
+        "hours": "Open 24 hours",
+        "rating": 4.3,
+        "reviews": 733
+      },
+      "resolved": {
+        "name": "Aseer Star Restaurant And Grill",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "4FRW+MFQ, Hamad Town",
+        "area": "Hamad Town",
+        "phone": "+973 1741 2643",
+        "rating": null,
+        "reviews": null,
+        "website": "Aseer Star Restaurant And Grill",
+        "openNow": "Open · Closes 4 AM",
+        "hours": {
+          "Monday": "6:40 AM-4 AM",
+          "Sunday": "6:40 AM-4 AM"
+        },
+        "lat": 26.1417225,
+        "lng": 50.4962191,
+        "placeId": "ChIJ8xNaoeyxST4REBnHrzcNxHI",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Aseer%20Star%20Restaurant%20And%20Grill%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.7,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Aseeri Star Bahrain",
+          "resolved": true,
+          "name": "Aseer Star Restaurant And Grill",
+          "nameScore": 0.7,
+          "rating": null
+        },
+        {
+          "q": "Aseeri Star Hamad Town Bahrain",
+          "resolved": true,
+          "name": "Aseer Star Restaurant And Grill",
+          "nameScore": 0.7,
+          "rating": null
+        },
+        {
+          "q": "Aseeri Star Grill Bahrain",
+          "resolved": true,
+          "name": "Aseer Star Restaurant And Grill",
+          "nameScore": 0.7,
+          "rating": null
+        },
+        {
+          "q": "Aseeri Star restaurant Bahrain",
+          "resolved": true,
+          "name": "Aseer Star Restaurant And Grill",
+          "nameScore": 0.7,
+          "rating": null
+        }
+      ],
+      "at": "2026-09-27T20:13:16.890Z"
+    },
+    {
+      "id": "chicken-land-cafeteria",
+      "name": "Chicken Land Cafeteria",
+      "current": {
+        "cuisine": "Fried Chicken",
+        "address": "Road 308, Hamad Town",
+        "branches": [
+          "Hamad Town"
+        ],
+        "phone": "+973 7793 9190 / +973 1741 2353 / +973 3347 9190",
+        "hours": "Daily · 5:00 PM - 5:00 AM",
+        "rating": 3.9,
+        "reviews": 270
+      },
+      "resolved": {
+        "name": "أرض الدجاج - Chicken Land Cafeteria \\u0026 Grills.w.l.l 17412353/",
+        "nameAr": "أرض الدجاج - Chicken Land Cafeteria \\u0026 Grills",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Souq waqif, Hamad Town 1038",
+        "area": "Hamad Town",
+        "phone": "+973 7793 9190",
+        "rating": 3.8,
+        "reviews": 479,
+        "website": "479 reviews",
+        "openNow": "Open · Closes 5 AM Mon",
+        "hours": null,
+        "lat": 26.1414322,
+        "lng": 50.4961991,
+        "placeId": "ChIJY81pjuyxST4R5_vbuKYtLuc",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%D8%A3%D8%B1%D8%B6%20%D8%A7%D9%84%D8%AF%D8%AC%D8%A7%D8%AC%20-%20Chicken%20Land%20Cafeteria%20%5Cu0026%20Grills.w.l.l%2017412353%2F%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [
+        {
+          "name": "أرض الدجاج - Chicken Land Cafeteria \\u0026 Grills.w.l.l 17412353/, Souq waqif, Hamad Town",
+          "categories": [],
+          "address": "",
+          "nameScore": 0.9
+        }
+      ],
+      "attempts": [
+        {
+          "q": "Chicken Land Cafeteria Bahrain",
+          "resolved": true,
+          "name": "أرض الدجاج - Chicken Land Cafeteria \\u0026 Grills.w.l.l 17412353/, Souq waqif, Hamad Town",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Chicken Land Cafeteria Hamad Town Bahrain",
+          "resolved": true,
+          "name": "أرض الدجاج - Chicken Land Cafeteria \\u0026 Grills.w.l.l 17412353/",
+          "nameScore": 0.9,
+          "rating": 3.8
+        },
+        {
+          "q": "Chicken Land Cafeteria Fried Chicken Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Chicken Land Cafeteria restaurant Bahrain",
+          "resolved": true,
+          "name": "أرض الدجاج - Chicken Land Cafeteria \\u0026 Grills.w.l.l 17412353/",
+          "nameScore": 0.9,
+          "rating": 3.8
+        }
+      ],
+      "at": "2026-09-27T20:13:30.745Z"
+    },
+    {
+      "id": "white-house",
+      "name": "White House",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Souq Waqif, Hamad Town",
+        "branches": [
+          "Hamad Town",
+          "Busaiteen"
+        ],
+        "phone": "+973 1748 8877 / +973 3305 4142",
+        "hours": "Daily · 4:00 PM - 5:00 AM",
+        "rating": 4.3,
+        "reviews": 733
+      },
+      "resolved": {
+        "name": "White House Restaurant",
+        "nameAr": "مطعم البيت الابيض",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Souq Waqif, Hamad Town",
+        "area": "Hamad Town",
+        "phone": "+973 1748 8877",
+        "rating": null,
+        "reviews": null,
+        "website": "White House Restaurant",
+        "openNow": "Open · Closes 5 AM Mon",
+        "hours": null,
+        "lat": 26.139581699999997,
+        "lng": 50.492686799999994,
+        "placeId": "ChIJ3RDK76ixST4RFA6AMZcQkHE",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=White%20House%20Restaurant%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "White House Bahrain",
+          "resolved": false
+        },
+        {
+          "q": "White House Hamad Town Bahrain",
+          "resolved": true,
+          "name": "White House Restaurant",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "White House Grill Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "White House restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:13:50.397Z"
+    },
+    {
+      "id": "wadi-altayibin-grills",
+      "name": "Wadi Al Tayibeen Grills",
+      "current": {
+        "cuisine": "Grill",
+        "address": "East Riffa, near the police station",
+        "branches": [
+          "East Riffa"
+        ],
+        "phone": "+973 3418 8079",
+        "hours": "Call to confirm hours",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Wadi Al Taybeen Restaurant \\u0026 Grills",
+        "nameAr": "مطعم ومشويات وادي الطيبين",
+        "categories": [
+          "Barbecue restaurant"
+        ],
+        "address": "Shop A1485 BLOCK 909 ROAD 963 Riffa, 1234",
+        "area": "Riffa",
+        "phone": "+973 3418 8079",
+        "rating": 4.3,
+        "reviews": 333,
+        "website": "",
+        "openNow": "",
+        "hours": {
+          "Sunday": "11 AM-1 AM",
+          "Saturday": "11 AM-1 AM"
+        },
+        "lat": 26.115714699999998,
+        "lng": 50.5739167,
+        "placeId": "ChIJL-ZuonitST4R3HrnTNI69GI",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Wadi%20Al%20Taybeen%20Restaurant%20%5Cu0026%20Grills%20Bahrain"
+      },
+      "nameScore": 0.56,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Wadi Al Tayibeen Grills Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Wadi Al Tayibeen Grills Riffa Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Riffa",
+          "categories": []
+        },
+        {
+          "q": "Wadi Al Tayibeen Grills Grill Bahrain",
+          "resolved": true,
+          "name": "Wadi Al Taybeen Restaurant \\u0026 Grills",
+          "nameScore": 0.56,
+          "rating": null
+        },
+        {
+          "q": "Wadi Al Tayibeen Grills East Riffa Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "East Riffa, Riffa",
+          "categories": []
+        },
+        {
+          "q": "Wadi Al Tayibeen Grills restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-10-03T21:43:43.647Z"
+    },
+    {
+      "id": "tren-tren",
+      "name": "Tren Tren",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Shaikh Isa Avenue, Riffa",
+        "branches": [
+          "Arad",
+          "Hidd",
+          "Riffa",
+          "Hamala",
+          "Jid Ali"
+        ],
+        "phone": "+973 3223 2009 / +973 3730 9111 / +973 1770 1617",
+        "hours": "Daily · 5:00 PM - 2:00 AM",
+        "rating": 4.1,
+        "reviews": 627
+      },
+      "resolved": {
+        "name": "Tren Tren Riffa Restaurant \\u0026 Grills",
+        "nameAr": "مطعم ومشويات ترن ترن الرفاع",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Sh Isa Ave, Riffa",
+        "area": "Riffa",
+        "phone": "+973 1770 1617",
+        "rating": 4.1,
+        "reviews": 2054,
+        "website": "2,054 reviews",
+        "openNow": "Open · Closes 3 AM",
+        "hours": null,
+        "lat": 26.115228899999998,
+        "lng": 50.5752017,
+        "placeId": "ChIJI-pARfWsST4RjNfsFIRzQIU",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Tren%20Tren%20Riffa%20Restaurant%20%5Cu0026%20Grills%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [
+        {
+          "name": "Tren Tren Restaurant Arad",
+          "categories": [
+            "Barbecue restaurant"
+          ],
+          "address": "Road No.: 4012، Arad",
+          "nameScore": 0.9
+        }
+      ],
+      "attempts": [
+        {
+          "q": "Tren Tren Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Tren Tren Riffa Bahrain",
+          "resolved": true,
+          "name": "Tren Tren Riffa Restaurant \\u0026 Grills",
+          "nameScore": 0.9,
+          "rating": 4.1
+        },
+        {
+          "q": "Tren Tren Grill Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Tren Tren Arad Bahrain",
+          "resolved": true,
+          "name": "Tren Tren Restaurant Arad",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Tren Tren restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:14:30.365Z"
+    },
+    {
+      "id": "tika-abu-jamal",
+      "name": "Tika Abu Jamal",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Riffa",
+        "branches": [
+          "Riffa"
+        ],
+        "phone": "+973 1777 9644 / +973 3465 9775",
+        "hours": "Call to confirm hours",
+        "rating": 4.6,
+        "reviews": 892
+      },
+      "resolved": {
+        "name": "Bu Jamal Grills",
+        "nameAr": "تكة ابو جمال",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "+973 1777 9644",
+        "rating": null,
+        "reviews": null,
+        "website": "Bu Jamal Grills",
+        "openNow": "Open · Closes 2 AM",
+        "hours": {
+          "Sunday": "4:30 PM-2 AM",
+          "Monday": "4:30 PM-2 AM",
+          "Tuesday": "4:30 PM-2 AM",
+          "Wednesday": "4:30 PM-2 AM",
+          "Thursday": "4:30 PM-3 AM",
+          "Friday": "4:30 PM-3 AM",
+          "Saturday": "4:30 PM-2 AM"
+        },
+        "lat": 26.1163481,
+        "lng": 50.572125299999996,
+        "placeId": "ChIJj5mYJV-sST4RU1DV8TaQYgg",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bu%20Jamal%20Grills%20Bahrain",
+        "panelText": "",
+        "addressRejected": "scraper returned a non-address"
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Tika Abu Jamal Bahrain",
+          "resolved": true,
+          "name": "Bu Jamal Grills",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Tika Abu Jamal Riffa Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Riffa",
+          "categories": []
+        },
+        {
+          "q": "Tika Abu Jamal Grill Bahrain",
+          "resolved": true,
+          "name": "Bu Jamal Grills",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Tika Abu Jamal restaurant Bahrain",
+          "resolved": true,
+          "name": "Bu Jamal Grills",
+          "nameScore": 0.9,
+          "rating": 4.2
+        }
+      ],
+      "at": "2026-09-27T20:14:48.655Z"
+    },
+    {
+      "id": "al-haseer",
+      "name": "Al Haseer",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Dar Kulaib",
+        "branches": [
+          "Dar Kulaib"
+        ],
+        "phone": "+973 1744 0224",
+        "hours": "Daily · 4:30 PM - 11:00 PM",
+        "rating": 4.6,
+        "reviews": 627
+      },
+      "resolved": {
+        "name": "Alhaseer Restaurant",
+        "nameAr": "الحصير",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "+973 1744 0224",
+        "rating": 4.1,
+        "reviews": 511,
+        "website": "511 reviews",
+        "openNow": "Closed · Opens 8:30 AM",
+        "hours": {
+          "Monday": "8:30 AM-12 AM",
+          "Tuesday": "8:30 AM-12 AM",
+          "Wednesday": "8:30 AM-12 AM",
+          "Thursday": "8:30 AM-1 AM",
+          "Friday": "8:30 AM-12 AM",
+          "Saturday": "8:30 AM-12 AM",
+          "Sunday": "8:30 AM-12 AM"
+        },
+        "lat": 26.066039999999997,
+        "lng": 50.505103999999996,
+        "placeId": "ChIJ_RZjHaWyST4RRy8vcMT2CY0",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Alhaseer%20Restaurant%20Bahrain",
+        "panelText": "",
+        "addressRejected": "scraper returned a non-address"
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Al Haseer Bahrain",
+          "resolved": true,
+          "name": "Alhaseer Restaurant",
+          "nameScore": 0.9,
+          "rating": 4.1
+        },
+        {
+          "q": "Al Haseer  Bahrain",
+          "resolved": true,
+          "name": "Alhaseer Restaurant",
+          "nameScore": 0.9,
+          "rating": 4.1
+        },
+        {
+          "q": "Al Haseer Grill Bahrain",
+          "resolved": true,
+          "name": "Alhaseer Restaurant",
+          "nameScore": 0.9,
+          "rating": 4.1
+        },
+        {
+          "q": "Al Haseer Dar Kulaib Bahrain",
+          "resolved": true,
+          "name": "Alhaseer Restaurant",
+          "nameScore": 0.9,
+          "rating": 4.1
+        },
+        {
+          "q": "Al Haseer restaurant Bahrain",
+          "resolved": true,
+          "name": "Alhaseer Restaurant",
+          "nameScore": 0.9,
+          "rating": 4.1
+        }
+      ],
+      "at": "2026-09-27T20:15:03.612Z"
+    },
+    {
+      "id": "omy-and-banatha",
+      "name": "Omy & Banatha",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Omy & Banatha Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Omy & Banatha  Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Omy & Banatha Pizza Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Omy & Banatha Dar Kulaib Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Dar Kulaib",
+          "categories": []
+        },
+        {
+          "q": "Omy & Banatha restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-10-03T21:44:04.428Z"
+    },
+    {
+      "id": "ala-hawak",
+      "name": "Ala Hawak",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Dar Kulaib, Main Street",
+        "branches": [
+          "Dar Kulaib"
+        ],
+        "phone": "+973 3346 5195 / +973 1747 5088",
+        "hours": "Daily · 6:00 PM - 1:00 AM",
+        "rating": 4.6,
+        "reviews": 627
+      },
+      "resolved": {
+        "name": "Ala Hawak Restaurant",
+        "nameAr": "مطعم على هواك",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "3G84+C34, Dar Kulaib",
+        "area": "",
+        "phone": "+973 3346 5195",
+        "rating": 3.9,
+        "reviews": 77,
+        "website": "77 reviews",
+        "openNow": "Open · Closes 1 AM",
+        "hours": {
+          "Sunday": "6 PM-1 AM",
+          "Monday": "6 PM-1 AM",
+          "Tuesday": "6 PM-1 AM",
+          "Wednesday": "6 PM-1 AM",
+          "Thursday": "6 PM-1 AM",
+          "Friday": "6 PM-1 AM",
+          "Saturday": "6 PM-1 AM"
+        },
+        "lat": 26.0660767,
+        "lng": 50.505292,
+        "placeId": "ChIJlZc6Z_yzST4Ryg4rrFzXV5c",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Ala%20Hawak%20Restaurant%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Ala Hawak Bahrain",
+          "resolved": true,
+          "name": "Ala Hawak Restaurant",
+          "nameScore": 1,
+          "rating": 3.9
+        }
+      ],
+      "at": "2026-09-27T20:15:26.421Z"
+    },
+    {
+      "id": "nino",
+      "name": "Nino",
+      "current": {
+        "cuisine": "Italian",
+        "address": "Al Aali Complex, Road 2827, Seef",
+        "branches": [
+          "Seef"
+        ],
+        "phone": "+973 3362 0254 / +973 1756 6555",
+        "hours": "Sat - Wed · 11:00 AM - 12:00 AM · Thu - Fri · 11:00 AM - 12:30 AM",
+        "rating": 4.7,
+        "reviews": 3946
+      },
+      "resolved": {
+        "name": "Nino - نينو",
+        "nameAr": "نينو",
+        "categories": [
+          "Italian restaurant",
+          "Breakfast restaurant",
+          "Dessert shop",
+          "Fine dining restaurant",
+          "Italian grocery store",
+          "Lunch restaurant",
+          "Pasta shop",
+          "Pizza restaurant",
+          "Restaurant",
+          "Sushi restaurant"
+        ],
+        "address": "Road No 2827, Seef",
+        "area": "Seef",
+        "phone": "+973 1756 6555",
+        "rating": 4.7,
+        "reviews": 3971,
+        "website": "linktr.ee",
+        "openNow": "Closed · Opens 11 AM Mon",
+        "hours": {
+          "Sunday": "11 AM-11:30 PM",
+          "Monday": "11 AM-11:30 PM",
+          "Tuesday": "11 AM-11:30 PM",
+          "Wednesday": "11 AM-11:30 PM",
+          "Thursday": "11 AM-12:30 AM",
+          "Friday": "11 AM-12:30 AM",
+          "Saturday": "11 AM-11:30 PM"
+        },
+        "lat": 26.2333192,
+        "lng": 50.541287499999996,
+        "placeId": "ChIJO7R-hWWlST4R9dKPcnBjfhg",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Nino%20-%20%D9%86%D9%8A%D9%86%D9%88%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Nino Bahrain",
+          "resolved": true,
+          "name": "Nino - نينو",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Nino Seef Bahrain",
+          "resolved": true,
+          "name": "Nino - نينو",
+          "nameScore": 1,
+          "rating": 4.7
+        }
+      ],
+      "at": "2026-09-27T20:15:33.835Z"
+    },
+    {
+      "id": "zulu",
+      "name": "Zulu",
+      "current": {
+        "cuisine": "Indian",
+        "address": "Qudaibiya, Manama",
+        "branches": [
+          "Qudaibiya"
+        ],
+        "phone": "+973 3311 2663",
+        "hours": "Sun - Thu · 12:00 PM - 12:00 AM · Fri - Sat · 12:00 PM - 1:00 AM",
+        "rating": 4.2,
+        "reviews": 364
+      },
+      "resolved": {
+        "name": "Zulu restaurant",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "6H7V+P5P, Manama",
+        "area": "Manama",
+        "phone": "+973 3311 2663",
+        "rating": 4.2,
+        "reviews": 364,
+        "website": "364 reviews",
+        "openNow": "",
+        "hours": {
+          "Monday": "Open 24 hours"
+        },
+        "lat": 26.2143283,
+        "lng": 50.592945099999994,
+        "placeId": "ChIJi4fWs4yvST4Rr_8IVW-23Dc",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Zulu%20restaurant%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Zulu Bahrain",
+          "resolved": true,
+          "name": "Zulu restaurant",
+          "nameScore": 1,
+          "rating": 4.2
+        }
+      ],
+      "at": "2026-09-27T20:15:37.335Z"
+    },
+    {
+      "id": "fatto",
+      "name": "Fatto",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Seef",
+        "branches": [
+          "Seef",
+          "Adliya"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 415
+      },
+      "resolved": {
+        "name": "Fatto",
+        "nameAr": "مطعم فاتو ايطالي",
+        "categories": [
+          "Italian restaurant"
+        ],
+        "address": "Road 2827 Restaurant 2214, Al Seef 0428, Seef",
+        "area": "Seef",
+        "phone": "+973 6677 8822",
+        "rating": 4.5,
+        "reviews": 3365,
+        "website": "3,365 reviews",
+        "openNow": "Closed · Opens 8 AM Mon",
+        "hours": {
+          "Sunday": "8 AM-11:30 PM",
+          "Monday": "8 AM-11:30 PM",
+          "Tuesday": "8 AM-11:30 PM",
+          "Wednesday": "8 AM-11:30 PM",
+          "Thursday": "8 AM-12 AM",
+          "Friday": "8 AM-12 AM",
+          "Saturday": "8 AM-11:30 PM"
+        },
+        "lat": 26.232971799999998,
+        "lng": 50.541289899999995,
+        "placeId": "ChIJkatbkGWlST4RDgzRDODQgKI",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Fatto%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Fatto Bahrain",
+          "resolved": true,
+          "name": "Fatto",
+          "nameScore": 1,
+          "rating": 4.5
+        }
+      ],
+      "at": "2026-09-27T20:15:39.191Z"
+    },
+    {
+      "id": "cocos",
+      "name": "Coco's",
+      "current": {
+        "cuisine": "Mediterranean",
+        "address": "Road 3803, Qudaibiya, Manama",
+        "branches": [
+          "Qudaibiya",
+          "Juffair"
+        ],
+        "phone": "+973 1771 2288",
+        "hours": "Daily · 11:00 AM - 12:00 AM",
+        "rating": 4.1,
+        "reviews": 8210
+      },
+      "resolved": {
+        "name": "Coco's",
+        "nameAr": "كوكوز",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Rd No 3803, Manama",
+        "area": "Manama",
+        "phone": "+973 1771 2288",
+        "rating": 4.1,
+        "reviews": 8215,
+        "website": "8,215 reviews",
+        "openNow": "Open · Closes 3 AM",
+        "hours": null,
+        "lat": 26.215013199999998,
+        "lng": 50.5925763,
+        "placeId": "ChIJ5cQg7TOvST4RjKldp9mLgss",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Coco's%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Coco's Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Coco's Manama Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Manama",
+          "categories": []
+        },
+        {
+          "q": "Coco's Mediterranean Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Coco's Qudaibiya Bahrain",
+          "resolved": true,
+          "name": "Coco's",
+          "nameScore": 1,
+          "rating": 4.1
+        }
+      ],
+      "at": "2026-09-27T20:15:50.975Z"
+    },
+    {
+      "id": "banu",
+      "name": "Banu",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Seef",
+        "branches": [
+          "Seef",
+          "Al Hoora"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.6,
+        "reviews": 362
+      },
+      "resolved": {
+        "name": "Banu Restaurant",
+        "nameAr": "مطعم بانو",
+        "categories": [
+          "Persian restaurant"
+        ],
+        "address": "Bu Ghazal Manama",
+        "area": "Manama",
+        "phone": "+973 1771 5654",
+        "rating": 4.5,
+        "reviews": 3410,
+        "website": "3,410 reviews",
+        "openNow": "Closed · Opens 12 PM Mon",
+        "hours": {
+          "Sunday": "12-11 PM",
+          "Monday": "12-11 PM",
+          "Tuesday": "12-11 PM",
+          "Wednesday": "12-11 PM",
+          "Thursday": "12 PM-12 AM",
+          "Friday": "12 PM-12 AM",
+          "Saturday": "12-11 PM"
+        },
+        "lat": 26.210615699999998,
+        "lng": 50.5723342,
+        "placeId": "ChIJ6f4gRRSvST4RjXd_0jifiEA",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Banu%20Restaurant%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Banu Bahrain",
+          "resolved": true,
+          "name": "Banu Restaurant",
+          "nameScore": 1,
+          "rating": 4.5
+        }
+      ],
+      "at": "2026-09-27T20:15:54.686Z"
+    },
+    {
+      "id": "bella-pizzeria",
+      "name": "Bella Pizzeria",
+      "current": {
+        "cuisine": "Pizza",
+        "address": "Riffa",
+        "branches": [
+          "Riffa",
+          "Busaiteen"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.6,
+        "reviews": 892
+      },
+      "resolved": {
+        "name": "Bella Pizzeria Italiano",
+        "nameAr": "بيلا بيزاريا",
+        "categories": [
+          "Italian restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "+973 1730 0800",
+        "rating": 3.9,
+        "reviews": 279,
+        "website": "Bella Pizzeria Italiano",
+        "openNow": "Open · Closes 1 AM",
+        "hours": {
+          "Sunday": "12 PM-1 AM",
+          "Monday": "12 PM-1 AM",
+          "Tuesday": "12 PM-1 AM",
+          "Wednesday": "12 PM-1 AM",
+          "Thursday": "12 PM-1 AM",
+          "Friday": "12 PM-1 AM",
+          "Saturday": "12 PM-1 AM"
+        },
+        "lat": 26.1324495,
+        "lng": 50.5548971,
+        "placeId": "ChIJpcBKzTSsST4RVN0daWy_eLg",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Bella%20Pizzeria%20Italiano%20Bahrain",
+        "panelText": "",
+        "addressRejected": "scraper returned a non-address"
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Bella Pizzeria Bahrain",
+          "resolved": true,
+          "name": "Bella Pizzeria Italiano",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Bella Pizzeria Riffa Bahrain",
+          "resolved": true,
+          "name": "Bella Pizzeria Italiano",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Bella Pizzeria Pizza Bahrain",
+          "resolved": true,
+          "name": "Bella Pizzeria Italiano",
+          "nameScore": 0.9,
+          "rating": 3.9
+        },
+        {
+          "q": "Bella Pizzeria restaurant Bahrain",
+          "resolved": true,
+          "name": "Bella Pizzeria Italiano",
+          "nameScore": 0.9,
+          "rating": 3.9
+        }
+      ],
+      "at": "2026-09-27T20:16:10.283Z"
+    },
+    {
+      "id": "slider-station",
+      "name": "Slider Station",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Manama",
+        "branches": [],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.6,
+        "reviews": 892
+      },
+      "resolved": {
+        "name": "Slider Station",
+        "nameAr": "سلايدر ستيشن",
+        "categories": [
+          "Hamburger restaurant",
+          "American restaurant"
+        ],
+        "address": "112 Rd No 3803, Manama",
+        "area": "Manama",
+        "phone": "+973 1663 3777",
+        "rating": 4.4,
+        "reviews": 4096,
+        "website": "4,096 reviews",
+        "openNow": "Closed · Opens 12 PM",
+        "hours": {
+          "Monday": "12 PM-12 AM",
+          "Tuesday": "12 PM-12 AM",
+          "Wednesday": "12 PM-12 AM",
+          "Thursday": "12 PM-1 AM",
+          "Friday": "12 PM-1 AM",
+          "Saturday": "12 PM-12:30 AM",
+          "Sunday": "12 PM-12 AM"
+        },
+        "lat": 26.214537399999998,
+        "lng": 50.592818699999995,
+        "placeId": "ChIJbZ7LvTOvST4Rg7gsHxxa6fw",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Slider%20Station%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Slider Station Bahrain",
+          "resolved": true,
+          "name": "Slider Station",
+          "nameScore": 1,
+          "rating": 4.4
+        }
+      ],
+      "at": "2026-09-27T20:16:13.750Z"
+    },
+    {
+      "id": "barbecue-town",
+      "name": "Barbecue Town",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Bilad Al Qadeem",
+        "branches": [
+          "Bilad Al Qadeem"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.5,
+        "reviews": 839
+      },
+      "resolved": {
+        "name": "Barbecue Town",
+        "nameAr": "مدينة الشواء",
+        "categories": [
+          "Barbecue restaurant",
+          "Grill",
+          "Barbecue area",
+          "Restaurant",
+          "Steak house"
+        ],
+        "address": "مدينة الشواء, Bilad Al Qadeem",
+        "area": "",
+        "phone": "+973 3547 7026",
+        "rating": 4.3,
+        "reviews": 6336,
+        "website": "6,336 reviews",
+        "openNow": "Open · Closes 2 AM",
+        "hours": {
+          "Sunday": "12 PM-2 AM",
+          "Monday": "12 PM-2 AM",
+          "Tuesday": "12 PM-2 AM",
+          "Wednesday": "12 PM-2 AM",
+          "Thursday": "12 PM-2 AM",
+          "Friday": "12 PM-2 AM",
+          "Saturday": "12 PM-2 AM"
+        },
+        "lat": 26.2052041,
+        "lng": 50.5541823,
+        "placeId": "ChIJvSYlNSivST4Rm5zNlfIwd64",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Barbecue%20Town%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Barbecue Town Bahrain",
+          "resolved": true,
+          "name": "Barbecue Town",
+          "nameScore": 1,
+          "rating": 4.3
+        }
+      ],
+      "at": "2026-09-27T20:16:15.679Z"
+    },
+    {
+      "id": "abrisham",
+      "name": "Abrisham",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Saar",
+        "branches": [
+          "Saar"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.5,
+        "reviews": 574
+      },
+      "resolved": {
+        "name": "Abrisham Bahrain | ابريشم البحرين مطعم ايراني",
+        "nameAr": "مطعم أبريشم",
+        "categories": [
+          "Persian restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "+973 7799 7788",
+        "rating": 4.6,
+        "reviews": 3551,
+        "website": "3,551 reviews",
+        "openNow": "",
+        "hours": {
+          "Sunday": "12 PM-12 AM",
+          "Monday": "12 PM-12 AM",
+          "Tuesday": "12 PM-12 AM",
+          "Wednesday": "12 PM-12 AM",
+          "Thursday": "12 PM-12 AM",
+          "Friday": "12 PM-12 AM",
+          "Saturday": "12 PM-12 AM"
+        },
+        "lat": 26.2038866,
+        "lng": 50.4994711,
+        "placeId": "ChIJpeBU3i6xST4Rnij29bnHkk0",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Abrisham%20Bahrain%20%7C%20%D8%A7%D8%A8%D8%B1%D9%8A%D8%B4%D9%85%20%D8%A7%D9%84%D8%A8%D8%AD%D8%B1%D9%8A%D9%86%20%D9%85%D8%B7%D8%B9%D9%85%20%D8%A7%D9%8A%D8%B1%D8%A7%D9%86%D9%8A%20Bahrain",
+        "panelText": "",
+        "addressRejected": "scraper returned a non-address"
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Abrisham Bahrain",
+          "resolved": true,
+          "name": "Abrisham Bahrain | ابريشم البحرين مطعم ايراني",
+          "nameScore": 0.9,
+          "rating": 4.6
+        },
+        {
+          "q": "Abrisham Saar Bahrain",
+          "resolved": true,
+          "name": "Abrisham Bahrain | ابريشم البحرين مطعم ايراني",
+          "nameScore": 0.9,
+          "rating": 4.6
+        },
+        {
+          "q": "Abrisham Grill Bahrain",
+          "resolved": true,
+          "name": "Abrisham Bahrain | ابريشم البحرين مطعم ايراني",
+          "nameScore": 0.9,
+          "rating": 4.6
+        },
+        {
+          "q": "Abrisham restaurant Bahrain",
+          "resolved": true,
+          "name": "Abrisham Bahrain | ابريشم البحرين مطعم ايراني",
+          "nameScore": 0.9,
+          "rating": 4.6
+        }
+      ],
+      "at": "2026-09-27T20:16:29.563Z"
+    },
+    {
+      "id": "black-strip",
+      "name": "Black Strip",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Black Strip Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Black Stripe, Harbour Row, Manama",
+          "categories": [
+            "Hamburger restaurant"
+          ]
+        },
+        {
+          "q": "Black Strip Manama Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Black Stripe, Harbour Row, Manama",
+          "categories": [
+            "Hamburger restaurant"
+          ]
+        },
+        {
+          "q": "Black Strip Grill Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Black Stripe, Harbour Row, Manama",
+          "categories": [
+            "Hamburger restaurant"
+          ]
+        },
+        {
+          "q": "Black Strip restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Black Stripe, Harbour Row, Manama",
+          "categories": [
+            "Hamburger restaurant"
+          ]
+        }
+      ],
+      "at": "2026-10-03T21:44:32.751Z"
+    },
+    {
+      "id": "beefko",
+      "name": "Beefko",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Shop 0, Building 2295, Road 2435, Adliya (Block 338)",
+        "branches": [
+          "Adliya"
+        ],
+        "phone": "+973 3200 0877",
+        "hours": "Sun - Thu · 1:00 PM - 1:00 AM · Fri - Sat · 1:00 PM - 2:00 AM",
+        "rating": 4.4,
+        "reviews": 1068
+      },
+      "resolved": {
+        "name": "Beefko",
+        "nameAr": "",
+        "categories": [
+          "Steak house",
+          "Restaurant"
+        ],
+        "address": "Shop 0. Building 2295. R2435",
+        "area": "",
+        "phone": "+973 3200 0877",
+        "rating": 4.4,
+        "reviews": 1073,
+        "website": "1,073 reviews",
+        "openNow": "Open · Closes 1 AM",
+        "hours": {
+          "Monday": "1 PM-1 AM",
+          "Tuesday": "1 PM-1 AM",
+          "Wednesday": "1 PM-1 AM",
+          "Thursday": "1 PM-2 AM",
+          "Friday": "1 PM-2 AM",
+          "Saturday": "1 PM-1 AM",
+          "Sunday": "1 PM-1 AM"
+        },
+        "lat": 26.215133899999998,
+        "lng": 50.5917143,
+        "placeId": "ChIJPVI_0MWvST4R4V6I3HNmiUE",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Beefko%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Beefko Bahrain",
+          "resolved": true,
+          "name": "Beefko",
+          "nameScore": 1,
+          "rating": 4.4
+        }
+      ],
+      "at": "2026-09-27T20:16:43.307Z"
+    },
+    {
+      "id": "de-linos",
+      "name": "De Linos",
+      "current": {
+        "cuisine": "Italian",
+        "address": "Sea Front, Manama",
+        "branches": [
+          "Sea Front",
+          "City Centre"
+        ],
+        "phone": "+973 1772 8290 / +973 1734 5288",
+        "hours": "Daily · 9:00 AM - 11:00 PM",
+        "rating": 4.4,
+        "reviews": 1626
+      },
+      "resolved": {
+        "name": "De Linos",
+        "nameAr": "ديلينوز",
+        "categories": [
+          "Italian restaurant"
+        ],
+        "address": "6HM3+8Q4, Manama",
+        "area": "Manama",
+        "phone": "",
+        "rating": 4.4,
+        "reviews": 1635,
+        "website": "1,635 reviews",
+        "openNow": "Closed · Opens 9 AM Mon",
+        "hours": {
+          "Sunday": "9 AM-11 PM",
+          "Monday": "9 AM-11 PM",
+          "Tuesday": "9 AM-11 PM",
+          "Wednesday": "9 AM-11 PM",
+          "Thursday": "9 AM-11 PM",
+          "Friday": "9 AM-11 PM",
+          "Saturday": "9 AM-11 PM"
+        },
+        "lat": 26.2331526,
+        "lng": 50.5544582,
+        "placeId": "ChIJeZe-TAClST4RXN3qO4zt5tw",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=De%20Linos%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "De Linos Bahrain",
+          "resolved": true,
+          "name": "De Linos",
+          "nameScore": 1,
+          "rating": 4.4
+        }
+      ],
+      "at": "2026-09-27T20:16:47.025Z"
+    },
+    {
+      "id": "empire-pizza",
+      "name": "Empire Pizza",
+      "current": {
+        "cuisine": "Pizza",
+        "address": "Building 1573, Road 3236, A'ali 732",
+        "branches": [
+          "A'ali",
+          "Saar"
+        ],
+        "phone": "+973 7709 0105 / +973 7709 0106",
+        "hours": "Tue - Sun · 6:00 PM - 11:00 PM",
+        "rating": 4.6,
+        "reviews": 367
+      },
+      "resolved": {
+        "name": "Empire Pizza",
+        "nameAr": "بيتزا الإمبراطورية",
+        "categories": [
+          "Pizza takeaway"
+        ],
+        "address": "Building 1573 Road 3236, A'ali 732",
+        "area": "A'ali",
+        "phone": "+973 7709 0105",
+        "rating": 4.6,
+        "reviews": 367,
+        "website": "367 reviews",
+        "openNow": "Closed · Opens 6 PM Wed",
+        "hours": {
+          "Sunday": "Closed",
+          "Monday": "Closed",
+          "Tuesday": "Closed",
+          "Wednesday": "6-11 PM",
+          "Thursday": "6-11 PM",
+          "Friday": "6-11 PM",
+          "Saturday": "6-11 PM"
+        },
+        "lat": 26.151873,
+        "lng": 50.5328568,
+        "placeId": "ChIJW450D4qvST4R8ClBwHCY1Hc",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Empire%20Pizza%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Empire Pizza Bahrain",
+          "resolved": true,
+          "name": "Empire Pizza",
+          "nameScore": 1,
+          "rating": 4.6
+        }
+      ],
+      "at": "2026-09-27T20:16:48.916Z"
+    },
+    {
+      "id": "nu-asia",
+      "name": "Nu Asia",
+      "current": {
+        "cuisine": "Asian",
+        "address": "Al Aali Complex, Road 2827, Seef",
+        "branches": [
+          "Seef",
+          "Zayed Town",
+          "Budaiya"
+        ],
+        "phone": "+973 1743 4344 / +973 1787 0222 / +973 1769 1919",
+        "hours": "Daily · 11:30 AM - 12:30 AM",
+        "rating": 4.4,
+        "reviews": 2580
+      },
+      "resolved": {
+        "name": "Nu Asia - Al Aali Complex",
+        "nameAr": "نيو اسيا",
+        "categories": [
+          "Asian restaurant",
+          "Indian restaurant",
+          "Japanese restaurant",
+          "Sushi restaurant"
+        ],
+        "address": "District- AlAali complex, Road No 2827, Seef",
+        "area": "Seef",
+        "phone": "+973 1743 4344",
+        "rating": 4.4,
+        "reviews": 2583,
+        "website": "2,583 reviews",
+        "openNow": "Closed · Opens 11:30 AM Mon",
+        "hours": {
+          "Sunday": "11:30 AM-11:45 PM",
+          "Monday": "11:30 AM-11:45 PM",
+          "Tuesday": "11:30 AM-11:45 PM",
+          "Wednesday": "11:30 AM-11:45 PM",
+          "Thursday": "11:30 AM-12:15 AM",
+          "Friday": "11:30 AM-12:15 AM",
+          "Saturday": "11:30 AM-11:45 PM"
+        },
+        "lat": 26.2325189,
+        "lng": 50.541305,
+        "placeId": "ChIJVx3-kGWlST4RxL1q_c3F-Yk",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Nu%20Asia%20-%20Al%20Aali%20Complex%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Nu Asia Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Nu Asia Seef Bahrain",
+          "resolved": true,
+          "name": "Nu Asia - Al Aali Complex",
+          "nameScore": 0.9,
+          "rating": 4.4
+        },
+        {
+          "q": "Nu Asia Asian Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Nu Asia restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:17:04.134Z"
+    },
+    {
+      "id": "tonys",
+      "name": "Tony's",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Jidhafs",
+        "branches": [
+          "Jidhafs"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.3,
+        "reviews": 468
+      },
+      "resolved": {
+        "name": "Tonys Restaurant مطعم تونيز",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Jidhafs",
+        "area": "",
+        "phone": "+973 7739 1199",
+        "rating": 4.9,
+        "reviews": 371,
+        "website": "371 reviews",
+        "openNow": "",
+        "hours": {
+          "Sunday": "5:30 PM-12 AM",
+          "Monday": "5:30 PM-12 AM",
+          "Tuesday": "5:30 PM-12 AM",
+          "Wednesday": "5:30 PM-12 AM",
+          "Thursday": "5:30 PM-1 AM",
+          "Friday": "5:30 PM-1 AM",
+          "Saturday": "5:30 PM-12 AM"
+        },
+        "lat": 26.2203931,
+        "lng": 50.544374499999996,
+        "placeId": "ChIJzYSEAwCvST4RT3PfAEP-vII",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Tonys%20Restaurant%20%D9%85%D8%B7%D8%B9%D9%85%20%D8%AA%D9%88%D9%86%D9%8A%D8%B2%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Tony's Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Tony's  Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Tony's Burger Bahrain",
+          "resolved": true,
+          "name": "Tonys Restaurant مطعم تونيز",
+          "nameScore": 1,
+          "rating": 4.9
+        }
+      ],
+      "at": "2026-09-27T20:17:15.089Z"
+    },
+    {
+      "id": "buzz-burger",
+      "name": "Buzz Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Riffa",
+        "branches": [
+          "Riffa",
+          "Muharraq"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.3,
+        "reviews": 733
+      },
+      "resolved": {
+        "name": "Buzz Burger",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Building 605د, Road 1311، Riffa",
+        "area": "Riffa",
+        "phone": "+973 3459 9899",
+        "rating": 4.4,
+        "reviews": 18,
+        "website": "18 reviews",
+        "openNow": "Closed · Opens 5 PM Mon",
+        "hours": {
+          "Sunday": "Closed",
+          "Monday": "5 PM-1 AM",
+          "Tuesday": "5 PM-1 AM",
+          "Wednesday": "5 PM-1 AM",
+          "Thursday": "5 PM-1 AM",
+          "Friday": "5 PM-1 AM",
+          "Saturday": "5 PM-1 AM"
+        },
+        "lat": 26.1325976,
+        "lng": 50.5563608,
+        "placeId": "ChIJXV2sm5CtST4Rnztf3SXp7oU",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Buzz%20Burger%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Buzz Burger Bahrain",
+          "resolved": true,
+          "name": "Buzz Burger",
+          "nameScore": 1,
+          "rating": 4.4
+        }
+      ],
+      "at": "2026-09-27T20:17:17.379Z"
+    },
+    {
+      "id": "backyard-burger",
+      "name": "Backyard Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Riffa",
+        "branches": [
+          "Riffa",
+          "Hamad Town"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 945
+      },
+      "resolved": {
+        "name": "Backyard burger",
+        "nameAr": "",
+        "categories": [
+          "American restaurant"
+        ],
+        "address": "4HJH+W88, Riffa",
+        "area": "Riffa",
+        "phone": "+973 1369 0011",
+        "rating": null,
+        "reviews": null,
+        "website": "backyardbrgr.com",
+        "openNow": "Closed · Opens 12:10 PM Mon",
+        "hours": {
+          "Sunday": "12:10-8:25 PM",
+          "Monday": "12:10-8 PM",
+          "Tuesday": "12:10-8 PM",
+          "Wednesday": "12:10-9:19 PM",
+          "Thursday": "12:10 PM-12 AM",
+          "Friday": "4:10 PM-12:45 AM",
+          "Saturday": "1:10-8 PM"
+        },
+        "lat": 26.132222199999998,
+        "lng": 50.5783889,
+        "placeId": "ChIJxd1NAgCtST4R_XWnZ8TN-kE",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Backyard%20burger%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Backyard Burger Bahrain",
+          "resolved": true,
+          "name": "Backyard burger",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Backyard Burger Riffa Bahrain",
+          "resolved": true,
+          "name": "Backyard burger",
+          "nameScore": 1,
+          "rating": 3.6
+        }
+      ],
+      "at": "2026-09-27T20:17:26.872Z"
+    },
+    {
+      "id": "my-burger77",
+      "name": "Burger 77",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Riffa",
+        "branches": [
+          "Riffa"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.6,
+        "reviews": 627
+      },
+      "resolved": {
+        "name": "My burger 77",
+        "nameAr": "شارع الاستقلال",
+        "categories": [
+          "Hamburger restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "",
+        "rating": 4.4,
+        "reviews": 16,
+        "website": "My burger 77",
+        "openNow": "",
+        "hours": null,
+        "lat": 26.157367599999997,
+        "lng": 50.5655187,
+        "placeId": "ChIJmTNE_L2lST4Rq1f9DfocSaY",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=My%20burger%2077%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Burger 77 Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Burger 77 Riffa Bahrain",
+          "resolved": true,
+          "name": "My burger 77",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Burger 77 Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Burger 77 restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:17:44.741Z"
+    },
+    {
+      "id": "honest-burger",
+      "name": "Honest Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Budaiya",
+        "branches": [
+          "Budaiya"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.5,
+        "reviews": 839
+      },
+      "resolved": {
+        "name": "Honest Burger",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "+973 1720 0033",
+        "rating": null,
+        "reviews": null,
+        "website": "Honest Burger",
+        "openNow": "",
+        "hours": {
+          "Sunday": "12 PM-12 AM",
+          "Monday": "12 PM-12 AM",
+          "Tuesday": "12 PM-12 AM",
+          "Wednesday": "12 PM-12 AM",
+          "Thursday": "12 PM-1 AM",
+          "Friday": "12 PM-1 AM",
+          "Saturday": "12 PM-12 AM"
+        },
+        "lat": 26.2198913,
+        "lng": 50.4923542,
+        "placeId": "ChIJF-DnA7a7ST4RdbNuaFVgvvk",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Honest%20Burger%20Bahrain",
+        "panelText": "",
+        "addressRejected": "scraper returned a non-address"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Honest Burger Bahrain",
+          "resolved": true,
+          "name": "Honest Burger",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Honest Burger Budaiya Bahrain",
+          "resolved": true,
+          "name": "Honest Burger",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Honest Burger Burger Bahrain",
+          "resolved": true,
+          "name": "Honest Burger",
+          "nameScore": 1,
+          "rating": 3.2
+        }
+      ],
+      "at": "2026-09-27T20:17:56.935Z"
+    },
+    {
+      "id": "freid",
+      "name": "Freid",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Freid Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Freid A'ali Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Freid Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Freid restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-10-04T17:19:24.533Z"
+    },
+    {
+      "id": "burger-fries-more",
+      "name": "Burger Fries and More",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Burger Fries and More Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Burger Fries and More A'ali Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "A'ali",
+          "categories": []
+        },
+        {
+          "q": "Burger Fries and More Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Burger Fries and More restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-10-03T21:45:01.384Z"
+    },
+    {
+      "id": "lahom",
+      "name": "Lahom",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Muqaba",
+        "branches": [
+          "Muqaba"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 415
+      },
+      "resolved": {
+        "name": "Lahom.bh",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Building 2108, 1334, Maqabah",
+        "area": "",
+        "phone": "+973 3350 8338",
+        "rating": null,
+        "reviews": null,
+        "website": "instagram.com",
+        "openNow": "Open · Closes 1 AM",
+        "hours": {
+          "Monday": "5:30 PM-1 AM"
+        },
+        "lat": 26.203597199999997,
+        "lng": 50.496645199999996,
+        "placeId": "ChIJb7JYFACxST4RFj1JtN5xnQ8",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lahom.bh%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Lahom Bahrain",
+          "resolved": true,
+          "name": "Lahom.bh",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Lahom  Bahrain",
+          "resolved": true,
+          "name": "Lahom.bh",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Lahom Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Lahom Muqaba Bahrain",
+          "resolved": true,
+          "name": "Lahom.bh",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Lahom restaurant Bahrain",
+          "resolved": true,
+          "name": "Lahom.bh",
+          "nameScore": 0.9,
+          "rating": null
+        }
+      ],
+      "at": "2026-09-27T20:18:48.120Z"
+    },
+    {
+      "id": "engineer-burger",
+      "name": "Engineer Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Manama",
+        "branches": [],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 945
+      },
+      "resolved": {
+        "name": "Engineer Burger",
+        "nameAr": "",
+        "categories": [
+          "Hamburger restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "+973 1361 1008",
+        "rating": 4.8,
+        "reviews": 47,
+        "website": "47 reviews",
+        "openNow": "",
+        "hours": {
+          "Sunday": "7:30 PM-12 AM",
+          "Monday": "7:30 PM-12 AM",
+          "Tuesday": "7:30 PM-12 AM",
+          "Wednesday": "7:30 PM-12 AM",
+          "Thursday": "7:30 PM-12 AM",
+          "Friday": "7:30 PM-12 AM",
+          "Saturday": "7:30 PM-12 AM"
+        },
+        "lat": 26.21302,
+        "lng": 50.563747299999996,
+        "placeId": "ChIJZV2l7smlST4Rh42r5F0a6Lg",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Engineer%20Burger%20Bahrain",
+        "panelText": "",
+        "addressRejected": "scraper returned a non-address"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Engineer Burger Bahrain",
+          "resolved": true,
+          "name": "Engineer Burger",
+          "nameScore": 1,
+          "rating": 4.8
+        }
+      ],
+      "at": "2026-09-27T20:18:51.382Z"
+    },
+    {
+      "id": "lab-burger",
+      "name": "Lab Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Riffa",
+        "branches": [
+          "Riffa"
+        ],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Burger Lab",
+        "nameAr": "",
+        "categories": [
+          "Wok restaurant"
+        ],
+        "address": "https://www.gstatic.com/images/icons/material/system_gm/2x/storefront_googblue_24dp.png, Burger Lab",
+        "area": "",
+        "phone": "+973 7708 4878",
+        "rating": 4.1,
+        "reviews": 92,
+        "website": "",
+        "openNow": "Open · Closes 2 AM",
+        "hours": {
+          "Saturday": "4 PM-2 AM",
+          "Sunday": "4 PM-2 AM",
+          "Monday": "4 PM-2 AM",
+          "Tuesday": "4 PM-2 AM",
+          "Wednesday": "4 PM-2 AM",
+          "Thursday": "4 PM-2 AM",
+          "Friday": "4 PM-2 AM"
+        },
+        "lat": 26.1142802,
+        "lng": 50.576505399999995,
+        "placeId": "ChIJ4bbLgMqtST4RyGPzffEnTuQ",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Burger%20Lab%20Bahrain"
+      },
+      "nameScore": 0.56,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Lab Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Lab Burger Riffa Bahrain",
+          "resolved": true,
+          "name": "Burger Lab",
+          "nameScore": 0.56,
+          "rating": 4.1
+        },
+        {
+          "q": "Lab Burger Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Lab Burger restaurant Bahrain",
+          "resolved": true,
+          "name": "Burger Lab",
+          "nameScore": 0.56,
+          "rating": 4.1
+        }
+      ],
+      "at": "2026-10-03T21:45:12.038Z"
+    },
+    {
+      "id": "cut-burger",
+      "name": "Cut Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Malkiya",
+        "branches": [
+          "Malkiya"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 680
+      },
+      "resolved": {
+        "name": "Cut burger",
+        "nameAr": "",
+        "categories": [
+          "Hamburger restaurant"
+        ],
+        "address": "Road 3375، Malkiya",
+        "area": "Malkiya",
+        "phone": "+973 3841 1880",
+        "rating": null,
+        "reviews": null,
+        "website": "cut_burger.invopos.shop",
+        "openNow": "",
+        "hours": null,
+        "lat": 26.0931544,
+        "lng": 50.4857817,
+        "placeId": "ChIJoxwcnbqzST4RWzd99kYFuqw",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Cut%20burger%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Cut Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Cut Burger Malkiya Bahrain",
+          "resolved": true,
+          "name": "Cut burger",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Cut Burger Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Cut Burger restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:19:24.041Z"
+    },
+    {
+      "id": "golden-bun",
+      "name": "Golden Bun",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Golden Bun Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Golden Bun",
+          "categories": [
+            "Hamburger restaurant"
+          ]
+        },
+        {
+          "q": "Golden Bun Manama Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Golden Bun",
+          "categories": [
+            "Hamburger restaurant"
+          ]
+        },
+        {
+          "q": "Golden Bun Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Golden Bun restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Golden Bun",
+          "categories": [
+            "Hamburger restaurant"
+          ]
+        }
+      ],
+      "at": "2026-10-03T21:45:22.558Z"
+    },
+    {
+      "id": "fat-whale",
+      "name": "Fat Whale",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Riffa",
+        "branches": [
+          "Riffa"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.6,
+        "reviews": 627
+      },
+      "resolved": {
+        "name": "Fat Whale Foods \\u0026 Drinks",
+        "nameAr": "الحوت المتين للبرجر",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "2513, Riffa",
+        "area": "Riffa",
+        "phone": "+973 3661 1506",
+        "rating": 4.1,
+        "reviews": 55,
+        "website": "55 reviews",
+        "openNow": "Open · Closes 2 AM",
+        "hours": null,
+        "lat": 26.129166899999998,
+        "lng": 50.572756,
+        "placeId": "ChIJwcBDaQStST4RNDMp6yafe-s",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Fat%20Whale%20Foods%20%5Cu0026%20Drinks%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [
+        {
+          "name": "Fat Whale Foods \\u0026 Drinks, 2513, Riffa",
+          "categories": [],
+          "address": "",
+          "nameScore": 0.9
+        }
+      ],
+      "attempts": [
+        {
+          "q": "Fat Whale Bahrain",
+          "resolved": true,
+          "name": "Fat Whale Foods \\u0026 Drinks",
+          "nameScore": 0.9,
+          "rating": 4.1
+        },
+        {
+          "q": "Fat Whale Riffa Bahrain",
+          "resolved": true,
+          "name": "Fat Whale Foods \\u0026 Drinks, 2513, Riffa",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Fat Whale Burger Bahrain",
+          "resolved": true,
+          "name": "Fat Whale Foods \\u0026 Drinks",
+          "nameScore": 0.9,
+          "rating": 4.1
+        },
+        {
+          "q": "Fat Whale restaurant Bahrain",
+          "resolved": true,
+          "name": "Fat Whale Foods \\u0026 Drinks",
+          "nameScore": 0.9,
+          "rating": 4.1
+        }
+      ],
+      "at": "2026-09-27T20:19:48.953Z"
+    },
+    {
+      "id": "grannys-burger",
+      "name": "Granny's Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Riffa",
+        "branches": [
+          "Riffa"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 945
+      },
+      "resolved": {
+        "name": "Granny's Burger Riffa Branch",
+        "nameAr": "",
+        "categories": [
+          "Hamburger restaurant"
+        ],
+        "address": "Road 2, Block 904, Building 34, Riffa",
+        "area": "Riffa",
+        "phone": "+973 3303 0231",
+        "rating": 3.9,
+        "reviews": 36,
+        "website": "36 reviews",
+        "openNow": "",
+        "hours": {
+          "Sunday": "5 PM-12 AM",
+          "Monday": "5 PM-12 AM",
+          "Tuesday": "5 PM-12 AM",
+          "Wednesday": "5 PM-12 AM",
+          "Thursday": "5 PM-1 AM",
+          "Friday": "5 PM-1 AM",
+          "Saturday": "5 PM-12 AM"
+        },
+        "lat": 26.131781999999998,
+        "lng": 50.540796199999996,
+        "placeId": "ChIJezRN5I2tST4RaS-klKJTH8w",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Granny's%20Burger%20Riffa%20Branch%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Granny's Burger Bahrain",
+          "resolved": true,
+          "name": "Granny's Burger Riffa Branch",
+          "nameScore": 0.9,
+          "rating": 3.9
+        },
+        {
+          "q": "Granny's Burger Riffa Bahrain",
+          "resolved": true,
+          "name": "Granny's Burger Riffa Branch",
+          "nameScore": 0.9,
+          "rating": 3.9
+        },
+        {
+          "q": "Granny's Burger Burger Bahrain",
+          "resolved": true,
+          "name": "Granny's Burger Riffa Branch",
+          "nameScore": 0.9,
+          "rating": 3.9
+        },
+        {
+          "q": "Granny's Burger restaurant Bahrain",
+          "resolved": true,
+          "name": "Granny's Burger Riffa Branch",
+          "nameScore": 0.9,
+          "rating": 3.9
+        }
+      ],
+      "at": "2026-09-27T20:20:01.043Z"
+    },
+    {
+      "id": "doctor-food",
+      "name": "Doctor Food",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Riffa",
+        "branches": [
+          "Riffa"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.3,
+        "reviews": 733
+      },
+      "resolved": {
+        "name": "Doctor Food",
+        "nameAr": "دكتور فود",
+        "categories": [
+          "Hamburger restaurant"
+        ],
+        "address": "631 Road No 3821, Riffa",
+        "area": "Riffa",
+        "phone": "+973 7799 8820",
+        "rating": 4.6,
+        "reviews": 104,
+        "website": "104 reviews",
+        "openNow": "Open · Closes 1 AM",
+        "hours": {
+          "Sunday": "4 PM-1 AM",
+          "Monday": "4 PM-1 AM",
+          "Tuesday": "4 PM-1 AM",
+          "Wednesday": "4 PM-1 AM",
+          "Thursday": "4 PM-2 AM",
+          "Friday": "4 PM-2 AM",
+          "Saturday": "4 PM-1 AM"
+        },
+        "lat": 26.135607099999998,
+        "lng": 50.5553464,
+        "placeId": "ChIJhXtqKDCvST4RGaVJemkfBsc",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Doctor%20Food%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Doctor Food Bahrain",
+          "resolved": true,
+          "name": "Doctor Food",
+          "nameScore": 1,
+          "rating": 4.6
+        }
+      ],
+      "at": "2026-09-27T20:20:02.989Z"
+    },
+    {
+      "id": "jan-burger",
+      "name": "Jan Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Manama",
+        "branches": [],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 680
+      },
+      "resolved": {
+        "name": "Jan Burger",
+        "nameAr": "جان برجر",
+        "categories": [
+          "Hamburger restaurant"
+        ],
+        "address": "Manama",
+        "area": "Manama",
+        "phone": "+973 1771 2554",
+        "rating": null,
+        "reviews": null,
+        "website": "linkkoo.web.app",
+        "openNow": "",
+        "hours": null,
+        "lat": 26.215173699999998,
+        "lng": 50.5906556,
+        "placeId": "ChIJ31DLUjGvST4Rjf8EUNtnLdI",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Jan%20Burger%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Jan Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Jan Burger Manama Bahrain",
+          "resolved": true,
+          "name": "Jan Burger",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Jan Burger Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Jan Burger restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:20:21.953Z"
+    },
+    {
+      "id": "al-mihwar",
+      "name": "Al Mihwar",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Manama",
+        "branches": [],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.6,
+        "reviews": 627
+      },
+      "resolved": {
+        "name": "Al Mihwar Restaurant",
+        "nameAr": "",
+        "categories": [
+          "Hamburger restaurant"
+        ],
+        "address": "6H43+HXQ, Bilad Al Qadeem",
+        "area": "",
+        "phone": "+973 1741 4384",
+        "rating": 4.5,
+        "reviews": 339,
+        "website": "339 reviews",
+        "openNow": "Open · Closes 2:45 AM",
+        "hours": {
+          "Sunday": "5 PM-2:45 AM",
+          "Monday": "5 PM-2:45 AM",
+          "Tuesday": "5 PM-2:45 AM",
+          "Wednesday": "5 PM-2:45 AM",
+          "Thursday": "5 PM-2:45 AM",
+          "Friday": "5 PM-2:45 AM",
+          "Saturday": "5 PM-2:45 AM"
+        },
+        "lat": 26.206467,
+        "lng": 50.5549751,
+        "placeId": "ChIJPx9ueKCvST4RKBRzYPxJCYU",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Al%20Mihwar%20Restaurant%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Al Mihwar Bahrain",
+          "resolved": true,
+          "name": "Al Mihwar Restaurant",
+          "nameScore": 1,
+          "rating": 4.5
+        }
+      ],
+      "at": "2026-09-27T20:20:24.114Z"
+    },
+    {
+      "id": "bacon",
+      "name": "Bacon",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Bacon Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bacon",
+          "categories": [
+            "Hamburger restaurant"
+          ]
+        },
+        {
+          "q": "Bacon Juffair Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "AlJuffair, Manama",
+          "categories": []
+        },
+        {
+          "q": "Bacon Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bacon",
+          "categories": [
+            "Hamburger restaurant"
+          ]
+        },
+        {
+          "q": "Bacon restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bacon",
+          "categories": [
+            "Hamburger restaurant"
+          ]
+        }
+      ],
+      "at": "2026-10-03T21:45:35.396Z"
+    },
+    {
+      "id": "slider",
+      "name": "Slider",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Tubli",
+        "branches": [
+          "Tubli",
+          "Amwaj",
+          "Juffair"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.3,
+        "reviews": 468
+      },
+      "resolved": {
+        "name": "Sliders Amwaj",
+        "nameAr": "شارع 59",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "شارع 59",
+        "area": "Amwaj",
+        "phone": "+973 6676 7003",
+        "rating": 4.7,
+        "reviews": 1004,
+        "website": "1,004 reviews",
+        "openNow": "Open · Closes 1 AM",
+        "hours": {
+          "Sunday": "4 PM-1 AM",
+          "Monday": "4 PM-1 AM",
+          "Tuesday": "4 PM-1 AM",
+          "Wednesday": "4 PM-1 AM",
+          "Thursday": "4 PM-2 AM",
+          "Friday": "4 PM-2 AM",
+          "Saturday": "4 PM-1 AM"
+        },
+        "lat": 26.2787154,
+        "lng": 50.663987,
+        "placeId": "ChIJGWAEKiKnST4RdqwJaLOdkso",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sliders%20Amwaj%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Slider Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Slider Amwaj Bahrain",
+          "resolved": true,
+          "name": "Sliders Amwaj",
+          "nameScore": 0.9,
+          "rating": 4.7
+        },
+        {
+          "q": "Slider Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Slider Tubli Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Tubli",
+          "categories": []
+        },
+        {
+          "q": "Slider restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:20:54.367Z"
+    },
+    {
+      "id": "plan-b",
+      "name": "Plan B",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Riffa",
+        "branches": [
+          "Riffa",
+          "Seef"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.3,
+        "reviews": 468
+      },
+      "resolved": {
+        "name": "Plan B Restaurant",
+        "nameAr": "",
+        "categories": [
+          "Hamburger restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "+973 3336 9113",
+        "rating": 4.5,
+        "reviews": 246,
+        "website": "246 reviews",
+        "openNow": "Open · Closes 1 AM",
+        "hours": null,
+        "lat": 26.1311826,
+        "lng": 50.5585623,
+        "placeId": "ChIJpQRxOG6tST4RspHPk6s-y8I",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Plan%20B%20Restaurant%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Plan B Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Plan B Riffa Bahrain",
+          "resolved": true,
+          "name": "Plan B Restaurant",
+          "nameScore": 1,
+          "rating": 4.5
+        }
+      ],
+      "at": "2026-09-27T20:21:01.070Z"
+    },
+    {
+      "id": "viola-burger",
+      "name": "Viola Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Budaiya, Dar Kulaib, Muharraq and Malkiya",
+        "branches": [
+          "Budaiya",
+          "Dar Kulaib",
+          "Muharraq",
+          "Malkiya"
+        ],
+        "phone": "+973 1771 0020",
+        "hours": "Call to confirm hours",
+        "rating": 4.4,
+        "reviews": 786
+      },
+      "resolved": {
+        "name": "فيولا برقر | viola burger | فيولا برجر البديع جنويان قاردن بلازا",
+        "nameAr": "فيولا برجر",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "6GC3+H4P, Jannusan",
+        "area": "",
+        "phone": "+973 1771 0020",
+        "rating": 4.2,
+        "reviews": 386,
+        "website": "386 reviews",
+        "openNow": "Open · Closes 2 AM",
+        "hours": {
+          "Sunday": "7 AM-2 AM",
+          "Monday": "7 AM-2 AM",
+          "Tuesday": "7 AM-2 AM",
+          "Wednesday": "7 AM-2 AM",
+          "Thursday": "7 AM-2 AM",
+          "Friday": "7 AM-2 AM",
+          "Saturday": "7 AM-2 AM"
+        },
+        "lat": 26.221312899999997,
+        "lng": 50.5027439,
+        "placeId": "ChIJ9-JnENa7ST4R1EB2OhS6aLs",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%D9%81%D9%8A%D9%88%D9%84%D8%A7%20%D8%A8%D8%B1%D9%82%D8%B1%20%7C%20viola%20burger%20%7C%20%D9%81%D9%8A%D9%88%D9%84%D8%A7%20%D8%A8%D8%B1%D8%AC%D8%B1%20%D8%A7%D9%84%D8%A8%D8%AF%D9%8A%D8%B9%20%D8%AC%D9%86%D9%88%D9%8A%D8%A7%D9%86%20%D9%82%D8%A7%D8%B1%D8%AF%D9%86%20%D8%A8%D9%84%D8%A7%D8%B2%D8%A7%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Viola Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Viola Burger Budaiya Bahrain",
+          "resolved": true,
+          "name": "فيولا برقر | viola burger | فيولا برجر البديع جنويان قاردن بلازا",
+          "nameScore": 1,
+          "rating": 4.2
+        }
+      ],
+      "at": "2026-09-27T20:21:06.022Z"
+    },
+    {
+      "id": "three-guys",
+      "name": "Three Guys",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Jerdab",
+        "branches": [
+          "Jerdab",
+          "Shakura",
+          "Zallaq"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 680
+      },
+      "resolved": {
+        "name": "Three Guys Burger",
+        "nameAr": "مطعم ثري قايز",
+        "categories": [
+          "Hamburger restaurant"
+        ],
+        "address": "B803, Road 77, Jurdab",
+        "area": "",
+        "phone": "+973 1776 0256",
+        "rating": 4.2,
+        "reviews": 1062,
+        "website": "1,062 reviews",
+        "openNow": "Open · Closes 2 AM",
+        "hours": {
+          "Sunday": "12 PM-2 AM",
+          "Monday": "12 PM-2 AM",
+          "Tuesday": "12 PM-2 AM",
+          "Wednesday": "12 PM-2 AM",
+          "Thursday": "12 PM-2 AM",
+          "Friday": "12 PM-2 AM",
+          "Saturday": "12 PM-2 AM"
+        },
+        "lat": 26.1643471,
+        "lng": 50.5708718,
+        "placeId": "ChIJDcvQWZeuST4RCvD5CO9ffTY",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Three%20Guys%20Burger%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Three Guys Bahrain",
+          "resolved": true,
+          "name": "Three Guys Burger",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Three Guys  Bahrain",
+          "resolved": true,
+          "name": "Three Guys Burger",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Three Guys Burger Bahrain",
+          "resolved": true,
+          "name": "Three Guys Burger",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Three Guys Jerdab Bahrain",
+          "resolved": true,
+          "name": "Three Guys Burger",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Three Guys restaurant Bahrain",
+          "resolved": true,
+          "name": "Three Guys Burger",
+          "nameScore": 0.9,
+          "rating": 4.2
+        }
+      ],
+      "at": "2026-09-27T20:21:23.377Z"
+    },
+    {
+      "id": "hashtag",
+      "name": "Hashtag",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Zayed Town",
+        "branches": [
+          "Zayed Town",
+          "Al Sayh"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.4,
+        "reviews": 521
+      },
+      "resolved": {
+        "name": "Hashtag Burger",
+        "nameAr": "هاش تاق برجر",
+        "categories": [
+          "Hamburger restaurant",
+          "Restaurant",
+          "Tourist attraction"
+        ],
+        "address": "Muscat Ave, Isa Town",
+        "area": "Isa Town",
+        "phone": "+973 1700 2060",
+        "rating": 4.2,
+        "reviews": 1109,
+        "website": "1,109 reviews",
+        "openNow": "Open · Closes 1 AM",
+        "hours": {
+          "Sunday": "12 PM-1 AM",
+          "Monday": "12 PM-1 AM",
+          "Tuesday": "12 PM-1 AM",
+          "Wednesday": "12 PM-1 AM",
+          "Thursday": "12 PM-1 AM",
+          "Friday": "12 PM-1 AM",
+          "Saturday": "12 PM-1 AM"
+        },
+        "lat": 26.169106799999998,
+        "lng": 50.540137099999995,
+        "placeId": "ChIJQW_6HlyuST4Re07Rb6H16FU",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Hashtag%20Burger%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Hashtag Bahrain",
+          "resolved": true,
+          "name": "Hashtag Burger",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Hashtag  Bahrain",
+          "resolved": true,
+          "name": "Hashtag Burger",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Hashtag Burger Bahrain",
+          "resolved": true,
+          "name": "Hashtag Burger",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Hashtag Zayed Town Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Zayed Town",
+          "categories": []
+        },
+        {
+          "q": "Hashtag restaurant Bahrain",
+          "resolved": true,
+          "name": "Hashtag Burger",
+          "nameScore": 0.9,
+          "rating": 4.2
+        }
+      ],
+      "at": "2026-09-27T20:21:37.799Z"
+    },
+    {
+      "id": "three-lines",
+      "name": "Three Lines",
+      "current": {
+        "cuisine": "Pasta",
+        "address": "Zinj",
+        "branches": [
+          "Zinj",
+          "Busaiteen",
+          "Riffa"
+        ],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "3 Lines Restaurant Busaiteen",
+        "nameAr": "",
+        "categories": [
+          "Restaurant",
+          "Fast food restaurant"
+        ],
+        "address": "Restaurant, Fast food restaurant",
+        "area": "",
+        "phone": "+973 1777 7769",
+        "rating": 3.5,
+        "reviews": 206,
+        "website": "",
+        "openNow": "",
+        "hours": {
+          "Sunday": "Open 24 hours",
+          "Monday": "Open 24 hours",
+          "Tuesday": "Open 24 hours",
+          "Wednesday": "Open 24 hours",
+          "Thursday": "Open 24 hours",
+          "Friday": "Open 24 hours",
+          "Saturday": "Open 24 hours"
+        },
+        "lat": 26.271567599999997,
+        "lng": 50.604741999999995,
+        "placeId": "ChIJ-V0brXGmST4R7BZ_NdF4VNU",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=3%20Lines%20Restaurant%20Busaiteen%20Bahrain"
+      },
+      "nameScore": 0.9,
+      "alsoFound": [
+        {
+          "name": "3 Lines Restaurant Zinj",
+          "categories": [
+            "Restaurant",
+            "Fast food restaurant"
+          ],
+          "address": "Building 51, Road 20 Block 332 Buashirah, Manama",
+          "nameScore": 0.9
+        }
+      ],
+      "attempts": [
+        {
+          "q": "Three Lines Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Three Lines Busaiteen Bahrain",
+          "resolved": true,
+          "name": "3 Lines Restaurant Busaiteen",
+          "nameScore": 0.9,
+          "rating": 3.5
+        },
+        {
+          "q": "Three Lines Pasta Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Three Lines Zinj Bahrain",
+          "resolved": true,
+          "name": "3 Lines Restaurant Zinj",
+          "nameScore": 0.9,
+          "rating": 3.8
+        },
+        {
+          "q": "Three Lines restaurant Bahrain",
+          "resolved": false
+        }
+      ],
+      "at": "2026-10-03T21:45:49.350Z"
+    },
+    {
+      "id": "villa-rosa",
+      "name": "Villa Rosa",
+      "current": {
+        "cuisine": "Italian",
+        "address": "Isa Town",
+        "branches": [
+          "Isa Town"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 680
+      },
+      "resolved": {
+        "name": "Villa Rosa Pizzeria \\u0026 Restaurant",
+        "nameAr": "مطعم وبيزا فلا روزا",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "+973 1730 0141",
+        "rating": 4.4,
+        "reviews": 339,
+        "website": "339 reviews",
+        "openNow": "Closed · Opens 8 AM",
+        "hours": {
+          "Monday": "8 AM-12 AM"
+        },
+        "lat": 26.172480999999998,
+        "lng": 50.548199,
+        "placeId": "ChIJBz_Sk1uuST4RI0ihE_RazBU",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Villa%20Rosa%20Pizzeria%20%5Cu0026%20Restaurant%20Bahrain",
+        "panelText": "",
+        "addressRejected": "scraper returned a non-address"
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Villa Rosa Bahrain",
+          "resolved": true,
+          "name": "Villa Rosa Pizzeria \\u0026 Restaurant",
+          "nameScore": 0.9,
+          "rating": 4.4
+        },
+        {
+          "q": "Villa Rosa Isa Town Bahrain",
+          "resolved": true,
+          "name": "Villa Rosa Pizzeria \\u0026 Restaurant",
+          "nameScore": 0.9,
+          "rating": 4.4
+        },
+        {
+          "q": "Villa Rosa Italian Bahrain",
+          "resolved": true,
+          "name": "Villa Rosa Pizzeria \\u0026 Restaurant",
+          "nameScore": 0.9,
+          "rating": 4.4
+        },
+        {
+          "q": "Villa Rosa restaurant Bahrain",
+          "resolved": true,
+          "name": "Villa Rosa Pizzeria \\u0026 Restaurant",
+          "nameScore": 0.9,
+          "rating": 4.4
+        }
+      ],
+      "at": "2026-09-27T20:22:08.200Z"
+    },
+    {
+      "id": "cheesy-burger",
+      "name": "Cheesy Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Samaheej",
+        "branches": [
+          "Samaheej",
+          "Maqabah",
+          "Hidd"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.5,
+        "reviews": 839
+      },
+      "resolved": {
+        "name": "Cheesy Burger, Maqabah",
+        "nameAr": "",
+        "categories": [],
+        "address": "Maqabah Bahrain",
+        "area": "",
+        "phone": "",
+        "rating": null,
+        "reviews": null,
+        "website": "",
+        "openNow": "Open · Closes 4 AM",
+        "hours": {
+          "Sunday": "12 PM-4 AM",
+          "Monday": "12 PM-4 AM",
+          "Tuesday": "12 PM-4 AM",
+          "Wednesday": "12 PM-4 AM",
+          "Thursday": "12 PM-4 AM",
+          "Friday": "12 PM-4 AM",
+          "Saturday": "12 PM-4 AM"
+        },
+        "lat": 26.2179739,
+        "lng": 50.4859139,
+        "placeId": "0x3e49bba9db098557:0x5d4fbb0bb41ba22f",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Cheesy%20Burger%2C%20Maqabah%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [
+        {
+          "name": "Cheesy Burger - qalali",
+          "categories": [
+            "Hamburger restaurant",
+            "Restaurant"
+          ],
+          "address": "alkhaleej mall, Samaheej",
+          "nameScore": 0.9
+        }
+      ],
+      "attempts": [
+        {
+          "q": "Cheesy Burger Bahrain",
+          "resolved": true,
+          "name": "Cheesy Burger, Maqabah",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Cheesy Burger Hidd Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Al Hidd",
+          "categories": []
+        },
+        {
+          "q": "Cheesy Burger Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Cheesy Burger Samaheej Bahrain",
+          "resolved": true,
+          "name": "Cheesy Burger - qalali",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Cheesy Burger restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:22:29.065Z"
+    },
+    {
+      "id": "janahi-burger",
+      "name": "Janahi Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Riffa",
+        "branches": [
+          "Riffa"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.5,
+        "reviews": 839
+      },
+      "resolved": {
+        "name": "Janahi Burger",
+        "nameAr": "جناحي برجر",
+        "categories": [
+          "American restaurant"
+        ],
+        "address": "16th December Ave, Riffa",
+        "area": "Riffa",
+        "phone": "+973 3660 0686",
+        "rating": 4.5,
+        "reviews": 103,
+        "website": "103 reviews",
+        "openNow": "",
+        "hours": {
+          "Sunday": "7:30 PM-12 AM",
+          "Monday": "7:30 PM-12 AM",
+          "Tuesday": "7:30 PM-12 AM",
+          "Wednesday": "7:30 PM-12 AM",
+          "Thursday": "7:30 PM-1 AM",
+          "Friday": "7:30 PM-1 AM",
+          "Saturday": "Closed"
+        },
+        "lat": 26.156629499999998,
+        "lng": 50.5458384,
+        "placeId": "ChIJAeBddkyvST4RucK2Th2Qf_A",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Janahi%20Burger%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Janahi Burger Bahrain",
+          "resolved": true,
+          "name": "Janahi Burger",
+          "nameScore": 1,
+          "rating": 4.5
+        }
+      ],
+      "at": "2026-09-27T20:22:32.351Z"
+    },
+    {
+      "id": "blaze-burger",
+      "name": "Blaze Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Janabiyah",
+        "branches": [
+          "Janabiyah",
+          "Diyar",
+          "Manama"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.4,
+        "reviews": 786
+      },
+      "resolved": {
+        "name": "Blaze Burgers",
+        "nameAr": "",
+        "categories": [
+          "Hamburger restaurant",
+          "American restaurant",
+          "Diner"
+        ],
+        "address": "Building 385, Road 7113 Shop 19 Aljanabiya, 571",
+        "area": "",
+        "phone": "+973 3984 4773",
+        "rating": 4.2,
+        "reviews": 358,
+        "website": "358 reviews",
+        "openNow": "",
+        "hours": null,
+        "lat": 26.190403999999997,
+        "lng": 50.466467599999994,
+        "placeId": "ChIJF3N1fwuxST4RXC9i7iVTJ_E",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Blaze%20Burgers%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Blaze Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Blaze Burger Janabiyah Bahrain",
+          "resolved": true,
+          "name": "Blaze Burgers",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Blaze Burger Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Blaze Burger restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:22:46.048Z"
+    },
+    {
+      "id": "sahburger",
+      "name": "Sahburger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Juffair",
+        "branches": [
+          "Juffair",
+          "Hamala",
+          "Riffa",
+          "Sanad"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.6,
+        "reviews": 627
+      },
+      "resolved": {
+        "name": "Sah burger sanad",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "4571, Sanad",
+        "area": "",
+        "phone": "+973 1722 7877",
+        "rating": 3.3,
+        "reviews": 3,
+        "website": "3 reviews",
+        "openNow": "",
+        "hours": null,
+        "lat": 26.1436928,
+        "lng": 50.5793296,
+        "placeId": "ChIJ5eL2PhWtST4RAYUIE5GWJf8",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sah%20burger%20sanad%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Sahburger Bahrain",
+          "resolved": false
+        },
+        {
+          "q": "Sahburger Juffair Bahrain",
+          "resolved": true,
+          "name": "Sah burger sanad",
+          "nameScore": 0.9,
+          "rating": 3.3
+        },
+        {
+          "q": "Sahburger Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Sahburger restaurant Bahrain",
+          "resolved": false
+        }
+      ],
+      "at": "2026-09-27T20:23:11.441Z"
+    },
+    {
+      "id": "lost-burger",
+      "name": "Lost Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Riffa Views",
+        "branches": [
+          "Riffa Views"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.3,
+        "reviews": 733
+      },
+      "resolved": {
+        "name": "Lost Burger",
+        "nameAr": "",
+        "categories": [
+          "Hamburger restaurant"
+        ],
+        "address": "Road:1211 Block:912 Building:464",
+        "area": "",
+        "phone": "+973 3911 9913",
+        "rating": 3.8,
+        "reviews": 44,
+        "website": "44 reviews",
+        "openNow": "",
+        "hours": {
+          "Sunday": "7 PM-12 AM",
+          "Monday": "7 PM-12 AM",
+          "Tuesday": "7 PM-12 AM",
+          "Wednesday": "7 PM-12 AM",
+          "Thursday": "7 PM-1 AM",
+          "Friday": "7 PM-1 AM",
+          "Saturday": "7 PM-12 AM"
+        },
+        "lat": 26.1312785,
+        "lng": 50.542603899999996,
+        "placeId": "ChIJ_UiVqE2tST4R4enWHYM8vE8",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lost%20Burger%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Lost Burger Bahrain",
+          "resolved": true,
+          "name": "Lost Burger",
+          "nameScore": 1,
+          "rating": 3.8
+        }
+      ],
+      "at": "2026-09-27T20:23:13.294Z"
+    },
+    {
+      "id": "burger-waqif",
+      "name": "Burger Waqif",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Burger Waqif Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Burger Waqif  Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Burger Waqif Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Burger Waqif Jannusan Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "برجر واقف",
+          "categories": [
+            "Hamburger restaurant"
+          ]
+        },
+        {
+          "q": "Burger Waqif restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-10-03T21:46:07.811Z"
+    },
+    {
+      "id": "burger-square",
+      "name": "Burger Square",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Al Sayh",
+        "branches": [
+          "Al Sayh"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.5,
+        "reviews": 839
+      },
+      "resolved": {
+        "name": "برجر سكوير || BURGER SQUARE",
+        "nameAr": "برجر سكوير || BURGER SQUARE",
+        "categories": [
+          "Hamburger restaurant",
+          "Cheesesteak restaurant"
+        ],
+        "address": "Busaiteen",
+        "area": "Busaiteen",
+        "phone": "+973 3377 2700",
+        "rating": 4.5,
+        "reviews": 130,
+        "website": "130 reviews",
+        "openNow": "Open · Closes 1 AM",
+        "hours": {
+          "Sunday": "6:30 PM-1 AM",
+          "Monday": "6:30 PM-1 AM",
+          "Tuesday": "6:30 PM-1 AM",
+          "Wednesday": "6:30 PM-1 AM",
+          "Thursday": "6:30 PM-1 AM",
+          "Friday": "6:30 PM-1 AM",
+          "Saturday": "6:30 PM-1 AM"
+        },
+        "lat": 26.2791534,
+        "lng": 50.595833999999996,
+        "placeId": "ChIJ3TCQTQClST4RlxYDFLCurjg",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%D8%A8%D8%B1%D8%AC%D8%B1%20%D8%B3%D9%83%D9%88%D9%8A%D8%B1%20%7C%7C%20BURGER%20SQUARE%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Burger Square Bahrain",
+          "resolved": true,
+          "name": "برجر سكوير || BURGER SQUARE",
+          "nameScore": 1,
+          "rating": 4.5
+        }
+      ],
+      "at": "2026-09-27T20:23:32.141Z"
+    },
+    {
+      "id": "chubbys-burger",
+      "name": "Chubby's Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Al Sayh",
+        "branches": [
+          "Al Sayh",
+          "Busaiteen"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 945
+      },
+      "resolved": {
+        "name": "Chubby’s Burger",
+        "nameAr": "",
+        "categories": [
+          "Hamburger restaurant"
+        ],
+        "address": "104, Busaiteen",
+        "area": "Busaiteen",
+        "phone": "+973 3612 3040",
+        "rating": 3.9,
+        "reviews": 115,
+        "website": "115 reviews",
+        "openNow": "",
+        "hours": {
+          "Sunday": "6:30 PM-12 AM",
+          "Monday": "6:30 PM-12 AM",
+          "Tuesday": "6:30 PM-12 AM",
+          "Wednesday": "6:30 PM-12 AM",
+          "Thursday": "7 PM-1 AM",
+          "Friday": "7 PM-1 AM",
+          "Saturday": "6:30 PM-12 AM"
+        },
+        "lat": 26.272837199999998,
+        "lng": 50.593973,
+        "placeId": "ChIJmeld9P6lST4RUfJovVdGQfo",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Chubby%E2%80%99s%20Burger%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Chubby's Burger Bahrain",
+          "resolved": true,
+          "name": "Chubby’s Burger",
+          "nameScore": 1,
+          "rating": 3.9
+        }
+      ],
+      "at": "2026-09-27T20:23:34.332Z"
+    },
+    {
+      "id": "challenger",
+      "name": "Challenger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Sitra",
+        "branches": [
+          "Sitra"
+        ],
+        "phone": "+973 6699 1010",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 680
+      },
+      "resolved": {
+        "name": "CHALLENGER RESTAURANT",
+        "nameAr": "تشالنجر",
+        "categories": [
+          "Fast food restaurant"
+        ],
+        "address": "Ain Abdan Rd, Sitra",
+        "area": "Sitra",
+        "phone": "+973 6699 1010",
+        "rating": 4.5,
+        "reviews": 94,
+        "website": "94 reviews",
+        "openNow": "Open · Closes 3 AM",
+        "hours": {
+          "Sunday": "2 PM-3 AM",
+          "Monday": "2 PM-3 AM",
+          "Tuesday": "2 PM-3 AM",
+          "Wednesday": "2 PM-3 AM",
+          "Thursday": "2 PM-3 AM",
+          "Friday": "5 PM-3 AM",
+          "Saturday": "2 PM-3 AM"
+        },
+        "lat": 26.163290699999997,
+        "lng": 50.6146695,
+        "placeId": "ChIJ1XBjKsqrST4RRWNgpmQf8z8",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=CHALLENGER%20RESTAURANT%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Challenger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Challenger Sitra Bahrain",
+          "resolved": true,
+          "name": "CHALLENGER RESTAURANT",
+          "nameScore": 1,
+          "rating": 4.5
+        }
+      ],
+      "at": "2026-09-27T20:23:39.879Z"
+    },
+    {
+      "id": "daveburger",
+      "name": "Dave Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Manama",
+        "branches": [],
+        "phone": "+973 3337 1768",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.3,
+        "reviews": 733
+      },
+      "resolved": {
+        "name": "Dave burger",
+        "nameAr": "",
+        "categories": [
+          "Fast food restaurant"
+        ],
+        "address": "1038, Sadad",
+        "area": "",
+        "phone": "",
+        "rating": null,
+        "reviews": 24,
+        "website": "24 reviews",
+        "openNow": "Closed · Opens 7 PM Mon",
+        "hours": null,
+        "lat": 26.0926908,
+        "lng": 50.4882667,
+        "placeId": "ChIJ8_T-z9CzST4Rs7Rx-PcKmTY",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Dave%20burger%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Dave Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Dave Burger Manama Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Manama",
+          "categories": []
+        },
+        {
+          "q": "Dave Burger Burger Bahrain",
+          "resolved": true,
+          "name": "Dave burger",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Dave Burger restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:23:57.849Z"
+    },
+    {
+      "id": "cluckys",
+      "name": "Cluckys",
+      "current": {
+        "cuisine": "Fried Chicken",
+        "address": "Galaly",
+        "branches": [
+          "Galaly"
+        ],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Cluckys",
+        "nameAr": "",
+        "categories": [
+          "Chicken restaurant"
+        ],
+        "address": "https://www.gstatic.com/images/icons/material/system_gm/2x/storefront_googblue_24dp.png, Cluckys",
+        "area": "",
+        "phone": "",
+        "rating": 3.3,
+        "reviews": 34,
+        "website": "",
+        "openNow": "Closed · Opens 12 PM",
+        "hours": {
+          "Sunday": "12 PM-12 AM",
+          "Monday": "12 PM-12 AM",
+          "Tuesday": "12 PM-12 AM",
+          "Wednesday": "12 PM-12 AM",
+          "Thursday": "12 PM-12 AM",
+          "Friday": "12 PM-12 AM",
+          "Saturday": "12 PM-12 AM"
+        },
+        "lat": 26.2766627,
+        "lng": 50.657226099999995,
+        "placeId": "ChIJA-PZOgCnST4RN5Mw6da6hUs",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Cluckys%20Bahrain"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Cluckys Bahrain",
+          "resolved": true,
+          "name": "Cluckys",
+          "nameScore": 1,
+          "rating": 3.3
+        }
+      ],
+      "at": "2026-10-03T21:42:10.538Z"
+    },
+    {
+      "id": "baby-chicken",
+      "name": "Baby Chicken",
+      "current": {
+        "cuisine": "Fried Chicken",
+        "address": "Riffa",
+        "branches": [
+          "Riffa"
+        ],
+        "phone": "+973 7729 2929",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.4,
+        "reviews": 786
+      },
+      "resolved": {
+        "name": "Baby Chicken Restaurant",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "1315, Riffa 913",
+        "area": "Riffa",
+        "phone": "+973 7729 2929",
+        "rating": 3.8,
+        "reviews": 44,
+        "website": "44 reviews",
+        "openNow": "",
+        "hours": {
+          "Sunday": "12 PM-12 AM",
+          "Monday": "12 PM-12 AM",
+          "Tuesday": "12 PM-12 AM",
+          "Wednesday": "12 PM-12 AM",
+          "Thursday": "12 PM-12 AM",
+          "Friday": "12 PM-12 AM",
+          "Saturday": "12 PM-12 AM"
+        },
+        "lat": 26.129524099999998,
+        "lng": 50.5546958,
+        "placeId": "ChIJa10VxtytST4R3oGbxcmjPUA",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Baby%20Chicken%20Restaurant%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Baby Chicken Bahrain",
+          "resolved": true,
+          "name": "Baby Chicken Restaurant",
+          "nameScore": 1,
+          "rating": 3.8
+        }
+      ],
+      "at": "2026-09-27T20:24:17.389Z"
+    },
+    {
+      "id": "fry-and-fries",
+      "name": "Fry and Fries Cafe",
+      "current": {
+        "cuisine": "Fried Chicken",
+        "address": "Busaiteen",
+        "branches": [
+          "Busaiteen"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.5,
+        "reviews": 204
+      },
+      "resolved": {
+        "name": "Fry And Fries Cafe Busaiteen",
+        "nameAr": "",
+        "categories": [
+          "Food court",
+          "American restaurant"
+        ],
+        "address": "Alsaya، Busaiteen",
+        "area": "Busaiteen",
+        "phone": "+973 3714 0022",
+        "rating": 4.1,
+        "reviews": 223,
+        "website": "223 reviews",
+        "openNow": "Open · Closes 1:30 AM",
+        "hours": {
+          "Sunday": "4 PM-1:30 AM",
+          "Monday": "4 PM-1:30 AM",
+          "Tuesday": "4 PM-1:30 AM",
+          "Wednesday": "4 PM-1:30 AM",
+          "Thursday": "4 PM-1:30 AM",
+          "Friday": "4 PM-1:30 AM",
+          "Saturday": "4 PM-1:30 AM"
+        },
+        "lat": 26.2678369,
+        "lng": 50.5939319,
+        "placeId": "ChIJdfu5umK7ST4RRbYiml79CiY",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Fry%20And%20Fries%20Cafe%20Busaiteen%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Fry and Fries Cafe Bahrain",
+          "resolved": true,
+          "name": "Fry And Fries Cafe Busaiteen",
+          "nameScore": 0.9,
+          "rating": 4.1
+        },
+        {
+          "q": "Fry and Fries Cafe Busaiteen Bahrain",
+          "resolved": true,
+          "name": "Fry And Fries Cafe Busaiteen",
+          "nameScore": 0.9,
+          "rating": 4.1
+        },
+        {
+          "q": "Fry and Fries Cafe Fried Chicken Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Fry and Fries Cafe restaurant Bahrain",
+          "resolved": true,
+          "name": "Fry And Fries Cafe Busaiteen",
+          "nameScore": 0.9,
+          "rating": 4.1
+        }
+      ],
+      "at": "2026-09-27T20:24:32.264Z"
+    },
+    {
+      "id": "wingman",
+      "name": "Wingman",
+      "current": {
+        "cuisine": "Fried Chicken",
+        "address": "Budaiya",
+        "branches": [
+          "Budaiya",
+          "Juffair",
+          "Muharraq",
+          "Jannusan",
+          "Riffa"
+        ],
+        "phone": "+973 1749 4940 / +973 1749 4941 / +973 1749 4942 / +973 1749 4943",
+        "hours": "Daily · 12:00 PM - 12:00 AM",
+        "rating": 4.4,
+        "reviews": 521
+      },
+      "resolved": {
+        "name": "Wingman",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "+973 1749 4943",
+        "rating": 3.8,
+        "reviews": 276,
+        "website": "276 reviews",
+        "openNow": "",
+        "hours": null,
+        "lat": 26.2213516,
+        "lng": 50.5027275,
+        "placeId": "ChIJ98PhBCa7ST4RRy2zxEjaR18",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Wingman%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Wingman Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Wingman Budaiya Bahrain",
+          "resolved": true,
+          "name": "Wingman",
+          "nameScore": 1,
+          "rating": 3.8
+        }
+      ],
+      "at": "2026-09-27T20:24:37.928Z"
+    },
+    {
+      "id": "wing-station",
+      "name": "Wing Station",
+      "current": {
+        "cuisine": "Fried Chicken",
+        "address": "Al Sayh",
+        "branches": [
+          "Al Sayh"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.4,
+        "reviews": 786
+      },
+      "resolved": {
+        "name": "wingstation_bh",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "2840, Busaiteen 227",
+        "area": "Busaiteen",
+        "phone": "+973 1700 3023",
+        "rating": 4.1,
+        "reviews": 87,
+        "website": "87 reviews",
+        "openNow": "Open · Closes 1:30 AM",
+        "hours": {
+          "Monday": "4:30 PM-1:30 AM"
+        },
+        "lat": 26.2794307,
+        "lng": 50.5960028,
+        "placeId": "ChIJyYOtmUOlST4Rrmb0Jewp23w",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=wingstation_bh%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Wing Station Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Wing Station  Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Wing Station Fried Chicken Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Wing Station Al Sayh Bahrain",
+          "resolved": true,
+          "name": "wingstation_bh",
+          "nameScore": 0.9,
+          "rating": 4.1
+        },
+        {
+          "q": "Wing Station restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:24:55.418Z"
+    },
+    {
+      "id": "flap-fried-chicken",
+      "name": "Flap Fried Chicken",
+      "current": {
+        "cuisine": "Fried Chicken",
+        "address": "Sanad",
+        "branches": [
+          "Sanad"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.5,
+        "reviews": 204
+      },
+      "resolved": {
+        "name": "Flap Fried Chicken",
+        "nameAr": "فلاب فرايد جكن",
+        "categories": [
+          "American restaurant"
+        ],
+        "address": "4HHQ+9V6, Rd No 4616, Nuwaidrat, Riffa",
+        "area": "Riffa",
+        "phone": "+973 1700 1212",
+        "rating": 4.1,
+        "reviews": 189,
+        "website": "flapbh.com",
+        "openNow": "",
+        "hours": null,
+        "lat": 26.1284375,
+        "lng": 50.5896875,
+        "placeId": "ChIJi-Vp_XWtST4REcP2qk3RCyw",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Flap%20Fried%20Chicken%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Flap Fried Chicken Bahrain",
+          "resolved": true,
+          "name": "Flap Fried Chicken",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Flap Fried Chicken  Bahrain",
+          "resolved": true,
+          "name": "Flap Fried Chicken",
+          "nameScore": 1,
+          "rating": 4.1
+        }
+      ],
+      "at": "2026-09-27T20:25:02.925Z"
+    },
+    {
+      "id": "night-bird",
+      "name": "Night Bird",
+      "current": {
+        "cuisine": "Fried Chicken",
+        "address": "Janabiyah",
+        "branches": [
+          "Janabiyah"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 680
+      },
+      "resolved": {
+        "name": "Night Bird",
+        "nameAr": "",
+        "categories": [
+          "Chicken restaurant"
+        ],
+        "address": "District 1 - Janabiyah Al Janabiyah, 1001",
+        "area": "Janabiyah",
+        "phone": "+973 1733 5555",
+        "rating": 3.9,
+        "reviews": 136,
+        "website": "136 reviews",
+        "openNow": "Open · Closes 2 AM",
+        "hours": {
+          "Sunday": "12 PM-2 AM",
+          "Monday": "12 PM-2 AM",
+          "Tuesday": "12 PM-2 AM",
+          "Wednesday": "12 PM-2 AM",
+          "Thursday": "12 PM-2 AM",
+          "Friday": "12 PM-2 AM",
+          "Saturday": "12 PM-2 AM"
+        },
+        "lat": 26.1719825,
+        "lng": 50.4810142,
+        "placeId": "ChIJRRdv292xST4R7c_pXpVSrn4",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Night%20Bird%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Night Bird Bahrain",
+          "resolved": true,
+          "name": "Night Bird",
+          "nameScore": 1,
+          "rating": 3.9
+        }
+      ],
+      "at": "2026-09-27T20:25:06.425Z"
+    },
+    {
+      "id": "popeyes",
+      "name": "Popeyes",
+      "current": {
+        "cuisine": "Fried Chicken",
+        "address": "Riffa",
+        "branches": [
+          "Riffa",
+          "City Centre",
+          "Zallaq",
+          "Hidd"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.4,
+        "reviews": 521
+      },
+      "resolved": {
+        "name": "Popeyes",
+        "nameAr": "",
+        "categories": [
+          "Fast food restaurant"
+        ],
+        "address": "",
+        "area": "Riffa",
+        "phone": "",
+        "rating": 4.5,
+        "reviews": 186,
+        "website": "186 reviews",
+        "openNow": "Open · Closes 1 AM",
+        "hours": null,
+        "lat": 26.1356528,
+        "lng": 50.5278856,
+        "placeId": "ChIJJwdMSwCtST4RQR8AVvPCIXg",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Popeyes%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Popeyes Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Popeyes Riffa Bahrain",
+          "resolved": true,
+          "name": "Popeyes",
+          "nameScore": 1,
+          "rating": 4.5
+        }
+      ],
+      "at": "2026-09-27T20:25:12.903Z"
+    },
+    {
+      "id": "monkey-lala",
+      "name": "Monkey Lala",
+      "current": {
+        "cuisine": "Fried Chicken",
+        "address": "Riffa",
+        "branches": [
+          "Riffa",
+          "Al Sayh"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.3,
+        "reviews": 733
+      },
+      "resolved": {
+        "name": "Monkey Lala Riffa",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "14, Riffa 947",
+        "area": "Riffa",
+        "phone": "+973 6634 4912",
+        "rating": 4.2,
+        "reviews": 27,
+        "website": "27 reviews",
+        "openNow": "Open · Closes 2:30 AM",
+        "hours": {
+          "Sunday": "6 PM-2:30 AM",
+          "Monday": "6 PM-2:30 AM",
+          "Tuesday": "6 PM-2:30 AM",
+          "Wednesday": "6 PM-2:30 AM",
+          "Thursday": "6 PM-3:30 AM",
+          "Friday": "6 PM-3:30 AM",
+          "Saturday": "6 PM-2:30 AM"
+        },
+        "lat": 26.1356242,
+        "lng": 50.555302399999995,
+        "placeId": "ChIJtRCh7mOtST4RDH6r4R4tOHA",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Monkey%20Lala%20Riffa%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Monkey Lala Bahrain",
+          "resolved": false
+        },
+        {
+          "q": "Monkey Lala Riffa Bahrain",
+          "resolved": true,
+          "name": "Monkey Lala Riffa",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Monkey Lala Fried Chicken Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Monkey Lala restaurant Bahrain",
+          "resolved": false
+        }
+      ],
+      "at": "2026-09-27T20:25:26.384Z"
+    },
+    {
+      "id": "stack",
+      "name": "Stack",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Riffa",
+        "branches": [
+          "Riffa"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.2,
+        "reviews": 415
+      },
+      "resolved": {
+        "name": "Stack Eatery",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Street 14, Riffa",
+        "area": "Riffa",
+        "phone": "+973 3811 1415",
+        "rating": 4.5,
+        "reviews": 59,
+        "website": "59 reviews",
+        "openNow": "",
+        "hours": {
+          "Sunday": "1 PM-12 AM",
+          "Monday": "1 PM-12 AM",
+          "Tuesday": "1 PM-12 AM",
+          "Wednesday": "1 PM-12 AM",
+          "Thursday": "1 PM-1 AM",
+          "Friday": "1 PM-1 AM",
+          "Saturday": "1 PM-12 AM"
+        },
+        "lat": 26.1346422,
+        "lng": 50.550624299999996,
+        "placeId": "ChIJvyr4VkCtST4Rs9UDieSGqIU",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Stack%20Eatery%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Stack Bahrain",
+          "resolved": true,
+          "name": "Stack Eatery",
+          "nameScore": 1,
+          "rating": 4.5
+        }
+      ],
+      "at": "2026-09-27T20:25:29.764Z"
+    },
+    {
+      "id": "milano",
+      "name": "Milano",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Milano Bahrain",
+          "resolved": false
+        },
+        {
+          "q": "Milano Riffa Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Milano",
+          "categories": [
+            "Shoe store"
+          ]
+        },
+        {
+          "q": "Milano Pizza Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Milano restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-10-03T21:46:35.203Z"
+    },
+    {
+      "id": "gate-12",
+      "name": "Gate 12",
+      "current": {
+        "cuisine": "Pizza",
+        "address": "Zayed Town",
+        "branches": [
+          "Zayed Town"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.4,
+        "reviews": 521
+      },
+      "resolved": {
+        "name": "Gate 12 Restaurant",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Zayed Town 1283",
+        "area": "",
+        "phone": "+973 1369 8887",
+        "rating": 4.6,
+        "reviews": 93,
+        "website": "93 reviews",
+        "openNow": "",
+        "hours": null,
+        "lat": 26.1691047,
+        "lng": 50.5399684,
+        "placeId": "ChIJpcU9yfCvST4RM_OVazD5P6s",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Gate%2012%20Restaurant%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Gate 12 Bahrain",
+          "resolved": false
+        },
+        {
+          "q": "Gate 12  Bahrain",
+          "resolved": false
+        },
+        {
+          "q": "Gate 12 Pizza Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Gate 12 Zayed Town Bahrain",
+          "resolved": true,
+          "name": "Gate 12 Restaurant",
+          "nameScore": 1,
+          "rating": 4.6
+        }
+      ],
+      "at": "2026-09-27T20:25:55.377Z"
+    },
+    {
+      "id": "mama-joz",
+      "name": "Mama Joz Pizza",
+      "current": {
+        "cuisine": "Pizza",
+        "address": "Hajiyat Ave, Riffa",
+        "branches": [
+          "Riffa",
+          "Juffair",
+          "Muharraq",
+          "A'ali"
+        ],
+        "phone": "+973 1761 6163 / +973 1311 6166 / +973 1761 6164 / +973 1311 6165",
+        "hours": "Daily · 10:30 AM - 1:00 AM",
+        "rating": 4.6,
+        "reviews": 753
+      },
+      "resolved": {
+        "name": "Mama Joz Pizza || Riffa - Bahrain",
+        "nameAr": "",
+        "categories": [
+          "Pizza restaurant",
+          "Fast food restaurant",
+          "Pizza delivery",
+          "Pizza takeaway"
+        ],
+        "address": "Hajeeyat Ave, Riffa",
+        "area": "Riffa",
+        "phone": "+973 1761 6163",
+        "rating": 4.6,
+        "reviews": 753,
+        "website": "753 reviews",
+        "openNow": "Open · Closes 12:30 AM",
+        "hours": {
+          "Monday": "10:30 AM-12:30 AM",
+          "Tuesday": "10:30 AM-12:30 AM",
+          "Wednesday": "10:30 AM-12:30 AM",
+          "Thursday": "10:30 AM-12:30 AM",
+          "Friday": "10:30 AM-12:30 AM",
+          "Saturday": "10:30 AM-12:30 AM",
+          "Sunday": "10:30 AM-12:30 AM"
+        },
+        "lat": 26.1370586,
+        "lng": 50.5731441,
+        "placeId": "ChIJLyn_Bz-sST4R240Pk3c5890",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Mama%20Joz%20Pizza%20%7C%7C%20Riffa%20-%20Bahrain%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Mama Joz Pizza Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Mama Joz Pizza Riffa Bahrain",
+          "resolved": true,
+          "name": "Mama Joz Pizza || Riffa - Bahrain",
+          "nameScore": 0.9,
+          "rating": 4.6
+        },
+        {
+          "q": "Mama Joz Pizza Pizza Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Mama Joz Pizza restaurant Bahrain",
+          "resolved": false
+        }
+      ],
+      "at": "2026-09-27T20:26:10.344Z"
+    },
+    {
+      "id": "little-caesars",
+      "name": "Little Caesars",
+      "current": {
+        "cuisine": "Pizza",
+        "address": "Zaid Bin Omera Hwy, Malkiya",
+        "branches": [
+          "Malkiya",
+          "Riffa",
+          "Zayed Town",
+          "Zinj",
+          "Arad",
+          "Seef",
+          "Budaiya",
+          "Hamad Town"
+        ],
+        "phone": "+973 1330 0022 / +973 1733 0022",
+        "hours": "Daily · 10:00 AM - 2:30 AM",
+        "rating": 4.7,
+        "reviews": 112
+      },
+      "resolved": {
+        "name": "Little Caesars Pizza",
+        "nameAr": "بيتزا ليتل سيزرز",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Zaid Bin Omera Hwy, Malkiya",
+        "area": "Malkiya",
+        "phone": "+973 1330 0022",
+        "rating": null,
+        "reviews": null,
+        "website": "littlecaesarsbahrain.com",
+        "openNow": "Open · Closes 2:30 AM",
+        "hours": null,
+        "lat": 26.093075499999998,
+        "lng": 50.4882826,
+        "placeId": "ChIJFdu1YnOzST4RI9q8xdoKh8c",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Little%20Caesars%20Pizza%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Little Caesars Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Little Caesars Malkiya Bahrain",
+          "resolved": true,
+          "name": "Little Caesars Pizza",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Little Caesars Pizza Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Little Caesars restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:26:27.095Z"
+    },
+    {
+      "id": "pizzaro",
+      "name": "Pizzaro",
+      "current": {
+        "cuisine": "Pizza",
+        "address": "5G8R+RW4, Zayed Town",
+        "branches": [
+          "Zayed Town",
+          "Adliya"
+        ],
+        "phone": "+973 1616 7527",
+        "hours": "Daily · 12:00 PM - 12:00 AM",
+        "rating": 4.4,
+        "reviews": 3
+      },
+      "resolved": {
+        "name": "PIZZARO",
+        "nameAr": "",
+        "categories": [
+          "Italian restaurant"
+        ],
+        "address": "5G8R+RW4, Zayed Town",
+        "area": "",
+        "phone": "+973 1616 7527",
+        "rating": null,
+        "reviews": null,
+        "website": "talabat.com",
+        "openNow": "",
+        "hours": {
+          "Sunday": "12-11:59 PM",
+          "Monday": "12-11:59 PM",
+          "Tuesday": "12-11:59 PM",
+          "Wednesday": "12-11:59 PM",
+          "Thursday": "12-11:59 PM",
+          "Friday": "12-11:59 PM",
+          "Saturday": "12-11:59 PM"
+        },
+        "lat": 26.1670165,
+        "lng": 50.5423058,
+        "placeId": "ChIJ3wZgFwCvST4RXvntpnuqVhg",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=PIZZARO%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Pizzaro Bahrain",
+          "resolved": true,
+          "name": "PIZZARO",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Pizzaro Adliya Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Adliya, Manama",
+          "categories": []
+        },
+        {
+          "q": "Pizzaro Pizza Bahrain",
+          "resolved": true,
+          "name": "PIZZARO",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Pizzaro Zayed Town Bahrain",
+          "resolved": true,
+          "name": "PIZZARO",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Pizzaro restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:26:49.379Z"
+    },
+    {
+      "id": "ic-pizza",
+      "name": "IC Pizza",
+      "current": {
+        "cuisine": "Pizza",
+        "address": "Road 114, Block 101, Building 1284R, Al Hidd",
+        "branches": [
+          "Al Hidd"
+        ],
+        "phone": "+973 3360 7710",
+        "hours": "Sat - Wed · 3:00 PM - 12:00 AM · Thu - Fri · 4:30 PM - 1:30 AM",
+        "rating": 4.4,
+        "reviews": 217
+      },
+      "resolved": {
+        "name": "IC Pizza",
+        "nameAr": "",
+        "categories": [
+          "Pizza takeaway",
+          "Takeout restaurant"
+        ],
+        "address": "Road 114 Block 101, Building 1284R, Al Hidd",
+        "area": "Hidd",
+        "phone": "+973 3360 7710",
+        "rating": 4.4,
+        "reviews": 217,
+        "website": "217 reviews",
+        "openNow": "",
+        "hours": {
+          "Sunday": "3 PM-12 AM",
+          "Monday": "3 PM-12 AM",
+          "Tuesday": "3 PM-12 AM",
+          "Wednesday": "3 PM-12 AM",
+          "Thursday": "4:30 PM-1:30 AM",
+          "Friday": "4:30 PM-1:30 AM",
+          "Saturday": "3 PM-12 AM"
+        },
+        "lat": 26.257806199999997,
+        "lng": 50.665850999999996,
+        "placeId": "ChIJTZnvpTCpST4RwQN8F_v0BNs",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=IC%20Pizza%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "IC Pizza Bahrain",
+          "resolved": true,
+          "name": "IC Pizza",
+          "nameScore": 1,
+          "rating": 4.4
+        }
+      ],
+      "at": "2026-09-27T20:26:53.122Z"
+    },
+    {
+      "id": "the72",
+      "name": "The72",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Building 1357, Road 4541, Sanad",
+        "branches": [
+          "Sanad"
+        ],
+        "phone": "+973 1768 1255 / +973 1766 1755",
+        "hours": "Thu - Mon · 1:00 PM - 2:00 AM · Tue - Wed · 5:00 PM - 2:00 AM",
+        "rating": 4.2,
+        "reviews": 43
+      },
+      "resolved": {
+        "name": "The72",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Building 1357 Rd No 4541, Sanad",
+        "area": "",
+        "phone": "+973 1766 1755",
+        "rating": 4.6,
+        "reviews": 43,
+        "website": "43 reviews",
+        "openNow": "Open · Closes 2 AM",
+        "hours": {
+          "Sunday": "1 PM-2 AM",
+          "Monday": "1 PM-2 AM",
+          "Tuesday": "1 PM-2 AM",
+          "Wednesday": "1 PM-2 AM",
+          "Thursday": "1 PM-2 AM",
+          "Friday": "1 PM-2 AM",
+          "Saturday": "1 PM-2 AM"
+        },
+        "lat": 26.1479511,
+        "lng": 50.5843625,
+        "placeId": "ChIJZUh1FQCtST4RWxR6qLv7OQg",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=The72%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "The72 Bahrain",
+          "resolved": true,
+          "name": "The72",
+          "nameScore": 1,
+          "rating": 4.6
+        }
+      ],
+      "at": "2026-09-27T20:26:56.694Z"
+    },
+    {
+      "id": "welayat-ali",
+      "name": "Welayat Ali",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Avenue 14, Jidhafs",
+        "branches": [
+          "Jidhafs"
+        ],
+        "phone": "+973 1740 6070",
+        "hours": "Daily · 5:30 PM - 1:30 AM",
+        "rating": 4.2,
+        "reviews": 2775
+      },
+      "resolved": {
+        "name": "Welayat Ali Grills",
+        "nameAr": "مطعم و مشويات ولاية علي ( جد حفص )",
+        "categories": [
+          "Barbecue restaurant"
+        ],
+        "address": "Avenue 14, Jidhafs",
+        "area": "",
+        "phone": "+973 1740 6070",
+        "rating": 4.2,
+        "reviews": 2775,
+        "website": "2,775 reviews",
+        "openNow": "Open · Closes 1:30 AM",
+        "hours": {
+          "Sunday": "5:30 PM-1:30 AM",
+          "Monday": "5:30 PM-1:30 AM",
+          "Tuesday": "5:30 PM-1:30 AM",
+          "Wednesday": "5:30 PM-1:30 AM",
+          "Thursday": "5:30 PM-1:30 AM",
+          "Friday": "5:30 PM-1:30 AM",
+          "Saturday": "5:30 PM-1:30 AM"
+        },
+        "lat": 26.2121994,
+        "lng": 50.5427058,
+        "placeId": "ChIJX5mI2ZGvST4RTnG2Ie19fug",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Welayat%20Ali%20Grills%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Welayat Ali Bahrain",
+          "resolved": true,
+          "name": "Welayat Ali Grills",
+          "nameScore": 1,
+          "rating": 4.2
+        }
+      ],
+      "at": "2026-09-27T20:26:58.717Z"
+    },
+    {
+      "id": "al-furat-nights",
+      "name": "Al Furat Nights",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Avenue 6, Al Qaryah, Sitra",
+        "branches": [
+          "Sitra"
+        ],
+        "phone": "+973 1747 4730 / +973 3437 8232",
+        "hours": "Daily · 6:00 PM - 1:00 AM",
+        "rating": 4.4,
+        "reviews": 479
+      },
+      "resolved": {
+        "name": "ليالي الفرات - Al Furat Nights Restaurant \\u0026 Grills",
+        "nameAr": "ليالي الفرات - Al Furat Nights Restaurant \\u0026 Grills",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Avenue 6, Sitra",
+        "area": "Sitra",
+        "phone": "+973 1747 4730",
+        "rating": 4.4,
+        "reviews": 479,
+        "website": "479 reviews",
+        "openNow": "Open · Closes 1 AM",
+        "hours": {
+          "Monday": "6 PM-1 AM",
+          "Tuesday": "6 PM-1 AM",
+          "Wednesday": "6 PM-1 AM",
+          "Thursday": "6 PM-1 AM",
+          "Friday": "6 PM-1 AM",
+          "Saturday": "6 PM-1 AM",
+          "Sunday": "6 PM-1 AM"
+        },
+        "lat": 26.1704392,
+        "lng": 50.611770799999995,
+        "placeId": "ChIJzWCOrsepST4RK6Vs0M6Hars",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=%D9%84%D9%8A%D8%A7%D9%84%D9%8A%20%D8%A7%D9%84%D9%81%D8%B1%D8%A7%D8%AA%20-%20Al%20Furat%20Nights%20Restaurant%20%5Cu0026%20Grills%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Al Furat Nights Bahrain",
+          "resolved": true,
+          "name": "ليالي الفرات - Al Furat Nights Restaurant \\u0026 Grills",
+          "nameScore": 0.9,
+          "rating": 4.4
+        },
+        {
+          "q": "Al Furat Nights Sitra Bahrain",
+          "resolved": true,
+          "name": "ليالي الفرات - Al Furat Nights Restaurant \\u0026 Grills",
+          "nameScore": 0.9,
+          "rating": 4.4
+        },
+        {
+          "q": "Al Furat Nights Grill Bahrain",
+          "resolved": true,
+          "name": "ليالي الفرات - Al Furat Nights Restaurant \\u0026 Grills",
+          "nameScore": 0.9,
+          "rating": 4.4
+        },
+        {
+          "q": "Al Furat Nights restaurant Bahrain",
+          "resolved": true,
+          "name": "ليالي الفرات - Al Furat Nights Restaurant \\u0026 Grills",
+          "nameScore": 0.9,
+          "rating": 4.4
+        }
+      ],
+      "at": "2026-09-27T20:27:09.611Z"
+    },
+    {
+      "id": "al-farhan",
+      "name": "Al Farhan Grills",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Malikiyah Ave, Malkiya",
+        "branches": [
+          "Malkiya"
+        ],
+        "phone": "+973 1763 2459 / +973 1763 2069 / +973 3366 9775",
+        "hours": "Daily · 12:00 PM - 1:00 AM",
+        "rating": 4.2,
+        "reviews": 552
+      },
+      "resolved": {
+        "name": "Al Farhan Turkish Grills",
+        "nameAr": "مشويات ومعجنات الفرحان",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Malikiyah Ave, Malkiya",
+        "area": "Malkiya",
+        "phone": "+973 1763 2459",
+        "rating": 4.2,
+        "reviews": 553,
+        "website": "553 reviews",
+        "openNow": "Open · Closes 1 AM",
+        "hours": {
+          "Sunday": "12 PM-1 AM",
+          "Monday": "12 PM-1 AM",
+          "Tuesday": "12 PM-1 AM",
+          "Wednesday": "12 PM-1 AM",
+          "Thursday": "12 PM-1 AM",
+          "Friday": "12 PM-1 AM",
+          "Saturday": "12 PM-1 AM"
+        },
+        "lat": 26.0983813,
+        "lng": 50.485589,
+        "placeId": "ChIJ18xzX0KyST4RLTqdsWn3waQ",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Al%20Farhan%20Turkish%20Grills%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Al Farhan Grills Bahrain",
+          "resolved": true,
+          "name": "Al Farhan Turkish Grills",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Al Farhan Grills Malkiya Bahrain",
+          "resolved": true,
+          "name": "Al Farhan Turkish Grills",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Al Farhan Grills Grill Bahrain",
+          "resolved": true,
+          "name": "Al Farhan Turkish Grills",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Al Farhan Grills restaurant Bahrain",
+          "resolved": true,
+          "name": "Al Farhan Turkish Grills",
+          "nameScore": 0.9,
+          "rating": null
+        }
+      ],
+      "at": "2026-09-27T20:27:24.009Z"
+    },
+    {
+      "id": "swaikhat",
+      "name": "Swaikhat",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Building 3, Block 579, Road 7901, Janabiyah",
+        "branches": [
+          "Janabiyah"
+        ],
+        "phone": "+973 1700 9900",
+        "hours": "Daily · 6:00 PM - 2:00 AM",
+        "rating": 4.1,
+        "reviews": 333
+      },
+      "resolved": {
+        "name": "Swaikhat || صويخات",
+        "nameAr": "مطعم صويخات",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "+973 1700 9900",
+        "rating": 4.1,
+        "reviews": 333,
+        "website": "333 reviews",
+        "openNow": "Open · Closes 2 AM",
+        "hours": {
+          "Sunday": "6 PM-2 AM",
+          "Monday": "6 PM-2 AM",
+          "Tuesday": "6 PM-2 AM",
+          "Wednesday": "6 PM-2 AM",
+          "Thursday": "6 PM-2 AM",
+          "Friday": "6 PM-2 AM",
+          "Saturday": "6 PM-2 AM"
+        },
+        "lat": 26.1717871,
+        "lng": 50.4808386,
+        "placeId": "ChIJ-U3QiW6xST4Ru-Ke9M7B-_A",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Swaikhat%20%7C%7C%20%D8%B5%D9%88%D9%8A%D8%AE%D8%A7%D8%AA%20Bahrain",
+        "panelText": "",
+        "addressRejected": "scraper returned a non-address"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Swaikhat Bahrain",
+          "resolved": true,
+          "name": "Swaikhat || صويخات",
+          "nameScore": 1,
+          "rating": 4.1
+        }
+      ],
+      "at": "2026-09-27T20:27:25.872Z"
+    },
+    {
+      "id": "tikka-numee",
+      "name": "Tikka Numee",
+      "current": {
+        "cuisine": "Grill",
+        "address": "District 1 Mall, Janabiyah",
+        "branches": [
+          "Janabiyah"
+        ],
+        "phone": "+973 1710 1110",
+        "hours": "Sat - Wed · 6:00 PM - 1:00 AM · Thu - Fri · 6:00 PM - 1:30 AM",
+        "rating": 4.3,
+        "reviews": 293
+      },
+      "resolved": {
+        "name": "Tikka Numee",
+        "nameAr": "تكة نومي",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "District 1 Mall Aljanabiyah Al janabiyah, 1001",
+        "area": "Janabiyah",
+        "phone": "+973 1710 1110",
+        "rating": null,
+        "reviews": null,
+        "website": "linktr.ee",
+        "openNow": "Open · Closes 1 AM",
+        "hours": {
+          "Sunday": "6 PM-1 AM",
+          "Monday": "6 PM-1 AM",
+          "Tuesday": "6 PM-1 AM",
+          "Wednesday": "6 PM-1 AM",
+          "Thursday": "6 PM-1:30 AM",
+          "Friday": "6 PM-1:30 AM",
+          "Saturday": "6 PM-1 AM"
+        },
+        "lat": 26.1718855,
+        "lng": 50.4810764,
+        "placeId": "ChIJs4nB9cOxST4R32mlRzKnJao",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Tikka%20Numee%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Tikka Numee Bahrain",
+          "resolved": true,
+          "name": "Tikka Numee",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Tikka Numee Janabiyah Bahrain",
+          "resolved": true,
+          "name": "Tikka Numee",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Tikka Numee Grill Bahrain",
+          "resolved": true,
+          "name": "Tikka Numee",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Tikka Numee restaurant Bahrain",
+          "resolved": true,
+          "name": "Tikka Numee",
+          "nameScore": 1,
+          "rating": null
+        }
+      ],
+      "at": "2026-09-27T20:27:44.255Z"
+    },
+    {
+      "id": "aljabriya",
+      "name": "Al Jabriya",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Road 2643, Busaiteen",
+        "branches": [
+          "Busaiteen",
+          "Jid Ali"
+        ],
+        "phone": "+973 1733 0108 / +973 3344 1886 / +973 1760 0033",
+        "hours": "Daily · 11:00 AM - 12:30 AM",
+        "rating": 4.2,
+        "reviews": 1075
+      },
+      "resolved": {
+        "name": "Al Jabriya Turkish Restaurant",
+        "nameAr": "مطعم الجابرية",
+        "categories": [
+          "Turkish restaurant"
+        ],
+        "address": "Rd No 2643, Busaiteen",
+        "area": "Busaiteen",
+        "phone": "+973 1733 0108",
+        "rating": 4.2,
+        "reviews": 1075,
+        "website": "1,075 reviews",
+        "openNow": "Closed · Opens 11 AM",
+        "hours": {
+          "Monday": "11 AM-12 AM",
+          "Tuesday": "11 AM-12 AM",
+          "Wednesday": "11 AM-12:30 AM",
+          "Thursday": "11 AM-12:30 AM",
+          "Friday": "11 AM-12:30 AM",
+          "Saturday": "11 AM-12:30 AM",
+          "Sunday": "11 AM-12 AM"
+        },
+        "lat": 26.2721318,
+        "lng": 50.6076469,
+        "placeId": "ChIJI7mTMG6mST4R8RaEReqQNfw",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Al%20Jabriya%20Turkish%20Restaurant%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Al Jabriya Bahrain",
+          "resolved": true,
+          "name": "Al Jabriya Turkish Restaurant",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Al Jabriya Busaiteen Bahrain",
+          "resolved": true,
+          "name": "Al Jabriya Turkish Restaurant",
+          "nameScore": 0.9,
+          "rating": 4.2
+        },
+        {
+          "q": "Al Jabriya Grill Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Al Jabriya restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:27:58.611Z"
+    },
+    {
+      "id": "arabian-broasted",
+      "name": "Arabian Broasted",
+      "current": {
+        "cuisine": "Broasted",
+        "address": "Tubli",
+        "branches": [
+          "Tubli",
+          "Umm Al Hassam",
+          "Al Lawzi",
+          "Sitra",
+          "Saar"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.3,
+        "reviews": 998
+      },
+      "resolved": {
+        "name": "Arabian broasted",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "6H3W+VHC, Manama",
+        "area": "Manama",
+        "phone": "+973 1734 4604",
+        "rating": 3.9,
+        "reviews": 410,
+        "website": "410 reviews",
+        "openNow": "Open · Closes 1 AM",
+        "hours": {
+          "Sunday": "12:30 PM-1 AM",
+          "Monday": "12:30 PM-1 AM",
+          "Tuesday": "12:30 PM-1 AM",
+          "Wednesday": "12:30 PM-1 AM",
+          "Thursday": "12:30 PM-1 AM",
+          "Friday": "12:30 PM-1 AM",
+          "Saturday": "12:30 PM-1 AM"
+        },
+        "lat": 26.2046875,
+        "lng": 50.5963906,
+        "placeId": "ChIJfTnyD12vST4RGieZh6pBwxI",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Arabian%20broasted%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Arabian Broasted Bahrain",
+          "resolved": true,
+          "name": "Arabian broasted",
+          "nameScore": 1,
+          "rating": 3.9
+        }
+      ],
+      "at": "2026-09-27T20:28:00.941Z"
+    },
+    {
+      "id": "chicket",
+      "name": "Chicket",
+      "current": {
+        "cuisine": "Broasted",
+        "address": "Hidd",
+        "branches": [
+          "Hidd",
+          "Daih",
+          "Riffa",
+          "Janabiyah"
+        ],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.4,
+        "reviews": 521
+      },
+      "resolved": {
+        "name": "Chicket - Broasted Chicken",
+        "nameAr": "",
+        "categories": [
+          "Chicken restaurant",
+          "Fast food restaurant",
+          "Restaurant"
+        ],
+        "address": "",
+        "area": "Hidd",
+        "phone": "+973 1339 8111",
+        "rating": 4.7,
+        "reviews": 693,
+        "website": "693 reviews",
+        "openNow": "Open · Closes 3 AM",
+        "hours": null,
+        "lat": 26.2267288,
+        "lng": 50.6559235,
+        "placeId": "ChIJ0w4NZXypST4RXHie6iVoaZA",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Chicket%20-%20Broasted%20Chicken%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Chicket Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Chicket Hidd Bahrain",
+          "resolved": true,
+          "name": "Chicket - Broasted Chicken",
+          "nameScore": 0.9,
+          "rating": 4.7
+        },
+        {
+          "q": "Chicket Broasted Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Chicket restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:28:16.574Z"
+    },
+    {
+      "id": "chico-chicken",
+      "name": "Chico Chicken",
+      "current": {
+        "cuisine": "Broasted",
+        "address": "Manama",
+        "branches": [],
+        "phone": "+973 —",
+        "hours": "11:00 AM - 11:00 PM",
+        "rating": 4.5,
+        "reviews": 839
+      },
+      "resolved": {
+        "name": "Chicko chicken",
+        "nameAr": "",
+        "categories": [
+          "Restaurant",
+          "Chicken restaurant"
+        ],
+        "address": "831, Salmabad 713",
+        "area": "",
+        "phone": "+973 7799 5553",
+        "rating": 4.1,
+        "reviews": 268,
+        "website": "268 reviews",
+        "openNow": "Open · Closes 1:45 AM",
+        "hours": {
+          "Sunday": "12 PM-1:45 AM",
+          "Monday": "12 PM-1:45 AM",
+          "Tuesday": "12 PM-1:45 AM",
+          "Wednesday": "12 PM-1:45 AM",
+          "Thursday": "12 PM-1:45 AM",
+          "Friday": "1 PM-1:45 AM",
+          "Saturday": "12 PM-1:45 AM"
+        },
+        "lat": 26.1804795,
+        "lng": 50.522857099999996,
+        "placeId": "ChIJhzW-egevST4RuqgoQmaQH-Q",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Chicko%20chicken%20Bahrain",
+        "panelText": ""
+      },
+      "nameScore": 0.8,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Chico Chicken Bahrain",
+          "resolved": true,
+          "name": "Chicko chicken",
+          "nameScore": 0.8,
+          "rating": 4.1
+        },
+        {
+          "q": "Chico Chicken Manama Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Manama",
+          "categories": []
+        },
+        {
+          "q": "Chico Chicken Broasted Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Chico Chicken restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T20:28:30.183Z"
+    },
+    {
+      "id": "klakiz",
+      "name": "Klakiz",
+      "current": {
+        "cuisine": "Broasted",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Kaluz Restaurant",
+        "nameAr": "",
+        "categories": [
+          "Restaurant",
+          "New American restaurant"
+        ],
+        "address": "3300 E Commercial Blvd, Fort Lauderdale, FL 33308, United States",
+        "area": "",
+        "phone": "",
+        "rating": 4.6,
+        "reviews": 7486,
+        "website": "",
+        "openNow": "Open · Closes 11 PM",
+        "hours": {
+          "Saturday": "11:30 AM-11 PM",
+          "Sunday": "11:30 AM-10 PM",
+          "Monday": "11:30 AM-10 PM",
+          "Tuesday": "11:30 AM-10 PM",
+          "Wednesday": "11:30 AM-10 PM",
+          "Thursday": "11:30 AM-10 PM",
+          "Friday": "11:30 AM-11 PM"
+        },
+        "lat": null,
+        "lng": null,
+        "placeId": "ChIJ7TYg0QsC2YgR0k7Qv5dRMHY",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Kaluz%20Restaurant%20Bahrain"
+      },
+      "nameScore": 0,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Klakiz Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Klakiz Manama Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Manama",
+          "categories": []
+        },
+        {
+          "q": "Klakiz Broasted Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Klakiz restaurant Bahrain",
+          "resolved": true,
+          "name": "Kaluz Restaurant",
+          "nameScore": 0,
+          "rating": 4.6
+        }
+      ],
+      "at": "2026-10-03T21:46:48.374Z"
+    },
+    {
+      "id": "risotto",
+      "name": "Risotto",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Risotto Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Risotto Malkiya Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Malkiya",
+          "categories": []
+        },
+        {
+          "q": "Risotto Pasta Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Risotto restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-10-03T21:47:03.009Z"
+    },
+    {
+      "id": "yebilna-pasta",
+      "name": "Yebilna Pasta",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Yebilna Pasta Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Yebilna Pasta Malkiya Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Malkiya",
+          "categories": []
+        },
+        {
+          "q": "Yebilna Pasta Pasta Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Yebilna Pasta restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-10-03T21:47:16.023Z"
+    },
+    {
+      "id": "le-pasta",
+      "name": "Le Pasta",
+      "current": {
+        "cuisine": "Pasta",
+        "address": "Riffa",
+        "branches": [
+          "Arad",
+          "Jerdab",
+          "Riffa",
+          "Hamad Town"
+        ],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "La Pasta",
+        "nameAr": "شارع الشيخ حمد",
+        "categories": [
+          "Italian restaurant"
+        ],
+        "address": "https://www.gstatic.com/images/icons/material/system_gm/2x/storefront_googblue_24dp.png, La Pasta",
+        "area": "",
+        "phone": "+973 1777 1771",
+        "rating": 3.7,
+        "reviews": 406,
+        "website": "",
+        "openNow": "Closed · Opens 12 PM",
+        "hours": {
+          "Sunday": "12 PM-12 AM",
+          "Monday": "12 PM-12 AM",
+          "Tuesday": "12 PM-12 AM",
+          "Wednesday": "12 PM-12 AM",
+          "Thursday": "12 PM-1 AM",
+          "Friday": "12 PM-12:30 AM",
+          "Saturday": "12 PM-12 AM"
+        },
+        "lat": 26.1273372,
+        "lng": 50.543959,
+        "placeId": "ChIJ-4bQxMetST4RoxKcZOCHtV8",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=La%20Pasta%20Bahrain"
+      },
+      "nameScore": 0.57,
+      "alsoFound": [
+        {
+          "name": "La Pasta Restaurant_ Arad",
+          "categories": [
+            "Italian restaurant"
+          ],
+          "address": "شارع، عراد،, عراد، Arad, Bahrain",
+          "nameScore": 0.32
+        }
+      ],
+      "attempts": [
+        {
+          "q": "Le Pasta Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Le Pasta Riffa Bahrain",
+          "resolved": true,
+          "name": "La Pasta",
+          "nameScore": 0.57,
+          "rating": 3.7
+        },
+        {
+          "q": "Le Pasta Pasta Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Le Pasta Arad Bahrain",
+          "resolved": true,
+          "name": "La Pasta Restaurant_ Arad",
+          "nameScore": 0.32,
+          "rating": 2.6
+        },
+        {
+          "q": "Le Pasta restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-10-03T21:47:32.786Z"
+    },
+    {
+      "id": "lumee",
+      "name": "LUMEE",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Lumee Street - The Avenues Mall Bahrain",
+        "nameAr": "لومي",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Manama",
+        "area": "Manama",
+        "phone": "+973 1748 4555",
+        "rating": 4.2,
+        "reviews": 3776,
+        "website": "instagram.com",
+        "openNow": "Closed · Opens 8:30 AM",
+        "hours": {
+          "Monday": "8:30 AM-11:30 PM",
+          "Tuesday": "8:30 AM-11:30 PM",
+          "Wednesday": "8:30 AM-11:30 PM",
+          "Thursday": "8:30 AM-11:45 PM",
+          "Friday": "8:30 AM-11:45 PM",
+          "Saturday": "8:30 AM-11:45 PM",
+          "Sunday": "8:30 AM-11:30 PM"
+        },
+        "lat": 26.2461272,
+        "lng": 50.5851628,
+        "placeId": "ChIJbyMYQmylST4RLltiOII2Jrk",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Lumee%20Street%20-%20The%20Avenues%20Mall%20Bahrain%20Bahrain"
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "LUMEE Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Lumee Street - The Avenues Mall Bahrain, Manama",
+          "categories": []
+        },
+        {
+          "q": "LUMEE Manama Bahrain",
+          "resolved": true,
+          "name": "Lumee Street - The Avenues Mall Bahrain",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "LUMEE Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "LUMEE restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T22:32:39.553Z"
+    },
+    {
+      "id": "title",
+      "name": "Title",
+      "current": {
+        "cuisine": "Grill",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Title - The Avenues Bahrain",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Avenues Mall Phase 2, Area Manama Sea front Block 346, Road 4660, Building 3977 Shop 1326, Manama",
+        "area": "Manama",
+        "phone": "+973 3615 0555",
+        "rating": null,
+        "reviews": null,
+        "website": "titlekw.com",
+        "openNow": "Closed · Opens 12 PM",
+        "hours": {
+          "Monday": "12-11 PM",
+          "Tuesday": "12-11 PM",
+          "Wednesday": "12-11 PM",
+          "Thursday": "12-11 PM",
+          "Friday": "12-11 PM",
+          "Saturday": "12-11 PM",
+          "Sunday": "12-11 PM"
+        },
+        "lat": 26.243467499999998,
+        "lng": 50.582066499999996,
+        "placeId": "ChIJuzHG2J-lST4RZ5GbOzINIj0",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Title%20-%20The%20Avenues%20Bahrain%20Bahrain"
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Title Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Title Manama Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "6HVJ+7M Title:, Manama",
+          "categories": []
+        },
+        {
+          "q": "Title Grill Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Title restaurant Bahrain",
+          "resolved": true,
+          "name": "Title - The Avenues Bahrain",
+          "nameScore": 0.9,
+          "rating": null
+        }
+      ],
+      "at": "2026-09-27T22:36:53.683Z"
+    },
+    {
+      "id": "jamies-italian",
+      "name": "Jamie's Italian",
+      "current": {
+        "cuisine": "Italian",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Jamie’s Italian",
+        "nameAr": "",
+        "categories": [
+          "Italian restaurant"
+        ],
+        "address": "6HVJ+6HX, Manama",
+        "area": "Manama",
+        "phone": "",
+        "rating": null,
+        "reviews": null,
+        "website": "",
+        "openNow": "",
+        "hours": null,
+        "lat": 26.2431706,
+        "lng": 50.5815068,
+        "placeId": "ChIJFVDUEgClST4RJk3HIQjz7Oc",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Jamie%E2%80%99s%20Italian%20Bahrain"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Jamie's Italian Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Jamie's Italian Manama Bahrain",
+          "resolved": true,
+          "name": "Jamie’s Italian",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Jamie's Italian Italian Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Jamie's Italian restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-09-27T22:33:14.331Z"
+    },
+    {
+      "id": "melenzane",
+      "name": "Melenzane",
+      "current": {
+        "cuisine": "Mediterranean",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "MELENZANÉ, The Avenues Mall Bahrain",
+        "nameAr": "ميلينزاني",
+        "categories": [
+          "Italian restaurant",
+          "Coffee shop",
+          "Dessert shop",
+          "Pasta shop",
+          "Pizza restaurant",
+          "Restaurant",
+          "Salad shop",
+          "Steak house"
+        ],
+        "address": "sea side, Block 346, Avenues، store N:2, Manama",
+        "area": "Manama",
+        "phone": "+973 3804 1414",
+        "rating": 4.6,
+        "reviews": 1107,
+        "website": "",
+        "openNow": "Closed · Opens 12 PM",
+        "hours": {
+          "Monday": "12 PM-12 AM",
+          "Tuesday": "12 PM-12 AM",
+          "Wednesday": "12 PM-12 AM",
+          "Thursday": "12 PM-12:30 AM",
+          "Friday": "12 PM-12:30 AM",
+          "Saturday": "12 PM-12:30 AM",
+          "Sunday": "12 PM-12 AM"
+        },
+        "lat": 26.247525099999997,
+        "lng": 50.5859203,
+        "placeId": "ChIJR37mFculST4RsYnDY-SLZpg",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=MELENZAN%C3%89%2C%20The%20Avenues%20Mall%20Bahrain%20Bahrain"
+      },
+      "nameScore": 0.88,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Melenzane Bahrain",
+          "resolved": true,
+          "name": "MELENZANÉ, The Avenues Mall Bahrain",
+          "nameScore": 0.88,
+          "rating": 4.6
+        },
+        {
+          "q": "Melenzane Manama Bahrain",
+          "resolved": true,
+          "name": "MELENZANÉ, The Avenues Mall Bahrain",
+          "nameScore": 0.88,
+          "rating": null
+        },
+        {
+          "q": "Melenzane Mediterranean Bahrain",
+          "resolved": true,
+          "name": "MELENZANÉ, The Avenues Mall Bahrain",
+          "nameScore": 0.88,
+          "rating": 4.6
+        },
+        {
+          "q": "Melenzane restaurant Bahrain",
+          "resolved": true,
+          "name": "MELENZANÉ, The Avenues Mall Bahrain",
+          "nameScore": 0.88,
+          "rating": null
+        }
+      ],
+      "at": "2026-09-27T22:35:19.364Z"
+    },
+    {
+      "id": "joes-cafe",
+      "name": "Joe's Cafe",
+      "current": {
+        "cuisine": "Cafe",
+        "address": "Manama",
+        "branches": [],
+        "phone": "+973 3591 8000",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "JOE'S CAFE BAHRAIN",
+        "nameAr": "جوز كافيه",
+        "categories": [
+          "Restaurant",
+          "Breakfast restaurant",
+          "Cafe"
+        ],
+        "address": "King Faisal Highway, Manama Entrance 7 , Avenues Mall, Manama",
+        "area": "Manama",
+        "phone": "+973 3591 8000",
+        "rating": 4.7,
+        "reviews": 1478,
+        "website": "",
+        "openNow": "Closed · Opens 8 AM",
+        "hours": {
+          "Monday": "8 AM-12 AM",
+          "Tuesday": "8 AM-12 AM",
+          "Wednesday": "8 AM-12 AM",
+          "Thursday": "8 AM-1 AM",
+          "Friday": "8 AM-1 AM",
+          "Saturday": "8 AM-12 AM",
+          "Sunday": "8 AM-12 AM"
+        },
+        "lat": 26.2462095,
+        "lng": 50.5851803,
+        "placeId": "ChIJZX--7OulST4Ro3sKlJhXDAk",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=JOE'S%20CAFE%20BAHRAIN%20Bahrain"
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Joe's Cafe Bahrain",
+          "resolved": true,
+          "name": "JOE'S CAFE BAHRAIN",
+          "nameScore": 0.9,
+          "rating": 4.7
+        },
+        {
+          "q": "Joe's Cafe Manama Bahrain",
+          "resolved": true,
+          "name": "JOE'S CAFE BAHRAIN",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Joe's Cafe Cafe Bahrain",
+          "resolved": true,
+          "name": "JOE'S CAFE BAHRAIN",
+          "nameScore": 0.9,
+          "rating": 4.7
+        },
+        {
+          "q": "Joe's Cafe restaurant Bahrain",
+          "resolved": true,
+          "name": "JOE'S CAFE BAHRAIN",
+          "nameScore": 0.9,
+          "rating": null
+        }
+      ],
+      "at": "2026-09-27T22:54:05.915Z"
+    },
+    {
+      "id": "ghancha",
+      "name": "Ghancha",
+      "current": {
+        "cuisine": "Cafe",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Ghancha غنجة",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "2827, Seef",
+        "area": "Seef",
+        "phone": "+973 3927 7200",
+        "rating": 4.2,
+        "reviews": 1049,
+        "website": "",
+        "openNow": "Closed · Opens 7 AM",
+        "hours": {
+          "Monday": "7 AM-10 PM",
+          "Tuesday": "7 AM-10 PM",
+          "Wednesday": "7 AM-10 PM",
+          "Thursday": "7 AM-11 PM",
+          "Friday": "7 AM-11 PM",
+          "Saturday": "7 AM-10 PM",
+          "Sunday": "7 AM-10 PM"
+        },
+        "lat": 26.233926399999998,
+        "lng": 50.5399743,
+        "placeId": "ChIJ_95eQ5SlST4RMrsC6UEgMAQ",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Ghancha%20%D8%BA%D9%86%D8%AC%D8%A9%20Bahrain"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Ghancha Bahrain",
+          "resolved": true,
+          "name": "Ghancha غنجة",
+          "nameScore": 1,
+          "rating": 4.2
+        }
+      ],
+      "at": "2026-09-27T22:54:57.680Z"
+    },
+    {
+      "id": "5-spoons",
+      "name": "5 Spoons",
+      "current": {
+        "cuisine": "Cafe",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Five Spoons Restaurant",
+        "nameAr": "مطعم فايف سبون",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "+973 1700 0567",
+        "rating": 4.2,
+        "reviews": 1488,
+        "website": "",
+        "openNow": "Closed · Opens 11 AM",
+        "hours": {
+          "Monday": "11 AM-11:45 PM",
+          "Tuesday": "11 AM-11:45 PM",
+          "Wednesday": "11 AM-11:45 PM",
+          "Thursday": "11 AM-11:45 PM",
+          "Friday": "11 AM-11:45 PM",
+          "Saturday": "11 AM-11:45 PM",
+          "Sunday": "11 AM-11:45 PM"
+        },
+        "lat": 26.1765145,
+        "lng": 50.5622869,
+        "placeId": "ChIJ78VAf_GuST4R8wVLfUslpdE",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Five%20Spoons%20Restaurant%20Bahrain",
+        "addressRejected": "scraper returned a non-address"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "5 Spoons Bahrain",
+          "resolved": true,
+          "name": "Five Spoons Restaurant",
+          "nameScore": 1,
+          "rating": 4.2
+        }
+      ],
+      "at": "2026-09-27T22:56:06.694Z"
+    },
+    {
+      "id": "angelo-cafe",
+      "name": "Angelo Cafe",
+      "current": {
+        "cuisine": "Cafe",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Angelo cafe",
+        "nameAr": "",
+        "categories": [
+          "Health food restaurant"
+        ],
+        "address": "Bulding 1582, Rd 4041",
+        "area": "",
+        "phone": "+973 3820 0089",
+        "rating": 4.2,
+        "reviews": 177,
+        "website": "",
+        "openNow": "Closed · Opens 6 AM",
+        "hours": {
+          "Monday": "6 AM-12 AM",
+          "Tuesday": "6 AM-12 AM",
+          "Wednesday": "6 AM-12 AM",
+          "Thursday": "6 AM-2 AM",
+          "Friday": "6 AM-2 AM",
+          "Saturday": "6 AM-12 AM",
+          "Sunday": "6 AM-12 AM"
+        },
+        "lat": 26.2154883,
+        "lng": 50.607362099999996,
+        "placeId": "ChIJedVUIc6pST4RBA8JQ5tuwqo",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Angelo%20cafe%20Bahrain"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Angelo Cafe Bahrain",
+          "resolved": true,
+          "name": "Angelo cafe",
+          "nameScore": 1,
+          "rating": 4.2
+        }
+      ],
+      "at": "2026-09-27T22:55:12.408Z"
+    },
+    {
+      "id": "alkofeia",
+      "name": "Al Kofeia",
+      "current": {
+        "cuisine": "Cafe",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Alkofeia Restaurant مطعم الكوفية",
+        "nameAr": "مطعم الكوفية",
+        "categories": [
+          "Middle Eastern restaurant",
+          "Restaurant"
+        ],
+        "address": "",
+        "area": "",
+        "phone": "+973 1700 5100",
+        "rating": null,
+        "reviews": null,
+        "website": "alkofeia.com",
+        "openNow": "Closed · Opens 8 AM",
+        "hours": {
+          "Monday": "8 AM-1 AM"
+        },
+        "lat": 26.2418732,
+        "lng": 50.553025899999994,
+        "placeId": "ChIJ0V488WGlST4RRPJH3CQ-MyI",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Alkofeia%20Restaurant%20%D9%85%D8%B7%D8%B9%D9%85%20%D8%A7%D9%84%D9%83%D9%88%D9%81%D9%8A%D8%A9%20Bahrain",
+        "addressRejected": "scraper returned a non-address"
+      },
+      "nameScore": 0.9,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Al Kofeia Bahrain",
+          "resolved": true,
+          "name": "Alkofeia Restaurant مطعم الكوفية",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Al Kofeia Manama Bahrain",
+          "resolved": true,
+          "name": "Alkofeia Restaurant مطعم الكوفية",
+          "nameScore": 0.9,
+          "rating": 4.5
+        },
+        {
+          "q": "Al Kofeia Cafe Bahrain",
+          "resolved": true,
+          "name": "Alkofeia Restaurant مطعم الكوفية",
+          "nameScore": 0.9,
+          "rating": null
+        },
+        {
+          "q": "Al Kofeia restaurant Bahrain",
+          "resolved": true,
+          "name": "Alkofeia Restaurant مطعم الكوفية",
+          "nameScore": 0.9,
+          "rating": 4.5
+        }
+      ],
+      "at": "2026-09-27T22:55:28.732Z"
+    },
+    {
+      "id": "rustic-cafe",
+      "name": "Rustic Cafe & Restaurant",
+      "current": {
+        "cuisine": "Cafe",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Rustic Restaurant and Cafe",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "5FPG+F4M, Janabiyah",
+        "area": "Janabiyah",
+        "phone": "+973 1700 3366",
+        "rating": 4.4,
+        "reviews": 530,
+        "website": "instagram.com",
+        "openNow": "Closed · Opens 12 PM",
+        "hours": {
+          "Monday": "12-11 PM"
+        },
+        "lat": 26.1862043,
+        "lng": 50.475296199999995,
+        "placeId": "ChIJIfYZNvWxST4RycHOgqouLP0",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Rustic%20Restaurant%20and%20Cafe%20Bahrain"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Rustic Cafe & Restaurant Bahrain",
+          "resolved": true,
+          "name": "Rustic Restaurant and Cafe",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Rustic Cafe & Restaurant Manama Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Manama",
+          "categories": []
+        },
+        {
+          "q": "Rustic Cafe & Restaurant Cafe Bahrain",
+          "resolved": true,
+          "name": "Rustic Restaurant and Cafe",
+          "nameScore": 1,
+          "rating": 4.4
+        }
+      ],
+      "at": "2026-09-27T22:55:41.479Z"
+    },
+    {
+      "id": "l-avenue-cafe",
+      "name": "L'Avenue Cafe",
+      "current": {
+        "cuisine": "Cafe",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "L'avenue Cafe",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "5FXG+4Q3, Al Markh",
+        "area": "",
+        "phone": "+973 1700 0111",
+        "rating": 4.3,
+        "reviews": 300,
+        "website": "",
+        "openNow": "Open · Closes 3 AM",
+        "hours": {
+          "Sunday": "8 AM-3 AM",
+          "Monday": "8 AM-3 AM",
+          "Tuesday": "8 AM-3 AM",
+          "Wednesday": "8 AM-3 AM",
+          "Thursday": "8 AM-3 AM",
+          "Friday": "8 AM-3 AM",
+          "Saturday": "8 AM-3 AM"
+        },
+        "lat": 26.197377099999997,
+        "lng": 50.4770195,
+        "placeId": "ChIJb7HjBXywST4Reo17N1-xmEQ",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=L'avenue%20Cafe%20Bahrain"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "L'Avenue Cafe Bahrain",
+          "resolved": true,
+          "name": "L'avenue Cafe",
+          "nameScore": 1,
+          "rating": 4.3
+        }
+      ],
+      "at": "2026-09-27T22:55:43.220Z"
+    },
+    {
+      "id": "sando-x-urban",
+      "name": "Sando X Urban",
+      "current": {
+        "cuisine": "Sandwiches",
+        "address": "Rd No 2431, Manama",
+        "branches": [],
+        "phone": "+973 3238 3239",
+        "hours": "",
+        "rating": 3.8,
+        "reviews": 128
+      },
+      "resolved": {
+        "name": "SANDO Restaurant (SANDO X URBAN)",
+        "nameAr": "",
+        "categories": [
+          "Restaurant"
+        ],
+        "address": "Rd No 2431, Manama",
+        "area": "Manama",
+        "phone": "+973 3238 3239",
+        "rating": 3.8,
+        "reviews": 128,
+        "website": "",
+        "openNow": "Closed · Opens 6:30 PM",
+        "hours": {
+          "Sunday": "6:30-10:30 PM",
+          "Monday": "6:30-11 PM",
+          "Tuesday": "6:30-11 PM",
+          "Wednesday": "6:30-11 PM",
+          "Thursday": "6:30-11:30 PM",
+          "Friday": "6:30-11:30 PM",
+          "Saturday": "6:30-11:30 PM"
+        },
+        "lat": 26.2106139,
+        "lng": 50.610749399999996,
+        "placeId": "ChIJu6ZdMXypST4RqW8_by6-VuU",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=SANDO%20Restaurant%20(SANDO%20X%20URBAN)%20Bahrain"
+      },
+      "nameScore": 0.92,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Sando X Urban Bahrain",
+          "resolved": true,
+          "name": "SANDO Restaurant (SANDO X URBAN)",
+          "nameScore": 0.92,
+          "rating": 3.8
+        },
+        {
+          "q": "Sando X Urban Manama Bahrain",
+          "resolved": true,
+          "name": "SANDO Restaurant (SANDO X URBAN)",
+          "nameScore": 0.92,
+          "rating": 3.8
+        },
+        {
+          "q": "Sando X Urban Sandwiches Bahrain",
+          "resolved": true,
+          "name": "SANDO Restaurant (SANDO X URBAN)",
+          "nameScore": 0.92,
+          "rating": 3.8
+        },
+        {
+          "q": "Sando X Urban restaurant Bahrain",
+          "resolved": true,
+          "name": "SANDO Restaurant (SANDO X URBAN)",
+          "nameScore": 0.92,
+          "rating": null
+        }
+      ],
+      "at": "2026-10-03T21:44:22.307Z"
+    },
+    {
+      "id": "sammonah-sandwich",
+      "name": "Sammonah Sandwiches",
+      "current": {
+        "cuisine": "Sandwiches",
+        "address": "Rd No 3503, Alhajiyat, Bahrain",
+        "branches": [],
+        "phone": "+973 7790 8886",
+        "hours": "Daily · 6:00 AM – 1:00 AM",
+        "rating": 4.8,
+        "reviews": 485
+      },
+      "resolved": {
+        "name": "Sammonah Sandwiches - سندويشات صمونة",
+        "nameAr": "سندويشات صمونة",
+        "categories": [
+          "Sandwich shop"
+        ],
+        "address": "Rd No 3503, Isa Town",
+        "area": "Isa Town",
+        "phone": "+973 7790 8886",
+        "rating": 4.8,
+        "reviews": 1038,
+        "website": "",
+        "openNow": "",
+        "hours": {
+          "Saturday": "6 AM-1 AM",
+          "Sunday": "6 AM-1 AM",
+          "Monday": "6 AM-1 AM",
+          "Tuesday": "6 AM-1 AM",
+          "Wednesday": "6 AM-1 AM",
+          "Thursday": "6 AM-1 AM",
+          "Friday": "6 AM-1 AM"
+        },
+        "lat": 26.133521899999998,
+        "lng": 50.5742299,
+        "placeId": "ChIJJ4yQIcetST4Rmg5ctiQHQjg",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Sammonah%20Sandwiches%20-%20%D8%B3%D9%86%D8%AF%D9%88%D9%8A%D8%B4%D8%A7%D8%AA%20%D8%B5%D9%85%D9%88%D9%86%D8%A9%20Bahrain"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Sammonah Sandwiches Bahrain",
+          "resolved": true,
+          "name": "Sammonah Sandwiches - سندويشات صمونة",
+          "nameScore": 1,
+          "rating": 4.8
+        }
+      ],
+      "at": "2026-10-03T21:41:47.450Z"
+    },
+    {
+      "id": "adam-subs",
+      "name": "Adam Subs",
+      "current": {
+        "cuisine": "Sandwiches",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Adam Subs آدم سابز",
+        "nameAr": "",
+        "categories": [
+          "Fast food restaurant"
+        ],
+        "address": "https://www.gstatic.com/images/icons/material/system_gm/2x/storefront_googblue_24dp.png, Adam Subs آدم سابز",
+        "area": "",
+        "phone": "+973 1726 0998",
+        "rating": 4.2,
+        "reviews": 341,
+        "website": "",
+        "openNow": "Open · Closes 2 AM",
+        "hours": {
+          "Sunday": "10 AM-2 AM",
+          "Saturday": "10 AM-2 AM"
+        },
+        "lat": 26.2081894,
+        "lng": 50.5534883,
+        "placeId": "ChIJedsui5-vST4REjQVFrcRcIU",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Adam%20Subs%20%D8%A2%D8%AF%D9%85%20%D8%B3%D8%A7%D8%A8%D8%B2%20Bahrain"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Adam Subs Bahrain",
+          "resolved": true,
+          "name": "Adam Subs آدم سابز",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Adam Subs Manama Bahrain",
+          "resolved": true,
+          "name": "Adam Subs آدم سابز",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Adam Subs Sandwiches Bahrain",
+          "resolved": true,
+          "name": "Adam Subs آدم سابز",
+          "nameScore": 1,
+          "rating": 4.2
+        }
+      ],
+      "at": "2026-10-03T21:42:08.775Z"
+    },
+    {
+      "id": "phillys",
+      "name": "Phillys",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Phillys Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Phillys Manama Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Manama",
+          "categories": []
+        },
+        {
+          "q": "Phillys Sandwiches Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Phillys restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-10-03T21:46:21.490Z"
+    },
+    {
+      "id": "neon-burger",
+      "name": "Neon Burger",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Manama",
+        "branches": [],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "Neon Burger",
+        "nameAr": "نيون برجر",
+        "categories": [
+          "Hamburger restaurant"
+        ],
+        "address": "Road 3306 Block 933 Building A172, Riffa",
+        "area": "Riffa",
+        "phone": "+973 1761 1117",
+        "rating": 4.3,
+        "reviews": 698,
+        "website": "",
+        "openNow": "Open · Closes 4 AM",
+        "hours": {
+          "Saturday": "12:30 PM-4 AM",
+          "Sunday": "12:30 PM-4 AM",
+          "Monday": "12:30 PM-4 AM",
+          "Tuesday": "12:30 PM-4 AM",
+          "Wednesday": "12:30 PM-4 AM",
+          "Thursday": "12:30 PM-4 AM",
+          "Friday": "12:30 PM-4 AM"
+        },
+        "lat": 26.137599299999998,
+        "lng": 50.5699943,
+        "placeId": "ChIJYVdBbYqtST4R7WywU4-F-u8",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Neon%20Burger%20Bahrain"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Neon Burger Bahrain",
+          "resolved": true,
+          "name": "Neon Burger",
+          "nameScore": 1,
+          "rating": 4.3
+        }
+      ],
+      "at": "2026-10-03T21:45:51.132Z"
+    },
+    {
+      "id": "burger77",
+      "name": "Burger 77",
+      "current": {
+        "cuisine": "Burger",
+        "address": "Manama",
+        "branches": [
+          "Karzakkan"
+        ],
+        "phone": "",
+        "hours": "",
+        "rating": null,
+        "reviews": null
+      },
+      "resolved": {
+        "name": "BURGER 77",
+        "nameAr": "",
+        "categories": [
+          "American restaurant"
+        ],
+        "address": "4F6J+4QF, Karzakkan",
+        "area": "",
+        "phone": "+973 3922 9661",
+        "rating": null,
+        "reviews": null,
+        "website": "",
+        "openNow": "",
+        "hours": null,
+        "lat": 26.110317,
+        "lng": 50.4819281,
+        "placeId": "ChIJmxDeOgCzST4RXPsNwecuh7g",
+        "mapsUrl": "https://www.google.com/maps/search/?api=1&query=BURGER%2077%20Bahrain"
+      },
+      "nameScore": 1,
+      "alsoFound": [],
+      "attempts": [
+        {
+          "q": "Burger 77 Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Burger 77 Manama Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Manama",
+          "categories": []
+        },
+        {
+          "q": "Burger 77 Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Burger 77 Karzakkan Bahrain",
+          "resolved": true,
+          "name": "BURGER 77",
+          "nameScore": 1,
+          "rating": null
+        },
+        {
+          "q": "Burger 77 restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        }
+      ],
+      "at": "2026-10-04T17:19:07.606Z"
+    },
+    {
+      "id": "the-bossman",
+      "name": "The Bossman",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "The Bossman Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "The Bossman",
+          "categories": [
+            "Fusion restaurant",
+            "Fine dining restaurant"
+          ]
+        },
+        {
+          "q": "The Bossman Manama Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "The Bossman",
+          "categories": [
+            "Fusion restaurant",
+            "Fine dining restaurant"
+          ]
+        },
+        {
+          "q": "The Bossman Burger Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "The Bossman",
+          "categories": [
+            "Fusion restaurant",
+            "Fine dining restaurant"
+          ]
+        },
+        {
+          "q": "The Bossman Seef Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "The Bossman",
+          "categories": [
+            "Fusion restaurant",
+            "Fine dining restaurant"
+          ]
+        },
+        {
+          "q": "The Bossman restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "The Bossman",
+          "categories": [
+            "Fusion restaurant",
+            "Fine dining restaurant"
+          ]
+        }
+      ],
+      "at": "2026-10-04T17:19:42.808Z"
+    },
+    {
+      "id": "tikka-village",
+      "name": "Tikka Village",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Tikka Village Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Tikka Village",
+          "categories": [
+            "Arab restaurant"
+          ]
+        },
+        {
+          "q": "Tikka Village Janabiyah Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Tikka Village",
+          "categories": [
+            "Arab restaurant"
+          ]
+        },
+        {
+          "q": "Tikka Village Grill Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Bahrain",
+          "categories": []
+        },
+        {
+          "q": "Tikka Village restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Tikka Village",
+          "categories": [
+            "Arab restaurant"
+          ]
+        }
+      ],
+      "at": "2026-10-04T17:19:57.458Z"
+    },
+    {
+      "id": "uplift",
+      "name": "Uplift",
+      "error": "not resolved",
+      "attempts": [
+        {
+          "q": "Uplift Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Uplift",
+          "categories": [
+            "Fusion restaurant"
+          ]
+        },
+        {
+          "q": "Uplift Manama Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Manama",
+          "categories": []
+        },
+        {
+          "q": "Uplift Cafe Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Uplift",
+          "categories": [
+            "Fusion restaurant"
+          ]
+        },
+        {
+          "q": "Uplift restaurant Bahrain",
+          "resolved": true,
+          "rejected": "not a food place",
+          "name": "Uplift",
+          "categories": [
+            "Fusion restaurant"
+          ]
+        }
+      ],
+      "at": "2026-10-04T17:51:26.791Z"
+    }
+  ]
+}

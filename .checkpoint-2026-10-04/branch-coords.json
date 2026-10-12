@@ -1,0 +1,606 @@
+{
+  "aseeri-star|Hamad Town": {
+    "lat": 26.1417225,
+    "lng": 50.4962191
+  },
+  "chicken-land-cafeteria|Hamad Town": {
+    "lat": 26.1414322,
+    "lng": 50.4961991
+  },
+  "white-house|Hamad Town": {
+    "lat": 26.139581699999997,
+    "lng": 50.492686799999994
+  },
+  "white-house|Busaiteen": {
+    "lat": 26.2698045,
+    "lng": 50.609144799999996
+  },
+  "wadi-altayibin-grills|East Riffa": {
+    "lat": 26.116263399999998,
+    "lng": 50.5718038
+  },
+  "tren-tren|Arad": {
+    "lat": 26.257166599999998,
+    "lng": 50.6337761
+  },
+  "tren-tren|Hidd": {
+    "lat": 26.235447399999998,
+    "lng": 50.645522299999996
+  },
+  "tren-tren|Riffa": {
+    "lat": 26.115228899999998,
+    "lng": 50.5752017
+  },
+  "tren-tren|Hamala": {
+    "lat": 26.148530899999997,
+    "lng": 50.487277899999995
+  },
+  "tren-tren|Jid Ali": {
+    "lat": 26.178871599999997,
+    "lng": 50.5627399
+  },
+  "tika-abu-jamal|Riffa": {
+    "lat": 26.1333035,
+    "lng": 50.5379493
+  },
+  "al-haseer|Dar Kulaib": {
+    "lat": 26.066039999999997,
+    "lng": 50.505103999999996
+  },
+  "omy-and-banatha|Dar Kulaib": {
+    "lat": 26.069617899999997,
+    "lng": 50.5006231
+  },
+  "ala-hawak|Dar Kulaib": {
+    "lat": 26.0660767,
+    "lng": 50.505292
+  },
+  "nino|Seef": {
+    "lat": 26.2333192,
+    "lng": 50.541287499999996
+  },
+  "zulu|Qudaibiya": {
+    "lat": 26.2143283,
+    "lng": 50.592945099999994
+  },
+  "fatto|Seef": {
+    "lat": 26.232971799999998,
+    "lng": 50.541289899999995
+  },
+  "fatto|Adliya": {
+    "lat": 26.2146737,
+    "lng": 50.592759799999996
+  },
+  "cocos|Qudaibiya": {
+    "lat": 26.215013199999998,
+    "lng": 50.5925763
+  },
+  "cocos|Juffair": {
+    "lat": 26.215803899999997,
+    "lng": 50.6073366
+  },
+  "banu|Seef": {
+    "lat": 26.2419202,
+    "lng": 50.5382302
+  },
+  "banu|Al Hoora": {
+    "lat": 26.2335219,
+    "lng": 50.5938215
+  },
+  "bella-pizzeria|Riffa": {
+    "lat": 26.1324495,
+    "lng": 50.5548971
+  },
+  "bella-pizzeria|Busaiteen": {
+    "lat": 26.2644123,
+    "lng": 50.597711399999994
+  },
+  "barbecue-town|Bilad Al Qadeem": {
+    "lat": 26.2052041,
+    "lng": 50.5541823
+  },
+  "abrisham|Saar": {
+    "lat": 26.2038866,
+    "lng": 50.4994711
+  },
+  "black-strip|Manama": {
+    "lat": 26.2398074,
+    "lng": 50.574179199999996
+  },
+  "black-strip|Seef": {
+    "lat": 26.2398074,
+    "lng": 50.574179199999996
+  },
+  "beefko|Adliya": {
+    "lat": 26.215133899999998,
+    "lng": 50.5917143
+  },
+  "de-linos|Sea Front": {
+    "lat": 26.2331526,
+    "lng": 50.5544582
+  },
+  "de-linos|City Centre": {
+    "lat": 26.2331526,
+    "lng": 50.5544582
+  },
+  "empire-pizza|A'ali": {
+    "lat": 26.151873,
+    "lng": 50.5328568
+  },
+  "empire-pizza|Saar": {
+    "lat": 26.197805799999998,
+    "lng": 50.4859145
+  },
+  "nu-asia|Seef": {
+    "lat": 26.2325189,
+    "lng": 50.541305
+  },
+  "nu-asia|Zayed Town": {
+    "lat": 26.167460199999997,
+    "lng": 50.54221
+  },
+  "nu-asia|Budaiya": {
+    "lat": 26.219877999999998,
+    "lng": 50.492108599999995
+  },
+  "tonys|Jidhafs": {
+    "lat": 26.2203931,
+    "lng": 50.544374499999996
+  },
+  "buzz-burger|Riffa": {
+    "lat": 26.1325976,
+    "lng": 50.5563608
+  },
+  "buzz-burger|Muharraq": {
+    "lat": 26.2534919,
+    "lng": 50.608255799999995
+  },
+  "backyard-burger|Riffa": {
+    "lat": 26.132222199999998,
+    "lng": 50.5783889
+  },
+  "backyard-burger|Hamad Town": {
+    "lat": 26.1163407,
+    "lng": 50.5027214
+  },
+  "burger77|Karzakkan": {
+    "lat": 26.110317,
+    "lng": 50.4819281
+  },
+  "honest-burger|Budaiya": {
+    "lat": 26.2198913,
+    "lng": 50.4923542
+  },
+  "freid|A'ali": {
+    "lat": 26.066699999999997,
+    "lng": 50.5577
+  },
+  "burger-fries-more|A'ali": {
+    "lat": 26.159044599999998,
+    "lng": 50.5183259
+  },
+  "lahom|Muqaba": {
+    "lat": 26.203597199999997,
+    "lng": 50.496645199999996
+  },
+  "lab-burger|Riffa": {
+    "lat": 26.1142802,
+    "lng": 50.576505399999995
+  },
+  "cut-burger|Malkiya": {
+    "lat": 26.0931544,
+    "lng": 50.4857817
+  },
+  "golden-bun|Seef": {
+    "lat": 26.237278999999997,
+    "lng": 50.5239712
+  },
+  "fat-whale|Riffa": {
+    "lat": 26.129166899999998,
+    "lng": 50.572756
+  },
+  "grannys-burger|Riffa": {
+    "lat": 26.131781999999998,
+    "lng": 50.540796199999996
+  },
+  "doctor-food|Riffa": {
+    "lat": 26.135607099999998,
+    "lng": 50.5553464
+  },
+  "bacon|Juffair": {
+    "lat": 26.212971,
+    "lng": 50.6028899
+  },
+  "bacon|Arad": {
+    "lat": 26.253356399999998,
+    "lng": 50.639521699999996
+  },
+  "bacon|Riffa": {
+    "lat": 26.1333035,
+    "lng": 50.5379493
+  },
+  "slider|Tubli": {
+    "lat": 26.1900349,
+    "lng": 50.556601099999995
+  },
+  "slider|Amwaj": {
+    "lat": 26.2787154,
+    "lng": 50.663987
+  },
+  "slider|Juffair": {
+    "lat": 26.2153141,
+    "lng": 50.6078798
+  },
+  "plan-b|Riffa": {
+    "lat": 26.1311826,
+    "lng": 50.5585623
+  },
+  "plan-b|Seef": {
+    "lat": 26.235011399999998,
+    "lng": 50.5351073
+  },
+  "viola-burger|Budaiya": {
+    "lat": 26.221312899999997,
+    "lng": 50.5027439
+  },
+  "viola-burger|Dar Kulaib": {
+    "lat": 26.0665306,
+    "lng": 50.5053574
+  },
+  "viola-burger|Muharraq": {
+    "lat": 26.2534919,
+    "lng": 50.608255799999995
+  },
+  "viola-burger|Malkiya": {
+    "lat": 26.1032989,
+    "lng": 50.4832919
+  },
+  "three-guys|Jerdab": {
+    "lat": 26.1643471,
+    "lng": 50.5708718
+  },
+  "three-guys|Shakura": {
+    "lat": 26.066699999999997,
+    "lng": 50.5577
+  },
+  "three-guys|Zallaq": {
+    "lat": 26.049070099999998,
+    "lng": 50.4884244
+  },
+  "hashtag|Zayed Town": {
+    "lat": 26.1671502,
+    "lng": 50.538144499999994
+  },
+  "hashtag|Al Sayh": {
+    "lat": 26.2780494,
+    "lng": 50.5938215
+  },
+  "three-lines|Zinj": {
+    "lat": 26.210009,
+    "lng": 50.5758438
+  },
+  "three-lines|Busaiteen": {
+    "lat": 26.271567599999997,
+    "lng": 50.604741999999995
+  },
+  "three-lines|Riffa": {
+    "lat": 26.1356875,
+    "lng": 50.5559375
+  },
+  "villa-rosa|Isa Town": {
+    "lat": 26.172480999999998,
+    "lng": 50.548199
+  },
+  "cheesy-burger|Samaheej": {
+    "lat": 26.2751046,
+    "lng": 50.6443215
+  },
+  "cheesy-burger|Maqabah": {
+    "lat": 26.2179739,
+    "lng": 50.4859139
+  },
+  "cheesy-burger|Hidd": {
+    "lat": 26.234061699999998,
+    "lng": 50.652032
+  },
+  "janahi-burger|Riffa": {
+    "lat": 26.156629499999998,
+    "lng": 50.5458384
+  },
+  "blaze-burger|Janabiyah": {
+    "lat": 26.190403999999997,
+    "lng": 50.466467599999994
+  },
+  "blaze-burger|Diyar": {
+    "lat": 26.066699999999997,
+    "lng": 50.5577
+  },
+  "blaze-burger|Manama": {
+    "lat": 26.215346399999998,
+    "lng": 50.592127299999994
+  },
+  "sahburger|Juffair": {
+    "lat": 26.1436928,
+    "lng": 50.5793296
+  },
+  "sahburger|Hamala": {
+    "lat": 26.1439621,
+    "lng": 50.483145
+  },
+  "sahburger|Sanad": {
+    "lat": 26.1436928,
+    "lng": 50.5793296
+  },
+  "lost-burger|Riffa Views": {
+    "lat": 26.1312785,
+    "lng": 50.542603899999996
+  },
+  "neon-burger|Manama": {
+    "lat": 26.137599299999998,
+    "lng": 50.5699943
+  },
+  "burger-waqif|Jannusan": {
+    "lat": 26.2208787,
+    "lng": 50.5004833
+  },
+  "burger-square|Al Sayh": {
+    "lat": 26.2791534,
+    "lng": 50.595833999999996
+  },
+  "chubbys-burger|Al Sayh": {
+    "lat": 26.272837199999998,
+    "lng": 50.593973
+  },
+  "chubbys-burger|Busaiteen": {
+    "lat": 26.272837199999998,
+    "lng": 50.593973
+  },
+  "challenger|Sitra": {
+    "lat": 26.163290699999997,
+    "lng": 50.6146695
+  },
+  "cluckys|Galaly": {
+    "lat": 26.066699999999997,
+    "lng": 50.5577
+  },
+  "baby-chicken|Riffa": {
+    "lat": 26.129524099999998,
+    "lng": 50.5546958
+  },
+  "fry-and-fries|Busaiteen": {
+    "lat": 26.2678369,
+    "lng": 50.5939319
+  },
+  "wingman|Budaiya": {
+    "lat": 26.2213516,
+    "lng": 50.5027275
+  },
+  "wingman|Juffair": {
+    "lat": 26.224648199999997,
+    "lng": 50.609512599999995
+  },
+  "wingman|Muharraq": {
+    "lat": 26.2632682,
+    "lng": 50.6164987
+  },
+  "wingman|Jannusan": {
+    "lat": 26.2213516,
+    "lng": 50.5027275
+  },
+  "wingman|Riffa": {
+    "lat": 26.137607499999998,
+    "lng": 50.566585499999995
+  },
+  "wing-station|Al Sayh": {
+    "lat": 26.2794307,
+    "lng": 50.5960028
+  },
+  "flap-fried-chicken|Sanad": {
+    "lat": 26.1284375,
+    "lng": 50.5896875
+  },
+  "phillys|Juffair": {
+    "lat": 26.212971,
+    "lng": 50.6028899
+  },
+  "night-bird|Janabiyah": {
+    "lat": 26.1719825,
+    "lng": 50.4810142
+  },
+  "popeyes|Riffa": {
+    "lat": 26.1356528,
+    "lng": 50.5278856
+  },
+  "popeyes|City Centre": {
+    "lat": 26.2333324,
+    "lng": 50.553277699999995
+  },
+  "popeyes|Zallaq": {
+    "lat": 26.050068399999997,
+    "lng": 50.498103
+  },
+  "popeyes|Hidd": {
+    "lat": 26.228190599999998,
+    "lng": 50.657120199999994
+  },
+  "monkey-lala|Riffa": {
+    "lat": 26.1356242,
+    "lng": 50.555302399999995
+  },
+  "monkey-lala|Al Sayh": {
+    "lat": 26.2705175,
+    "lng": 50.5948259
+  },
+  "stack|Riffa": {
+    "lat": 26.1346422,
+    "lng": 50.550624299999996
+  },
+  "milano|Riffa": {
+    "lat": 26.1303311,
+    "lng": 50.574189999999994
+  },
+  "gate-12|Zayed Town": {
+    "lat": 26.1691047,
+    "lng": 50.5399684
+  },
+  "mama-joz|Riffa": {
+    "lat": 26.1370586,
+    "lng": 50.5731441
+  },
+  "mama-joz|Juffair": {
+    "lat": 26.217548299999997,
+    "lng": 50.6077728
+  },
+  "mama-joz|Muharraq": {
+    "lat": 26.255903,
+    "lng": 50.616960299999995
+  },
+  "mama-joz|A'ali": {
+    "lat": 26.162646,
+    "lng": 50.5231767
+  },
+  "little-caesars|Malkiya": {
+    "lat": 26.093075499999998,
+    "lng": 50.4882826
+  },
+  "little-caesars|Riffa": {
+    "lat": 26.1333035,
+    "lng": 50.5379493
+  },
+  "little-caesars|Zayed Town": {
+    "lat": 26.1691382,
+    "lng": 50.5397787
+  },
+  "little-caesars|Zinj": {
+    "lat": 26.2055178,
+    "lng": 50.575286
+  },
+  "little-caesars|Arad": {
+    "lat": 26.2552293,
+    "lng": 50.6256187
+  },
+  "little-caesars|Seef": {
+    "lat": 26.2419202,
+    "lng": 50.5382302
+  },
+  "little-caesars|Hamad Town": {
+    "lat": 26.093075499999998,
+    "lng": 50.4882826
+  },
+  "pizzaro|Zayed Town": {
+    "lat": 26.1670165,
+    "lng": 50.5423058
+  },
+  "pizzaro|Adliya": {
+    "lat": 26.2144884,
+    "lng": 50.584754399999994
+  },
+  "ic-pizza|Al Hidd": {
+    "lat": 26.257806199999997,
+    "lng": 50.665850999999996
+  },
+  "the72|Sanad": {
+    "lat": 26.1479511,
+    "lng": 50.5843625
+  },
+  "welayat-ali|Jidhafs": {
+    "lat": 26.2121994,
+    "lng": 50.5427058
+  },
+  "al-furat-nights|Sitra": {
+    "lat": 26.1704392,
+    "lng": 50.611770799999995
+  },
+  "al-farhan|Malkiya": {
+    "lat": 26.0983813,
+    "lng": 50.485589
+  },
+  "swaikhat|Janabiyah": {
+    "lat": 26.1717871,
+    "lng": 50.4808386
+  },
+  "the-bossman|Seef": {
+    "lat": 26.236591299999997,
+    "lng": 50.536040299999996
+  },
+  "tikka-village|Janabiyah": {
+    "lat": 26.181611399999998,
+    "lng": 50.4812309
+  },
+  "tikka-numee|Janabiyah": {
+    "lat": 26.1718855,
+    "lng": 50.4810764
+  },
+  "aljabriya|Busaiteen": {
+    "lat": 26.2721318,
+    "lng": 50.6076469
+  },
+  "aljabriya|Jid Ali": {
+    "lat": 26.172199,
+    "lng": 50.5610378
+  },
+  "arabian-broasted|Tubli": {
+    "lat": 26.1860304,
+    "lng": 50.5498274
+  },
+  "arabian-broasted|Umm Al Hassam": {
+    "lat": 26.2046875,
+    "lng": 50.5963906
+  },
+  "arabian-broasted|Al Lawzi": {
+    "lat": 26.114855199999997,
+    "lng": 50.488032
+  },
+  "arabian-broasted|Saar": {
+    "lat": 26.1979802,
+    "lng": 50.485900199999996
+  },
+  "chicket|Hidd": {
+    "lat": 26.2267288,
+    "lng": 50.6559235
+  },
+  "chicket|Daih": {
+    "lat": 26.2208056,
+    "lng": 50.536514499999996
+  },
+  "chicket|Riffa": {
+    "lat": 26.1376225,
+    "lng": 50.5761849
+  },
+  "chicket|Janabiyah": {
+    "lat": 26.182999199999998,
+    "lng": 50.4669338
+  },
+  "klakiz|Manama": {
+    "lat": 26.2235305,
+    "lng": 50.5875935
+  },
+  "risotto|Malkiya": {
+    "lat": 26.0996229,
+    "lng": 50.4851777
+  },
+  "yebilna-pasta|Malkiya": {
+    "lat": 26.0996229,
+    "lng": 50.4851777
+  },
+  "yebilna-pasta|A'ali": {
+    "lat": 26.153040999999998,
+    "lng": 50.519886
+  },
+  "le-pasta|Arad": {
+    "lat": 26.255761999999997,
+    "lng": 50.633746599999995
+  },
+  "le-pasta|Jerdab": {
+    "lat": 26.166779599999998,
+    "lng": 50.5689412
+  },
+  "le-pasta|Riffa": {
+    "lat": 26.1273372,
+    "lng": 50.543959
+  },
+  "le-pasta|Hamad Town": {
+    "lat": 26.132586399999997,
+    "lng": 50.499684599999995
+  }
+}

@@ -1,0 +1,210 @@
+﻿
+=== RESEARCH DIFF (2026-09-27) ===
+scanned 88 | accepted 72 | needs review 2 | unresolved 16
+
+--- field changes (58) ---
+  aseeri-star (Aseeri Star)
+      rating: Google lists no rating for this place
+  chicken-land-cafeteria (Chicken Land Cafeteria)
+      rating: 3.9/270 -> 3.8/479 (Google)
+  white-house (White House)
+      rating: Google lists no rating for this place
+  tika-abu-jamal (Tika Abu Jamal)
+      rating: Google lists no rating for this place
+  al-haseer (Al Haseer)
+      rating: -/- -> 4.1/511 (Google)
+  ala-hawak (Ala Hawak)
+      rating: -/- -> 3.9/77 (Google)
+  fatto (Fatto)
+      CUISINE: Grill -> Italian (Italian restaurant)
+      address: "Seef" -> "Road 2827 Restaurant 2214, Seef"
+      phone: "-" -> +973 6677 8822
+      rating: -/- -> 4.5/3365 (Google)
+  banu (Banu)
+      address: "Seef" -> "Bu Ghazal Manama"
+      phone: "-" -> +973 1771 5654
+      rating: -/- -> 4.5/3410 (Google)
+  bella-pizzeria (Bella Pizzeria)
+      phone: "-" -> +973 1730 0800
+      rating: -/- -> 3.9/279 (Google)
+  slider-station (Slider Station)
+      address: "Manama" -> "112 Rd No 3803, Manama"
+      phone: "-" -> +973 1663 3777
+      rating: -/- -> 4.4/4096 (Google)
+  barbecue-town (Barbecue Town)
+      phone: "-" -> +973 3547 7026
+      rating: -/- -> 4.3/6336 (Google)
+  abrisham (Abrisham)
+      phone: "-" -> +973 7799 7788
+      rating: -/- -> 4.6/3551 (Google)
+  nu-asia (Nu Asia)
+      address: "Al Aali Complex, Road 2827, Seef" -> "District- AlAali complex, Road No 2827, Seef"
+  tonys (Tony's)
+      phone: "-" -> +973 7739 1199
+      rating: -/- -> 4.9/371 (Google)
+  buzz-burger (Buzz Burger)
+      address: "Riffa" -> "Building 605, Road 1311 Riffa"
+      phone: "-" -> +973 3459 9899
+      rating: -/- -> 4.4/18 (Google)
+  backyard-burger (Backyard Burger)
+      phone: "-" -> +973 1369 0011
+      rating: Google lists no rating for this place
+  my-burger77 (Burger 77)
+      rating: -/- -> 4.4/16 (Google)
+  honest-burger (Honest Burger)
+      phone: "-" -> +973 1720 0033
+      rating: Google lists no rating for this place
+  lahom (Lahom)
+      address: "Muqaba" -> "Building 2108, Maqabah"
+      area: "Muqaba" -> Maqabah
+      phone: "-" -> +973 3350 8338
+      rating: Google lists no rating for this place
+  engineer-burger (Engineer Burger)
+      phone: "-" -> +973 1361 1008
+      rating: -/- -> 4.8/47 (Google)
+  cut-burger (Cut Burger)
+      address: "Malkiya" -> "Road 3375 Malkiya"
+      phone: "-" -> +973 3841 1880
+      rating: Google lists no rating for this place
+  fat-whale (Fat Whale)
+      phone: "-" -> +973 3661 1506
+      rating: -/- -> 4.1/55 (Google)
+  grannys-burger (Granny's Burger)
+      address: "Riffa" -> "Road 2, Block 904, Building 34, Riffa"
+      phone: "-" -> +973 3303 0231
+      rating: -/- -> 3.9/36 (Google)
+  doctor-food (Doctor Food)
+      address: "Riffa" -> "631 Road No 3821, Riffa"
+      phone: "-" -> +973 7799 8820
+      rating: -/- -> 4.6/104 (Google)
+  jan-burger (Jan Burger)
+      phone: "-" -> +973 1771 2554
+      rating: Google lists no rating for this place
+  al-mihwar (Al Mihwar)
+      phone: "-" -> +973 1741 4384
+      rating: -/- -> 4.5/339 (Google)
+  slider (Slider)
+      phone: "-" -> +973 6676 7003
+      rating: -/- -> 4.7/1004 (Google)
+  plan-b (Plan B)
+      phone: "-" -> +973 3336 9113
+      rating: -/- -> 4.5/246 (Google)
+  viola-burger (Viola Burger)
+      rating: -/- -> 4.2/386 (Google)
+  three-guys (Three Guys)
+      address: "Jerdab" -> "B803, Road 77, Jurdab"
+      phone: "-" -> +973 1776 0256
+      rating: -/- -> 4.2/1062 (Google)
+  hashtag (Hashtag)
+      address: "Zayed Town" -> "Muscat Ave, Isa Town"
+      area: "Zayed Town" -> Isa Town
+      phone: "-" -> +973 1700 2060
+      rating: -/- -> 4.2/1109 (Google)
+  villa-rosa (Villa Rosa)
+      phone: "-" -> +973 1730 0141
+      rating: -/- -> 4.4/339 (Google)
+  cheesy-burger (Cheesy Burger)
+      rating: Google lists no rating for this place
+  janahi-burger (Janahi Burger)
+      address: "Riffa" -> "16th December Ave, Riffa"
+      phone: "-" -> +973 3660 0686
+      rating: -/- -> 4.5/103 (Google)
+  blaze-burger (Blaze Burger)
+      address: "Janabiyah" -> "Building 385, Road 7113 Shop 19 Aljanabiya"
+      phone: "-" -> +973 3984 4773
+      rating: -/- -> 4.2/358 (Google)
+  sahburger (Sahburger)
+      phone: "-" -> +973 1722 7877
+      rating: -/- -> 3.3/3 (Google)
+  lost-burger (Lost Burger)
+      address: "Riffa Views" -> "Road:1211 Block:912 Building:464"
+      phone: "-" -> +973 3911 9913
+      rating: -/- -> 3.8/44 (Google)
+  burger-square (Burger Square)
+      phone: "-" -> +973 3377 2700
+      rating: -/- -> 4.5/130 (Google)
+  chubbys-burger (Chubby's Burger)
+      phone: "-" -> +973 3612 3040
+      rating: -/- -> 3.9/115 (Google)
+  challenger (Challenger)
+      address: "Sitra" -> "Ain Abdan Rd, Sitra"
+      rating: -/- -> 4.5/94 (Google)
+  daveburger (Dave Burger)
+      rating: Google lists no rating for this place
+  baby-chicken (Baby Chicken)
+      rating: -/- -> 3.8/44 (Google)
+  fry-and-fries (Fry and Fries Cafe)
+      address: "Busaiteen" -> "Alsaya, Busaiteen"
+      phone: "-" -> +973 3714 0022
+      rating: -/- -> 4.1/223 (Google)
+  wingman (Wingman)
+      rating: -/- -> 3.8/276 (Google)
+  wing-station (Wing Station)
+      phone: "-" -> +973 1700 3023
+      rating: -/- -> 4.1/87 (Google)
+  flap-fried-chicken (Flap Fried Chicken)
+      address: "Sanad" -> "Rd No 4616, Nuwaidrat, Riffa"
+      phone: "-" -> +973 1700 1212
+      rating: -/- -> 4.1/189 (Google)
+  night-bird (Night Bird)
+      address: "Janabiyah" -> "District 1 - Janabiyah Al Janabiyah"
+      phone: "-" -> +973 1733 5555
+      rating: -/- -> 3.9/136 (Google)
+  popeyes (Popeyes)
+      rating: -/- -> 4.5/186 (Google)
+  monkey-lala (Monkey Lala)
+      phone: "-" -> +973 6634 4912
+      rating: -/- -> 4.2/27 (Google)
+  stack (Stack)
+      address: "Riffa" -> "Street 14, Riffa"
+      phone: "-" -> +973 3811 1415
+      rating: -/- -> 4.5/59 (Google)
+  gate-12 (Gate 12)
+      phone: "-" -> +973 1369 8887
+      rating: -/- -> 4.6/93 (Google)
+  pizzaro (Pizzaro)
+      rating: Google lists no rating for this place
+  the72 (The72)
+      rating: -/43 -> 4.6/43 (Google)
+  tikka-numee (Tikka Numee)
+      address: "District 1 Mall, Janabiyah" -> "District 1 Mall Aljanabiyah Al janabiyah"
+      rating: Google lists no rating for this place
+  aljabriya (Al Jabriya)
+      CUISINE: Grill -> Mediterranean (Turkish restaurant)
+  arabian-broasted (Arabian Broasted)
+      phone: "-" -> +973 1734 4604
+      rating: -/- -> 3.9/410 (Google)
+  chicket (Chicket)
+      phone: "-" -> +973 1339 8111
+      rating: -/- -> 4.7/693 (Google)
+  chico-chicken (Chico Chicken)
+      phone: "-" -> +973 7799 5553
+      rating: -/- -> 4.1/268 (Google)
+
+--- cuisine changes to apply automatically ---
+  fatto: CUISINE: Grill -> Italian (Italian restaurant)
+  aljabriya: CUISINE: Grill -> Mediterranean (Turkish restaurant)
+
+--- needs a decision (2) ---
+  chicken-land-cafeteria (Chicken Land Cafeteria): Google says Grill ("╪ú╪▒╪╢ ╪º┘ä╪»╪¼╪º╪¼ - Chicken Land Cafeteria \u0026 Grills.w.l.l 17412353/"), we say Fried Chicken
+  villa-rosa (Villa Rosa): Google says Pizza ("Villa Rosa Pizzeria \u0026 Restaurant"), we say Italian
+
+--- rejected / not resolved (16) ---
+  wadi-altayibin-grills (Wadi Al Tayibeen Grills): name match 0.56 -> found "Wadi Al Taybeen Restaurant \u0026 Grills"
+  omy-and-banatha (Omy & Banatha): not resolved
+  black-strip (Black Strip): not resolved
+  freid (Freid): not resolved
+  burger-fries-more (Burger Fries and More): not resolved
+  lab-burger (Lab Burger): name match 0.56 -> found "Burger Lab"
+  golden-bun (Golden Bun): not resolved
+  bacon (Bacon): not resolved
+  three-lines (Three Lines): name match 0.28 -> found "3 Lines Restaurant Zinj"
+  burger-waqif (Burger Waqif): name match 0 -> found "╪¿╪▒╪¼╪▒ ┘ê╪º┘é┘ü"
+  cluckys (Cluckys): not resolved
+  milano (Milano): not resolved
+  klakiz (Klakiz): name match 0 -> found "CHILKOZA Restaurant"
+  risotto (Risotto): not resolved
+  yebilna-pasta (Yebilna Pasta): not resolved
+  le-pasta (Le Pasta): name match 0.57 -> found "La Pasta"
+
+Nothing written. Re-run with --write to update src\data\restaurants.js.
