@@ -742,10 +742,12 @@ body { font-family: var(--font-body); }
   bottom: 12px;
   z-index: 1500;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
+  max-width: calc(100vw - 24px);
   padding: 6px 8px;
-  border-radius: 999px;
+  border-radius: 18px;
   background: rgba(20, 16, 12, 0.93);
   color: #fff;
   font-size: 12px;
@@ -896,4 +898,123 @@ body { font-family: var(--font-body); }
   .page[data-design="c"] .card-top h2 { font-size: 16px; }
   .page[data-design="c"] .card-actions .btn.primary { grid-column: 1 / -1; min-height: 40px; }
   .page[data-design="c"] .card-actions .btn.insta { grid-column: 1 / -1; }
+}
+
+/* ================= VARIANT D — MINIMAL =================
+   Inset photo, no logo, cuisine as a small-caps eyebrow,
+   location only, two quiet buttons. */
+.page[data-design="d"] .card { border-radius: 20px; }
+.page[data-design="d"] .card-img { margin: 10px 10px 0; border-radius: 14px; }
+.page[data-design="d"] .highlight-wrap { display: none; }
+.page[data-design="d"] .card-top { flex-wrap: wrap; row-gap: 4px; }
+.page[data-design="d"] .cuisine {
+  order: -1;
+  flex: 1 1 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--brand-ink);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.page[data-design="d"] .card-top h2 { flex: 1 1 100%; font-size: 21px; }
+.page[data-design="d"] .card-top .cuisine + .cuisine { display: none; }
+.page[data-design="d"] .desc {
+  min-height: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.page[data-design="d"] .meta > span:nth-child(n+2) { display: none; }
+.page[data-design="d"] .card-actions .btn:nth-child(3),
+.page[data-design="d"] .card-actions .btn:nth-child(4) { display: none; }
+@media (min-width: 641px) {
+  .page[data-design="d"] .card-img { height: 190px; }
+}
+@media (max-width: 640px) {
+  .page[data-design="d"] .card-img { height: 108px; margin: 8px 8px 0; border-radius: 11px; }
+  .page[data-design="d"] .card-top h2 { font-size: 16px; }
+  .page[data-design="d"] .cuisine { font-size: 9.5px; }
+}
+
+/* ================= VARIANT E — MIDNIGHT =================
+   Dark charcoal card on the light page. Same layout as
+   Classic, inverted palette with gold accents. */
+.page[data-design="e"] .card { background: #1a1512; border-color: #2e261e; }
+.page[data-design="e"] .card:hover { border-color: #57432a; }
+.page[data-design="e"] .card-top h2,
+.page[data-design="e"] .card-open { color: #f5eddd; }
+.page[data-design="e"] .card:hover .card-open { color: #f2c14e; }
+.page[data-design="e"] .highlight-wrap {
+  box-shadow: 0 0 0 1.5px rgba(242, 193, 78, 0.6), 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+.page[data-design="e"] .cuisine {
+  background: transparent;
+  border-color: rgba(242, 193, 78, 0.55);
+  color: #f2c14e;
+}
+.page[data-design="e"] .desc { color: #b3a78f; }
+.page[data-design="e"] .meta { border-top-color: #33291f; color: #c9bda4; }
+.page[data-design="e"] .meta .branch-count { color: #7fd6a4; }
+.page[data-design="e"] .offers-line { color: #f2c14e; }
+.page[data-design="e"] .rating-badge {
+  background: linear-gradient(180deg, #f2c14e, #d99a26);
+  border-color: #8a5f14;
+  color: #241a08;
+}
+.page[data-design="e"] .rating-badge > span[aria-hidden="true"] { color: #241a08; }
+.page[data-design="e"] .btn:not(.primary) {
+  background: #251e17;
+  border-color: #3d3226;
+  color: #f3ead9;
+  box-shadow: none;
+}
+.page[data-design="e"] .btn:not(.primary):hover { border-color: #b98a2f; color: #f2c14e; }
+.page[data-design="e"] .btn.insta .ig-glyph { color: #ef7fb0; }
+
+/* ================= VARIANT F — GALLERY =================
+   Centered cover card: cropped photo, straddling logo,
+   location only, stacked Menu + Details. */
+.page[data-design="f"] .card { border-radius: 22px; text-align: center; }
+.page[data-design="f"] .card-img { background: #f1ece1; }
+.page[data-design="f"] .card-img img { object-fit: cover; }
+.page[data-design="f"] .card-top {
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: -40px;
+}
+.page[data-design="f"] .highlight-wrap { width: 46px; height: 46px; }
+.page[data-design="f"] .card-top h2 { flex: none; width: 100%; }
+.page[data-design="f"] .card-open { text-align: center; }
+.page[data-design="f"] .cuisine { margin: 0; }
+.page[data-design="f"] .desc { display: none; }
+.page[data-design="f"] .meta {
+  align-items: center;
+  text-align: center;
+  border-top: 0;
+  padding-top: 0;
+  margin-bottom: 12px;
+}
+.page[data-design="f"] .meta > span:nth-child(n+2) { display: none; }
+.page[data-design="f"] .card-actions { grid-template-columns: 1fr; }
+.page[data-design="f"] .card-actions .btn.primary { min-height: 46px; }
+.page[data-design="f"] .card-actions .btn:nth-child(3),
+.page[data-design="f"] .card-actions .btn:nth-child(4) { display: none; }
+@media (min-width: 641px) {
+  .page[data-design="f"] .grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+  .page[data-design="f"] .card-img { height: 240px; }
+  .page[data-design="f"] .card-top h2 { font-size: 22px; }
+}
+@media (max-width: 640px) {
+  .page[data-design="f"] .card-img { height: 148px; }
+  .page[data-design="f"] .card-top { margin-top: -32px; gap: 6px; }
+  .page[data-design="f"] .highlight-wrap { width: 38px; height: 38px; }
+  .page[data-design="f"] .card-top h2 { font-size: 16px; }
+  .page[data-design="f"] .card-actions .btn { min-height: 38px; }
 }

@@ -260,11 +260,11 @@ export default function App() {
 
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [view, setView] = useState("list");
-  // Staging test only: switchable card designs (a/b/c). Remove before publish.
+  // Staging test only: switchable card designs (a-f). Remove before publish.
   const [design, setDesign] = useState(() => {
     try {
       const saved = window.localStorage.getItem("ff-design");
-      return saved === "b" || saved === "c" ? saved : "a";
+      return ["a", "b", "c", "d", "e", "f"].includes(saved) ? saved : "a";
     } catch {
       return "a";
     }
@@ -1153,6 +1153,9 @@ export default function App() {
           ["a", "A·Classic"],
           ["b", "B·List"],
           ["c", "C·Cover"],
+          ["d", "D·Minimal"],
+          ["e", "E·Midnight"],
+          ["f", "F·Gallery"],
         ].map(([value, label]) => (
           <button
             key={value}
