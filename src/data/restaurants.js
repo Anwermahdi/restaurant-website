@@ -2562,11 +2562,9 @@ const RAW = [
   mk("cut-burger", "Cut Burger", "Burgers", IMG.burger, burgerMenu),
   mk("fat-whale", "Fat Whale", "Burgers", IMG.burger, burgerMenu),
   mk("grannys-burger", "Granny's Burger", "Burgers", IMG.burger, burgerMenu),
-  mk("doctor-food", "Doctor Food", "Burgers", IMG.burger, burgerMenu),
   mk("sammonah-sandwich", "Sammonah Sandwiches", "Sandwiches", IMG.sandwich, mixedMenu, "Bahraini sandwich spot known for samoun sandwiches, fresh pastries and box meals.", ["Sandwiches"], "smona.bh", { rating: 4.8, reviews: 485, phone: "+973 7790 8886", address: "Rd No 3503, Alhajiyat, Bahrain", area: "Alhajiyat", hours: "Daily · 6:00 AM – 1:00 AM", talabatUrl: "https://www.talabat.com/bahrain/restaurant/646114/sammonah-riffa-alshamali-north-riffa", menuPhotos: ["/restaurants/media/sammonah-sandwich/menu-01.jpg", "/restaurants/media/sammonah-sandwich/menu-02.jpg", "/restaurants/media/sammonah-sandwich/menu-03.jpg", "/restaurants/media/sammonah-sandwich/menu-04.jpg", "/restaurants/media/sammonah-sandwich/menu-05.jpg", "/restaurants/media/sammonah-sandwich/menu-06.jpg"] }),
   mk("jan-burger", "Jan Burger", "Burgers", IMG.burger, burgerMenu),
   mk("al-mihwar", "Al Mihwar", "Burgers", IMG.burger, burgerMenu),
-  mk("bacon", "Bacon", "Burgers", IMG.burger, burgerMenu),
   mk("slider", "Slider", "Burgers", IMG.burger, burgerMenu),
   mk("plan-b", "Plan B", "Burgers", IMG.burger, burgerMenu),
   mk(
