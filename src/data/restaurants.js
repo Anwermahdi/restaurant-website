@@ -312,10 +312,17 @@ const MENU_URLS = {
   swaikhat: "https://swaikhat.invopos.app/",
   "tikka-numee": "https://tikkanume.invopos.shop/",
   aljabriya: "https://aljabriya-turkish-restaurant.yallaqrcodes.com/",
+  uplift: "https://order-uplift.ordable.com/",
+  "tren-tren": "https://menusa.app/11f12ffae2e0eaa4afbc2f4e91905abd",
+  ghancha: "https://qr.finedinemenu.com/ghancha/menu/65a90d5cdd87160014364f0b",
+  "layla-aldiyra": "https://drive.google.com/file/d/1SThX2G4h-hKkiQhzXZwXpYtK_jwl5DM_/view",
+  "5-spoons": "https://app.menutr.ee/The5spoon",
 };
 
 // Locally stored menu pages supplied by each restaurant.
 const MENU_PHOTOS = {
+  "aseeri-star": ["/restaurants/media/aseeri-star-menu.jpg"],
+  "tika-abu-jamal": ["/restaurants/media/tika-abu-jamal-menu.jpg"],
   "honest-burger": [
     "/restaurants/media/honest-burger/menu-01.png",
     "/restaurants/media/honest-burger/menu-02.png"
