@@ -45,10 +45,6 @@ function SectionIcon({ children }) {
 const PIN_ICON = <><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z" /><circle cx="12" cy="10" r="2.4" /></>;
 const SEARCH_ICON = <><circle cx="10.5" cy="10.5" r="6.2" /><path d="M15.2 15.2 20 20" /></>;
 
-function formatPrice(n) {
-  return `BD ${Number(n).toFixed(2)}`;
-}
-
 function menuPhotoDimensions(restaurant, index) {
   const declared = restaurant.menuPhotoDimensions?.[index];
   // A 0 means the generator could not read the header; keep the page portrait.
@@ -194,11 +190,9 @@ export default function App() {
   const [cuisine, setCuisine] = useState("All");
   const [area, setArea] = useState("All");
   const [offerApp, setOfferApp] = useState("All");
-  const [vegOnly, setVegOnly] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [modalView, setModalView] = useState("details");
   const [activeMenuPhoto, setActiveMenuPhoto] = useState(0);
-  const [menuSearch, setMenuSearch] = useState("");
   const [showMenuPhotos, setShowMenuPhotos] = useState(false);
   const [storyId, setStoryId] = useState(null);
   const modalRef = useRef(null);
@@ -284,9 +278,7 @@ export default function App() {
         setSelectedId(null);
         setModalView("details");
         setActiveMenuPhoto(0);
-        setMenuSearch("");
         setShowMenuPhotos(false);
-        setVegOnly(false);
         return;
       }
 
@@ -330,18 +322,14 @@ export default function App() {
     setSelectedId(restaurant.id);
     setModalView(openMenu ? "menu" : "details");
     setActiveMenuPhoto(0);
-    setMenuSearch("");
     setShowMenuPhotos(false);
-    setVegOnly(false);
   }
 
   function closeRestaurant() {
     setSelectedId(null);
     setModalView("details");
     setActiveMenuPhoto(0);
-    setMenuSearch("");
     setShowMenuPhotos(false);
-    setVegOnly(false);
   }
 
   // Open/closed for the place whose details are on screen.
@@ -362,30 +350,6 @@ export default function App() {
     const restaurant = restaurants.find((r) => r.id === id);
     if (restaurant) openRestaurant(restaurant, { source: document.activeElement, view: "details" });
   }, []);
-
-  const visibleMenu = useMemo(() => {
-    if (!selected) return [];
-    const normalizedMenuQuery = normalizeSearchText(menuSearch);
-    const tokens = normalizedMenuQuery ? normalizedMenuQuery.split(" ").filter(Boolean) : [];
-    if (!tokens.length && !vegOnly) return selected.menu;
-    return selected.menu
-      .map((category) => {
-        const categoryText = normalizeSearchText(category.category);
-        return {
-          ...category,
-          items: category.items.filter((item) => {
-            if (vegOnly && !item.veg) return false;
-            const itemText = normalizeSearchText(`${categoryText} ${item.name} ${item.description || ""}`);
-            return tokens.every((token) => itemText.includes(token));
-          }),
-        };
-      })
-      .filter((category) => category.items.length > 0);
-  }, [selected, menuSearch, vegOnly]);
-
-  // Restaurants with a real menu (official link or uploaded pages) must not show
-  // the placeholder sample dishes — the modal points at the actual menu instead.
-  const hasRealMenu = Boolean(selected && (selected.menuUrl || selected.menuPhotos.length));
 
   // How many restaurants each type actually is. Because the filter is an exact
   // type match, this number is exactly how many results you get - no more
@@ -1060,60 +1024,6 @@ export default function App() {
                 </section>
               )}
 
-              {!hasRealMenu && (
-                <>
-              <p className="menu-note">
-                Sample dishes only — {selected.name}&rsquo;s real menu has not been added yet.
-              </p>
-              <div className="menu-toolbar">
-                <input
-                  type="search"
-                  name={`${selected.id}-menu-search`}
-                  autoComplete="off"
-                  aria-label={`Search ${selected.name} menu`}
-                  placeholder="Search in menu…"
-                  value={menuSearch}
-                  onChange={(e) => setMenuSearch(e.target.value)}
-                />
-                <label className="veg-toggle">
-                  <input type="checkbox" checked={vegOnly} onChange={(e) => setVegOnly(e.target.checked)} />
-                  Veg only
-                </label>
-              </div>
-
-              {visibleMenu.map((cat) => (
-                <div key={cat.category} className="menu-cat">
-                  <h3>{cat.category}</h3>
-                  {cat.items.map((item) => (
-                    <div key={item.name} className="menu-item">
-                      <div>
-                        <div className="item-name">
-                          <span className={item.veg ? "dot veg" : "dot nonveg"} />
-                          {item.name}
-                          {item.popular && <span className="popular">Popular</span>}
-                        </div>
-                        {item.description && <div className="item-desc">{item.description}</div>}
-                      </div>
-                      <div className="item-price">{formatPrice(item.price)}</div>
-                    </div>
-                  ))}
-                </div>
-              ))}
-              {visibleMenu.length === 0 && (
-                <div className="menu-empty" role="status">
-                  <span>No dishes match the current menu filters.</span>
-                  <button
-                    type="button"
-                    className="btn"
-                    onClick={() => { setMenuSearch(""); setVegOnly(false); }}
-                  >
-                    Clear menu filters
-                  </button>
-                </div>
-              )}
-                </>
-              )}
-              {/* Staging test only: sticky CTA bar (variant B shows it). */}
               <div className="modal-cta">
                 <a className="btn primary" href={mapsUrl(selected)} target="_blank" rel="noopener noreferrer">
                   Open in Maps ↗
