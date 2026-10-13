@@ -812,14 +812,35 @@ select:focus-visible {
   .location-filter { width: 100%; min-width: 0; flex-basis: 100%; }
   .filter.compact select, .location-filter select { min-width: 0; width: 100%; }
   .result-count { flex-basis: 100%; margin-left: 0; padding-top: 2px; }
-  .grid-wrap { padding: 32px 10px 48px; }
-  .results-head h2 { font-size: 30px; }
-  .grid { grid-template-columns: 1fr; gap: 14px; }
-  .card-img { height: 190px; }
-  .card-body { padding: 15px 15px 17px; }
-  .card-top { flex-wrap: wrap; }
-  .card-top h2 { min-width: calc(100% - 62px); }
-  .cuisine { margin-left: 60px; }
+  .grid-wrap { padding: 24px 10px 48px; }
+  .results-head h2 { font-size: 24px; }
+  /* Phone: 2 compact cards per row so 2 restaurants are visible at once. */
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .card { contain-intrinsic-size: auto 340px; }
+  .card-img { height: 118px; }
+  .card-body { padding: 10px 10px 11px; }
+  .card-top { flex-wrap: nowrap; gap: 7px; }
+  .card-top h2 { min-width: 0; flex: 1 1 auto; font-size: 15px; line-height: 1.15; }
+  .highlight-wrap { width: 28px; height: 28px; }
+  .highlight-letter { font-size: 12px; }
+  /* Category pill sits on the same row as the title — no hanging indent. */
+  .cuisine { margin-left: 0; padding: 3px 7px; font-size: 9px; }
+  .desc {
+    min-height: 0;
+    margin: 8px 0;
+    font-size: 11.5px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .offers-line { margin-top: 6px; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .meta { gap: 3px; margin-bottom: 10px; padding-top: 8px; font-size: 10.5px; }
+  /* Keep only location + branch count on phone cards so the card stays short. */
+  .meta > span:nth-child(n+3) { display: none; }
+  .card-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .card-actions .btn { min-height: 34px; padding: 7px 6px; font-size: 11px; }
   .modal-backdrop { align-items: flex-end; padding: 0; }
   .modal, .menu-viewer { max-height: 96vh; max-height: 96dvh; border-radius: 8px 8px 0 0; }
   .menu-viewer-header { padding: 12px 54px 12px 12px; }
@@ -829,12 +850,17 @@ select:focus-visible {
   .menu-page-preview img { max-height: 68vh; max-height: 68dvh; }
   .menu-thumbnails { justify-content: flex-start; }
   .menu-viewer .close { top: 11px; right: 11px; }
-  .modal-hero { height: 205px; }
-  .modal-body { padding: 17px 16px 30px; }
-  .modal-title-row h2 { font-size: 25px; }
-  .location-box { align-items: stretch; flex-direction: column; }
-  .location-actions { flex-direction: row; }
-  .location-actions .btn { flex: 1; white-space: normal; }
+  /* Details sheet fits the phone screen: shorter hero, tighter body. */
+  .modal-hero { height: 168px; }
+  .modal-hero img { padding: 6px; }
+  .modal-body { padding: 14px 14px calc(22px + env(safe-area-inset-bottom)); }
+  .modal-title-row { gap: 10px; }
+  .modal-title-row h2 { font-size: 21px; }
+  .sub { font-size: 12px; }
+  .tags { margin-top: 8px; }
+  .location-box { align-items: stretch; flex-direction: column; gap: 10px; padding: 12px; font-size: 12.5px; }
+  .location-actions { flex-direction: row; flex-wrap: wrap; }
+  .location-actions .btn { flex: 1 1 calc(50% - 4px); min-height: 42px; white-space: normal; font-size: 12px; }
   .menu-photo-toolbar { align-items: flex-start; }
   .menu-photo-toolbar .btn.primary { white-space: normal; }
   .menu-photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -848,9 +874,15 @@ select:focus-visible {
   .search-submit { width: 100%; min-height: 46px; }
   .filter-summary { align-items: stretch; flex-direction: column; }
   .filter.compact { width: 100%; }
+  /* Keep 2-up cards on small phones too. */
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .card-img { height: 100px; }
+  .card-top h2 { font-size: 13.5px; }
+  .card-top .cuisine + .cuisine { display: none; }
   .card-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .card-actions .btn { padding-inline: 8px; }
-  .location-actions { flex-direction: column; }
+  .card-actions .btn { padding-inline: 6px; font-size: 10.5px; }
+  /* Details actions stay 2-up so the sheet fits without extra scrolling. */
+  .location-actions { flex-direction: row; flex-wrap: wrap; }
   .menu-photo-toolbar { align-items: stretch; flex-direction: column; }
   .menu-photo-toolbar .btn.primary { width: 100%; }
   .menu-photo-grid img { height: 170px; }
