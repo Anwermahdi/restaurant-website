@@ -962,3 +962,5 @@ body { font-family: var(--font-body); }
 .filter-bar .btn.clear:hover { border-color: #e3b95c; }
 .filter-bar .result-count { color: #a49d90; border-color: rgba(255, 255, 255, 0.16); background: transparent; }
 .filter-bar .result-count strong { color: #fff; }
+/* Native dropdown lists always render on a light popup: force dark option text. */
+.hero .filter-pill select option { color: #1d1a16; background-color: #ffffff; }
