@@ -773,6 +773,34 @@ export default function App() {
           >
             <div className="modal-hero">
               <img src={selected.image} data-rid={selected.id} data-fallback={selected.fallbackImage} data-fallback-final={selected.fallbackFinal} onError={handleImgError} alt={selected.name} width="800" height="500" />
+              <div className="modal-head-overlay">
+                <span className="highlight-wrap large">
+                  <span className="highlight-letter">{selected.name.charAt(0)}</span>
+                  <img
+                    className="highlight large"
+                    src={selected.logoUpload}
+                    data-rid={selected.id}
+                    data-official={selected.logo}
+                    onError={handleLogoError}
+                    alt=""
+                    width="72"
+                    height="72"
+                  />
+                </span>
+                <div className="modal-head-copy">
+                  <h2 id="restaurant-modal-title">{selected.name}</h2>
+                  <div className="sub" id="restaurant-modal-description">
+                    {[
+                      selected.cuisine,
+                      selected.rating
+                        ? `★ ${selected.rating}${selected.reviews ? ` (${selected.reviews} Google reviews)` : ""}`
+                        : null,
+                    ]
+                      .filter(Boolean)
+                      .join(" • ")}
+                  </div>
+                </div>
+              </div>
               <button
                 type="button"
                 className="close"
@@ -784,40 +812,10 @@ export default function App() {
               </button>
             </div>
             <div className="modal-body">
-              <div className="modal-head">
-                <div>
-                  <div className="modal-title-row">
-                    <span className="highlight-wrap large">
-                      <span className="highlight-letter">{selected.name.charAt(0)}</span>
-                      <img
-                        className="highlight large"
-                        src={selected.logoUpload}
-                        data-rid={selected.id}
-                        data-official={selected.logo}
-                        onError={handleLogoError}
-                        alt=""
-                        width="72"
-                        height="72"
-                      />
-                    </span>
-                    <h2 id="restaurant-modal-title">{selected.name}</h2>
-                  </div>
-                  <div className="sub" id="restaurant-modal-description">
-                    {[
-                      selected.cuisine,
-                      selected.rating
-                        ? `★ ${selected.rating}${selected.reviews ? ` (${selected.reviews} Google reviews)` : ""}`
-                        : null,
-                    ]
-                      .filter(Boolean)
-                      .join(" • ")}
-                  </div>
-                  <div className="tags">
-                    {selected.tags.map((t) => (
-                      <span key={t} className="tag">{t}</span>
-                    ))}
-                  </div>
-                </div>
+              <div className="tags">
+                {selected.tags.map((t) => (
+                  <span key={t} className="tag">{t}</span>
+                ))}
               </div>
 
               {hasStory(selected.id) && (
@@ -946,9 +944,6 @@ export default function App() {
                   {selected.dataSource === "google-places" && <div className="src">✓ Google-verified</div>}
                 </div>
                 <div className="location-actions">
-                  <a className="btn primary" href={mapsUrl(selected)} target="_blank" rel="noopener noreferrer">
-                    Open in Maps ↗
-                  </a>
                   {selected.talabatUrl ? (
                     <a className="btn" href={selected.talabatUrl} target="_blank" rel="noopener noreferrer">
                       Order on Talabat ↗

@@ -693,8 +693,6 @@ select:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 .modal-body { padding: 20px 22px 26px; overflow-y: auto; overscroll-behavior: contain; background: var(--surface); }
-.modal-title-row { display: flex; align-items: center; gap: 13px; }
-.modal-title-row h2 { margin: 0; color: #fbf4e7; font-family: Georgia, "Times New Roman", serif; font-size: 28px; font-weight: 600; letter-spacing: -0.025em; text-wrap: balance; }
 .sub { margin-top: 5px; color: var(--muted); font-size: 13px; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 11px; }
 .tag { padding: 4px 9px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-2); color: #b8c9c4; font-size: 11px; font-weight: 700; }
@@ -857,8 +855,6 @@ select:focus-visible {
   .modal-hero { height: 168px; }
   .modal-hero img { padding: 6px; }
   .modal-body { padding: 14px 14px calc(22px + env(safe-area-inset-bottom)); }
-  .modal-title-row { gap: 10px; }
-  .modal-title-row h2 { font-size: 21px; }
   .sub { font-size: 12px; }
   .tags { margin-top: 8px; }
   .location-box { align-items: stretch; flex-direction: column; gap: 10px; padding: 12px; font-size: 12.5px; }

@@ -146,7 +146,6 @@ h1, .hero h1, .results-head h2 { color: var(--ink); }
 .modal-hero, .menu-viewer-body { background: #fff; }
 .menu-item { border-bottom-color: var(--line); }
 .location-box { background: #fbf8f3; border-color: var(--line); }
-.modal-title-row h2,
 .menu-viewer-header h2,
 .menu-cat h3,
 .menu-photo-toolbar h3 { color: var(--ink); }
@@ -596,7 +595,6 @@ body { font-family: var(--font-body); }
 .hero h1,
 .results-head h2,
 .card-top h2,
-.modal-title-row h2,
 .menu-viewer-header h2,
 .menu-cat h3,
 .menu-photo-toolbar h3 {
@@ -848,26 +846,47 @@ body { font-family: var(--font-body); }
 .location-box { background: #fafafa; }
 
 /* ---------- details: immersive cover photo + sticky CTA bar ---------- */
-.modal-hero { height: 300px; }
+.modal-hero { height: 280px; }
 .modal-hero img { padding: 0; }
 .modal-hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(12, 9, 7, 0.22) 0%, transparent 38%, transparent 45%, rgba(12, 9, 7, 0.86) 100%);
+  background: linear-gradient(180deg, rgba(12, 9, 7, 0.28) 0%, transparent 35%, transparent 45%, rgba(12, 9, 7, 0.88) 100%);
   pointer-events: none;
 }
-.modal-head { position: relative; z-index: 2; margin-top: -118px; }
-.modal-title-row h2 {
-  color: #fff;
-  font-size: 30px;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+/* The title lives inside the hero (absolute), so the scroll container can never clip it. */
+.modal-head-overlay {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 14px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 13px;
 }
-.modal-head .sub {
+.modal-head-copy { min-width: 0; }
+.modal-head-copy h2 {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+  text-wrap: balance;
+}
+.modal-head-copy .sub {
+  margin-top: 4px;
   color: rgba(255, 255, 255, 0.92);
+  font-size: 13px;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
 }
 .highlight-wrap.large {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.92), 0 8px 18px rgba(0, 0, 0, 0.4);
 }
 .modal-cta {
@@ -886,9 +905,11 @@ body { font-family: var(--font-body); }
 .modal-cta .btn.primary { flex: 2; min-height: 48px; }
 .modal-cta .btn:not(.primary) { flex: 1; min-height: 48px; }
 @media (max-width: 640px) {
-  .modal-hero { height: 230px; }
-  .modal-head { margin-top: -104px; }
-  .modal-title-row h2 { font-size: 23px; }
+  .modal-hero { height: 210px; }
+  .modal-head-overlay { left: 14px; right: 14px; bottom: 10px; gap: 10px; }
+  .modal-head-copy h2 { font-size: 22px; }
+  .modal-head-copy .sub { font-size: 12px; }
+  .highlight-wrap.large { width: 44px; height: 44px; }
   .modal-cta {
     margin: 14px -14px calc(-22px - env(safe-area-inset-bottom));
     padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
