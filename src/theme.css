@@ -736,7 +736,7 @@ body { font-family: var(--font-body); }
    ============================================================ */
 .card { border-radius: 22px; text-align: center; }
 .card-img { background: #f1ece1; }
-.card-img img { object-fit: cover; }
+.card-img img { object-fit: contain; }
 .card-top { flex-direction: column; align-items: center; gap: 8px; margin-top: -40px; }
 .highlight-wrap { width: 46px; height: 46px; }
 .card-top h2 { flex: none; width: 100%; }
