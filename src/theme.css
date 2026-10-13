@@ -926,3 +926,91 @@ body { font-family: var(--font-body); }
   }
   .modal-cta .btn { min-height: 44px; font-size: 12.5px; }
 }
+
+/* ============================================================
+   TEST-ONLY details sizes (remove picker + variants before publish).
+   S = current compact base (no overrides). M/L/XL grow from there.
+   ============================================================ */
+.design-picker {
+  position: fixed;
+  left: 12px;
+  bottom: 12px;
+  z-index: 1500;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  max-width: calc(100vw - 24px);
+  padding: 6px 8px;
+  border-radius: 18px;
+  background: rgba(20, 16, 12, 0.93);
+  color: #fff;
+  font-size: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+.details-picker { z-index: 3000; }
+.design-picker-tag {
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--brand);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+.design-picker button {
+  padding: 6px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  cursor: pointer;
+}
+.design-picker button.on { background: #fff; border-color: #fff; color: #1d1a16; }
+
+@media (max-width: 640px) {
+  /* M·Balanced — roomier than compact, still close to one screen. */
+  .modal[data-dsize="m"] .modal-hero { height: 190px; }
+  .modal[data-dsize="m"] .modal-head-overlay { left: 14px; right: 14px; bottom: 10px; gap: 10px; }
+  .modal[data-dsize="m"] .modal-head-copy h2 { font-size: 21px; }
+  .modal[data-dsize="m"] .modal-head-copy .sub { font-size: 12px; }
+  .modal[data-dsize="m"] .highlight-wrap.large { width: 44px; height: 44px; }
+  .modal[data-dsize="m"] .modal-body { padding: 14px 14px 12px; }
+  .modal[data-dsize="m"] .tags { margin-top: 8px; }
+  .modal[data-dsize="m"] .location-box { margin: 12px 0; padding: 12px; font-size: 12.5px; }
+  .modal[data-dsize="m"] .modal-cta { margin: 14px -14px -12px; }
+  .modal[data-dsize="m"] .modal-cta .btn { min-height: 46px; font-size: 13px; }
+
+  /* L·Roomy — big photo, generous spacing (scrolls on small phones). */
+  .modal[data-dsize="l"] .modal-hero { height: 240px; }
+  .modal[data-dsize="l"] .modal-head-overlay { left: 16px; right: 16px; bottom: 12px; gap: 12px; }
+  .modal[data-dsize="l"] .modal-head-copy h2 { font-size: 24px; }
+  .modal[data-dsize="l"] .modal-head-copy .sub { font-size: 13px; }
+  .modal[data-dsize="l"] .highlight-wrap.large { width: 52px; height: 52px; }
+  .modal[data-dsize="l"] .modal-body { padding: 16px 16px 14px; }
+  .modal[data-dsize="l"] .tags { margin-top: 10px; }
+  .modal[data-dsize="l"] .tag { font-size: 11px; padding: 4px 10px; }
+  .modal[data-dsize="l"] .location-box { margin: 14px 0; padding: 14px; font-size: 13px; }
+  .modal[data-dsize="l"] .location-actions .btn { min-height: 46px; font-size: 12.5px; }
+  .modal[data-dsize="l"] .modal-cta {
+    margin: 16px -16px -14px;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  }
+  .modal[data-dsize="l"] .modal-cta .btn { min-height: 50px; font-size: 13.5px; }
+
+  /* XL·Immersive — photo-dominant, largest type. */
+  .modal[data-dsize="xl"] .modal-hero { height: 300px; }
+  .modal[data-dsize="xl"] .modal-head-overlay { left: 16px; right: 16px; bottom: 14px; gap: 12px; }
+  .modal[data-dsize="xl"] .modal-head-copy h2 { font-size: 26px; }
+  .modal[data-dsize="xl"] .modal-head-copy .sub { font-size: 13px; }
+  .modal[data-dsize="xl"] .highlight-wrap.large { width: 56px; height: 56px; }
+  .modal[data-dsize="xl"] .modal-body { padding: 18px 16px 16px; }
+  .modal[data-dsize="xl"] .tags { margin-top: 12px; }
+  .modal[data-dsize="xl"] .location-box { margin: 14px 0; padding: 16px; font-size: 13.5px; }
+  .modal[data-dsize="xl"] .modal-cta {
+    margin: 16px -16px -16px;
+    padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+  }
+  .modal[data-dsize="xl"] .modal-cta .btn { min-height: 52px; font-size: 14px; }
+}
