@@ -258,7 +258,7 @@ export default function App() {
   const [heroDesign, setHeroDesign] = useState(() => {
     try {
       const saved = window.localStorage.getItem("ff-hero");
-      return ["a", "b", "c", "d"].includes(saved) ? saved : "a";
+      return ["a", "b", "c", "d", "e", "f", "g"].includes(saved) ? saved : "a";
     } catch {
       return "a";
     }
@@ -389,7 +389,16 @@ export default function App() {
               Restaurants • menus • locations • map links.
               Open a menu directly or click a card for details.
             </p>
+            {/* Staging test only: stats row (variant G shows it). */}
+            <dl className="hero-stats">
+              <div><dd>{restaurants.length}</dd><dt>Restaurants</dt></div>
+              <div><dd>{cuisines.length - 1}</dd><dt>Cuisines</dt></div>
+              <div><dd>{areas.length - 1}</dd><dt>Areas</dt></div>
+            </dl>
           </div>
+
+          {/* Staging test only: photo panel (variant E shows it). */}
+          <div className="hero-art" aria-hidden="true" />
 
           <div className="search-card" data-filters="section">
             {(() => {
@@ -1067,6 +1076,9 @@ export default function App() {
           ["b", "B·Dark"],
           ["c", "C·Photo"],
           ["d", "D·Compact"],
+          ["e", "E·Split"],
+          ["f", "F·Naked"],
+          ["g", "G·Grand"],
         ].map(([value, label]) => (
           <button
             key={value}
