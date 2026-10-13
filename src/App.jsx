@@ -260,6 +260,15 @@ export default function App() {
 
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [view, setView] = useState("list");
+  // Staging test only: switchable card designs (a/b/c). Remove before publish.
+  const [design, setDesign] = useState(() => {
+    try {
+      const saved = window.localStorage.getItem("ff-design");
+      return saved === "b" || saved === "c" ? saved : "a";
+    } catch {
+      return "a";
+    }
+  });
   useEffect(() => {
     const onScroll = () => setShowBackToTop(window.scrollY > 400);
     onScroll();
@@ -401,8 +410,12 @@ export default function App() {
     return counts;
   }, []);
 
+  useEffect(() => {
+    try { window.localStorage.setItem("ff-design", design); } catch { /* ignore */ }
+  }, [design]);
+
   return (
-    <div className="page">
+    <div className="page" data-design={design}>
       <a className="skip-link" href="#restaurant-grid">Skip to restaurants</a>
       <header className="hero">
         <div className="hero-inner">
@@ -1132,6 +1145,26 @@ export default function App() {
       <footer className="footer">
         Built with React + Vite • Edit <code>src/data/restaurants.js</code> to add your own restaurants
       </footer>
+
+      {/* Staging test only: design switcher. Remove before publish. */}
+      <div className="design-picker" role="group" aria-label="Test card designs (staging only)">
+        <span className="design-picker-tag">TEST</span>
+        {[
+          ["a", "A·Classic"],
+          ["b", "B·List"],
+          ["c", "C·Cover"],
+        ].map(([value, label]) => (
+          <button
+            key={value}
+            type="button"
+            aria-pressed={design === value}
+            className={design === value ? "on" : ""}
+            onClick={() => setDesign(value)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
 
       {showBackToTop && (
         <button
