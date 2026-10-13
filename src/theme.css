@@ -561,3 +561,173 @@ h1, .hero h1, .results-head h2 { color: var(--ink); }
     scroll-behavior: auto !important;
   }
 }
+
+/* ============================================================
+   PREMIUM UPGRADE (staging test) — warm ivory, deep paprika,
+   brass gold. Cosmetic only: no layout structure changes, so
+   the phone 2-up grid and card rows are untouched.
+   ============================================================ */
+:root {
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --bg: #f6f3ec;
+  --surface: #fffdf9;
+  --surface-2: #fffdf9;
+  --surface-3: #f1ece1;
+  --ink: #1d1a16;
+  --muted: #6e675c;
+  --brand: #b44a22;
+  --brand-ink: #93380f;
+  --brand-dark: #7c2d0e;
+  --gold: #b98a2f;
+  --star: #eda93c;
+  --line: #e7ddcb;
+  --line-soft: rgba(74, 53, 32, 0.1);
+  --radius: 18px;
+  --shadow-sm: 0 1px 2px rgba(74, 53, 32, 0.06), 0 12px 32px -16px rgba(74, 53, 32, 0.22);
+  --shadow-md: 0 2px 4px rgba(74, 53, 32, 0.06), 0 20px 44px -16px rgba(74, 53, 32, 0.28);
+  --shadow-lg: 0 32px 80px -24px rgba(74, 53, 32, 0.35);
+}
+
+body { font-family: var(--font-body); }
+::selection { background: rgba(180, 74, 34, 0.22); }
+
+.hero h1,
+.results-head h2,
+.card-top h2,
+.modal-title-row h2,
+.menu-viewer-header h2,
+.menu-cat h3,
+.menu-photo-toolbar h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+/* ---------- hero ---------- */
+.hero {
+  background:
+    radial-gradient(42rem 22rem at 88% -12%, rgba(185, 138, 47, 0.16), transparent 60%),
+    radial-gradient(36rem 24rem at 8% 115%, rgba(180, 74, 34, 0.1), transparent 60%),
+    linear-gradient(180deg, #fffdf8 0%, #f6f3ec 100%);
+  border: 1px solid #e9e0cf;
+  border-radius: 26px;
+  box-shadow: var(--shadow-sm);
+}
+.brand { font-size: 12px; letter-spacing: 0.24em; }
+.hero h1 { font-weight: 600; }
+.hero h1 em { font-style: italic; font-weight: 600; }
+.hero p { color: #5d564b; }
+
+/* ---------- search + filters ---------- */
+.search-card {
+  border-color: #e9e0cf;
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+}
+.filter-pill { box-shadow: 0 1px 2px rgba(74, 53, 32, 0.06); }
+.filter-pill:hover { border-color: var(--brand); box-shadow: 0 4px 14px -6px rgba(147, 56, 15, 0.4); }
+.filter-pill.on {
+  border-color: #e3b98d;
+  background: linear-gradient(180deg, #fdf3e6, #fae8d3);
+  box-shadow: inset 0 1px 0 #ffffff, 0 1px 2px rgba(74, 53, 32, 0.08);
+}
+.search-form-icon .search-field input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px rgba(180, 74, 34, 0.15);
+}
+.filter-bar .btn.clear { font-weight: 800; }
+.result-count {
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fffdf9;
+  box-shadow: 0 1px 2px rgba(74, 53, 32, 0.06);
+}
+
+/* ---------- section head ---------- */
+.view-toggle {
+  border-color: #e2d8c4;
+  background: #fffdf9;
+  box-shadow: 0 1px 2px rgba(74, 53, 32, 0.08);
+}
+.view-toggle-btn { color: var(--muted); }
+.view-toggle-btn.on {
+  background: linear-gradient(180deg, #c05a2e, #a63f1b);
+  box-shadow: 0 6px 16px -6px rgba(166, 63, 27, 0.55);
+}
+
+/* ---------- cards ---------- */
+.card {
+  border-color: #e9e1d1;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #d9cbae;
+  box-shadow: var(--shadow-md);
+}
+.card-img { background: #f8f3e9; }
+.card-img img { transition: transform 0.5s ease; }
+.card:hover .card-img img { transform: scale(1.045); }
+.rating-badge {
+  background: rgba(26, 21, 17, 0.87);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+  font-weight: 800;
+}
+.rating-badge > span[aria-hidden="true"] { color: var(--star); }
+.highlight-wrap { box-shadow: 0 0 0 1.5px rgba(185, 138, 47, 0.55), 0 6px 16px rgba(74, 53, 32, 0.22); }
+.cuisine {
+  background: linear-gradient(180deg, #fdf1e2, #fae3cd);
+  border-color: #ecd0ae;
+  box-shadow: inset 0 1px 0 #ffffff;
+  font-weight: 800;
+}
+.desc { color: #57514a; }
+.offers-line { color: var(--brand-ink); }
+.meta { color: #45403a; }
+
+/* ---------- buttons ---------- */
+.btn {
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: 0 1px 2px rgba(74, 53, 32, 0.08);
+}
+.btn:hover { box-shadow: 0 6px 16px -8px rgba(147, 56, 15, 0.5); }
+.btn.primary {
+  background: linear-gradient(180deg, #c05a2e, #a63f1b);
+  border-color: #9c3c17;
+  box-shadow: 0 10px 24px -8px rgba(166, 63, 27, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+.btn.primary:hover {
+  background: linear-gradient(180deg, #cd6535, #b44a22);
+  border-color: #93380f;
+  color: #fff;
+  box-shadow: 0 14px 28px -8px rgba(166, 63, 27, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.btn.details-action { border-color: #ddd2bd; }
+.offer-app-badges { box-shadow: 0 4px 12px rgba(74, 53, 32, 0.25); }
+
+/* ---------- modal / details ---------- */
+.modal, .menu-viewer { border-radius: 22px; box-shadow: var(--shadow-lg); }
+.modal-hero { background: #f8f3e9; border-bottom: 1px solid var(--line); }
+.menu-viewer-header { background: linear-gradient(180deg, #fffdf8, #f7f1e5); }
+.location-box { border-color: #e7ddcb; box-shadow: inset 0 1px 0 #ffffff; }
+.menu-photo-section { border-color: #e7ddcb; }
+.tag { background: #f7f2e8; border-color: #e4d8c1; color: #6b6156; }
+.offers-block { background: linear-gradient(180deg, #fff8ee, #fdf0dd); border-color: #e9cba4; }
+.week-hours dl { box-shadow: 0 1px 2px rgba(74, 53, 32, 0.08); }
+
+/* ---------- story entry ---------- */
+.highlights-strip { box-shadow: var(--shadow-sm); }
+.card-story-ring { box-shadow: 0 0 0 2px #fffdf9, 0 0 0 4px var(--brand), 0 8px 18px rgba(147, 56, 15, 0.35); }
+
+/* ---------- footer / back-to-top ---------- */
+.footer { font-size: 12.5px; }
+.back-to-top {
+  background: linear-gradient(180deg, #c05a2e, #a63f1b);
+  box-shadow: 0 12px 26px -8px rgba(166, 63, 27, 0.6);
+}
+.empty { border-radius: 18px; box-shadow: var(--shadow-sm); }
