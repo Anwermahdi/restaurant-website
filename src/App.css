@@ -819,12 +819,15 @@ select:focus-visible {
   .card { contain-intrinsic-size: auto 340px; }
   .card-img { height: 118px; }
   .card-body { padding: 10px 10px 11px; }
-  .card-top { flex-wrap: nowrap; gap: 7px; }
-  .card-top h2 { min-width: 0; flex: 1 1 auto; font-size: 15px; line-height: 1.15; }
+  /* Phone card header: logo + name on row 1, pills on row 2 — the name
+     gets (almost) full width so it never stacks letter-by-letter. */
+  .card-top { flex-wrap: wrap; gap: 7px; row-gap: 6px; }
+  .card-top h2 { flex: 1 1 calc(100% - 35px); min-width: 0; font-size: 15px; line-height: 1.2; overflow-wrap: break-word; text-wrap: pretty; }
   .highlight-wrap { width: 28px; height: 28px; }
   .highlight-letter { font-size: 12px; }
-  /* Category pill sits on the same row as the title — no hanging indent. */
-  .cuisine { margin-left: 0; padding: 3px 7px; font-size: 9px; }
+  /* Category pills sit on their own row, aligned under the title. */
+  .cuisine { margin-left: 35px; padding: 3px 7px; font-size: 9px; }
+  .card-top .cuisine + .cuisine { margin-left: 0; }
   .desc {
     min-height: 0;
     margin: 8px 0;
