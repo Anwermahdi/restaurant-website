@@ -317,6 +317,8 @@ const MENU_URLS = {
   ghancha: "https://qr.finedinemenu.com/ghancha/menu/65a90d5cdd87160014364f0b",
   "layla-aldiyra": "https://drive.google.com/file/d/1SThX2G4h-hKkiQhzXZwXpYtK_jwl5DM_/view",
   "5-spoons": "https://app.menutr.ee/The5spoon",
+  alsikka: "https://alsekkarestaurant.invopos.shop/",
+  alkofeia: "https://app.qlub.io/qr/bh/Alkofeia_bh_dm/menu/_/_/9880e4c1ce",
 };
 
 // Locally stored menu pages supplied by each restaurant.
@@ -2450,9 +2452,8 @@ const RAW = [
       dataSource: "researched"
     }
   ),
-  mk("alsikka", "Al Sikka", "Bahraini", IMG.general, bbqMenu, "Al Sikka — local food street vibes.", ["Local"], "", { area: "Manama", image: "/restaurants/logos/alsikka.jpg" }),
+  mk("alsikka", "Al Sikka", "Bahraini", IMG.general, bbqMenu, "Al Sikka — local food street vibes.", ["Local"], "", { area: "Manama", image: "/restaurants/alsikka.jpg" }),
   mk("banu", "Banu", "Persian", IMG.general, bbqMenu, "Persian kebabs & rice.", ["Kebab"]),
-  mk("bella-pizzeria", "Bella Pizzeria", "Pizza", IMG.pizza, pizzaMenu),
   mk("alkofeia", "Al Kofeia", "Mediterranean", IMG.cafe, bbqMenu, "Traditional Palestinian cuisine — mansaf, grills, mezze and Eastern breakfast, open daily 8 AM - 1 AM.", ["Palestinian", "Mansaf", "Grills", "Breakfast"], "alkofeia.bahrain", { talabatUrl: "https://www.talabat.com/bahrain/restaurant/625056/tayf-alkofeia-sea-front" }),
   mk("uplift", "Uplift", "Cafe", IMG.cafe, cafeMenu, "Healthy bowls & coffee.", ["Healthy", "Brunch"], "", { area: "Hamala", address: "Hamala" }),
   mk("slider-station", "Slider Station", "Burgers", IMG.burger, burgerMenu, "Mini sliders & loaded fries.", ["Sliders"]),
