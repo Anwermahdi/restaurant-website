@@ -260,18 +260,6 @@ export default function App() {
 
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [view, setView] = useState("list");
-  // Staging test only: switchable details designs (a/b/c). Remove before publish.
-  const [detailsDesign, setDetailsDesign] = useState(() => {
-    try {
-      const saved = window.localStorage.getItem("ff-details");
-      return ["a", "b", "c"].includes(saved) ? saved : "a";
-    } catch {
-      return "a";
-    }
-  });
-  useEffect(() => {
-    try { window.localStorage.setItem("ff-details", detailsDesign); } catch { /* ignore */ }
-  }, [detailsDesign]);
   useEffect(() => {
     const onScroll = () => setShowBackToTop(window.scrollY > 400);
     onScroll();
@@ -812,7 +800,6 @@ export default function App() {
         <div className="modal-backdrop" onClick={closeRestaurant}>
           <div
             className="modal"
-            data-details={detailsDesign}
             role="dialog"
             aria-modal="true"
             aria-labelledby="restaurant-modal-title"
@@ -1154,28 +1141,6 @@ export default function App() {
       <footer className="footer">
         Built with React + Vite • Edit <code>src/data/restaurants.js</code> to add your own restaurants
       </footer>
-
-      {/* Staging test only: details switcher, visible while details are open. */}
-      {selected && modalView === "details" && (
-        <div className="design-picker details-picker" role="group" aria-label="Test details designs (staging only)">
-          <span className="design-picker-tag">TEST</span>
-          {[
-            ["a", "A·Current"],
-            ["b", "B·Cover+CTA"],
-            ["c", "C·Compact"],
-          ].map(([value, label]) => (
-            <button
-              key={value}
-              type="button"
-              aria-pressed={detailsDesign === value}
-              className={detailsDesign === value ? "on" : ""}
-              onClick={() => setDetailsDesign(value)}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      )}
 
       {showBackToTop && (
         <button
