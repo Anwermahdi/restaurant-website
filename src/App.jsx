@@ -260,6 +260,19 @@ export default function App() {
 
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [view, setView] = useState("list");
+  // Staging test only: switchable color themes (a-e). Remove before publish.
+  const [theme, setTheme] = useState(() => {
+    try {
+      const saved = window.localStorage.getItem("ff-theme");
+      return ["a", "b", "c", "d", "e"].includes(saved) ? saved : "a";
+    } catch {
+      return "a";
+    }
+  });
+  useEffect(() => {
+    try { window.localStorage.setItem("ff-theme", theme); } catch { /* ignore */ }
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
   useEffect(() => {
     const onScroll = () => setShowBackToTop(window.scrollY > 400);
     onScroll();
@@ -1132,6 +1145,28 @@ export default function App() {
       <footer className="footer">
         Built with React + Vite • Edit <code>src/data/restaurants.js</code> to add your own restaurants
       </footer>
+
+      {/* Staging test only: theme switcher. Remove before publish. */}
+      <div className="design-picker" role="group" aria-label="Test color themes (staging only)">
+        <span className="design-picker-tag">TEST</span>
+        {[
+          ["a", "A·Terracotta"],
+          ["b", "B·Olive"],
+          ["c", "C·Ocean"],
+          ["d", "D·Burgundy"],
+          ["e", "E·Noir"],
+        ].map(([value, label]) => (
+          <button
+            key={value}
+            type="button"
+            aria-pressed={theme === value}
+            className={theme === value ? "on" : ""}
+            onClick={() => setTheme(value)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
 
       {showBackToTop && (
         <button
