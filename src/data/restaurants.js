@@ -676,7 +676,7 @@ const RESEARCHED = {
   "chicken-land-cafeteria": {
     googleName: "أرض الدجاج - Chicken Land Cafeteria \\u0026 Grills.w.l.l 17412353/",
     nameAr: "أرض الدجاج - Chicken Land Cafeteria \\u0026 Grills",
-    cuisine: "Fried Chicken",
+    cuisine: "Grill",
     phone: "+973 7793 9190 / +973 1741 2353 / +973 3347 9190",
     rating: 3.8,
     reviews: 479,
@@ -2221,7 +2221,7 @@ const RAW = [
   mk(
     "chicken-land-cafeteria",
     "Chicken Land Cafeteria",
-    "Fried Chicken",
+    "Grill",
     IMG.chicken,
     chickenMenu,
     "Budget-friendly chicken, shawarma and grills in Hamad Town.",
