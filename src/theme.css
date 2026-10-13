@@ -926,202 +926,39 @@ body { font-family: var(--font-body); }
   .modal-cta .btn { min-height: 50px; font-size: 13.5px; }
 }
 
-/* ============================================================
-   TEST-ONLY hero variants (remove picker + variants before publish).
-   A = current Noir hero (no overrides).
-   ============================================================ */
-.design-picker {
-  position: fixed;
-  left: 12px;
-  bottom: 12px;
-  z-index: 1500;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  max-width: calc(100vw - 24px);
-  padding: 6px 8px;
-  border-radius: 18px;
-  background: rgba(20, 16, 12, 0.93);
-  color: #fff;
-  font-size: 12px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-}
-.design-picker-tag {
-  padding: 2px 7px;
-  border-radius: 6px;
-  background: var(--brand);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-}
-.design-picker button {
-  padding: 6px 11px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 999px;
-  background: transparent;
-  color: #fff;
-  font-weight: 700;
-  font-size: 12px;
-  cursor: pointer;
-}
-.design-picker button.on { background: #fff; border-color: #fff; color: #1d1a16; }
-
-/* ================= VARIANT B — DARK HERO ================= */
-.hero[data-hero="b"] {
+/* ---------- hero: dark panel, champagne accents ---------- */
+.hero {
   background:
     radial-gradient(40rem 20rem at 85% -10%, rgba(217, 169, 78, 0.14), transparent 60%),
     linear-gradient(180deg, #1a1613 0%, #100e0c 100%);
   border-color: #2a241e;
 }
-.hero[data-hero="b"] .brand { color: #e3b95c; }
-.hero[data-hero="b"] h1 { color: #f7f3ea; }
-.hero[data-hero="b"] h1 em { color: #e3b95c; }
-.hero[data-hero="b"] p { color: #b3aca0; }
-.hero[data-hero="b"] .search-card {
+.brand { color: #e3b95c; }
+.hero h1 { color: #f7f3ea; }
+.hero h1 em { color: #e3b95c; }
+.hero p { color: #b3aca0; }
+.search-card {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.15);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
-.hero[data-hero="b"] .filter-pill {
+.filter-pill {
   background: rgba(255, 255, 255, 0.07);
   border-color: rgba(255, 255, 255, 0.18);
   color: #f2ede3;
 }
-.hero[data-hero="b"] .filter-pill:hover { border-color: #e3b95c; }
-.hero[data-hero="b"] .filter-pill .food-icon { color: #e3b95c; }
-.hero[data-hero="b"] .filter-pill select {
+.filter-pill:hover { border-color: #e3b95c; }
+.filter-pill .food-icon { color: #e3b95c; }
+.filter-pill select {
   color: #f2ede3;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1.5 5 5.5 9 1.5' fill='none' stroke='%23c9c2b4' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
-.hero[data-hero="b"] .filter-pill.on {
+.filter-pill.on {
   border-color: rgba(227, 185, 92, 0.6);
   background: rgba(227, 185, 92, 0.12);
 }
-.hero[data-hero="b"] .filter-bar .btn.clear { background: rgba(227, 185, 92, 0.14); color: #e3b95c; }
-.hero[data-hero="b"] .filter-bar .result-count { color: #a49d90; border-color: rgba(255, 255, 255, 0.16); background: transparent; }
-.hero[data-hero="b"] .filter-bar .result-count strong { color: #fff; }
-
-/* ================= VARIANT C — PHOTO HERO ================= */
-.hero[data-hero="c"] {
-  background: url("/restaurants/black-strip.jpg") center 60% / cover no-repeat;
-  border-color: transparent;
-}
-.hero[data-hero="c"]::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  top: 0;
-  right: 0;
-  width: auto;
-  height: auto;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  z-index: 0;
-  background: linear-gradient(180deg, rgba(10, 8, 6, 0.62) 0%, rgba(10, 8, 6, 0.52) 45%, rgba(10, 8, 6, 0.74) 100%);
-}
-.hero[data-hero="c"] .hero-inner { position: relative; z-index: 1; }
-.hero[data-hero="c"] .brand { color: #eccd7d; }
-.hero[data-hero="c"] h1 { color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55); }
-.hero[data-hero="c"] h1 em { color: #eccd7d; }
-.hero[data-hero="c"] p { color: rgba(255, 255, 255, 0.88); text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55); }
-.hero[data-hero="c"] .search-card {
-  background: rgba(255, 255, 255, 0.94);
-  border-color: transparent;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-}
-
-/* ================= VARIANT D — COMPACT ================= */
-.hero[data-hero="d"] { padding: 36px 24px 30px; text-align: center; }
-.hero[data-hero="d"] .hero-inner { max-width: 880px; }
-.hero[data-hero="d"] .hero-copy { max-width: none; margin: 0 auto; }
-.hero[data-hero="d"] h1 { font-size: clamp(34px, 4.6vw, 52px); }
-.hero[data-hero="d"] .search-card { max-width: 780px; margin-left: auto; margin-right: auto; }
-
-@media (max-width: 640px) {
-  .hero[data-hero="d"] { padding: 30px 16px 26px; }
-  .hero[data-hero="d"] h1 { font-size: clamp(32px, 9vw, 42px); }
-  .hero[data-hero="c"] { background-position: center 40%; }
-}
-
-/* Hidden staging helpers: shown only by their hero variant. */
-.hero-stats { display: none; }
-.hero-art { display: none; }
-
-/* ================= VARIANT E — SPLIT ================= */
-@media (min-width: 641px) {
-  .hero[data-hero="e"] .hero-inner {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 12px 36px;
-    align-items: center;
-  }
-  .hero[data-hero="e"] .hero-art {
-    display: block;
-    grid-column: 2;
-    grid-row: 1;
-    min-height: 320px;
-    border-radius: 20px;
-    border: 1px solid var(--line);
-    background: url("/restaurants/barbecue-town.jpg") center 55% / cover no-repeat, #e8e2d4;
-    box-shadow: var(--shadow-md);
-  }
-  .hero[data-hero="e"] .search-card { grid-column: 1 / -1; }
-}
-@media (max-width: 640px) {
-  .hero[data-hero="e"] .hero-art {
-    display: block;
-    height: 168px;
-    margin-top: 20px;
-    border-radius: 16px;
-    border: 1px solid var(--line);
-    background: url("/restaurants/barbecue-town.jpg") center 55% / cover no-repeat, #e8e2d4;
-    box-shadow: var(--shadow-sm);
-  }
-}
-
-/* ================= VARIANT F — NAKED ================= */
-.hero[data-hero="f"] .search-card {
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  border-radius: 0;
-  padding: 2px 2px 0;
-}
-.hero[data-hero="f"] .filter-pill { background: rgba(255, 255, 255, 0.7); }
-.hero[data-hero="f"] .filter-bar .result-count { border-style: dashed; }
-
-/* ================= VARIANT G — GRAND ================= */
-.hero[data-hero="g"] h1 { font-size: clamp(56px, 7vw, 88px); }
-.hero[data-hero="g"] .hero-stats {
-  display: flex;
-  gap: 30px;
-  margin: 26px 0 0;
-  padding: 0;
-}
-.hero[data-hero="g"] .hero-stats > div { display: flex; flex-direction: column; }
-.hero[data-hero="g"] .hero-stats dd {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 32px;
-  font-weight: 600;
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-.hero[data-hero="g"] .hero-stats dt {
-  order: 2;
-  margin-top: 2px;
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-@media (max-width: 640px) {
-  .hero[data-hero="g"] h1 { font-size: clamp(40px, 12vw, 58px); }
-  .hero[data-hero="g"] .hero-stats { gap: 22px; margin-top: 20px; }
-  .hero[data-hero="g"] .hero-stats dd { font-size: 24px; }
-}
+.filter-bar .btn.clear { background: rgba(227, 185, 92, 0.14); color: #e3b95c; }
+.filter-bar .btn.clear:hover { border-color: #e3b95c; }
+.filter-bar .result-count { color: #a49d90; border-color: rgba(255, 255, 255, 0.16); background: transparent; }
+.filter-bar .result-count strong { color: #fff; }

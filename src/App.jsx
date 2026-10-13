@@ -254,18 +254,6 @@ export default function App() {
 
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [view, setView] = useState("list");
-  // Staging test only: switchable hero designs (a/b/c/d). Remove before publish.
-  const [heroDesign, setHeroDesign] = useState(() => {
-    try {
-      const saved = window.localStorage.getItem("ff-hero");
-      return ["a", "b", "c", "d", "e", "f", "g"].includes(saved) ? saved : "a";
-    } catch {
-      return "a";
-    }
-  });
-  useEffect(() => {
-    try { window.localStorage.setItem("ff-hero", heroDesign); } catch { /* ignore */ }
-  }, [heroDesign]);
   useEffect(() => {
     const onScroll = () => setShowBackToTop(window.scrollY > 400);
     onScroll();
@@ -380,7 +368,7 @@ export default function App() {
   return (
     <div className="page">
       <a className="skip-link" href="#restaurant-grid">Skip to restaurants</a>
-      <header className="hero" data-hero={heroDesign}>
+      <header className="hero">
         <div className="hero-inner">
           <div className="hero-copy">
             <div className="brand">🍽️ FoodFind</div>
@@ -389,16 +377,7 @@ export default function App() {
               Restaurants • menus • locations • map links.
               Open a menu directly or click a card for details.
             </p>
-            {/* Staging test only: stats row (variant G shows it). */}
-            <dl className="hero-stats">
-              <div><dd>{restaurants.length}</dd><dt>Restaurants</dt></div>
-              <div><dd>{cuisines.length - 1}</dd><dt>Cuisines</dt></div>
-              <div><dd>{areas.length - 1}</dd><dt>Areas</dt></div>
-            </dl>
           </div>
-
-          {/* Staging test only: photo panel (variant E shows it). */}
-          <div className="hero-art" aria-hidden="true" />
 
           <div className="search-card" data-filters="section">
             {(() => {
@@ -1067,30 +1046,6 @@ export default function App() {
       <footer className="footer">
         Built with React + Vite • Edit <code>src/data/restaurants.js</code> to add your own restaurants
       </footer>
-
-      {/* Staging test only: hero switcher. Remove before publish. */}
-      <div className="design-picker" role="group" aria-label="Test hero designs (staging only)">
-        <span className="design-picker-tag">TEST</span>
-        {[
-          ["a", "A·Current"],
-          ["b", "B·Dark"],
-          ["c", "C·Photo"],
-          ["d", "D·Compact"],
-          ["e", "E·Split"],
-          ["f", "F·Naked"],
-          ["g", "G·Grand"],
-        ].map(([value, label]) => (
-          <button
-            key={value}
-            type="button"
-            aria-pressed={heroDesign === value}
-            className={heroDesign === value ? "on" : ""}
-            onClick={() => setHeroDesign(value)}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
 
       {showBackToTop && (
         <button
