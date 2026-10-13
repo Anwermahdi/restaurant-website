@@ -563,30 +563,31 @@ h1, .hero h1, .results-head h2 { color: var(--ink); }
 }
 
 /* ============================================================
-   PREMIUM UPGRADE (staging test) — warm ivory, deep paprika,
-   brass gold. Cosmetic only: no layout structure changes, so
-   the phone 2-up grid and card rows are untouched.
+   Signature theme — luxury monochrome (Noir): warm paper page,
+   black accents, champagne details.
    ============================================================ */
 :root {
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --bg: #f6f3ec;
-  --surface: #fffdf9;
-  --surface-2: #fffdf9;
-  --surface-3: #f1ece1;
-  --ink: #1d1a16;
-  --muted: #6e675c;
-  --brand: #b44a22;
-  --brand-ink: #93380f;
-  --brand-dark: #7c2d0e;
-  --gold: #b98a2f;
+  --bg: #f5f5f4;
+  --surface: #ffffff;
+  --surface-2: #ffffff;
+  --surface-3: #e9e9e8;
+  --ink: #111111;
+  --ink-soft: #444444;
+  --muted: #737373;
+  --brand: #232323;
+  --brand-bright: #3d3d3d;
+  --brand-ink: #0e0e0e;
+  --brand-dark: #000000;
+  --gold: #8c8c8c;
   --star: #eda93c;
-  --line: #e7ddcb;
-  --line-soft: rgba(74, 53, 32, 0.1);
+  --line: #e2e2e1;
+  --line-soft: rgba(0, 0, 0, 0.09);
   --radius: 18px;
-  --shadow-sm: 0 1px 2px rgba(74, 53, 32, 0.06), 0 12px 32px -16px rgba(74, 53, 32, 0.22);
-  --shadow-md: 0 2px 4px rgba(74, 53, 32, 0.06), 0 20px 44px -16px rgba(74, 53, 32, 0.28);
-  --shadow-lg: 0 32px 80px -24px rgba(74, 53, 32, 0.35);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06), 0 12px 32px -16px rgba(0, 0, 0, 0.18);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.06), 0 20px 44px -16px rgba(0, 0, 0, 0.24);
+  --shadow-lg: 0 32px 80px -24px rgba(0, 0, 0, 0.32);
 }
 
 body { font-family: var(--font-body); }
@@ -763,46 +764,7 @@ body { font-family: var(--font-body); }
   .card-actions .btn { min-height: 38px; }
 }
 
-/* ============================================================
-   TEST-ONLY color themes (remove picker + themes before publish).
-   Palettes set variables; the accent rules below follow them.
-   ============================================================ */
-:root {
-  --brand-bright: #c05a2e;
-  --ink-soft: #57514a;
-}
-:root[data-theme="a"] {
-  --bg: #f6f3ec; --surface: #fffdf9; --surface-2: #fffdf9; --surface-3: #f1ece1;
-  --ink: #1d1a16; --ink-soft: #57514a; --muted: #6e675c;
-  --brand: #b44a22; --brand-bright: #c05a2e; --brand-ink: #93380f; --brand-dark: #7c2d0e;
-  --gold: #b98a2f; --line: #e7ddcb; --line-soft: rgba(74, 53, 32, 0.1);
-}
-:root[data-theme="b"] {
-  --bg: #f3f4ea; --surface: #fffefa; --surface-2: #fffefa; --surface-3: #e8ebd9;
-  --ink: #1f2216; --ink-soft: #555a45; --muted: #6f7460;
-  --brand: #5a7a2e; --brand-bright: #6f9440; --brand-ink: #425c1d; --brand-dark: #334812;
-  --gold: #b98a2f; --line: #dee0c6; --line-soft: rgba(66, 92, 29, 0.12);
-}
-:root[data-theme="c"] {
-  --bg: #edf4f2; --surface: #fdffff; --surface-2: #fdffff; --surface-3: #ddebe8;
-  --ink: #16211f; --ink-soft: #485855; --muted: #5f6f6c;
-  --brand: #0e7c86; --brand-bright: #15909b; --brand-ink: #0a5a61; --brand-dark: #064247;
-  --gold: #b98a2f; --line: #cfdeda; --line-soft: rgba(10, 90, 97, 0.12);
-}
-:root[data-theme="d"] {
-  --bg: #f7f0ed; --surface: #fffdfc; --surface-2: #fffdfc; --surface-3: #f1e3e0;
-  --ink: #231716; --ink-soft: #5d4b47; --muted: #776361;
-  --brand: #a11f30; --brand-bright: #ba2f42; --brand-ink: #7c1523; --brand-dark: #600f1b;
-  --gold: #b98a2f; --line: #e9d3ce; --line-soft: rgba(124, 21, 35, 0.12);
-}
-:root[data-theme="e"] {
-  --bg: #f3f3f2; --surface: #ffffff; --surface-2: #ffffff; --surface-3: #e8e8e7;
-  --ink: #161616; --ink-soft: #4c4c4c; --muted: #6f6f6f;
-  --brand: #2e2e2e; --brand-bright: #424242; --brand-ink: #131313; --brand-dark: #000000;
-  --gold: #9a9a9a; --line: #e0e0e0; --line-soft: rgba(0, 0, 0, 0.1);
-}
-
-/* ---------- variable-driven accents (follow the active theme) ---------- */
+/* ---------- variable-driven accents (follow the theme variables) ---------- */
 .hero {
   background:
     radial-gradient(42rem 22rem at 88% -12%, color-mix(in srgb, var(--gold) 18%, transparent), transparent 60%),
@@ -859,72 +821,12 @@ body { font-family: var(--font-body); }
 .card-story-ring { box-shadow: 0 4px 12px color-mix(in srgb, var(--brand-dark) 30%, transparent); }
 .btn:hover { box-shadow: 0 6px 16px -8px color-mix(in srgb, var(--brand-ink) 55%, transparent); }
 
-/* ---------- TEST-ONLY theme picker (remove before publish) ---------- */
-.design-picker {
-  position: fixed;
-  left: 12px;
-  bottom: 12px;
-  z-index: 1500;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  max-width: calc(100vw - 24px);
-  padding: 6px 8px;
-  border-radius: 18px;
-  background: rgba(20, 16, 12, 0.93);
-  color: #fff;
-  font-size: 12px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-}
-.design-picker-tag {
-  padding: 2px 7px;
-  border-radius: 6px;
-  background: var(--brand);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-}
-.design-picker button {
-  padding: 6px 11px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 999px;
-  background: transparent;
-  color: #fff;
-  font-weight: 700;
-  font-size: 12px;
-  cursor: pointer;
-}
-.design-picker button.on { background: #fff; border-color: #fff; color: #1d1a16; }
-
-/* ============================================================
-   TEST-ONLY: Noir upgrade — sharper luxury monochrome.
-   ============================================================ */
-:root[data-theme="e"] {
-  --bg: #f5f5f4;
-  --surface: #ffffff;
-  --surface-2: #ffffff;
-  --surface-3: #e9e9e8;
-  --ink: #111111;
-  --ink-soft: #444444;
-  --muted: #737373;
-  --brand: #232323;
-  --brand-bright: #3d3d3d;
-  --brand-ink: #0e0e0e;
-  --brand-dark: #000000;
-  --gold: #8c8c8c;
-  --line: #e2e2e1;
-  --line-soft: rgba(0, 0, 0, 0.09);
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06), 0 12px 32px -16px rgba(0, 0, 0, 0.18);
-  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.06), 0 20px 44px -16px rgba(0, 0, 0, 0.24);
-  --shadow-lg: 0 32px 80px -24px rgba(0, 0, 0, 0.32);
-}
-[data-theme="e"] .hero { border-color: #dfe0df; }
-[data-theme="e"] .card { border-color: #e3e3e2; }
-[data-theme="e"] .card:hover { border-color: #1b1b1b; box-shadow: var(--shadow-md); }
-[data-theme="e"] .card-img { background: #ebebe9; }
-/* Solid black cuisine chips — the Noir signature. */
-[data-theme="e"] .cuisine {
+/* ---------- Noir signature details ---------- */
+.hero { border-color: #dfe0df; }
+.card { border-color: #e3e3e2; }
+.card:hover { border-color: #1b1b1b; }
+.card-img { background: #ebebe9; }
+.cuisine {
   background: #141414;
   border-color: #141414;
   color: #fff;
@@ -932,15 +834,15 @@ body { font-family: var(--font-body); }
   letter-spacing: 0.1em;
   box-shadow: none;
 }
-[data-theme="e"] .rating-badge {
+.rating-badge {
   background: #111111;
   border: 1px solid #3a3a3a;
   color: #fff;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
-[data-theme="e"] .btn.primary { letter-spacing: 0.02em; }
-[data-theme="e"] .filter-pill { border-color: #dcdcdc; }
-[data-theme="e"] .filter-pill .food-icon { color: #111111; }
-[data-theme="e"] .view-toggle { border-color: #dcdcdc; }
-[data-theme="e"] .tag { background: #f1f1f0; border-color: #dddddd; color: #555555; }
-[data-theme="e"] .location-box { background: #fafafa; }
+.btn.primary { letter-spacing: 0.02em; }
+.filter-pill { border-color: #dcdcdc; }
+.filter-pill .food-icon { color: #111111; }
+.view-toggle { border-color: #dcdcdc; }
+.tag { background: #f1f1f0; border-color: #dddddd; color: #555555; }
+.location-box { background: #fafafa; }
