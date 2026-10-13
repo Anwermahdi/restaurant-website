@@ -896,3 +896,51 @@ body { font-family: var(--font-body); }
   cursor: pointer;
 }
 .design-picker button.on { background: #fff; border-color: #fff; color: #1d1a16; }
+
+/* ============================================================
+   TEST-ONLY: Noir upgrade — sharper luxury monochrome.
+   ============================================================ */
+:root[data-theme="e"] {
+  --bg: #f5f5f4;
+  --surface: #ffffff;
+  --surface-2: #ffffff;
+  --surface-3: #e9e9e8;
+  --ink: #111111;
+  --ink-soft: #444444;
+  --muted: #737373;
+  --brand: #232323;
+  --brand-bright: #3d3d3d;
+  --brand-ink: #0e0e0e;
+  --brand-dark: #000000;
+  --gold: #8c8c8c;
+  --line: #e2e2e1;
+  --line-soft: rgba(0, 0, 0, 0.09);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06), 0 12px 32px -16px rgba(0, 0, 0, 0.18);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.06), 0 20px 44px -16px rgba(0, 0, 0, 0.24);
+  --shadow-lg: 0 32px 80px -24px rgba(0, 0, 0, 0.32);
+}
+[data-theme="e"] .hero { border-color: #dfe0df; }
+[data-theme="e"] .card { border-color: #e3e3e2; }
+[data-theme="e"] .card:hover { border-color: #1b1b1b; box-shadow: var(--shadow-md); }
+[data-theme="e"] .card-img { background: #ebebe9; }
+/* Solid black cuisine chips — the Noir signature. */
+[data-theme="e"] .cuisine {
+  background: #141414;
+  border-color: #141414;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: none;
+}
+[data-theme="e"] .rating-badge {
+  background: #111111;
+  border: 1px solid #3a3a3a;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+[data-theme="e"] .btn.primary { letter-spacing: 0.02em; }
+[data-theme="e"] .filter-pill { border-color: #dcdcdc; }
+[data-theme="e"] .filter-pill .food-icon { color: #111111; }
+[data-theme="e"] .view-toggle { border-color: #dcdcdc; }
+[data-theme="e"] .tag { background: #f1f1f0; border-color: #dddddd; color: #555555; }
+[data-theme="e"] .location-box { background: #fafafa; }
