@@ -806,7 +806,7 @@ const RESEARCHED = {
 
   "zulu": {
     googleName: "Zulu restaurant",
-    cuisine: "Indian",
+    cuisine: "Italian",
     address: "Qudaibiya, Manama",
     shortAddress: "Qudaibiya, Manama",
     phone: "+973 3311 2663",
@@ -2322,7 +2322,7 @@ const RAW = [
   mk(
     "omy-and-banatha",
     "Omy & Banatha",
-    "Pizza",
+    "Grill",
     IMG.pizza,
     pizzaMenu,
     "Bahraini home cooking, Arabic favourites and pizza in Dar Kulaib.",
@@ -2389,7 +2389,7 @@ const RAW = [
   mk(
     "zulu",
     "Zulu",
-    "Indian",
+    "Italian",
     IMG.general,
     mixedMenu,
     "South-Asian kitchen in Qudaibiya — tandoori chicken, biryani, samosa and paella.",
