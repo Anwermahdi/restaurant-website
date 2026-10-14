@@ -2321,13 +2321,16 @@ const RAW = [
     "Shawarma",
     IMG.bbq,
     [],
-    "",
-    ["Shawarma"],
+    "Shawarma, falafel and Arabic plates in Sitra.",
+    ["Shawarma", "Falafel", "Arabic"],
     "shawarmaz.bh",
     {
       priceRange: "$",
       image: "/restaurants/shawarmaz.webp",
-      phone: "+973 3838 1016"
+      phone: "+973 3838 1016",
+      area: "Sitra",
+      rating: 3.8,
+      talabatUrl: "https://www.talabat.com/bahrain/shawarmaz"
     }
   ),
   mk(
@@ -2336,12 +2339,15 @@ const RAW = [
     "Shawarma",
     IMG.bbq,
     [],
-    "",
-    ["Shawarma"],
+    "Shawarma and sandwiches in Arad.",
+    ["Shawarma", "Sandwiches", "Arabic"],
     "",
     {
       priceRange: "$",
-      image: "/restaurants/lahab.jpg"
+      image: "/restaurants/lahab.jpg",
+      area: "Arad",
+      rating: 4.5,
+      talabatUrl: "https://www.talabat.com/bahrain/lahab-restaurant"
     }
   ),
 
