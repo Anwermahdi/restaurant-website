@@ -31,9 +31,21 @@ function pinIconFor(cuisine) {
   });
 }
 
+// Circular letter pin for the sample map styles: cuisine color + initial.
+function letterIconFor(restaurant) {
+  const fill = CUISINE_COLOR[restaurant.cuisine] || "#2a78b8";
+  const letter = String(restaurant.name || "?").charAt(0).toUpperCase();
+  return L.divIcon({
+    className: "map-letter-pin-wrap",
+    html: `<span class="map-letter-pin" style="--pin:${fill}">${letter}</span>`,
+    iconSize: [34, 34],
+    iconAnchor: [17, 17],
+  });
+}
+
 const BAHRAIN = [26.15, 50.55];
 
-export default function MapView({ restaurants, onOpen }) {
+export default function MapView({ restaurants, onOpen, design }) {
   const ref = useRef(null);
   const mapRef = useRef(null);
 
@@ -69,7 +81,7 @@ export default function MapView({ restaurants, onOpen }) {
         const key = `${r.id}|${p.lat.toFixed(4)},${p.lng.toFixed(4)}`;
         if (seen.has(key)) return;
         seen.add(key);
-        L.marker([p.lat, p.lng], { icon: pinIconFor(r.cuisine) })
+        L.marker([p.lat, p.lng], { icon: design === "a" ? pinIconFor(r.cuisine) : letterIconFor(r) })
           .addTo(layer)
           .bindPopup(
             `<strong>${r.name}</strong>${p.label ? ` — ${p.label}` : ""}<br/>${r.shortAddress || r.address || ""}<br/><a href="#" data-open="${r.id}">Details</a>`
@@ -89,7 +101,26 @@ export default function MapView({ restaurants, onOpen }) {
       layer.remove();
       map.off("popupopen");
     };
-  }, [restaurants, onOpen]);
+  }, [restaurants, onOpen, design]);
 
-  return <div ref={ref} className="map-view" style={{ height: "70vh", width: "100%", borderRadius: 12 }} />;
+  const locateMe = () => {
+    const map = mapRef.current;
+    if (!map || !("geolocation" in navigator)) return;
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const at = [pos.coords.latitude, pos.coords.longitude];
+      map.flyTo(at, 14, { duration: 1 });
+      L.circleMarker(at, { radius: 9, color: "#fff", weight: 3, fillColor: "#2563eb", fillOpacity: 1 }).addTo(map);
+    });
+  };
+
+  return (
+    <div className="map-wrap">
+      <div ref={ref} className="map-view" style={{ height: "70vh", width: "100%", borderRadius: 12 }} />
+      {design === "c" && (
+        <button type="button" className="map-locate" onClick={locateMe}>
+          📍 Near me
+        </button>
+      )}
+    </div>
+  );
 }

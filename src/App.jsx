@@ -256,6 +256,21 @@ export default function App() {
 
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [view, setView] = useState("list");
+  // Staging test only: UI samples for every area. Remove before publish.
+  const [samples, setSamples] = useState(() => {
+    const fresh = { filters: "a", results: "a", map: "a", menu: "a", footer: "a", polish: "a" };
+    try {
+      const saved = JSON.parse(window.localStorage.getItem("ff-samples") || "{}");
+      for (const key of Object.keys(fresh)) {
+        if (typeof saved[key] === "string") fresh[key] = saved[key];
+      }
+    } catch { /* ignore */ }
+    return fresh;
+  });
+  useEffect(() => {
+    try { window.localStorage.setItem("ff-samples", JSON.stringify(samples)); } catch { /* ignore */ }
+  }, [samples]);
+  const setSample = (key, value) => setSamples((prev) => ({ ...prev, [key]: value }));
   useEffect(() => {
     const onScroll = () => setShowBackToTop(window.scrollY > 400);
     onScroll();
@@ -368,7 +383,15 @@ export default function App() {
   }, []);
 
   return (
-    <div className="page">
+    <div
+      className="page"
+      data-filters={samples.filters}
+      data-results={samples.results}
+      data-map={samples.map}
+      data-menu={samples.menu}
+      data-footer={samples.footer}
+      data-polish={samples.polish}
+    >
       <a className="skip-link" href="#restaurant-grid">Skip to restaurants</a>
       <header className="hero">
         <div className="hero-inner">
@@ -408,7 +431,7 @@ export default function App() {
                       </label>
                     </form>
 
-                    <label className={cuisine === "All" ? "filter-pill" : "filter-pill on"}>
+                    <label className={cuisine === "All" ? "filter-pill cuisine-pick" : "filter-pill on cuisine-pick"}>
                       <SectionIcon>{FOOD_ICONS[cuisine] ?? FOOD_ICONS.All}</SectionIcon>
                       <span className="sr-only">Type of food</span>
                       <select name="cuisine" value={cuisine} aria-controls="restaurant-grid" onChange={(e) => setCuisine(e.target.value)}>
@@ -449,6 +472,20 @@ export default function App() {
                       <strong>{filtered.length}</strong> of {restaurants.length}
                     </span>
                   </div>
+                  {samples.filters === "b" && (
+                    <div className="chips-row" role="group" aria-label="Cuisine shortcuts">
+                      {cuisines.map((item) => (
+                        <button
+                          key={item}
+                          type="button"
+                          className={cuisine === item ? "chip on" : "chip"}
+                          onClick={() => setCuisine(item)}
+                        >
+                          {item === "All" ? "All" : `${item} (${foodCounts[item] ?? 0})`}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </section>
               );
             })()}
@@ -459,6 +496,7 @@ export default function App() {
       <main className="grid-wrap" aria-label="Restaurant results">
         <div className="results-head">
           <h2>Explore Restaurants</h2>
+          <span className="results-count">{filtered.length} of {restaurants.length} places</span>
           <div className="view-toggle" role="group" aria-label="View">
             <button type="button" className={`view-toggle-btn ${view === "list" ? "on" : ""}`} onClick={() => setView("list")}>📋 List</button>
             <button type="button" className={`view-toggle-btn ${view === "map" ? "on" : ""}`} onClick={() => setView("map")}>🗺️ Map</button>
@@ -482,7 +520,7 @@ export default function App() {
           </div>
         )}
         {view === "map" ? (
-          <MapView restaurants={filtered} onOpen={(id) => setSelectedId(id)} />
+          <MapView restaurants={filtered} onOpen={(id) => setSelectedId(id)} design={samples.map} />
         ) : (
         <div className="grid" id="restaurant-grid">
           {filtered.map((r, index) => (
@@ -1045,9 +1083,40 @@ export default function App() {
         />
       )}
 
-      <footer className="footer">
-        Built with React + Vite • Edit <code>src/data/restaurants.js</code> to add your own restaurants
-      </footer>
+      {samples.footer === "b" ? (
+        <footer className="footer rich">
+          <div className="footer-rich-inner">
+            <div className="footer-brand">🍽️ FoodFind</div>
+            <p>Every restaurant in Bahrain — real menus, locations, maps and offers.</p>
+            <p className="footer-stats">{restaurants.length} places • {cuisines.length - 1} cuisines • {areas.length - 1} areas</p>
+            <button type="button" className="footer-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Back to top ↑</button>
+          </div>
+        </footer>
+      ) : (
+        <footer className="footer">
+          FoodFind • Restaurants across Bahrain
+        </footer>
+      )}
+
+      {/* Staging test only: UI sample picker. Remove before publish. */}
+      <div className="sample-panel" role="group" aria-label="Test UI samples (staging only)">
+        <span className="sample-title">TEST UI</span>
+        {[
+          ["filters", "Filters", [["a", "A"], ["b", "B"], ["c", "C"]]],
+          ["results", "Head", [["a", "A"], ["b", "B"]]],
+          ["map", "Map", [["a", "A"], ["b", "B"], ["c", "C"]]],
+          ["menu", "Menu", [["a", "A"], ["b", "B"]]],
+          ["footer", "Footer", [["a", "A"], ["b", "B"]]],
+          ["polish", "Polish", [["a", "A"], ["b", "B"]]],
+        ].map(([key, label, opts]) => (
+          <span className="sample-row" key={key}>
+            <em>{label}</em>
+            {opts.map(([v, l]) => (
+              <button key={v} type="button" aria-pressed={samples[key] === v} className={samples[key] === v ? "on" : ""} onClick={() => setSample(key, v)}>{l}</button>
+            ))}
+          </span>
+        ))}
+      </div>
 
       {showBackToTop && (
         <button
