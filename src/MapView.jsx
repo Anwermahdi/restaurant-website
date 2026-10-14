@@ -17,6 +17,27 @@ const CUISINE_COLOR = {
   Mediterranean: "#059669",
   Asian: "#7c3aed",
   Cafe: "#0ea5e9",
+  Malghom: "#c2410c",
+  Shawarma: "#4d7c0f",
+};
+
+// Short code per food type, printed inside the map pin.
+const CUISINE_SHORT = {
+  Grill: "G",
+  Malghom: "M",
+  Shawarma: "S",
+  Burger: "B",
+  Pizza: "P",
+  Pasta: "PA",
+  Italian: "IT",
+  "Fried Chicken": "FC",
+  Broasted: "BR",
+  Indian: "IN",
+  Asian: "AS",
+  Mediterranean: "MD",
+  Cafe: "C",
+  Sandwiches: "SW",
+  Mexican: "MX",
 };
 
 // Per-cuisine SVG pin, so the basemap marker color matches the card cuisine.
@@ -31,13 +52,14 @@ function pinIconFor(cuisine) {
   });
 }
 
-// Circular letter pin for the sample map styles: cuisine color + initial.
+// Circular cuisine-code pin for the sample map styles.
 function letterIconFor(restaurant) {
   const fill = CUISINE_COLOR[restaurant.cuisine] || "#2a78b8";
-  const letter = String(restaurant.name || "?").charAt(0).toUpperCase();
+  const code = CUISINE_SHORT[restaurant.cuisine] || String(restaurant.name || "?").charAt(0).toUpperCase();
+  const two = code.length > 1 ? " two" : "";
   return L.divIcon({
     className: "map-letter-pin-wrap",
-    html: `<span class="map-letter-pin" style="--pin:${fill}">${letter}</span>`,
+    html: `<span class="map-letter-pin${two}" style="--pin:${fill}">${code}</span>`,
     iconSize: [34, 34],
     iconAnchor: [17, 17],
   });
