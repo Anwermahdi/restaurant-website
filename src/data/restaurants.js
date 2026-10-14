@@ -662,7 +662,7 @@ const RESEARCHED = {
   
   "aseeri-star": {
     googleName: "Aseer Star Restaurant And Grill",
-    cuisine: "Grill",
+    cuisine: "Malghom",
     phone: "+973 1741 2643",
     categories: ["Restaurant"],
     openNow: "Open · Closes 4 AM",
@@ -2205,7 +2205,7 @@ const RAW = [
   mk(
     "aseeri-star",
     "Aseeri Star",
-    "Grill",
+    "Malghom",
     IMG.bbq,
     bbqMenu,
     "Arabian breakfast, lunch and freshly cooked grills in Hamad Town.",
