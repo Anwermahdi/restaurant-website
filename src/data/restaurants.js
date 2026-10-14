@@ -200,11 +200,11 @@ const FOOD_REAL = {
 };
 
 function cuisineKeyOf(cuisine) {
-  return { Burger: "burger", "Fried Chicken": "chicken", Broasted: "chicken", Pizza: "pizza", Pasta: "pasta", Grill: "bbq", Italian: "pasta" }[cuisine] || "general";
+  return { Burger: "burger", "Fried Chicken": "chicken", Broasted: "chicken", Pizza: "pizza", Pasta: "pasta", Grill: "bbq", Malghom: "bbq", Italian: "pasta" }[cuisine] || "general";
 }
 
 // Core food categories shown on the site. Anything else is dropped.
-const WANTED_CUISINES = ["Pasta", "Grill", "Burger", "Pizza", "Fried Chicken", "Broasted", "Italian"];
+const WANTED_CUISINES = ["Pasta", "Grill", "Malghom", "Burger", "Pizza", "Fried Chicken", "Broasted", "Italian"];
 // Verified additions (Nino, De Linos, Beefko, Zulu, Coco's, Empire Pizza, Nu Asia,
 // Title, Melenzane, Jamie's Italian, LUMEE, Joe's Cafe, Tostado).
 const EXTRA_CUISINES = ["Indian", "Asian", "Mediterranean", "Cafe", "Sandwiches", "Mexican"];
@@ -676,7 +676,7 @@ const RESEARCHED = {
   "chicken-land-cafeteria": {
     googleName: "أرض الدجاج - Chicken Land Cafeteria \\u0026 Grills.w.l.l 17412353/",
     nameAr: "أرض الدجاج - Chicken Land Cafeteria \\u0026 Grills",
-    cuisine: "Grill",
+    cuisine: "Malghom",
     phone: "+973 7793 9190 / +973 1741 2353 / +973 3347 9190",
     rating: 3.8,
     reviews: 479,
@@ -691,7 +691,7 @@ const RESEARCHED = {
   "white-house": {
     googleName: "White House Restaurant",
     nameAr: "مطعم البيت الابيض",
-    cuisine: "Grill",
+    cuisine: "Malghom",
     address: "Souq Waqif, Hamad Town",
     shortAddress: "Souq Waqif, Hamad Town",
     phone: "+973 1748 8877 / +973 3305 4142",
@@ -2221,7 +2221,7 @@ const RAW = [
   mk(
     "chicken-land-cafeteria",
     "Chicken Land Cafeteria",
-    "Grill",
+    "Malghom",
     IMG.chicken,
     chickenMenu,
     "Budget-friendly chicken, shawarma and grills in Hamad Town.",
@@ -2239,7 +2239,7 @@ const RAW = [
   mk(
     "white-house",
     "White House",
-    "Grill",
+    "Malghom",
     IMG.bbq,
     bbqMenu,
     "Late-night Bahraini dining in Souq Waqif, Hamad Town, with a second branch in Busaiteen.",
@@ -2255,7 +2255,7 @@ const RAW = [
   mk(
     "wadi-altayibin-grills",
     "Wadi Al Tayibeen Grills",
-    "Grill",
+    "Malghom",
     IMG.bbq,
     bbqMenu,
     "Bahraini and Iraqi-style grills near the East Riffa police station.",
