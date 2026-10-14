@@ -40,19 +40,7 @@ const CUISINE_SHORT = {
   Mexican: "MX",
 };
 
-// Per-cuisine SVG pin, so the basemap marker color matches the card cuisine.
-function pinIconFor(cuisine) {
-  const fill = CUISINE_COLOR[cuisine] || "#2a78b8";
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="25" height="41" viewBox="0 0 25 41"><path fill="${fill}" stroke="#fff" stroke-width="1.5" d="M12.5 0C5.6 0 0 5.6 0 12.5 0 21.9 12.5 41 12.5 41S25 21.9 25 12.5C25 5.6 19.4 0 12.5 0z"/><circle cx="12.5" cy="12.5" r="4.5" fill="#fff"/></svg>`;
-  return L.icon({
-    iconUrl: "data:image/svg+xml;utf8," + encodeURIComponent(svg),
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [0, -41],
-  });
-}
-
-// Circular cuisine-code pin for the sample map styles.
+// Circular cuisine-code pin: food-type code in the cuisine color.
 function letterIconFor(restaurant) {
   const fill = CUISINE_COLOR[restaurant.cuisine] || "#2a78b8";
   const code = CUISINE_SHORT[restaurant.cuisine] || String(restaurant.name || "?").charAt(0).toUpperCase();
@@ -67,7 +55,7 @@ function letterIconFor(restaurant) {
 
 const BAHRAIN = [26.15, 50.55];
 
-export default function MapView({ restaurants, onOpen, design }) {
+export default function MapView({ restaurants, onOpen }) {
   const ref = useRef(null);
   const mapRef = useRef(null);
 
@@ -103,7 +91,7 @@ export default function MapView({ restaurants, onOpen, design }) {
         const key = `${r.id}|${p.lat.toFixed(4)},${p.lng.toFixed(4)}`;
         if (seen.has(key)) return;
         seen.add(key);
-        L.marker([p.lat, p.lng], { icon: design === "a" ? pinIconFor(r.cuisine) : letterIconFor(r) })
+        L.marker([p.lat, p.lng], { icon: letterIconFor(r) })
           .addTo(layer)
           .bindPopup(
             `<strong>${r.name}</strong>${p.label ? ` — ${p.label}` : ""}<br/>${r.shortAddress || r.address || ""}<br/><a href="#" data-open="${r.id}">Details</a>`
@@ -123,26 +111,7 @@ export default function MapView({ restaurants, onOpen, design }) {
       layer.remove();
       map.off("popupopen");
     };
-  }, [restaurants, onOpen, design]);
+  }, [restaurants, onOpen]);
 
-  const locateMe = () => {
-    const map = mapRef.current;
-    if (!map || !("geolocation" in navigator)) return;
-    navigator.geolocation.getCurrentPosition((pos) => {
-      const at = [pos.coords.latitude, pos.coords.longitude];
-      map.flyTo(at, 14, { duration: 1 });
-      L.circleMarker(at, { radius: 9, color: "#fff", weight: 3, fillColor: "#2563eb", fillOpacity: 1 }).addTo(map);
-    });
-  };
-
-  return (
-    <div className="map-wrap">
-      <div ref={ref} className="map-view" style={{ height: "70vh", width: "100%", borderRadius: 12 }} />
-      {design === "c" && (
-        <button type="button" className="map-locate" onClick={locateMe}>
-          📍 Near me
-        </button>
-      )}
-    </div>
-  );
+  return <div ref={ref} className="map-view" style={{ height: "70vh", width: "100%", borderRadius: 12 }} />;
 }

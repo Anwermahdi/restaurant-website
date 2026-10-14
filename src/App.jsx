@@ -258,7 +258,7 @@ export default function App() {
   const [view, setView] = useState("list");
   // Staging test only: UI samples for every area. Remove before publish.
   const [samples, setSamples] = useState(() => {
-    const fresh = { filters: "a", results: "a", map: "a", menu: "a", footer: "a", polish: "a" };
+    const fresh = { filters: "a", results: "a", menu: "a", footer: "a", polish: "a" };
     try {
       const saved = JSON.parse(window.localStorage.getItem("ff-samples") || "{}");
       for (const key of Object.keys(fresh)) {
@@ -387,7 +387,6 @@ export default function App() {
       className="page"
       data-filters={samples.filters}
       data-results={samples.results}
-      data-map={samples.map}
       data-menu={samples.menu}
       data-footer={samples.footer}
       data-polish={samples.polish}
@@ -520,7 +519,7 @@ export default function App() {
           </div>
         )}
         {view === "map" ? (
-          <MapView restaurants={filtered} onOpen={(id) => setSelectedId(id)} design={samples.map} />
+          <MapView restaurants={filtered} onOpen={(id) => setSelectedId(id)} />
         ) : (
         <div className="grid" id="restaurant-grid">
           {filtered.map((r, index) => (
@@ -1104,7 +1103,6 @@ export default function App() {
         {[
           ["filters", "Filters", [["a", "A"], ["b", "B"], ["c", "C"]]],
           ["results", "Head", [["a", "A"], ["b", "B"]]],
-          ["map", "Map", [["a", "A"], ["b", "B"], ["c", "C"]]],
           ["menu", "Menu", [["a", "A"], ["b", "B"]]],
           ["footer", "Footer", [["a", "A"], ["b", "B"]]],
           ["polish", "Polish", [["a", "A"], ["b", "B"]]],
