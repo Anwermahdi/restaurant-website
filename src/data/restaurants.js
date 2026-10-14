@@ -150,7 +150,7 @@ const REAL_IMG = {
   "milano": "https://talabat.dhmedia.io/image/talabat/restaurants/Pizza-Milano_635669538157491048.jpg?width=400",
   "gate-12": "https://talabat.dhmedia.io/image/talabat/restaurants/logo639014096378161951.jpg?width=400",
   "chico-chicken": "https://talabat.dhmedia.io/image/talabat/restaurants/LOGO_2638684144419423156.jpg?width=400",
-  "risotto": "https://talabat.dhmedia.io/image/talabat/restaurants/WhatsApp_Image_2021-_637609896016893446.jpg?width=400",
+  "storia": "https://talabat.dhmedia.io/image/talabat/restaurants/WhatsApp_Image_2021-_637609896016893446.jpg?width=400",
   "fat-whale": "https://talabat.dhmedia.io/image/talabat/restaurants/Logo_637812033362850266.jpg?width=400",
   "doctor-food": "https://talabat.dhmedia.io/image/talabat/restaurants/logo_637478577808870081.jpg?width=400",
   "sammonah-sandwich": "https://talabat.dhmedia.io/image/talabat/restaurants/logo_copy_637591684082468054.jpg?width=400",
@@ -164,7 +164,7 @@ export const FALLBACK_IMG = IMG;
 // Filled by web research; missing entries show an honest placeholder
 // until a real photo is uploaded to public/restaurants/<id>.jpg.
 const FOOD_REAL = {
-  "risotto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9-RM9moYZ-j-2DCCarLiZobJ-_UfgbHLdvTZ-MVjqlpqgA22-8ClOUac-&s=10",
+  "storia": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9-RM9moYZ-j-2DCCarLiZobJ-_UfgbHLdvTZ-MVjqlpqgA22-8ClOUac-&s=10",
   "zulu": "https://media-cdn.tripadvisor.com/media/photo-o/25/2c/36/ae/zulu.jpg",
   "slider-station": "https://gastronomica-me.com/wp-content/uploads/2022/09/Slider-Station-Cover.webp",
   "lumee": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9-RM9moYZ-j-2DCCarLiZobJ-_UfgbHLdvTZ-MVjqlpqgA22-8ClOUac-&s=10",
@@ -475,7 +475,7 @@ const ID_COORDS = {
   "milano": [26.1303311, 50.57419],
   "klakiz": [26.2235305, 50.5875935],
   "uplift": [26.151, 50.568],
-  "risotto": [26.0996229, 50.4851777],
+  "storia": [26.0996229, 50.4851777],
   "yebilna-pasta": [26.0996229, 50.4851777],
   "le-pasta": [26.1273372, 50.543959],
 };
@@ -500,7 +500,7 @@ const LOCATIONS = {
   "gate-12": { area: "Zayed Town", branches: ["Zayed Town"] },
   "villa-rosa": { area: "Isa Town", branches: ["Isa Town"] },
   "three-lines": { area: "Zinj", branches: ["Zinj", "Busaiteen", "Riffa"] },
-  "risotto": { area: "Malkiya", branches: ["Malkiya"] },
+  "storia": { area: "Malkiya", branches: ["Malkiya"] },
   "yebilna-pasta": { area: "Malkiya", branches: ["Malkiya", "A'ali"] },
   "le-pasta": { area: "Riffa", branches: ["Arad", "Jerdab", "Riffa", "Hamad Town"] },
   "tonys": { area: "Jidhafs", branches: ["Jidhafs"] },
@@ -3181,7 +3181,7 @@ const RAW = [
   mk("klakiz", "Klakiz", "Broasted", IMG.chicken, chickenMenu, "", [], "", { area: "Manama", branches: ["Manama"] }),
 
   // ---- Pasta ----
-  mk("risotto", "Risotto", "Pasta", IMG.pasta, pastaMenu),
+  mk("storia", "Storia", "Pasta", IMG.pasta, pastaMenu, "Italian • International cuisine in Malkiya, open daily 12:30 PM – 2:00 AM.", ["Italian", "Pasta", "International"], "storia_bh", { phone: "+973 6693 4506 / +973 7791 0100", hours: "Daily · 12:30 PM – 2:00 AM", talabatUrl: "https://www.talabat.com/bahrain/storia-restaurant" }),
   mk("yebilna-pasta", "Yebilna Pasta", "Pasta", IMG.pasta, pastaMenu),
   mk("le-pasta", "Le Pasta", "Pasta", IMG.pasta, pastaMenu),
 ];
