@@ -200,11 +200,11 @@ const FOOD_REAL = {
 };
 
 function cuisineKeyOf(cuisine) {
-  return { Burger: "burger", "Fried Chicken": "chicken", Broasted: "chicken", Pizza: "pizza", Pasta: "pasta", Grill: "bbq", Malghom: "bbq", Italian: "pasta" }[cuisine] || "general";
+  return { Burger: "burger", "Fried Chicken": "chicken", Broasted: "chicken", Pizza: "pizza", Pasta: "pasta", Grill: "bbq", Malghom: "bbq", Shawarma: "bbq", Italian: "pasta" }[cuisine] || "general";
 }
 
 // Core food categories shown on the site. Anything else is dropped.
-const WANTED_CUISINES = ["Pasta", "Grill", "Malghom", "Burger", "Pizza", "Fried Chicken", "Broasted", "Italian"];
+const WANTED_CUISINES = ["Pasta", "Grill", "Malghom", "Shawarma", "Burger", "Pizza", "Fried Chicken", "Broasted", "Italian"];
 // Verified additions (Nino, De Linos, Beefko, Zulu, Coco's, Empire Pizza, Nu Asia,
 // Title, Melenzane, Jamie's Italian, LUMEE, Joe's Cafe, Tostado).
 const EXTRA_CUISINES = ["Indian", "Asian", "Mediterranean", "Cafe", "Sandwiches", "Mexican"];
@@ -325,6 +325,17 @@ const MENU_URLS = {
 const MENU_PHOTOS = {
   "aseeri-star": ["/restaurants/media/aseeri-star-menu.jpg"],
   "tika-abu-jamal": ["/restaurants/media/tika-abu-jamal-menu.jpg"],
+  "shawarmaz": [
+    "/restaurants/media/shawarmaz/menu-01.jpg",
+    "/restaurants/media/shawarmaz/menu-02.jpg",
+    "/restaurants/media/shawarmaz/menu-03.jpg",
+    "/restaurants/media/shawarmaz/menu-04.jpg"
+  ],
+  "lahab": [
+    "/restaurants/media/lahab/menu-01.jpg",
+    "/restaurants/media/lahab/menu-02.jpg",
+    "/restaurants/media/lahab/menu-04.jpg"
+  ],
   "honest-burger": [
     "/restaurants/media/honest-burger/menu-01.png",
     "/restaurants/media/honest-burger/menu-02.png"
@@ -391,6 +402,8 @@ const MENU_PHOTO_DIMENSIONS = {
   "ala-hawak": [[720, 1280], [720, 1280], [720, 1280], [720, 1280], [720, 1280]],
   "sammonah-sandwich": [[720, 1280], [720, 1280], [720, 1280], [720, 1280], [720, 1280], [720, 1280]],
   "omy-and-banatha": [[1372, 963], [1374, 972]],
+  "shawarmaz": [[720, 720], [720, 720], [720, 720], [720, 720]],
+  "lahab": [[720, 720], [720, 720], [720, 720]],
   "viola-burger": [[720, 1280], [720, 1280]],
   "honest-burger": [[720, 1280], [720, 1280]],
   "lahom": [[720, 1280]],
@@ -2300,6 +2313,35 @@ const RAW = [
       address: "Riffa",
       phone: "+973 1777 9644 / +973 3465 9775",
       hours: "Call to confirm hours"
+    }
+  ),
+  mk(
+    "shawarmaz",
+    "ShawarmaZ",
+    "Shawarma",
+    IMG.bbq,
+    [],
+    "",
+    ["Shawarma"],
+    "shawarmaz.bh",
+    {
+      priceRange: "$",
+      image: "/restaurants/shawarmaz.webp",
+      phone: "+973 3838 1016"
+    }
+  ),
+  mk(
+    "lahab",
+    "LAHAB",
+    "Shawarma",
+    IMG.bbq,
+    [],
+    "",
+    ["Shawarma"],
+    "",
+    {
+      priceRange: "$",
+      image: "/restaurants/lahab.jpg"
     }
   ),
 

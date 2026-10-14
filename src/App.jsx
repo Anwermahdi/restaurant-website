@@ -21,6 +21,7 @@ const FOOD_ICONS = {
   Asian: <><path d="M3.4 13h17.2a8.6 8.6 0 0 1-17.2 0z" /><path d="M13.5 3.4 19 9.6" /><path d="M16.6 3.4 20 7.2" /></>,
   Mediterranean: <><path d="M5 19.5C5 11 10 5.5 19 4.5c0 9-5 14-12 14" /><path d="M5 19.5c2.8-3.6 5.6-5.6 8.6-6.8" /></>,
   Sandwiches: <><path d="M5 9.5 12 4.5l7 5" /><path d="M5 9.5V13h14V9.5" /><path d="M5 15.5h14" /><path d="M5 18.5h14" /></>,
+  Shawarma: <><path d="M5 9.5 12 4.5l7 5" /><path d="M5 9.5V13h14V9.5" /><path d="M5 15.5h14" /><path d="M5 18.5h14" /></>,
   Cafe: <><path d="M5 9.5h11V15a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z" /><path d="M16 10.5h1.6a2.4 2.4 0 0 1 0 4.8H16" /><path d="M8.5 6.5c0-1 .8-1.2.8-2.2M12 6.5c0-1 .8-1.2.8-2.2" /></>,
   Mexican: <><path d="M4 15.5a8 8 0 0 1 16 0" /><path d="M4 15.5h16" /><circle cx="10" cy="12.5" r=".9" /><circle cx="14" cy="12.5" r=".9" /></>,
 };
