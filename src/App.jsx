@@ -1,82 +1,42 @@
 import MapView from "./MapView.jsx";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { restaurants, cuisines, areas, mapsUrl, branchMapsUrl, locationLabel, instagramUrl, instagramLabel, hoursLabel, isOpenNow, OFFER_APPS, getOfferApps, getOfferDetails, OFFER_APP_ICONS } from "./data/restaurants";
-import { hasStory, storyFrames } from "./data/stories";
+import {
+  restaurants, cuisines, areas, isOpenNow, hasValidHours, OFFER_APPS, getOfferApps,
+  getOfferDetails, MEAL_TIMES, getMealTimes, locationsFor,
+} from "./data/restaurants";
+import { hasStory } from "./data/stories";
 import { StoryViewer } from "./Stories";
+import RestaurantGrid from "./components/RestaurantGrid.jsx";
+import RestaurantSearch from "./components/RestaurantSearch.jsx";
+import RestaurantFilters from "./components/RestaurantFilters.jsx";
+import RestaurantDetails from "./components/RestaurantDetails.jsx";
+import RestaurantPage from "./components/RestaurantPage.jsx";
+import BranchPicker from "./components/BranchPicker.jsx";
+import { handleImgError, handleLogoError } from "./components/media.js";
+import {
+  CHEVRON_ICON, CLOCHE_ICON, COMPASS_ICON, GRID_ICON, HeartIcon, LIST_ICON, MAP_ICON, MENU_ICON,
+  PIN_ICON, RESTAURANT_ICON, SEARCH_ICON, SPARKLES_ICON, TAG_ICON, TICKET_ICON, USER_ICON,
+  BahrainFlagIcon,
+} from "./components/icons.jsx";
 import "./App.css";
-import "./theme.css";
 
-// Small line icons for the filter section (stroke inherits the text colour).
-const FOOD_ICONS = {
-  All: <><path d="M7 3v5.5a2 2 0 0 0 2 2 2 2 0 0 0 2-2V3" /><path d="M7 10.5V21" /><path d="M16.5 3c-1.8 1.4-2.6 3-2.6 5 0 1.7.9 2.6 2.6 2.9V21" /><path d="M16.5 3v6.4" /></>,
-  Grill: <><path d="M12 3c3 2.8 4 5 4 7.6a4 4 0 0 1-8 0C8 9 9 7.6 10.2 6.6c-.2 1.4.4 2.2 1.3 2.4.9-1.9.6-4 .5-6z" /><path d="M4 20h16" /></>,
-  Malghom: <><path d="M12 3c3 2.8 4 5 4 7.6a4 4 0 0 1-8 0C8 9 9 7.6 10.2 6.6c-.2 1.4.4 2.2 1.3 2.4.9-1.9.6-4 .5-6z" /><path d="M4 20h16" /></>,
-  "Fried Chicken": <><circle cx="15" cy="8.5" r="5" /><path d="M11.6 12.4 4.2 19.8" /><path d="M6.6 16.2 4.2 19.8" /><path d="M13.4 6.6h.01" /></>,
-  Broasted: <><path d="M4 16.5h16" /><path d="M6.2 16.5a5.8 5.8 0 0 1 11.6 0" /><path d="M12 7.4V4.6" /><path d="M9.5 6.2 12 4.6l2.5 1.6" /></>,
-  Pizza: <><path d="M12 3.5 4.4 18.6a1 1 0 0 0 .9 1.5h13.4a1 1 0 0 0 .9-1.5z" /><circle cx="11" cy="12" r=".9" /><circle cx="14.6" cy="15.4" r=".9" /><circle cx="9.4" cy="9" r=".9" /></>,
-  Pasta: <><path d="M3.4 11.5h17.2a8.6 8.6 0 0 1-17.2 0z" /><path d="M8 9c0-1.4 1-1.9 1-3.2" /><path d="M12 9c0-1.4 1-1.9 1-3.2" /><path d="M16 9c0-1.4 1-1.9 1-3.2" /></>,
-  Italian: <><path d="M3.4 12.5h17.2a8.6 8.6 0 0 1-17.2 0z" /><path d="M6 6.5 8.5 12" /><path d="M9.5 5.5 12 12" /><path d="M13 6.5 15.5 12" /></>,
-  Burger: <><path d="M4.8 9.4a7.2 6 0 0 1 14.4 0" /><path d="M4 9.4h16" /><path d="M4 13.6h16" /><path d="M4 17.4h16" /></>,
-  Indian: <><path d="M4 10.5h16v5.2a3.3 3.3 0 0 1-3.3 3.3H7.3A3.3 3.3 0 0 1 4 15.7z" /><path d="M8 7.4h8" /><path d="M9.6 4.4v3M14.4 4.4v3" /></>,
-  Asian: <><path d="M3.4 13h17.2a8.6 8.6 0 0 1-17.2 0z" /><path d="M13.5 3.4 19 9.6" /><path d="M16.6 3.4 20 7.2" /></>,
-  Mediterranean: <><path d="M5 19.5C5 11 10 5.5 19 4.5c0 9-5 14-12 14" /><path d="M5 19.5c2.8-3.6 5.6-5.6 8.6-6.8" /></>,
-  Sandwiches: <><path d="M5 9.5 12 4.5l7 5" /><path d="M5 9.5V13h14V9.5" /><path d="M5 15.5h14" /><path d="M5 18.5h14" /></>,
-  Shawarma: <><path d="M5 9.5 12 4.5l7 5" /><path d="M5 9.5V13h14V9.5" /><path d="M5 15.5h14" /><path d="M5 18.5h14" /></>,
-  Cafe: <><path d="M5 9.5h11V15a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z" /><path d="M16 10.5h1.6a2.4 2.4 0 0 1 0 4.8H16" /><path d="M8.5 6.5c0-1 .8-1.2.8-2.2M12 6.5c0-1 .8-1.2.8-2.2" /></>,
-  Mexican: <><path d="M4 15.5a8 8 0 0 1 16 0" /><path d="M4 15.5h16" /><circle cx="10" cy="12.5" r=".9" /><circle cx="14" cy="12.5" r=".9" /></>,
+// The little picture each popular shortcut carries. Bahrain keeps a drawn
+// flag instead of an emoji, because Windows has no flag emoji at all.
+const POPULAR_EMOJI = {
+  Burger: "🍔",
+  Shawarma: "🌯",
+  Pizza: "🍕",
+  Italian: "🍝",
+  Cafe: "☕",
+  Seafood: "🦐",
+  Indian: "🍛",
 };
-
-function SectionIcon({ children }) {
-  return (
-    <svg
-      className="food-icon"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      focusable="false"
-    >
-      {children}
-    </svg>
-  );
-}
-
-const PIN_ICON = <><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z" /><circle cx="12" cy="10" r="2.4" /></>;
-const SEARCH_ICON = <><circle cx="10.5" cy="10.5" r="6.2" /><path d="M15.2 15.2 20 20" /></>;
 
 function menuPhotoDimensions(restaurant, index) {
   const declared = restaurant.menuPhotoDimensions?.[index];
   // A 0 means the generator could not read the header; keep the page portrait.
   if (!declared || !declared[0] || !declared[1]) return [720, 1280];
   return declared;
-}
-
-// Card image chain: the real files for this restaurant (generated by
-// scripts/optimize-images.mjs), then a researched photo, then the cuisine
-// placeholder. Nothing is requested that is known not to exist.
-function handleImgError(e) {
-  const el = e.currentTarget;
-  const step = Number(el.dataset.step || "0");
-  const fallbacks = (el.dataset.fallbacks || "").split(",").filter(Boolean);
-  let next = fallbacks[step] || null;
-  if (!next) {
-    const rest = step - fallbacks.length;
-    next = rest === 0 ? el.dataset.fallback : rest === 1 ? el.dataset.fallbackFinal : null;
-  }
-  if (next && el.src !== next) {
-    el.dataset.step = String(step + 1);
-    el.src = next;
-  }
-}
-
-function phoneHref(phone) {
-  if (!phone) return null;
-  const primaryPhone = phone.split(/\s*(?:\/|·|•)\s*/)[0];
-  if (!primaryPhone || primaryPhone.includes("—")) return null;
-  return `tel:${primaryPhone.replace(/[^+\d]/g, "")}`;
 }
 
 function normalizeSearchText(value) {
@@ -166,24 +126,14 @@ function searchScore(index, query, tokens) {
   return score;
 }
 
-// The food filter is a *type* filter: it matches the restaurant's own cuisine,
-// so the number shown in the dropdown is exactly the number of results.
-// Anything looser ("does this place serve grilled food?") is what the search
-// box is for, and it already searches names, tags, descriptions and menus.
-function handleLogoError(e) {
-  const el = e.currentTarget;
-  const step = Number(el.dataset.step || "0");
-  const id = el.dataset.rid;
-  const next =
-    step === 0 && id ? `/restaurants/logos/${id}.webp`
-    : step === 1 && id ? `/restaurants/logos/${id}.png`
-    : step === 2 ? el.dataset.official || null
-    : null;
-  if (next) {
-    el.dataset.step = String(step + 1);
-    el.src = next;
-  } else {
-    el.style.display = "none";
+// Saved places live in the browser, so no account is needed.
+const FAVOURITES_KEY = "foodfind:favourites";
+function readFavourites() {
+  try {
+    const raw = JSON.parse(window.localStorage.getItem(FAVOURITES_KEY) || "[]");
+    return new Set(Array.isArray(raw) ? raw : []);
+  } catch {
+    return new Set();
   }
 }
 
@@ -192,19 +142,40 @@ export default function App() {
   const [cuisine, setCuisine] = useState("All");
   const [area, setArea] = useState("All");
   const [offerApp, setOfferApp] = useState("All");
+  const [mealTime, setMealTime] = useState("All");
+  const [offersOnly, setOffersOnly] = useState(false);
+  const [openNowOnly, setOpenNowOnly] = useState(false);
+  const [minRating, setMinRating] = useState("Any");
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [sort, setSort] = useState("recommended");
   const [selectedId, setSelectedId] = useState(null);
+  // The branch the visitor picked, and the place whose branch list is open.
+  const [selectedBranch, setSelectedBranch] = useState(null);
+  const [branchPickerId, setBranchPickerId] = useState(null);
   const [modalView, setModalView] = useState("details");
   const [activeMenuPhoto, setActiveMenuPhoto] = useState(0);
-  const [showMenuPhotos, setShowMenuPhotos] = useState(false);
   const [storyId, setStoryId] = useState(null);
+  const [favourites, setFavourites] = useState(readFavourites);
+  const [savedOnly, setSavedOnly] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
   const modalRef = useRef(null);
   const closeButtonRef = useRef(null);
   const menuButtonRefs = useRef(new Map());
   const lastFocusedElementRef = useRef(null);
 
-  // Style picker removed: the light theme + filter section are now the site.
-
   const filtered = useMemo(() => {
+    // "Recommended" keeps the order the data came in. The other two sorts are
+    // plain and stable, so a place never jumps around while you browse.
+    const order = (list) => {
+      if (sort === "rating") {
+        return [...list].sort((a, b) => (b.rating ?? -1) - (a.rating ?? -1) || a.name.localeCompare(b.name));
+      }
+      if (sort === "name") {
+        return [...list].sort((a, b) => a.name.localeCompare(b.name));
+      }
+      return list;
+    };
+
     const normalizedQuery = normalizeSearchText(query);
     const tokens = normalizedQuery ? normalizedQuery.split(" ").filter(Boolean) : [];
     const normalizedArea = normalizeSearchText(area);
@@ -213,7 +184,7 @@ export default function App() {
     // A type filter and an area filter: both are exact, so what the dropdown
     // promises is what you get.
     const candidates = restaurants.filter((restaurant) => {
-      if (cuisine !== "All" && restaurant.cuisine !== cuisine) return false;
+      if (cuisine !== "All" && restaurant.cuisine !== cuisine && !(restaurant.tags || []).some((tag) => tag === cuisine)) return false;
       if (area !== "All") {
         // Branches win when they exist; otherwise the researched area, and the
         // full address as a last resort so nothing becomes unfilterable.
@@ -223,12 +194,24 @@ export default function App() {
         if (!zones.map(normalizeSearchText).includes(normalizedArea)) return false;
       }
       if (offerApp !== "All" && !getOfferApps(restaurant.id).includes(offerApp)) return false;
+      // Meal time: breakfast, lunch or dinner, as read off the opening hours.
+      if (mealTime !== "All" && !getMealTimes(restaurant).includes(mealTime)) return false;
+      // Offers only: the place has a real, published offer behind it.
+      if (offersOnly && getOfferDetails(restaurant.id).length === 0) return false;
+      // Open now: only for places with a researched week of opening hours.
+      if (openNowOnly && isOpenNow(restaurant.openingHours) !== true) return false;
+      // Rating: only places that really have one can be counted.
+      if (minRating !== "Any" && !(restaurant.rating >= Number(minRating))) return false;
+      // Saved places only.
+      if (savedOnly && !favourites.has(restaurant.id)) return false;
       return true;
     });
 
-    if (!hasTextQuery) return candidates;
+    if (!hasTextQuery) {
+      return order(candidates);
+    }
 
-    return candidates
+    const scored = candidates
       .map((restaurant) => {
         const index = SEARCH_INDEX.get(restaurant.id);
         return { restaurant, score: searchScore(index, normalizedQuery, tokens) };
@@ -236,9 +219,57 @@ export default function App() {
       .filter((result) => result.score >= 0)
       .sort((a, b) => b.score - a.score)
       .map(({ restaurant }) => restaurant);
-  }, [query, cuisine, area, offerApp]);
+    return order(scored);
+  }, [query, cuisine, area, offerApp, mealTime, offersOnly, openNowOnly, minRating, savedOnly, favourites, sort]);
+
+  const toggleFavourite = useCallback((id) => {
+    setFavourites((current) => {
+      const next = new Set(current);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      try {
+        window.localStorage.setItem(FAVOURITES_KEY, JSON.stringify([...next]));
+      } catch {
+        // A private window may refuse to store; the card still works for now.
+      }
+      return next;
+    });
+  }, []);
 
   const selected = restaurants.find((r) => r.id === selectedId) || null;
+
+  // Sharing a place: the phone's own share sheet where there is one, and a
+  // copied link everywhere else. Either way the card says it worked.
+  const shareRestaurant = useCallback(async (restaurant) => {
+    const url = `${window.location.origin}${window.location.pathname}#restaurant/${restaurant.id}`;
+    const payload = { title: restaurant.name, text: `${restaurant.name} on FoodFind`, url };
+    if (navigator.share) {
+      try {
+        await navigator.share(payload);
+        return;
+      } catch (error) {
+        if (error && error.name === "AbortError") return;
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      // Older browsers without clipboard access still get a copy.
+      const field = document.createElement("textarea");
+      field.value = url;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+      try {
+        document.execCommand("copy");
+      } catch {
+        // Nothing else to try: the share sheet was already offered.
+      }
+      document.body.removeChild(field);
+    }
+  }, []);
 
   // Deep-link: /#restaurant-<id> opens that restaurant's details popup.
   useEffect(() => {
@@ -251,11 +282,35 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    window.history.replaceState(null, "", selectedId ? `#restaurant/${selectedId}` : window.location.pathname + window.location.search);
+    if (selectedId) {
+      const hash = `#restaurant/${selectedId}`;
+      if (window.location.hash !== hash) {
+        window.history.pushState(null, "", hash);
+      }
+    } else {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
   }, [selectedId]);
 
+  // Sync state when the user presses the browser back button.
+  useEffect(() => {
+    const onPopState = () => {
+      const m = window.location.hash.match(/^#restaurant\/([a-z0-9-]+)/i);
+      if (m) {
+        const r = restaurants.find((x) => x.id === m[1]);
+        if (r) { openRestaurant(r, { view: "details" }); return; }
+      }
+      setSelectedId(null);
+      setModalView("details");
+      setActiveMenuPhoto(0);
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [view, setView] = useState("list");
+  const [view, setView] = useState("grid");
   useEffect(() => {
     const onScroll = () => setShowBackToTop(window.scrollY > 400);
     onScroll();
@@ -263,38 +318,38 @@ export default function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close nav panel on Escape.
   useEffect(() => {
-    if (selectedId === null) return undefined;
+    if (!navOpen) return undefined;
+    const onKey = (e) => { if (e.key === "Escape") setNavOpen(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [navOpen]);
 
+  // Lock scroll when the menu viewer modal is open.
+  useEffect(() => {
+    if (selectedId === null || modalView !== "menu") return undefined;
     const previousOverflow = document.body.style.overflow;
-    const focusTarget = lastFocusedElementRef.current;
     document.body.style.overflow = "hidden";
-
     const focusFrame = window.requestAnimationFrame(() => {
       closeButtonRef.current?.focus();
     });
-
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
         event.preventDefault();
         setSelectedId(null);
         setModalView("details");
         setActiveMenuPhoto(0);
-        setShowMenuPhotos(false);
         return;
       }
-
       if (event.key !== "Tab" || !modalRef.current) return;
-
       const focusable = modalRef.current.querySelectorAll(
         'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
       );
       if (focusable.length === 0) return;
-
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
       const activeElement = document.activeElement;
-
       if (!modalRef.current.contains(activeElement)) {
         event.preventDefault();
         (event.shiftKey ? last : first).focus();
@@ -306,16 +361,51 @@ export default function App() {
         first.focus();
       }
     };
-
     document.addEventListener("keydown", handleKeyDown);
-
     return () => {
       window.cancelAnimationFrame(focusFrame);
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
-      if (focusTarget?.isConnected) focusTarget.focus();
     };
-  }, [selectedId]);
+  }, [selectedId, modalView]);
+
+  // The branch list of one place, opened from its card.
+  const openBranchPicker = useCallback((restaurant, source) => {
+    lastFocusedElementRef.current = source || document.activeElement;
+    setBranchPickerId(restaurant.id);
+  }, []);
+
+  const closeBranchPicker = useCallback(() => {
+    setBranchPickerId(null);
+    const target = lastFocusedElementRef.current;
+    if (target && target.isConnected) target.focus();
+  }, []);
+
+  // Picking a branch opens the place's details on that branch.
+  const pickBranch = useCallback((location) => {
+    const restaurant = restaurants.find((r) => r.id === branchPickerId);
+    setBranchPickerId(null);
+    if (restaurant) openRestaurant(restaurant, { source: lastFocusedElementRef.current, branch: location });
+  }, [branchPickerId]);
+
+  // The branch list is its own popup: Escape closes it and the page behind
+  // it stands still while it is open.
+  useEffect(() => {
+    if (!branchPickerId) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeBranchPicker();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [branchPickerId, closeBranchPicker]);
 
   function openRestaurant(restaurant, options = {}) {
     lastFocusedElementRef.current =
@@ -324,18 +414,24 @@ export default function App() {
     setSelectedId(restaurant.id);
     setModalView(openMenu ? "menu" : "details");
     setActiveMenuPhoto(0);
-    setShowMenuPhotos(false);
+    // A new place starts on its own first branch.
+    if (options.branch !== undefined) setSelectedBranch(options.branch || null);
+    else setSelectedBranch(null);
   }
 
   function closeRestaurant() {
     setSelectedId(null);
     setModalView("details");
     setActiveMenuPhoto(0);
-    setShowMenuPhotos(false);
   }
 
-  // Open/closed for the place whose details are on screen.
-  const openNow = useMemo(() => (selected ? isOpenNow(selected.openingHours) : null), [selected]);
+  // The branch list of one place, opened from its card.
+  const branchPickerRestaurant = restaurants.find((r) => r.id === branchPickerId) || null;
+  const branchPickerLocations = branchPickerRestaurant ? locationsFor(branchPickerRestaurant) : null;
+
+  // The place whose details are on screen, and the branch picked for it.
+  const locations = selected ? locationsFor(selected) : null;
+  const branch = selectedBranch && locations ? selectedBranch : null;
 
   // Story highlights: opening one from a card circle or the details page.
   const [storyTrigger, setStoryTrigger] = useState(null);
@@ -354,8 +450,7 @@ export default function App() {
   }, []);
 
   // How many restaurants each type actually is. Because the filter is an exact
-  // type match, this number is exactly how many results you get - no more
-  // "82 grills" from a menu that merely lists a mixed grill.
+  // type match, this number is exactly how many results you get.
   const foodCounts = useMemo(() => {
     const counts = {};
     for (const item of cuisines) {
@@ -367,103 +462,432 @@ export default function App() {
     return counts;
   }, []);
 
+  // How many places can do each meal. Same rule as the filter, so the
+  // number in the dropdown is exactly the number of results.
+  const mealCounts = useMemo(() => {
+    const counts = {};
+    for (const meal of MEAL_TIMES) {
+      counts[meal] = restaurants.filter((r) => getMealTimes(r).includes(meal)).length;
+    }
+    return counts;
+  }, []);
+
+  // A meal nobody serves is not worth offering, but the one you picked stays
+  // so the dropdown never goes blank.
+  const offeredMeals = MEAL_TIMES.filter((meal) => (mealCounts[meal] ?? 0) > 0 || meal === mealTime);
+
+  // How many places really have an offer behind them.
+  const offerCount = useMemo(
+    () => restaurants.filter((r) => getOfferDetails(r.id).length > 0).length,
+    []
+  );
+
+  // How many places are open right now. Only counted for places with a
+  // researched week of hours, so the number is never a guess.
+  const openNowCount = useMemo(
+    () => restaurants.filter((r) => hasValidHours(r) && isOpenNow(r.openingHours) === true).length,
+    []
+  );
+
+  // The rating steps that would actually return something.
+  const ratingOptions = useMemo(() => {
+    const options = [{ value: "Any", label: "Any rating" }];
+    for (const step of [4.5, 4, 3.5]) {
+      const count = restaurants.filter((r) => r.rating >= step).length;
+      if (count > 0) options.push({ value: String(step), label: `${step}★ and up (${count})` });
+    }
+    return options;
+  }, []);
+
+  const hasFilters =
+    cuisine !== "All" || area !== "All" || offerApp !== "All" || mealTime !== "All" ||
+    offersOnly || openNowOnly || minRating !== "Any" || Boolean(query);
+
+  // How many of the extra filters are on. The type of food, the area and the
+  // offers are in the search bar, so they are not counted here.
+  const activeFilterCount =
+    (mealTime !== "All" ? 1 : 0) + (offersOnly ? 1 : 0) + (openNowOnly ? 1 : 0) + (minRating !== "Any" ? 1 : 0);
+
+  const clearAll = () => {
+    setQuery("");
+    setCuisine("All");
+    setArea("All");
+    setOfferApp("All");
+    setMealTime("All");
+    setOffersOnly(false);
+    setOpenNowOnly(false);
+    setMinRating("Any");
+  };
+
+  const scrollToResults = () => {
+    document.getElementById("restaurant-grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  // The header links: each one takes the visitor to the grid and puts it in
+  // the right state.
+  const goToExplore = () => {
+    setView("grid");
+    setCuisine("All");
+    setOffersOnly(false);
+    scrollToResults();
+  };
+  const goToCuisines = () => {
+    // Land on the first cuisine that really has restaurants behind it, then
+    // drop the visitor into the results for it.
+    const firstCuisine = cuisines.find(
+      (item) => item && item !== "All" && restaurants.some((restaurant) => restaurant.cuisine === item),
+    );
+    if (firstCuisine) setCuisine(firstCuisine);
+    scrollToResults();
+  };
+  const goToOffers = () => {
+    setOffersOnly(true);
+    scrollToResults();
+  };
+  const goToMap = () => {
+    setView("map");
+    scrollToResults();
+  };
+  // Only one header link is the current one.
+  const activeNav = "explore";
+
+  // The food types the hero offers as a shortcut, in the order a visitor
+  // is most likely to want them. Only real types from the data are listed.
+  const popularCuisines = useMemo(() => {
+    const order = ["Burger", "Shawarma", "Pizza", "Italian", "Bahraini", "Cafe", "Seafood", "Indian"];
+    return order.filter((item) => cuisines.includes(item) || restaurants.some((restaurant) => (restaurant.tags || []).includes(item)));
+  }, []);
+  // The search field above the grid, so the hero can send you straight to it.
+  const focusSearch = () => {
+    scrollToResults();
+    window.setTimeout(() => {
+      document.querySelector('.finder-field--search input[type="search"]')?.focus();
+    }, 320);
+  };
+
+  // A short note at the bottom of the screen.
+  const [toast, setToast] = useState(null);
+  const toastTimer = useRef(null);
+  const showToast = useCallback((message) => {
+    setToast(message);
+    window.clearTimeout(toastTimer.current);
+    toastTimer.current = window.setTimeout(() => setToast(null), 2600);
+  }, []);
+
+  // Surprise me: open one of the places that match what is on screen.
+  const surpriseMe = useCallback(() => {
+    const pool = filtered.length ? filtered : restaurants;
+    if (!pool.length) {
+      showToast("No restaurants match your filters");
+      return;
+    }
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    openRestaurant(pick, { source: document.activeElement });
+  }, [filtered, showToast]);
+
+  // "/" jumps to the search box, as long as no field is already being typed in.
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      if (event.key !== "/" || event.metaKey || event.ctrlKey || event.altKey) return;
+      const tag = document.activeElement?.tagName;
+      if (tag === "INPUT" || tag === "SELECT" || tag === "TEXTAREA") return;
+      if (selectedId) return;
+      event.preventDefault();
+      document.querySelector('.finder-field--search input[type="search"]')?.focus();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [selectedId]);
+
+  // Full restaurant page (replaces the listing)
+  if (selectedId && modalView === "details" && selected) {
+    return (
+      <>
+        <RestaurantPage
+          key={selected.id}
+          restaurant={selected}
+          locations={locations}
+          branch={branch}
+          onClose={closeRestaurant}
+          onShare={shareRestaurant}
+          onToggleSave={toggleFavourite}
+          onOpenMenuPage={(place, index) => {
+            setActiveMenuPhoto(index);
+            openRestaurant(place, { view: "menu" });
+          }}
+          onOpenLocations={openBranchPicker}
+          isSaved={favourites.has(selected.id)}
+        />
+
+        {branchPickerRestaurant && branchPickerLocations && (
+          <BranchPicker
+            restaurant={branchPickerRestaurant}
+            locations={branchPickerLocations}
+            onSelect={pickBranch}
+            onClose={closeBranchPicker}
+          />
+        )}
+
+        {toast && (
+          <p className="toast" role="status" aria-live="polite">{toast}</p>
+        )}
+      </>
+    );
+  }
+
   return (
     <div className="page">
       <a className="skip-link" href="#restaurant-grid">Skip to restaurants</a>
-      <header className="hero">
-        <div className="hero-inner">
+
+      <nav className="nav">
+        <div className="navin">
+          <a className="word" href="#restaurant-grid" aria-label="FoodFind, back to the restaurants">
+            foodfind
+            <span className="word-spark" aria-hidden="true">✳</span>
+          </a>
+          <div className="navlinks">
+            <button
+              type="button"
+              className={`navlink ${activeNav === "explore" ? "on" : ""}`}
+              onClick={goToExplore}
+            >
+              {RESTAURANT_ICON}
+              Explore restaurants
+            </button>
+            <button
+              type="button"
+              className={`navlink ${activeNav === "cuisines" ? "on" : ""}`}
+              onClick={goToCuisines}
+            >
+              {CLOCHE_ICON}
+              Cuisines
+            </button>
+            <button
+              type="button"
+              className={`navlink ${activeNav === "offers" ? "on" : ""}`}
+              onClick={goToOffers}
+            >
+              {TAG_ICON}
+              Offers
+            </button>
+            <button
+              type="button"
+              className={`navlink ${activeNav === "map" ? "on" : ""}`}
+              onClick={goToMap}
+            >
+              {MAP_ICON}
+              Map
+            </button>
+          </div>
+          <div className="navright">
+            <label className="navplace">
+              {PIN_ICON}
+              <span className="sr-only">Location</span>
+              <select name="navArea" value={area} onChange={(e) => setArea(e.target.value)}>
+                <option value="All">Bahrain</option>
+                {areas.filter((item) => item !== "All").map((item) => (
+                  <option key={item} value={item}>{item}</option>
+                ))}
+              </select>
+              {CHEVRON_ICON}
+            </label>
+
+            <button
+              type="button"
+              className={`nav-icon ${savedOnly ? "on" : ""}`}
+              aria-pressed={savedOnly}
+              aria-label={savedOnly ? "Show every restaurant again" : "Show saved restaurants"}
+              onClick={() => {
+                setSavedOnly((on) => !on);
+                scrollToResults();
+              }}
+            >
+              <HeartIcon filled={savedOnly} />
+              {favourites.size > 0 && <span className="nav-count">{favourites.size}</span>}
+            </button>
+
+            <button
+              type="button"
+              className="nav-menu"
+              aria-expanded={navOpen}
+              aria-label={navOpen ? "Close menu" : "Open menu"}
+              onClick={() => setNavOpen((open) => !open)}
+            >
+              {MENU_ICON}
+            </button>
+          </div>
+        </div>
+        {navOpen && (
+          <>
+            <div
+              className="nav-panel-backdrop"
+              aria-hidden="true"
+              onClick={() => setNavOpen(false)}
+            />
+            <div className="nav-panel" role="menu">
+              <button type="button" role="menuitem" onClick={() => { setNavOpen(false); goToExplore(); }}>
+                {COMPASS_ICON} Explore restaurants
+              </button>
+              <button
+                type="button"
+                role="menuitem"
+                onClick={() => {
+                  setSavedOnly(true);
+                  setNavOpen(false);
+                  scrollToResults();
+                }}
+              >
+                <HeartIcon filled={favourites.size > 0} />
+                Saved places{favourites.size > 0 ? ` (${favourites.size})` : ""}
+              </button>
+              <button
+                type="button"
+                role="menuitem"
+                onClick={() => {
+                  setNavOpen(false);
+                  surpriseMe();
+                }}
+              >
+                {SPARKLES_ICON} Surprise me
+              </button>
+            </div>
+          </>
+        )}
+      </nav>
+
+      <header className="hero" id="top">
+        <div className="hero-main">
           <div className="hero-copy">
-            <div className="brand">🍽️ FoodFind</div>
-            <h1>Discover restaurants <em>near you.</em></h1>
-            <p>
-              Restaurants • menus • locations • map links.
-              Open a menu directly or click a card for details.
+            <p className="eyebrow">Big flavors. Local finds.</p>
+            <h1>Discover amazing food <em>in Bahrain</em></h1>
+            <p className="lede">
+              Explore {restaurants.length}+ restaurants, local flavors and great experiences.
             </p>
           </div>
 
-          <div className="search-card" data-filters="section">
-            {(() => {
-              const hasFilters = cuisine !== "All" || area !== "All" || offerApp !== "All" || Boolean(query);
-              const clearAll = () => { setQuery(""); setCuisine("All"); setArea("All"); setOfferApp("All"); };
+            <div className="hero-visual">
+              <div className="hero-photo">
+                <img
+                  src="/hero-sunset.webp"
+                  alt="Bahrain sunset restaurant scene at golden hour"
+                  width="1350"
+                  height="548"
+                  fetchPriority="high"
+                />
+              </div>
+            </div>
+          </div>
 
-              return (
-                <section className="filter-section" aria-label="Filter restaurants">
-                  {/* One row: search + type of food + location + count. */}
-                  <div className="filter-bar">
-                    <form className="search-form search-form-icon" onSubmit={(event) => event.preventDefault()} role="search">
-                      <SectionIcon>{SEARCH_ICON}</SectionIcon>
-                      <label className="search-field" htmlFor="q-bar">
-                        <span className="sr-only">Search restaurants, cuisines, cities, and dishes</span>
-                        <input
-                          id="q-bar"
-                          type="search"
-                          name="restaurant-search"
-                          autoComplete="off"
-                          aria-label="Search restaurants, cuisines, cities, and dishes"
-                          aria-controls="restaurant-grid"
-                          placeholder="Search a dish, a cuisine or an area…"
-                          value={query}
-                          onChange={(e) => setQuery(e.target.value)}
-                        />
-                      </label>
-                    </form>
+          <div className="search-shell">
+            <RestaurantSearch
+              query={query}
+              onQueryChange={setQuery}
+              onSubmit={scrollToResults}
+              cuisines={cuisines}
+              foodCounts={foodCounts}
+              cuisine={cuisine}
+              onCuisineChange={setCuisine}
+              areas={areas}
+              area={area}
+              onAreaChange={setArea}
+              offerApps={OFFER_APPS}
+              offerApp={offerApp}
+              onOfferAppChange={setOfferApp}
+            />
+          </div>
 
-                    <label className={cuisine === "All" ? "filter-pill" : "filter-pill on"}>
-                      <SectionIcon>{FOOD_ICONS[cuisine] ?? FOOD_ICONS.All}</SectionIcon>
-                      <span className="sr-only">Type of food</span>
-                      <select name="cuisine" value={cuisine} aria-controls="restaurant-grid" onChange={(e) => setCuisine(e.target.value)}>
-                        {cuisines.map((item) => (
-                          <option key={item} value={item}>
-                            {item === "All" ? "Any food type" : `${item} (${foodCounts[item] ?? 0})`}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
+          <div className="popular-row">
+            <span className="popular-label">Popular:</span>
+            <div className="popular-chips" role="group" aria-label="Popular cuisine shortcuts">
+              {popularCuisines.map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  className={`popular-chip ${cuisine === item ? "is-on" : ""}`}
+                  aria-pressed={cuisine === item}
+                  onClick={() => setCuisine(cuisine === item ? "All" : item)}
+                >
+                  {item === "Bahraini"
+                    ? <BahrainFlagIcon />
+                    : <span className="popular-emoji" aria-hidden="true">{POPULAR_EMOJI[item] ?? "🍽️"}</span>}
+                  {item}
+                </button>
+              ))}
+            </div>
+          </div>
+        </header>
 
-                    <label className={area === "All" ? "filter-pill" : "filter-pill on"}>
-                      <SectionIcon>{PIN_ICON}</SectionIcon>
-                      <span className="sr-only">Location</span>
-                      <select name="area" value={area} aria-controls="restaurant-grid" onChange={(e) => setArea(e.target.value)}>
-                        {areas.map((item) => (
-                          <option key={item} value={item}>{item === "All" ? "All Bahrain" : item}</option>
-                        ))}
-                      </select>
-                    </label>
-
-                    <label className={offerApp === "All" ? "filter-pill" : "filter-pill on"}>
-                      <SectionIcon>{SEARCH_ICON}</SectionIcon>
-                      <span className="sr-only">Offer app</span>
-                      <select name="offerApp" value={offerApp} aria-controls="restaurant-grid" onChange={(e) => setOfferApp(e.target.value)}>
-                        <option value="All">All offers</option>
-                        {OFFER_APPS.map((app) => (
-                          <option key={app} value={app}>{app} offers</option>
-                        ))}
-                      </select>
-                    </label>
-
-                    {hasFilters && (
-                      <button type="button" className="btn clear" onClick={clearAll}>Clear</button>
-                    )}
-
-                    <span className="result-count" role="status" aria-live="polite" aria-atomic="true">
-                      <strong>{filtered.length}</strong> of {restaurants.length}
-                    </span>
-                  </div>
-                </section>
-              );
-            })()}
+      <main className="grid-wrap" id="restaurant-grid">
+        <div className="section-top">
+          <div className="section-title">
+            <span className="kicker">Your table of discoveries</span>
+            <h2>Explore restaurants<span className="gold-dot">.</span></h2>
+            <p>Find a place worth coming back to.</p>
+          </div>
+          <div className="section-controls">
+            <div className="sort-wrap">
+              <label className="sr-only" htmlFor="sort">Sort restaurants</label>
+              <select id="sort" value={sort} onChange={(e) => setSort(e.target.value)}>
+                <option value="recommended">Recommended</option>
+                <option value="rating">Top rated</option>
+                <option value="name">Name A–Z</option>
+              </select>
+            </div>
+            <div className="view-toggle" role="group" aria-label="View">
+              <button type="button" className={`view-toggle-btn ${view === "grid" ? "on" : ""}`} aria-pressed={view === "grid"} onClick={() => setView("grid")}>
+                {GRID_ICON} Grid
+              </button>
+              <button type="button" className={`view-toggle-btn ${view === "list" ? "on" : ""}`} aria-pressed={view === "list"} onClick={() => setView("list")}>
+                {LIST_ICON} List
+              </button>
+              <button type="button" className={`view-toggle-btn ${view === "map" ? "on" : ""}`} aria-pressed={view === "map"} onClick={() => setView("map")}>
+                {MAP_ICON} Map
+              </button>
+            </div>
+            <button
+              type="button"
+              className={`more-filters ${filtersOpen ? "is-open" : ""}`}
+              aria-expanded={filtersOpen}
+              aria-controls="filter-panel"
+              onClick={() => setFiltersOpen((open) => !open)}
+            >
+              {TICKET_ICON}
+              <span>More filters</span>
+              {activeFilterCount > 0 && <span className="more-filters-count">{activeFilterCount}</span>}
+            </button>
           </div>
         </div>
-      </header>
 
-      <main className="grid-wrap" aria-label="Restaurant results">
-        <div className="results-head">
-          <h2>Explore Restaurants</h2>
-          <div className="view-toggle" role="group" aria-label="View">
-            <button type="button" className={`view-toggle-btn ${view === "list" ? "on" : ""}`} onClick={() => setView("list")}>📋 List</button>
-            <button type="button" className={`view-toggle-btn ${view === "map" ? "on" : ""}`} onClick={() => setView("map")}>🗺️ Map</button>
-          </div>
+        <div className="count-row">
+          <span className="result-count" role="status" aria-live="polite" aria-atomic="true">
+            <strong>{filtered.length}</strong> {filtered.length === 1 ? "restaurant" : "restaurants"}
+            {savedOnly ? <span className="result-note"> · Saved only</span> : null}
+          </span>
+          {hasFilters && (
+            <button type="button" className="clear-link" onClick={clearAll}>
+              Clear filters
+            </button>
+          )}
         </div>
+
+        <RestaurantFilters
+          meals={offeredMeals}
+          mealTime={mealTime}
+          onMealTimeChange={setMealTime}
+          offersOnly={offersOnly}
+          onOffersOnlyChange={setOffersOnly}
+          offerCount={offerCount}
+          openNow={openNowOnly}
+          onOpenNowChange={setOpenNowOnly}
+          openNowCount={openNowCount}
+          ratingOptions={ratingOptions}
+          minRating={minRating}
+          onMinRatingChange={setMinRating}
+          hasFilters={hasFilters}
+          onClear={clearAll}
+          open={filtersOpen}
+        />
+
         {filtered.length === 0 && (
           <div className="empty" role="status">
             <strong>No restaurants found</strong>
@@ -472,206 +896,48 @@ export default function App() {
                 ? `Nothing matches “${query}” with the selected filters.`
                 : "No restaurants match the selected filters."}
             </span>
-            <button
-              type="button"
-              className="btn"
-              onClick={() => { setQuery(""); setCuisine("All"); setArea("All"); }}
-            >
-              Clear all
-            </button>
+            <button type="button" className="btn" onClick={clearAll}>Clear all</button>
           </div>
         )}
+
         {view === "map" ? (
           <MapView restaurants={filtered} onOpen={(id) => setSelectedId(id)} />
         ) : (
-        <div className="grid" id="restaurant-grid">
-          {filtered.map((r, index) => (
-            <article
-              key={r.id}
-              className="card"
-              aria-labelledby={`restaurant-${r.id}-title`}
-              aria-describedby={`restaurant-${r.id}-description`}
-            >
-              <div className="card-img">
-                <img
-                  src={r.image}
-                  data-fallbacks={(r.imageFallbacks || []).join(",")}
-                  data-fallback={r.fallbackImage}
-                  data-fallback-final={r.fallbackFinal}
-                  onError={handleImgError}
-                  alt=""
-                  width={r.imageWidth}
-                  height={r.imageHeight}
-                  // The first row is what the visitor sees immediately, so it is
-                  // not deferred; everything below it is.
-                  loading={index < 3 ? "eager" : "lazy"}
-                  fetchPriority={index === 0 ? "high" : "auto"}
-                  decoding="async"
-                />
-                {r.rating ? (
-                  <span className="rating-badge">
-                    <span aria-hidden="true">★</span> {r.rating}
-                    {r.reviews ? <span className="sr-only"> out of 5 from {r.reviews} Google reviews</span> : <span className="sr-only"> out of 5</span>}
-                    {r.reviews ? <span aria-hidden="true"> ({r.reviews})</span> : null}
-                  </span>
-                ) : null}
-                {getOfferApps(r.id).length > 0 && (
-                  <span className="offer-app-badges" title={`Offers available via ${getOfferApps(r.id).join(", ")}`}>
-                    {getOfferApps(r.id).map((app) => (
-                      <span key={app} className={`offer-app-badge offer-app-badge--${app.toLowerCase()}`}>{app}</span>
-                    ))}
-                  </span>
-                )}
-              </div>
-              <div className="card-body">
-                <div className="card-top">
-                  {hasStory(r.id) ? (
-                    <button
-                      type="button"
-                      className="highlight-wrap card-story-ring"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        openStory(r.id, event.currentTarget);
-                      }}
-                      aria-label={`Play the ${r.name} highlights`}
-                    >
-                      <span className="highlight-letter" aria-hidden="true">{r.name.charAt(0)}</span>
-                      <img
-                        className="highlight"
-                        src={r.logoUpload}
-                        data-rid={r.id}
-                        data-official={r.logo}
-                        onError={handleLogoError}
-                        alt=""
-                        width="56"
-                        height="56"
-                        loading="lazy"
-                      />
-                    </button>
-                  ) : (
-                    <span className="highlight-wrap">
-                      <span className="highlight-letter">{r.name.charAt(0)}</span>
-                      <img
-                        className="highlight"
-                        src={r.logoUpload}
-                        data-rid={r.id}
-                        data-official={r.logo}
-                        onError={handleLogoError}
-                        alt=""
-                        width="56"
-                        height="56"
-                        loading="lazy"
-                      />
-                    </span>
-                  )}
-                  <h2 id={`restaurant-${r.id}-title`}>
-                    {/* The title is the real control: it is keyboard reachable and
-                        its ::after covers the card, so a click anywhere still works. */}
-                    <button type="button" className="card-open" onClick={() => openRestaurant(r)}>
-                      {r.name}
-                    </button>
-                  </h2>
-                  <span className="cuisine">{r.cuisine}</span>
-                  {r.tags.map((t) => t.toLowerCase()).includes("brunch") && (
-                    <span className="cuisine" style={{ marginLeft: 6, background: "#fdf1e9" }}>🥞 Brunch</span>
-                  )}
-                </div>
-                <p className="desc" id={`restaurant-${r.id}-description`}>{r.description}</p>
-                {getOfferDetails(r.id).length > 0 && (
-                  <p className="offers-line">
-                    🏷️{" "}
-                    {getOfferDetails(r.id).map((o, i) => (
-                      <span key={o.app}>
-                        {i > 0 && <span className="offers-sep"> · </span>}
-                        <span className="offers-line-item">
-                          {OFFER_APP_ICONS[o.app] && (
-                            <img
-                              className="offers-line-icon"
-                              src={OFFER_APP_ICONS[o.app]}
-                              alt={o.app}
-                              title={o.app}
-                              loading="lazy"
-                              onError={(e) => { e.currentTarget.style.display = "none"; }}
-                            />
-                          )}
-                          {o.text || "Offer available"}
-                        </span>
-                      </span>
-                    ))}
-                  </p>
-                )}
-                <div className="meta">
-                  <span>📍 {locationLabel(r)}, {r.city}</span>
-                  {r.branches.length > 1 && <span className="branch-count">{r.branches.length} locations</span>}
-                  {hoursLabel(r) ? <span>🕒 {hoursLabel(r)}</span> : null}
-                  {r.phone ? <span>📞 {r.phone}</span> : null}
-                </div>
-                <div className="card-actions">
-                  {r.menuUrl ? (
-                    <a
-                      className="btn primary"
-                      href={r.menuUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Open ${r.name} menu in a new tab`}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      View Menu
-                    </a>
-                  ) : (
-                    <button
-                      type="button"
-                      className="btn primary"
-                      aria-label={`View menu for ${r.name}`}
-                      ref={(node) => {
-                        if (node) menuButtonRefs.current.set(r.id, node);
-                        else menuButtonRefs.current.delete(r.id);
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openRestaurant(r, { source: e.currentTarget, view: "menu" });
-                      }}
-                    >
-                      View Menu
-                    </button>
-                  )}
-                  <button
-                    type="button"
-                    className="btn details-action"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      openRestaurant(r, { source: e.currentTarget, view: "details" });
-                    }}
-                  >
-                    Details
-                  </button>
-                  <a
-                    className="btn"
-                    href={mapsUrl(r)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    Maps ↗
-                  </a>
-                  <a
-                    className="btn insta"
-                    href={instagramUrl(r)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    aria-label={`Open ${instagramLabel(r)} on Instagram`}
-                    title={`Open ${instagramLabel(r)} on Instagram`}
-                  >
-                    <span className="ig-glyph" aria-hidden="true">📸</span> Instagram
-                  </a>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+          <RestaurantGrid
+            restaurants={filtered}
+            view={view}
+            favourites={favourites}
+            onToggleSaved={toggleFavourite}
+            onOpen={(restaurant, trigger) => openRestaurant(restaurant, { source: trigger })}
+            onShare={shareRestaurant}
+            hasStory={hasStory}
+            onOpenStory={openStory}
+            onOpenMenu={(restaurant, trigger) => openRestaurant(restaurant, { source: trigger, view: "menu" })}
+            onOpenLocations={openBranchPicker}
+            menuButtonRefs={menuButtonRefs}
+          />
         )}
+
+        <p className="footnote">
+          Food photography is illustrative and does not represent each restaurant&rsquo;s menu.
+        </p>
       </main>
+
+      <nav className="mobile-bottom" aria-label="Quick navigation">
+        <button type="button" className={view === "grid" ? "on" : ""} onClick={goToExplore}>
+          {COMPASS_ICON} Explore
+        </button>
+        <button type="button" onClick={focusSearch}>
+          {SEARCH_ICON} Search
+        </button>
+        <button type="button" className={savedOnly ? "on" : ""} onClick={() => { setSavedOnly((on) => !on); scrollToResults(); }}>
+          <HeartIcon filled={savedOnly} /> Saved
+        </button>
+      </nav>
+
+      {toast && (
+        <p className="toast" role="status" aria-live="polite">{toast}</p>
+      )}
 
       {selected && modalView === "menu" && selected.menuPhotos.length > 0 && (
         <div className="modal-backdrop menu-viewer-backdrop" onClick={closeRestaurant}>
@@ -694,8 +960,8 @@ export default function App() {
                     data-official={selected.logo}
                     onError={handleLogoError}
                     alt=""
-                    width="48"
-                    height="48"
+                    width="44"
+                    height="44"
                   />
                 </span>
                 <div>
@@ -762,276 +1028,13 @@ export default function App() {
         </div>
       )}
 
-      {selected && modalView === "details" && (
-        <div className="modal-backdrop" onClick={closeRestaurant}>
-          <div
-            className="modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="restaurant-modal-title"
-            aria-describedby="restaurant-modal-description"
-            ref={modalRef}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="modal-hero">
-              <img src={selected.image} data-rid={selected.id} data-fallback={selected.fallbackImage} data-fallback-final={selected.fallbackFinal} onError={handleImgError} alt={selected.name} width="800" height="500" />
-              <div className="modal-head-overlay">
-                <span className="highlight-wrap large">
-                  <span className="highlight-letter">{selected.name.charAt(0)}</span>
-                  <img
-                    className="highlight large"
-                    src={selected.logoUpload}
-                    data-rid={selected.id}
-                    data-official={selected.logo}
-                    onError={handleLogoError}
-                    alt=""
-                    width="72"
-                    height="72"
-                  />
-                </span>
-                <div className="modal-head-copy">
-                  <h2 id="restaurant-modal-title">{selected.name}</h2>
-                  <div className="sub" id="restaurant-modal-description">
-                    {[
-                      selected.cuisine,
-                      selected.rating
-                        ? `★ ${selected.rating}${selected.reviews ? ` (${selected.reviews} Google reviews)` : ""}`
-                        : null,
-                    ]
-                      .filter(Boolean)
-                      .join(" • ")}
-                  </div>
-                </div>
-              </div>
-              <button
-                type="button"
-                className="close"
-                aria-label={`Close ${selected.name} menu`}
-                ref={closeButtonRef}
-                onClick={closeRestaurant}
-              >
-                ✕
-              </button>
-            </div>
-            <div className="modal-body">
-              <div className="tags">
-                {selected.tags.map((t) => (
-                  <span key={t} className="tag">{t}</span>
-                ))}
-              </div>
-
-              {hasStory(selected.id) && (
-                <section className="highlights-strip" aria-label={`${selected.name} highlights`}>
-                  <button
-                    type="button"
-                    className="highlights-play"
-                    onClick={(event) => {
-                      closeRestaurant();
-                      window.setTimeout(() => openStory(selected.id, event.currentTarget), 0);
-                    }}
-                  >
-                    <span className="highlights-ring" aria-hidden="true">
-                      <span className="highlight-letter">{selected.name.charAt(0)}</span>
-                      <span className="highlights-play-icon" aria-hidden="true">▶</span>
-                    </span>
-                    <span className="highlights-copy">
-                      <strong>Highlights</strong>
-                      <span>
-                        {storyFrames(selected.id).length} photo{storyFrames(selected.id).length === 1 ? "" : "s"}
-                      </span>
-                    </span>
-                  </button>
-                  <div className="highlights-thumbs" aria-hidden="true">
-                    {storyFrames(selected.id).slice(0, 4).map((frame, i) => (
-                      <img key={i} src={frame.src} alt="" loading="lazy" decoding="async" />
-                    ))}
-                  </div>
-                </section>
-              )}
-
-              <div className="location-box">
-                <div className="location-list">
-                  <strong>📍 Locations in Bahrain</strong>
-                  {selected.branches.length > 0 ? (
-                    selected.branches.map((b) => (
-                      <div key={b}>
-                        <a href={branchMapsUrl(selected, b)} target="_blank" rel="noopener noreferrer">
-                          {b} ↗
-                        </a>
-                      </div>
-                    ))
-                  ) : (
-                    <div>
-                      <a href={mapsUrl(selected)} target="_blank" rel="noopener noreferrer">
-                        {selected.address} ↗
-                      </a>
-                    </div>
-                  )}
-                  {selected.phone ? (
-                    <div>
-                      📞{" "}
-                      {phoneHref(selected.phone) ? (
-                        <a href={phoneHref(selected.phone)}>{selected.phone}</a>
-                      ) : (
-                        selected.phone
-                      )}
-                    </div>
-                  ) : null}
-                  {selected.hours ? <div>🕒 {hoursLabel(selected)}</div> : null}
-                  {selected.openingHours ? (
-                    <div className="open-state">
-                      <span className={openNow ? "open-dot" : "closed-dot"} aria-hidden="true" />
-                      {openNow === null ? "Hours vary" : openNow ? "Open now" : "Closed now"}
-                      <details className="week-hours">
-                        <summary>All week</summary>
-                        <dl>
-                          {["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((day) =>
-                            selected.openingHours[day] ? (
-                              <div key={day}>
-                                <dt>{day.slice(0, 3)}</dt>
-                                <dd>{selected.openingHours[day]}</dd>
-                              </div>
-                            ) : null,
-                          )}
-                        </dl>
-                      </details>
-                    </div>
-                  ) : null}
-                  {selected.instagram ? (
-                    <div>
-                      📸{" "}
-                      <a href={instagramUrl(selected)} target="_blank" rel="noopener noreferrer">
-                        {instagramLabel(selected)}
-                      </a>
-                    </div>
-                  ) : (
-                    <div>
-                      📸{" "}
-                      <a href={instagramUrl(selected)} target="_blank" rel="noopener noreferrer">
-                        Instagram ↗
-                      </a>
-                    </div>
-                  )}
-                  {getOfferDetails(selected.id).length > 0 && (
-                    <div className="offers-block">
-                      <p className="offers-title">🏷️ Offers</p>
-                      <ul>
-                        {getOfferDetails(selected.id).map(({ app, text, url }) => (
-                          <li key={app}>
-                            <span className="offer-app">
-                              <span className="offer-app-name">{app}</span>
-                              {OFFER_APP_ICONS[app] && (
-                                <img
-                                  className="offer-app-icon"
-                                  style={{ width: "calc(100% - 4px)", height: 18, maxHeight: 18 }}
-                                  src={OFFER_APP_ICONS[app]}
-                                  alt=""
-                                  loading="lazy"
-                                  onError={(e) => { e.currentTarget.style.display = "none"; }}
-                                />
-                              )}
-                            </span>
-                            {url ? (
-                              <a href={url} target="_blank" rel="noopener noreferrer">
-                                {text || "View offers"} <span aria-hidden="true">↗</span>
-                              </a>
-                            ) : (
-                              <span>{text || "Offer available"}</span>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  {selected.dataSource === "google-places" && <div className="src">✓ Google-verified</div>}
-                </div>
-                <div className="location-actions">
-                  {selected.talabatUrl ? (
-                    <a className="btn" href={selected.talabatUrl} target="_blank" rel="noopener noreferrer">
-                      Order on Talabat ↗
-                    </a>
-                  ) : null}
-                  <a className="btn insta" href={instagramUrl(selected)} target="_blank" rel="noopener noreferrer">
-                    📸 {instagramLabel(selected)}
-                  </a>
-                  <button type="button" className="btn insta" onClick={() => { navigator.clipboard?.writeText(`${window.location.origin}${window.location.pathname}#restaurant/${selected.id}`); }}>🔗 Copy Link</button>
-                </div>
-              </div>
-
-              {selected.menuUrl && (
-                <section className="menu-photo-section" aria-labelledby="menu-link-title">
-                  <div className="menu-photo-toolbar">
-                    <div>
-                      <h3 id="menu-link-title">Official menu</h3>
-                      <p>Opens {selected.name}&rsquo;s own menu site.</p>
-                    </div>
-                    <a
-                      className="btn primary"
-                      href={selected.menuUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Open ${selected.name} menu in a new tab`}
-                    >
-                      View Menu ↗
-                    </a>
-                  </div>
-                </section>
-              )}
-
-              {selected.menuPhotos.length > 0 && (
-                <section className="menu-photo-section" aria-labelledby="menu-photo-title">
-                  <div className="menu-photo-toolbar">
-                    <div>
-                      <h3 id="menu-photo-title">Menu photos</h3>
-                      <p>{selected.menuPhotos.length} official menu pages</p>
-                    </div>
-                    <button
-                      type="button"
-                      className="btn primary"
-                      aria-expanded={showMenuPhotos}
-                      aria-controls="restaurant-menu-photos"
-                      onClick={() => setShowMenuPhotos((visible) => !visible)}
-                    >
-                      {showMenuPhotos ? "Hide menu photos" : "View menu photos"}
-                    </button>
-                  </div>
-                  {showMenuPhotos && (
-                    <div className="menu-photo-grid" id="restaurant-menu-photos">
-                      {selected.menuPhotos.map((photo, index) => (
-                        <figure key={photo}>
-                          <a
-                            href={photo}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Open ${selected.name} menu page ${index + 1} full size`}
-                          >
-                            <img
-                              src={photo}
-                              alt={`${selected.name} menu page ${index + 1}`}
-                              width={menuPhotoDimensions(selected, index)[0]}
-                              height={menuPhotoDimensions(selected, index)[1]}
-                              loading="lazy"
-                            />
-                          </a>
-                          <figcaption>Menu page {index + 1}</figcaption>
-                        </figure>
-                      ))}
-                    </div>
-                  )}
-                </section>
-              )}
-
-              <div className="modal-cta">
-                <a className="btn primary" href={mapsUrl(selected)} target="_blank" rel="noopener noreferrer">
-                  Open in Maps ↗
-                </a>
-                {phoneHref(selected.phone) ? (
-                  <a className="btn" href={phoneHref(selected.phone)}>Call</a>
-                ) : null}
-              </div>
-            </div>
-          </div>
-        </div>
+      {branchPickerRestaurant && branchPickerLocations && (
+        <BranchPicker
+          restaurant={branchPickerRestaurant}
+          locations={branchPickerLocations}
+          onSelect={pickBranch}
+          onClose={closeBranchPicker}
+        />
       )}
 
       {storyId && (
@@ -1046,7 +1049,10 @@ export default function App() {
       )}
 
       <footer className="footer">
-        FoodFind • Restaurants across Bahrain
+        <div className="footin">
+          <p>FoodFind — restaurants, menus and locations across Bahrain.</p>
+          <p className="footnote">{restaurants.length} places · {MEAL_TIMES.join(" · ")}</p>
+        </div>
       </footer>
 
       {showBackToTop && (
@@ -1059,7 +1065,6 @@ export default function App() {
           ↑
         </button>
       )}
-
     </div>
   );
 }

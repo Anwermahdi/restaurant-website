@@ -8,5 +8,9 @@ export default defineConfig({
   server: {
     host: true,
     allowedHosts: [".trycloudflare.com", ".loca.lt"],
+    // Generated audit reports should not trigger a full page reload.
+    watch: {
+      ignored: ["**/reports/**"],
+    },
   },
 })

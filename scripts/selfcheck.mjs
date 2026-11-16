@@ -19,7 +19,11 @@ const menuUrls = new Map();
 for (const r of restaurants) {
   if (ids.has(r.id)) problems.push(`dup id ${r.id}`);
   ids.add(r.id);
-  if (!r.name || !r.image || !r.menu?.length) problems.push(`bad fields ${r.id}`);
+  // A place needs a name, a card image, and a menu in some form: a structured
+  // menu, photographed menu pages, or a link to the restaurant's own menu.
+  if (!r.name || !r.image || (!r.menu?.length && !r.menuPhotos?.length && !r.menuUrl)) {
+    problems.push(`bad fields ${r.id}`);
+  }
 
   const nameKey = norm(r.name);
   if (names.has(nameKey)) problems.push(`dup name "${r.name}": ${names.get(nameKey)} + ${r.id}`);
@@ -67,7 +71,12 @@ for (const r of restaurants) {
   const ig = instagramUrl(r);
   if (!ig.startsWith("https://www.instagram.com/")) problems.push(`bad ig ${r.id}: ${ig}`);
   const maps = mapsUrl(r);
-  if (!maps.startsWith("https://www.google.com/maps/search")) problems.push(`bad maps ${r.id}`);
+  // Area-centre pins are deliberately not exposed as map links. Any link that
+  // does exist must be an exact-place or exact-coordinate Google Maps URL.
+  if (maps && !/^https:\/\/www\.google\.com\/maps\/(search|place)\//.test(maps)) {
+    problems.push(`bad maps ${r.id}`);
+  }
+  if (!maps && r.coordSource !== "area") problems.push(`missing maps ${r.id}`);
 }
 
 // Identical bytes under two names means one file is doing two jobs.

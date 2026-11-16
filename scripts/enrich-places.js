@@ -7,7 +7,7 @@
 
 import fs from "node:fs";
 
-const API_KEY = process.env.GOOGLE_PLACES_API_KEY || process.env.VITE_GOOGLE_PLACES_API_KEY;
+const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 const DATA_FILE = new URL("../src/data/restaurants.js", import.meta.url);
 const OUT_FILE = new URL("../src/data/places-overrides.json", import.meta.url);
 
