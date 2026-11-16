@@ -84,7 +84,11 @@ export default function RestaurantCard({
   };
 
   return (
-    <article className="card" aria-labelledby={titleId}>
+    <article
+      className="card"
+      aria-labelledby={titleId}
+      style={{ "--card-i": Math.min(index, 11) }}
+    >
       <div className="card-media">
         <button
           type="button"
@@ -198,12 +202,6 @@ export default function RestaurantCard({
             <button type="button" className="card-open" onClick={(event) => onOpen?.(restaurant, event.currentTarget)}>
               <span className="card-open-text">{restaurant.name}</span>
             </button>
-            {isVerified && (
-              <span className="card-verified" title="Details verified on Google">
-                <VerifiedIcon />
-                <span className="sr-only">Verified on Google</span>
-              </span>
-            )}
           </h3>
 
           {restaurant.rating ? (
@@ -216,8 +214,17 @@ export default function RestaurantCard({
                 <span className="card-rating-count">({restaurant.reviews})</span>
               ) : null}
             </p>
-          ) : null}
+          ) : (
+            <p className="card-rating card-rating--empty" aria-hidden="true" />
+          )}
         </div>
+
+        {isVerified && (
+          <p className="card-verified" title="Details verified on Google">
+            <VerifiedIcon />
+            Verified on Google
+          </p>
+        )}
 
         {restaurant.description ? <p className="card-desc">{restaurant.description}</p> : null}
 

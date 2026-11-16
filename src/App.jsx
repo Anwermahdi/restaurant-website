@@ -1,5 +1,8 @@
-import MapView from "./MapView.jsx";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+
+// Leaflet and its clustering plugin are only needed once a visitor actually
+// switches to the map, so they stay out of the initial bundle.
+const MapView = lazy(() => import("./MapView.jsx"));
 import {
   restaurants, cuisines, areas, isOpenNow, hasValidHours, OFFER_APPS, getOfferApps,
   getOfferDetails, MEAL_TIMES, getMealTimes, locationsFor,
@@ -9,13 +12,13 @@ import { StoryViewer } from "./Stories";
 import RestaurantGrid from "./components/RestaurantGrid.jsx";
 import RestaurantSearch from "./components/RestaurantSearch.jsx";
 import RestaurantFilters from "./components/RestaurantFilters.jsx";
-import RestaurantDetails from "./components/RestaurantDetails.jsx";
 import RestaurantPage from "./components/RestaurantPage.jsx";
 import BranchPicker from "./components/BranchPicker.jsx";
 import { handleImgError, handleLogoError } from "./components/media.js";
 import {
-  CHEVRON_ICON, CLOCHE_ICON, COMPASS_ICON, GRID_ICON, HeartIcon, LIST_ICON, MAP_ICON, MENU_ICON,
-  PIN_ICON, RESTAURANT_ICON, SEARCH_ICON, SPARKLES_ICON, TAG_ICON, TICKET_ICON, USER_ICON,
+  CHEVRON_LEFT_ICON, CHEVRON_RIGHT_ICON,
+  CLOCHE_ICON, CLOSE_ICON, COMPASS_ICON, GRID_ICON, HeartIcon, LIST_ICON, MAP_ICON, MENU_ICON, MOON_ICON,
+  RESTAURANT_ICON, SEARCH_ICON, SPARKLES_ICON, SUN_ICON, TAG_ICON, TICKET_ICON,
   BahrainFlagIcon,
 } from "./components/icons.jsx";
 import "./App.css";
@@ -137,6 +140,16 @@ function readFavourites() {
   }
 }
 
+// Dark mode: an explicit choice overrides the OS setting until cleared.
+const THEME_KEY = "foodfind:theme";
+function readTheme() {
+  try {
+    return window.localStorage.getItem(THEME_KEY) || "system";
+  } catch {
+    return "system";
+  }
+}
+
 export default function App() {
   const [query, setQuery] = useState("");
   const [cuisine, setCuisine] = useState("All");
@@ -158,6 +171,7 @@ export default function App() {
   const [favourites, setFavourites] = useState(readFavourites);
   const [savedOnly, setSavedOnly] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
+  const [theme, setTheme] = useState(readTheme);
   const modalRef = useRef(null);
   const closeButtonRef = useRef(null);
   const menuButtonRefs = useRef(new Map());
@@ -318,6 +332,29 @@ export default function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Dark mode: "system" leaves the OS preference alone, anything else pins it.
+  useEffect(() => {
+    if (theme === "system") {
+      document.documentElement.removeAttribute("data-theme");
+    } else {
+      document.documentElement.setAttribute("data-theme", theme);
+    }
+    try {
+      window.localStorage.setItem(THEME_KEY, theme);
+    } catch {
+      // A private window may refuse to store; the choice just won't persist.
+    }
+  }, [theme]);
+
+  const toggleTheme = useCallback(() => {
+    const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+    setTheme((current) => {
+      const currentlyDark = current === "dark" || (current === "system" && prefersDark);
+      return currentlyDark ? "light" : "dark";
+    });
+  }, []);
+  const isDark = theme === "dark" || (theme === "system" && window.matchMedia?.("(prefers-color-scheme: dark)").matches);
+
   // Close nav panel on Escape.
   useEffect(() => {
     if (!navOpen) return undefined;
@@ -325,6 +362,11 @@ export default function App() {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [navOpen]);
+
+  // Close nav panel whenever the view changes (e.g. switching to Map).
+  useEffect(() => {
+    setNavOpen(false);
+  }, [view]);
 
   // Lock scroll when the menu viewer modal is open.
   useEffect(() => {
@@ -340,6 +382,15 @@ export default function App() {
         setSelectedId(null);
         setModalView("details");
         setActiveMenuPhoto(0);
+        return;
+      }
+      const pageCount = selected?.menuPhotos.length || 0;
+      if (event.key === "ArrowRight" && pageCount > 1) {
+        setActiveMenuPhoto((index) => (index + 1) % pageCount);
+        return;
+      }
+      if (event.key === "ArrowLeft" && pageCount > 1) {
+        setActiveMenuPhoto((index) => (index - 1 + pageCount) % pageCount);
         return;
       }
       if (event.key !== "Tab" || !modalRef.current) return;
@@ -367,7 +418,7 @@ export default function App() {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
     };
-  }, [selectedId, modalView]);
+  }, [selectedId, modalView, selected?.menuPhotos.length]);
 
   // The branch list of one place, opened from its card.
   const openBranchPicker = useCallback((restaurant, source) => {
@@ -680,17 +731,15 @@ export default function App() {
             </button>
           </div>
           <div className="navright">
-            <label className="navplace">
-              {PIN_ICON}
-              <span className="sr-only">Location</span>
-              <select name="navArea" value={area} onChange={(e) => setArea(e.target.value)}>
-                <option value="All">Bahrain</option>
-                {areas.filter((item) => item !== "All").map((item) => (
-                  <option key={item} value={item}>{item}</option>
-                ))}
-              </select>
-              {CHEVRON_ICON}
-            </label>
+            <button
+              type="button"
+              className="nav-icon"
+              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+              title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+              onClick={toggleTheme}
+            >
+              {isDark ? SUN_ICON : MOON_ICON}
+            </button>
 
             <button
               type="button"
@@ -901,7 +950,9 @@ export default function App() {
         )}
 
         {view === "map" ? (
-          <MapView restaurants={filtered} onOpen={(id) => setSelectedId(id)} />
+          <Suspense fallback={<div className="map-view-loading">Loading map…</div>}>
+            <MapView restaurants={filtered} onOpen={(id) => setSelectedId(id)} />
+          </Suspense>
         ) : (
           <RestaurantGrid
             restaurants={filtered}
@@ -918,9 +969,6 @@ export default function App() {
           />
         )}
 
-        <p className="footnote">
-          Food photography is illustrative and does not represent each restaurant&rsquo;s menu.
-        </p>
       </main>
 
       <nav className="mobile-bottom" aria-label="Quick navigation">
@@ -976,7 +1024,7 @@ export default function App() {
                 ref={closeButtonRef}
                 onClick={closeRestaurant}
               >
-                ✕
+                {CLOSE_ICON}
               </button>
             </header>
             <div className="menu-viewer-body">
@@ -997,6 +1045,26 @@ export default function App() {
                     fetchPriority="high"
                   />
                 </a>
+                {selected.menuPhotos.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      className="menu-page-arrow menu-page-arrow--prev"
+                      aria-label="Previous menu page"
+                      onClick={() => setActiveMenuPhoto((index) => (index - 1 + selected.menuPhotos.length) % selected.menuPhotos.length)}
+                    >
+                      {CHEVRON_LEFT_ICON}
+                    </button>
+                    <button
+                      type="button"
+                      className="menu-page-arrow menu-page-arrow--next"
+                      aria-label="Next menu page"
+                      onClick={() => setActiveMenuPhoto((index) => (index + 1) % selected.menuPhotos.length)}
+                    >
+                      {CHEVRON_RIGHT_ICON}
+                    </button>
+                  </>
+                )}
               </div>
               <div className="menu-thumbnails" role="group" aria-label={`${selected.name} menu pages`}>
                 {selected.menuPhotos.map((photo, index) => (
@@ -1050,8 +1118,44 @@ export default function App() {
 
       <footer className="footer">
         <div className="footin">
-          <p>FoodFind — restaurants, menus and locations across Bahrain.</p>
-          <p className="footnote">{restaurants.length} places · {MEAL_TIMES.join(" · ")}</p>
+          <div className="foot-brand">
+            <a className="word" href="#restaurant-grid" aria-label="FoodFind, back to the restaurants">
+              foodfind
+              <span className="word-spark" aria-hidden="true">✳</span>
+            </a>
+            <p>Restaurants, menus and locations across Bahrain — {restaurants.length} places and counting.</p>
+          </div>
+
+          <nav className="foot-col" aria-label="Explore">
+            <h3>Explore</h3>
+            <button type="button" onClick={goToExplore}>All restaurants</button>
+            <button type="button" onClick={goToCuisines}>Cuisines</button>
+            <button type="button" onClick={goToOffers}>Offers</button>
+            <button type="button" onClick={goToMap}>Map</button>
+          </nav>
+
+          <nav className="foot-col" aria-label="Meal times">
+            <h3>Meal times</h3>
+            {MEAL_TIMES.map((meal) => (
+              <button
+                key={meal}
+                type="button"
+                onClick={() => { setMealTime(meal); scrollToResults(); }}
+              >
+                {meal}
+              </button>
+            ))}
+          </nav>
+
+          <div className="foot-col">
+            <h3>About</h3>
+            <p className="foot-note">
+              Built for people who want a real place to eat, not a sponsored list.
+            </p>
+          </div>
+        </div>
+        <div className="foot-bottom">
+          <p>© {new Date().getFullYear()} FoodFind · Bahrain</p>
         </div>
       </footer>
 

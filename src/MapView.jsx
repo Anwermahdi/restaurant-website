@@ -1,7 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import branchCoords from "./data/branch-coords.json";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import "leaflet.markercluster";
+import "leaflet.markercluster/dist/MarkerCluster.css";
+import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 
 const CUISINE_COLOR = {
   Burger: "#b9431f",
@@ -40,10 +43,17 @@ const CUISINE_SHORT = {
   Mexican: "MX",
 };
 
+function pinFill(restaurant) {
+  return CUISINE_COLOR[restaurant.cuisine] || "#2a78b8";
+}
+function pinCode(restaurant) {
+  return CUISINE_SHORT[restaurant.cuisine] || String(restaurant.name || "?").charAt(0).toUpperCase();
+}
+
 // Circular cuisine-code pin: food-type code in the cuisine color.
 function letterIconFor(restaurant) {
-  const fill = CUISINE_COLOR[restaurant.cuisine] || "#2a78b8";
-  const code = CUISINE_SHORT[restaurant.cuisine] || String(restaurant.name || "?").charAt(0).toUpperCase();
+  const fill = pinFill(restaurant);
+  const code = pinCode(restaurant);
   const two = code.length > 1 ? " two" : "";
   return L.divIcon({
     className: "map-letter-pin-wrap",
@@ -53,20 +63,42 @@ function letterIconFor(restaurant) {
   });
 }
 
-const BAHRAIN = [26.15, 50.55];
+function clusterIcon(cluster) {
+  return L.divIcon({
+    className: "map-cluster-wrap",
+    html: `<span class="map-cluster">${cluster.getChildCount()}</span>`,
+    iconSize: [40, 40],
+    iconAnchor: [20, 20],
+  });
+}
+
+// Bahrain only: a fixed box around the main island and Muharraq, so the map
+// never opens zoomed out to the wider Gulf coastline.
+const BAHRAIN_BOUNDS = [
+  [25.78, 50.33],
+  [26.35, 50.75],
+];
 
 export default function MapView({ restaurants, onOpen }) {
   const ref = useRef(null);
   const mapRef = useRef(null);
+  const legendRef = useRef(null);
 
   useEffect(() => {
     if (!ref.current || mapRef.current) return undefined;
-    const map = L.map(ref.current).setView(BAHRAIN, 10);
+    const map = L.map(ref.current, {
+      scrollWheelZoom: true,
+      zoomControl: true,
+    }).fitBounds(BAHRAIN_BOUNDS);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "&copy; OpenStreetMap contributors",
       maxZoom: 19,
     }).addTo(map);
     mapRef.current = map;
+    // The container can still be mid-layout on first paint (e.g. web fonts
+    // reflowing the page above it), so Leaflet's cached size is corrected
+    // once more after that settles.
+    window.requestAnimationFrame(() => map.invalidateSize());
     return () => {
       map.remove();
       mapRef.current = null;
@@ -76,7 +108,12 @@ export default function MapView({ restaurants, onOpen }) {
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
-    const layer = L.layerGroup().addTo(map);
+    const cluster = L.markerClusterGroup({
+      iconCreateFunction: clusterIcon,
+      spiderfyOnMaxZoom: true,
+      showCoverageOnHover: false,
+      maxClusterRadius: 50,
+    });
     const seen = new Set();
     restaurants.forEach((r) => {
       const points = [];
@@ -91,13 +128,15 @@ export default function MapView({ restaurants, onOpen }) {
         const key = `${r.id}|${p.lat.toFixed(4)},${p.lng.toFixed(4)}`;
         if (seen.has(key)) return;
         seen.add(key);
-        L.marker([p.lat, p.lng], { icon: letterIconFor(r) })
-          .addTo(layer)
-          .bindPopup(
-            `<strong>${r.name}</strong>${p.label ? ` — ${p.label}` : ""}<br/>${r.shortAddress || r.address || ""}<br/><a href="#" data-open="${r.id}">Details</a>`
-          );
+        const marker = L.marker([p.lat, p.lng], { icon: letterIconFor(r) }).bindPopup(
+          `<span class="map-popup-name">${r.name}${p.label ? ` <span class="map-popup-branch">— ${p.label}</span>` : ""}</span>` +
+            `<span class="map-popup-address">${r.shortAddress || r.address || ""}</span>` +
+            `<a class="map-popup-link" href="#" data-open="${r.id}">See details →</a>`
+        );
+        cluster.addLayer(marker);
       });
     });
+    cluster.addTo(map);
     map.on("popupopen", (e) => {
       const a = e.popup.getElement()?.querySelector("a[data-open]");
       if (a) {
@@ -108,10 +147,35 @@ export default function MapView({ restaurants, onOpen }) {
       }
     });
     return () => {
-      layer.remove();
+      cluster.remove();
       map.off("popupopen");
     };
   }, [restaurants, onOpen]);
 
-  return <div ref={ref} className="map-view" style={{ height: "70vh", width: "100%", borderRadius: 12 }} />;
+  // The legend only lists codes that actually appear in the current result
+  // set, so it never shows a key for a food type that has no pin.
+  const legendEntries = useMemo(() => {
+    const seen = new Map();
+    restaurants.forEach((r) => {
+      const code = pinCode(r);
+      if (!seen.has(code)) seen.set(code, { code, fill: pinFill(r), cuisine: r.cuisine || code });
+    });
+    return [...seen.values()].sort((a, b) => a.cuisine.localeCompare(b.cuisine));
+  }, [restaurants]);
+
+  return (
+    <div className="map-view-wrap">
+      <div ref={ref} className="map-view" />
+      {legendEntries.length > 0 && (
+        <div className="map-legend" ref={legendRef} aria-label="Map pin legend">
+          {legendEntries.map((entry) => (
+            <span className="map-legend-item" key={entry.code}>
+              <span className="map-legend-swatch" style={{ background: entry.fill }}>{entry.code}</span>
+              {entry.cuisine}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }

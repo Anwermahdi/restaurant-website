@@ -48,11 +48,25 @@ export default function RestaurantPhoto({
   const [readyFor, setReadyFor] = useState(null);
   const loaded = readyFor === imageSrc;
 
+  // The requested fit trusts the restaurant's recorded photo dimensions, but
+  // that metadata is sometimes missing or wrong (a storefront photo with no
+  // recorded size falls back to a generic landscape guess). Once the file
+  // itself has loaded, its real aspect ratio is the source of truth: a photo
+  // that turns out not to be landscape drops straight to the safe "contain"
+  // treatment instead of being stretched to fill a cover frame.
+  const [measured, setMeasured] = useState({ for: "", ratio: null });
+  const measuredRatio = measured.for === imageSrc ? measured.ratio : null;
+  const requestedFit = fit === "cover" ? "cover" : "contain";
+  const shownFit = requestedFit === "cover" && measuredRatio !== null && measuredRatio < 1.15 ? "contain" : requestedFit;
+
   const fallbackList = (Array.isArray(fallbacks) ? fallbacks : String(fallbacks || "").split(","))
     .filter(Boolean);
-  const shownFit = fit === "cover" ? "cover" : "contain";
 
   const handleLoad = (event) => {
+    const node = event.currentTarget;
+    if (node.naturalWidth > 0 && node.naturalHeight > 0) {
+      setMeasured({ for: imageSrc, ratio: node.naturalWidth / node.naturalHeight });
+    }
     setReadyFor(imageSrc);
     onLoad?.(event);
   };
@@ -62,7 +76,10 @@ export default function RestaurantPhoto({
   const attachRef = useCallback(
     (node) => {
       imgRef?.(node);
-      if (node?.complete && node.naturalWidth > 0) setReadyFor(imageSrc);
+      if (node?.complete && node.naturalWidth > 0) {
+        setMeasured({ for: imageSrc, ratio: node.naturalWidth / node.naturalHeight });
+        setReadyFor(imageSrc);
+      }
     },
     [imgRef, imageSrc]
   );

@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import {
   ARROW_ICON,
   CHECK_ICON,
   CHEVRON_LEFT_ICON,
   CHEVRON_RIGHT_ICON,
   CLOCK_ICON,
+  CLOSE_ICON,
   COPY_ICON,
   HeartIcon,
   INSTAGRAM_ICON,
@@ -18,7 +19,8 @@ import {
   VerifiedIcon,
 } from "./icons.jsx";
 import CuisineBadge from "./CuisineBadge.jsx";
-import DetailMap from "./DetailMap.jsx";
+// Leaflet is only needed once a visitor actually sees a map preview.
+const DetailMap = lazy(() => import("./DetailMap.jsx"));
 import RestaurantLogo from "./RestaurantLogo.jsx";
 import RestaurantPhoto from "./RestaurantPhoto.jsx";
 import {
@@ -483,6 +485,29 @@ export default function RestaurantPage({
                 </button>
               ) : null}
             </div>
+
+            {/* Quick actions: the four things a visitor does right after
+                finding a place, one tap away instead of buried in a panel. */}
+            <div className="detail-quick-actions">
+              {mapUrl ? (
+                <a className="detail-quick-btn" href={mapUrl} target="_blank" rel="noopener noreferrer">
+                  <span className="detail-quick-icon">{PIN_ICON}</span>
+                  <span>Directions</span>
+                </a>
+              ) : null}
+              {phone ? (
+                <a className="detail-quick-btn" href={callHref}>
+                  <span className="detail-quick-icon">{PHONE_ICON}</span>
+                  <span>Call</span>
+                </a>
+              ) : null}
+              {instagram ? (
+                <a className="detail-quick-btn" href={instagram.url} target="_blank" rel="noopener noreferrer">
+                  <span className="detail-quick-icon">{INSTAGRAM_ICON}</span>
+                  <span>Instagram</span>
+                </a>
+              ) : null}
+            </div>
           </div>
         </div>
 
@@ -503,7 +528,9 @@ export default function RestaurantPage({
             {hasCoords || mapUrl ? (
               <div className="detail-info-map">
                 {hasCoords ? (
-                  <DetailMap lat={Number(lat)} lng={Number(lng)} label={branch?.name || area || restaurant.name} />
+                  <Suspense fallback={<div className="detail-map detail-map--loading" aria-hidden="true" />}>
+                    <DetailMap lat={Number(lat)} lng={Number(lng)} label={branch?.name || area || restaurant.name} />
+                  </Suspense>
                 ) : (
                   <p className="detail-map-note">
                     A map preview is unavailable until this location&apos;s exact coordinates are verified.
@@ -610,7 +637,7 @@ export default function RestaurantPage({
             onClick={() => setLightbox(null)}
             aria-label="Close photo viewer"
           >
-            ✕
+            {CLOSE_ICON}
           </button>
           {photoCount > 1 && (
             <>
