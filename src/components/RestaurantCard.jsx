@@ -1,35 +1,40 @@
-import { CLOCK_ICON, MenuIcon, PHONE_ICON, PIN_ICON, PLAY_ICON, StarIcon, VerifiedIcon } from "./icons.jsx";
+import { MAP_ICON, MenuIcon, PHONE_ICON, PIN_ICON, PLAY_ICON, StarIcon, VerifiedIcon } from "./icons.jsx";
 import RestaurantLogo from "./RestaurantLogo.jsx";
 import { cardData } from "./cards/cardData.js";
-import { CardActions, CardPhoto, FavButton, GalleryButton, HoursText, OfferBadge } from "./cards/CardParts.jsx";
+import { CardPhoto, FavButton, GalleryButton, OfferBadge } from "./cards/CardParts.jsx";
 
 /**
- * One restaurant: the photo sits in a white mount like a framed print, the
- * logo seals it, and the text is centred and unhurried. Anything the record
- * does not have is left out rather than guessed.
+ * One restaurant, in the same language as its page: the storefront photo
+ * edge to edge with the logo seal on its corner, then the name, what it
+ * serves and today's facts, left-aligned. Anything the record does not
+ * have is left out rather than guessed.
  */
 export default function RestaurantCard({
   restaurant, index = 0, isSaved = false, onToggleSaved, onOpen, onOpenOffers, onOpenGallery, onChooseBranch, onOpenMenu,
   hasStory = false, onOpenStory,
 }) {
   const data = cardData(restaurant);
-  const titleId = `cxa-${restaurant.id}-title`;
-  return (
-    <article className="cx cxa" aria-labelledby={titleId}>
-      <div className="cxa-mount">
-        <div className="cx-media cxa-media">
-          <CardPhoto restaurant={restaurant} data={data} index={index} onOpen={onOpen} />
-          <OfferBadge restaurant={restaurant} offers={data.offers} onOpenOffers={onOpenOffers} />
-          <FavButton restaurant={restaurant} saved={isSaved} onToggle={onToggleSaved} />
-          <GalleryButton restaurant={restaurant} count={data.gallery.length} onOpenGallery={onOpenGallery} />
-        </div>
-      </div>
+  const titleId = `cxs-${restaurant.id}-title`;
+  const open = (event) => onOpen?.(restaurant, event.currentTarget);
+  const cuisineLine = data.tags.slice(0, 3).join(", ");
+  // Today's hours only when they are known; an unknown day stays quiet.
+  const hours = data.hours.tone === "unknown"
+    ? (data.hours.detail ? { tone: "unknown", text: "Today", detail: data.hours.detail } : null)
+    : data.hours;
+  const directionsHref = data.directionsUrl || data.searchUrl;
+  const hasMenu = Boolean(data.menuPages || data.menuUrl);
 
-      <div className="cxa-body">
+  return (
+    <article className="cx cxs" aria-labelledby={titleId}>
+      <div className="cx-media cxs-media">
+        <CardPhoto restaurant={restaurant} data={data} index={index} onOpen={onOpen} />
+        <OfferBadge restaurant={restaurant} offers={data.offers} onOpenOffers={onOpenOffers} />
+        <FavButton restaurant={restaurant} saved={isSaved} onToggle={onToggleSaved} />
+        <GalleryButton restaurant={restaurant} count={data.gallery.length} onOpenGallery={onOpenGallery} />
         {hasStory && onOpenStory ? (
           <button
             type="button"
-            className="cxa-logo is-story"
+            className="cxs-seal is-story"
             onClick={(event) => onOpenStory(restaurant.id, event.currentTarget)}
             aria-label={`Play the ${restaurant.name} highlights`}
           >
@@ -37,65 +42,93 @@ export default function RestaurantCard({
             <span className="logo-play" aria-hidden="true">{PLAY_ICON}</span>
           </button>
         ) : (
-          <span className="cxa-logo" aria-hidden="true"><RestaurantLogo restaurant={restaurant} /></span>
+          <span className="cxs-seal" aria-hidden="true"><RestaurantLogo restaurant={restaurant} /></span>
         )}
-        <h3 className="cxa-name" id={titleId}>
-          <button type="button" onClick={(event) => onOpen?.(restaurant, event.currentTarget)}>{restaurant.name}</button>
+      </div>
+
+      <div className="cxs-body">
+        <h3 className="cxs-name" id={titleId}>
+          <button type="button" onClick={open}>{restaurant.name}</button>
           {data.isVerified && (
             <span className="cx-verified" title="Verified on Google"><VerifiedIcon /><span className="sr-only">Verified on Google</span></span>
           )}
         </h3>
-        {data.rating ? (
-          <p className="cxa-rating">
-            <StarIcon />
-            <strong>{data.rating}</strong>
-            {data.reviews ? <span>{data.reviews} Google reviews</span> : null}
-          </p>
-        ) : null}
-        {data.description ? <p className="cxa-desc">{data.description}</p> : null}
-        {data.tags.length > 0 && (
-          <ul className="cxa-tags" aria-label="Cuisine">
-            {data.tags.slice(0, 3).map((tag) => <li key={tag}>{tag}</li>)}
-          </ul>
-        )}
+        {cuisineLine ? <p className="cxs-cuisine">{cuisineLine}</p> : null}
 
-        <dl className="cxa-info">
-          <div>
-            <dt><span className="sr-only">Location</span>{PIN_ICON}</dt>
-            <dd>
-              {data.branches > 1 ? (
-                <button type="button" className="cx-link" onClick={(event) => onChooseBranch?.(restaurant, event.currentTarget, "browse")}>
-                  {data.branches} branches
-                </button>
-              ) : (data.area || "Bahrain")}
-            </dd>
-          </div>
-          <div title={data.hoursDetail || undefined}>
-            <dt><span className="sr-only">Hours</span>{CLOCK_ICON}</dt>
-            <dd><HoursText hours={data.hours} /></dd>
-          </div>
-        </dl>
-
-        {(data.callHref || data.menuPages || data.menuUrl || data.price || data.facilities.length) ? (
-          <div className="cxa-links">
-            {data.callHref ? (
-              <a className="cxa-pill" href={data.callHref}>{PHONE_ICON}<span>{data.phone}</span></a>
-            ) : null}
-            {data.menuPages ? (
-              <button type="button" className="cxa-pill" onClick={(event) => onOpenMenu?.(restaurant, event.currentTarget)}>
-                <MenuIcon /><span>Menu</span>
+        <ul className="cxs-facts">
+          <li className="cxs-where">
+            {PIN_ICON}
+            {data.branches > 1 ? (
+              <button type="button" className="cx-link" onClick={(event) => onChooseBranch?.(restaurant, event.currentTarget, "browse")}>
+                {data.branches} branches
               </button>
-            ) : data.menuUrl ? (
-              <a className="cxa-pill" href={data.menuUrl} target="_blank" rel="noopener noreferrer">
-                <MenuIcon /><span>Menu</span><span className="sr-only"> (opens in a new tab)</span>
-              </a>
-            ) : null}
-            {data.price ? <span className="cxa-pill is-static">{data.price}</span> : null}
-            {data.facilities.map((label) => <span key={label} className="cxa-pill is-static">{label}</span>)}
-          </div>
-        ) : null}
+            ) : (
+              <span>{data.area || "Bahrain"}</span>
+            )}
+          </li>
+          {data.rating ? (
+            <li className="cxs-rating" title={data.reviews ? `${data.reviews} Google reviews` : undefined}>
+              <StarIcon />
+              <strong>{data.rating}</strong>
+              {data.reviews ? <span className="cxs-reviews">({data.reviews})</span> : null}
+              {data.reviews ? <span className="sr-only"> from {data.reviews} Google reviews</span> : null}
+            </li>
+          ) : null}
+          {hours ? (
+            <li className={`cxs-hours is-${hours.tone}`} title={data.hoursDetail || undefined}>
+              <span className="cxs-dot" aria-hidden="true" />
+              <span><strong>{hours.text}</strong>{hours.detail ? `, ${hours.detail}` : ""}</span>
+            </li>
+          ) : null}
+          {data.price ? <li>{data.price}</li> : null}
+        </ul>
 
-        <CardActions restaurant={restaurant} data={data} onOpen={onOpen} onChooseBranch={onChooseBranch} />
+        {data.description ? <p className="cxs-desc">{data.description}</p> : null}
+        {data.facilities.length ? <p className="cxs-extra">{data.facilities.join(", ")}</p> : null}
+
+        <div className="cxs-actions">
+          <button type="button" className="cxs-btn cxs-btn--primary" onClick={open}>
+            View details
+          </button>
+          {data.branches > 1 ? (
+            <button
+              type="button"
+              className="cxs-icon"
+              onClick={(event) => onChooseBranch?.(restaurant, event.currentTarget, "directions")}
+              aria-label={`Directions to ${restaurant.name}: choose one of ${data.branches} branches`}
+              title="Directions"
+            >
+              {MAP_ICON}
+            </button>
+          ) : directionsHref ? (
+            <a
+              className="cxs-icon"
+              href={directionsHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${data.searchUrl ? "Find" : "Directions to"} ${restaurant.name} on Google Maps`}
+              title={data.searchUrl ? "Find on Maps" : "Directions"}
+            >
+              {MAP_ICON}
+            </a>
+          ) : null}
+          {data.callHref ? (
+            <a className="cxs-icon cxs-optional" href={data.callHref} aria-label={`Call ${restaurant.name}, ${data.phone}`} title={`Call ${data.phone}`}>
+              {PHONE_ICON}
+            </a>
+          ) : null}
+          {hasMenu ? (
+            data.menuPages ? (
+              <button type="button" className="cxs-icon cxs-optional" onClick={(event) => onOpenMenu?.(restaurant, event.currentTarget)} aria-label={`${restaurant.name} menu`} title="Menu">
+                <MenuIcon />
+              </button>
+            ) : (
+              <a className="cxs-icon cxs-optional" href={data.menuUrl} target="_blank" rel="noopener noreferrer" aria-label={`${restaurant.name} menu (opens in a new tab)`} title="Menu">
+                <MenuIcon />
+              </a>
+            )
+          ) : null}
+        </div>
       </div>
     </article>
   );

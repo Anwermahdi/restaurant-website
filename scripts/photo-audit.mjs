@@ -35,7 +35,6 @@ const OUT = path.join(ROOT, "reports");
 const ORIGIN = process.env.PHOTO_REPORT_ORIGIN || "http://localhost:5173";
 fs.mkdirSync(OUT, { recursive: true });
 
-const icon = (value) => (value ? "✓" : "✗");
 const ratioText = (photo) => {
   const ratio = photoRatio(photo);
   return ratio ? `${ratio.toFixed(2)}:1` : "?";

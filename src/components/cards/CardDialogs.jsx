@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { ARROW_ICON, CHEVRON_LEFT_ICON, CHEVRON_RIGHT_ICON, CLOSE_ICON, PERCENT_ICON } from "../icons.jsx";
+import { CHEVRON_LEFT_ICON, CHEVRON_RIGHT_ICON, CLOSE_ICON, PERCENT_ICON } from "../icons.jsx";
 import RestaurantPhoto from "../RestaurantPhoto.jsx";
+import useFocusTrap from "../useFocusTrap.js";
 
-// Escape closes, the page behind stays still, focus goes in and comes back.
-function useDialog(onClose, returnTo) {
+// Escape closes, the page behind stays still, focus goes in, stays in while
+// the pop-up is open, and comes back afterwards.
+function useDialog(onClose, returnTo, dialogRef) {
   const closeRef = useRef(null);
+  useFocusTrap(dialogRef);
   useEffect(() => {
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -28,10 +31,12 @@ function useDialog(onClose, returnTo) {
 
 /** The real offers of one place: the app, the deal and where to claim it. */
 export function OfferDetails({ restaurant, offers, onClose, returnTo }) {
-  const closeRef = useDialog(onClose, returnTo);
+  const dialogRef = useRef(null);
+  const closeRef = useDialog(onClose, returnTo, dialogRef);
   return (
     <div className="modal-backdrop cx-sheet-backdrop" onClick={onClose}>
       <div
+        ref={dialogRef}
         className="cx-sheet"
         role="dialog"
         aria-modal="true"
@@ -58,7 +63,7 @@ export function OfferDetails({ restaurant, offers, onClose, returnTo }) {
                 <strong>{offer.text}</strong>
                 {offer.url ? (
                   <a href={offer.url} target="_blank" rel="noopener noreferrer">
-                    Open the {offer.app} offer <span aria-hidden="true">{ARROW_ICON}</span>
+                    Open the {offer.app} offer
                     <span className="sr-only"> (opens in a new tab)</span>
                   </a>
                 ) : null}
@@ -77,7 +82,8 @@ export function OfferDetails({ restaurant, offers, onClose, returnTo }) {
 /** Every photo of the place, shown whole: no crop, no zoom. */
 export function PhotoGallery({ restaurant, photos, onClose, returnTo }) {
   const [index, setIndex] = useState(0);
-  const closeRef = useDialog(onClose, returnTo);
+  const dialogRef = useRef(null);
+  const closeRef = useDialog(onClose, returnTo, dialogRef);
   const count = photos.length;
   const go = (delta) => setIndex((current) => (current + delta + count) % count);
 
@@ -92,7 +98,7 @@ export function PhotoGallery({ restaurant, photos, onClose, returnTo }) {
   }, [count]);
 
   return (
-    <div className="detail-lightbox" role="dialog" aria-modal="true" aria-label={`Photos of ${restaurant.name}`} onClick={onClose}>
+    <div ref={dialogRef} className="detail-lightbox" role="dialog" aria-modal="true" aria-label={`Photos of ${restaurant.name}`} onClick={onClose}>
       <button type="button" className="detail-lightbox-close" ref={closeRef} onClick={onClose} aria-label="Close photos">
         {CLOSE_ICON}
       </button>

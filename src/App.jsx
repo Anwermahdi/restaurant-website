@@ -24,9 +24,15 @@ import {
 } from "./components/icons.jsx";
 import "./App.css";
 import "./components/cards/cards.css";
+import "./styles/home.css";
 
 // Tag-based categories worth a place in the strip next to the real cuisines.
 const EXTRA_CATEGORIES = ["Bahraini", "Seafood", "Breakfast"];
+
+// Scrolls glide, unless the visitor has asked their device to reduce motion.
+function scrollMotion() {
+  return window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+}
 
 function menuPhotoDimensions(restaurant, index) {
   const declared = restaurant.menuPhotoDimensions?.[index];
@@ -478,6 +484,18 @@ export default function App() {
     else setSelectedBranch(null);
   }
 
+  // The map opens a place the same way a card does (so the list remembers
+  // where it was), through one stable handler so its pins are not rebuilt
+  // on every render.
+  const openRestaurantRef = useRef(openRestaurant);
+  useEffect(() => {
+    openRestaurantRef.current = openRestaurant;
+  });
+  const openFromMap = useCallback((id) => {
+    const restaurant = restaurants.find((r) => r.id === id);
+    if (restaurant) openRestaurantRef.current(restaurant);
+  }, []);
+
   function closeRestaurant() {
     setSelectedId(null);
     setModalView("details");
@@ -598,7 +616,7 @@ export default function App() {
   };
 
   const scrollToResults = () => {
-    document.getElementById("restaurant-grid")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById("restaurant-grid")?.scrollIntoView({ behavior: scrollMotion(), block: "start" });
   };
 
   // The header links: each one takes the visitor to the grid and puts it in
@@ -610,7 +628,7 @@ export default function App() {
     scrollToResults();
   };
   const goToCuisines = () => {
-    document.querySelector(".cats")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.querySelector(".cats")?.scrollIntoView({ behavior: scrollMotion(), block: "start" });
   };
   const goToOffers = () => {
     setView("grid");
@@ -943,14 +961,15 @@ export default function App() {
         )}
       </nav>
 
+      {/* The front page's sign: the same red panel as each restaurant page,
+          with the Manama skyline beside it and the search across its foot. */}
       <header className="hero" id="top">
-        <div className="hero-main">
+        <div className="hero-band">
           <div className="hero-copy">
-            <p className="eyebrow">Bahrain&rsquo;s restaurant guide</p>
-            <h1>Where Bahrain <em>eats.</em></h1>
+            <h1>Where Bahrain eats.</h1>
             <p className="lede">
-              {restaurants.length} restaurants with real menus, hours and locations &mdash; from
-              Manama to Muharraq.
+              {restaurants.length} restaurants in {areas.length - 1} areas, with real menus, hours
+              and locations, from Manama to Muharraq.
             </p>
           </div>
 
@@ -962,11 +981,6 @@ export default function App() {
               height="548"
               fetchPriority="high"
             />
-            <figcaption className="hero-stats">
-              <span><strong>{restaurants.length}</strong> places</span>
-              <span><strong>{cuisines.length - 1}</strong> cuisines</span>
-              <span><strong>{areas.length - 1}</strong> areas</span>
-            </figcaption>
           </figure>
         </div>
 
@@ -1095,7 +1109,7 @@ export default function App() {
 
         {view === "map" ? (
           <Suspense fallback={<div className="map-view-loading">Loading map…</div>}>
-            <MapView restaurants={filtered} onOpen={(id) => setSelectedId(id)} />
+            <MapView restaurants={filtered} onOpen={openFromMap} />
           </Suspense>
         ) : (
           <RestaurantGrid
@@ -1237,7 +1251,7 @@ export default function App() {
           type="button"
           className="back-to-top"
           aria-label="Back to top"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => window.scrollTo({ top: 0, behavior: scrollMotion() })}
         >
           {ARROW_UP_ICON}
         </button>

@@ -297,7 +297,7 @@ export function VerifiedIcon() {
 }
 
 // A small icon for each tag, so a chip carries a picture and not just a word.
-export const TAG_ICON_PATHS = {
+const TAG_ICON_PATHS = {
   bowl: <><path d="M3.5 10.5h17a8.5 8.5 0 0 1-8.5 8 8.5 8.5 0 0 1-8.5-8z" /><path d="M8 7c0-1.4 1.4-1.7 1.4-3M12 7c0-1.4 1.4-1.7 1.4-3" /><path d="M3.5 21h17" /></>,
   skewer: <><path d="M4 20 15 9" /><path d="M14.5 3.5c2.6 0 4.5 1.9 4.5 4.5 0 1.4-.6 2.5-1.5 3.4L14 8.9c.9-.9 1.4-2 1.4-3.4 0-1.2-.4-2-.9-2z" /><path d="M9 6.5 17.5 15" /><path d="M11.5 4 20 12.5" /></>,
   cup: <><path d="M4.5 8h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5z" /><path d="M16.5 9.5h1.6a2.4 2.4 0 0 1 0 4.8h-1.6" /><path d="M8 4.5c0-1 .8-1.2.8-2.2M12 4.5c0-1 .8-1.2.8-2.2" /></>,
@@ -312,7 +312,7 @@ export const TAG_ICON_PATHS = {
 };
 
 // Which icon suits a tag, by keyword.
-export const TAG_ICON_RULES = [
+const TAG_ICON_RULES = [
   [/grill|kebab|tikka|bbq|bbq|barbecue/i, "skewer"],
   [/breakfast|brunch|coffee|cafe|tea/i, "cup"],
   [/pizza/i, "slice"],
@@ -325,24 +325,6 @@ export const TAG_ICON_RULES = [
   [/family|kids/i, "people"],
   [/mezze|mansaf|local|arabic|lebanese|palestinian|turkish|curry|indian|asian|pot|rice/i, "bowl"],
 ];
-
-export function TagIcon({ tag }) {
-  const rule = TAG_ICON_RULES.find(([pattern]) => pattern.test(tag));
-  const name = rule ? rule[1] : "bowl";
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
-      {TAG_ICON_PATHS[name]}
-    </svg>
-  );
-}
-
-// Pastel chip colours, picked per tag so the same tag always looks the same.
-export const TAG_TINTS = ["green", "peach", "amber", "blue", "rose", "lilac"];
-export function tagTint(tag) {
-  let total = 0;
-  for (const char of tag) total += char.charCodeAt(0);
-  return TAG_TINTS[total % TAG_TINTS.length];
-}
 
 // One drawn icon per food type for the category strip. Falls back to the tag
 // rules above, then to a plain bowl, so a new cuisine never renders blank.

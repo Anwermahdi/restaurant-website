@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { HeartIcon, MAP_ICON, PERCENT_ICON, PHOTO_ICON } from "../icons.jsx";
+import { HeartIcon, PERCENT_ICON, PHOTO_ICON } from "../icons.jsx";
 import RestaurantPhoto from "../RestaurantPhoto.jsx";
 import { offerBadgeText } from "../../data/restaurants.js";
 
@@ -87,40 +87,3 @@ export function GalleryButton({ restaurant, count, onOpenGallery, className = ""
   );
 }
 
-export function HoursText({ hours }) {
-  return (
-    <span className={`cx-hours is-${hours.tone}`}>
-      <strong>{hours.text}</strong>
-      {hours.detail ? <span className="cx-hours-detail">, {hours.detail}</span> : null}
-    </span>
-  );
-}
-
-/** The two main actions. A chain asks which branch before giving directions. */
-export function CardActions({ restaurant, data, onOpen, onChooseBranch, className = "", short = false }) {
-  const directionsLabel = data.searchUrl ? "Find on Maps" : short ? "Directions" : "Get directions";
-  return (
-    <div className={`cx-actions ${className}`.trim()}>
-      <button type="button" className="cx-btn cx-btn--primary" onClick={(event) => onOpen?.(restaurant, event.currentTarget)}>
-        {short ? "Details" : "View details"}
-      </button>
-      {data.branches > 1 ? (
-        <button
-          type="button"
-          className="cx-btn cx-btn--ghost"
-          onClick={(event) => onChooseBranch?.(restaurant, event.currentTarget, "directions")}
-          aria-label={`Get directions to ${restaurant.name}: choose one of ${data.branches} branches`}
-        >
-          {MAP_ICON}
-          <span>{short ? "Directions" : "Get directions"}</span>
-        </button>
-      ) : (
-        <a className="cx-btn cx-btn--ghost" href={data.directionsUrl || data.searchUrl} target="_blank" rel="noopener noreferrer">
-          {MAP_ICON}
-          <span>{directionsLabel}</span>
-          <span className="sr-only"> (opens Google Maps)</span>
-        </a>
-      )}
-    </div>
-  );
-}

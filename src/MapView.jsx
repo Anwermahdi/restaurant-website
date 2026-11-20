@@ -43,6 +43,13 @@ const CUISINE_SHORT = {
   Mexican: "MX",
 };
 
+// Pins and popups are built as HTML strings, so every value from the data is
+// escaped first: a name with "<" or "&" in it must show as text, never markup.
+const HTML_ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (char) => HTML_ESCAPES[char]);
+}
+
 function pinFill(restaurant) {
   return CUISINE_COLOR[restaurant.cuisine] || "#2a78b8";
 }
@@ -57,7 +64,7 @@ function letterIconFor(restaurant) {
   const two = code.length > 1 ? " two" : "";
   return L.divIcon({
     className: "map-letter-pin-wrap",
-    html: `<span class="map-letter-pin${two}" style="--pin:${fill}">${code}</span>`,
+    html: `<span class="map-letter-pin${two}" style="--pin:${escapeHtml(fill)}">${escapeHtml(code)}</span>`,
     iconSize: [34, 34],
     iconAnchor: [17, 17],
   });
@@ -129,9 +136,9 @@ export default function MapView({ restaurants, onOpen }) {
         if (seen.has(key)) return;
         seen.add(key);
         const marker = L.marker([p.lat, p.lng], { icon: letterIconFor(r) }).bindPopup(
-          `<span class="map-popup-name">${r.name}${p.label ? ` <span class="map-popup-branch">— ${p.label}</span>` : ""}</span>` +
-            `<span class="map-popup-address">${r.shortAddress || r.address || ""}</span>` +
-            `<a class="map-popup-link" href="#" data-open="${r.id}">See details →</a>`
+          `<span class="map-popup-name">${escapeHtml(r.name)}${p.label ? ` <span class="map-popup-branch">${escapeHtml(p.label)}</span>` : ""}</span>` +
+            `<span class="map-popup-address">${escapeHtml(r.shortAddress || r.address || "")}</span>` +
+            `<a class="map-popup-link" href="#" data-open="${escapeHtml(r.id)}">See details</a>`
         );
         cluster.addLayer(marker);
       });

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Manually approve or replace any restaurant's main storefront photo.
  *

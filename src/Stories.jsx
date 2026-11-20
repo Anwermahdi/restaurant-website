@@ -5,8 +5,8 @@ import { CLOSE_ICON } from "./components/icons.jsx";
 
 /**
  * Story highlights for one restaurant: a full-screen player like Instagram
- * stories. It is opened from the circle on the restaurant's card, or from the
- * Highlights block on its details page - there is no separate rail.
+ * stories. It is opened from the logo seal on the restaurant's card; there is
+ * no separate rail.
  */
 
 const storyRestaurants = restaurants.filter((r) => storyFrames(r.id).length > 0);
@@ -56,6 +56,9 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
   const restaurant = position >= 0 ? storyRestaurants[position] : null;
   const frames = restaurant ? storyFrames(restaurant.id) : [];
   const frame = frames[index] || null;
+  const [reduceMotion] = useState(
+    () => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+  );
 
   const close = useCallback(() => {
     onClose();
@@ -83,12 +86,13 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
     if (previousRestaurant) onStoryChange(previousRestaurant.id);
   }, [index, position, onStoryChange]);
 
-  // Auto-advance, paused on hold.
+  // Auto-advance, paused on hold. With "reduce motion" on, nothing moves by
+  // itself: the visitor taps or uses the arrow keys to go on.
   useEffect(() => {
-    if (!frame || paused) return undefined;
+    if (!frame || paused || reduceMotion) return undefined;
     const timer = setTimeout(advance, frame.duration);
     return () => clearTimeout(timer);
-  }, [frame, paused, advance]);
+  }, [frame, paused, advance, reduceMotion]);
 
   // Advancing to the next restaurant in the rail.
   useEffect(() => {
@@ -176,11 +180,13 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
             <span key={`${restaurant.id}-${i}`} className="story-bar">
               <span
                 className="story-bar-fill"
-                style={{
-                  animationDuration: `${item.duration}ms`,
-                  animationPlayState: i < index ? "finished" : paused ? "paused" : "running",
-                  animationDelay: i < index ? "-99999ms" : "0ms",
-                }}
+                // Seen photos are full, the current one fills over its
+                // duration, and the ones still to come stay empty.
+                style={
+                  i === index && !reduceMotion
+                    ? { animationDuration: `${item.duration}ms`, animationPlayState: paused ? "paused" : "running" }
+                    : { animation: "none", transform: i <= index ? "scaleX(1)" : "scaleX(0)" }
+                }
               />
             </span>
           ))}
@@ -217,7 +223,7 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
               onOpenDetails?.(restaurant.id);
             }}
           >
-            View {restaurant.name} <span aria-hidden="true">→</span>
+            View {restaurant.name}
           </button>
         </div>
       </div>

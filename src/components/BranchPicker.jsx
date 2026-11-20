@@ -1,5 +1,7 @@
+import { useRef } from "react";
 import { ARROW_ICON, CHEVRON_RIGHT_ICON, CLOCK_ICON, CLOSE_ICON, PIN_ICON } from "./icons.jsx";
 import { locationMapsUrl, weekStatus } from "../data/restaurants.js";
+import useFocusTrap from "./useFocusTrap.js";
 
 /**
  * The list of places a brand is in.
@@ -8,12 +10,25 @@ import { locationMapsUrl, weekStatus } from "../data/restaurants.js";
  * address, the hours and the phone. Nothing is filled in when it is unknown.
  */
 export default function BranchPicker({ restaurant, locations, onSelect, onClose, mode = "browse" }) {
-  if (mode === "directions") {
-    return <DirectionsPicker restaurant={restaurant} locations={locations} onClose={onClose} />;
-  }
+  return mode === "directions"
+    ? <DirectionsPicker restaurant={restaurant} locations={locations} onClose={onClose} />
+    : <BrowsePicker restaurant={restaurant} locations={locations} onSelect={onSelect} onClose={onClose} />;
+}
+
+/** Focus moves into the list when it opens and stays there until it closes. */
+function usePickerFocus() {
+  const dialogRef = useRef(null);
+  const closeRef = useRef(null);
+  useFocusTrap(dialogRef, { focusFirst: true, initialRef: closeRef });
+  return { dialogRef, closeRef };
+}
+
+function BrowsePicker({ restaurant, locations, onSelect, onClose }) {
+  const { dialogRef, closeRef } = usePickerFocus();
   return (
     <div className="modal-backdrop branch-backdrop" onClick={onClose}>
       <div
+        ref={dialogRef}
         className="branch-picker"
         role="dialog"
         aria-modal="true"
@@ -24,7 +39,7 @@ export default function BranchPicker({ restaurant, locations, onSelect, onClose,
           <h2 id="branch-picker-title">
             Locations ({locations.length})
           </h2>
-          <button type="button" className="close branch-close" onClick={onClose} aria-label="Close locations">
+          <button type="button" className="close" ref={closeRef} onClick={onClose} aria-label="Close locations">
             {CLOSE_ICON}
           </button>
         </header>
@@ -65,7 +80,7 @@ export default function BranchPicker({ restaurant, locations, onSelect, onClose,
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Open in Google Maps <span aria-hidden="true">{ARROW_ICON}</span>
+                    Open in Google Maps<span className="sr-only"> (opens in a new tab)</span>
                   </a>
                 ) : (
                   <span className="branch-map branch-map--pending">Map unavailable</span>
@@ -81,9 +96,11 @@ export default function BranchPicker({ restaurant, locations, onSelect, onClose,
 
 /** "Get directions" for a chain: pick the branch, go straight to its pin. */
 function DirectionsPicker({ restaurant, locations, onClose }) {
+  const { dialogRef, closeRef } = usePickerFocus();
   return (
     <div className="modal-backdrop branch-backdrop" onClick={onClose}>
       <div
+        ref={dialogRef}
         className="branch-picker"
         role="dialog"
         aria-modal="true"
@@ -95,7 +112,7 @@ function DirectionsPicker({ restaurant, locations, onClose }) {
             <h2 id="branch-picker-title">Which {restaurant.name}?</h2>
             <p className="branch-picker-sub">Choose a branch to get directions in Google Maps.</p>
           </div>
-          <button type="button" className="close branch-close" onClick={onClose} aria-label="Close directions">
+          <button type="button" className="close" ref={closeRef} onClick={onClose} aria-label="Close directions">
             {CLOSE_ICON}
           </button>
         </header>
