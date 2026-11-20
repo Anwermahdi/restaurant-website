@@ -1,0 +1,126 @@
+/* ============================================================
+   Map view and map pins. Groups of places are red signs with a
+   count; single places keep their cuisine colour and code.
+   Leaflet's own CSS loads later with the map, so the popup rules
+   are one step more specific than its defaults.
+   ============================================================ */
+
+.map-view-wrap { position: relative; width: 100%; }
+.map-view,
+.map-view-loading {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: min(72vh, 740px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  isolation: isolate;
+}
+.map-view-loading { display: grid; place-items: center; color: var(--ink-soft); font-weight: 600; }
+
+.map-letter-pin-wrap,
+.map-cluster-wrap { background: none; border: 0; }
+.map-letter-pin {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: var(--pin, var(--sign));
+  color: #fff;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.map-letter-pin.two { font-size: 10.5px; }
+.map-cluster {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--sign);
+  color: var(--on-sign);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* The key: one chip per cuisine actually on the map. */
+.map-legend {
+  position: absolute;
+  z-index: 2;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  gap: 6px;
+  padding: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  pointer-events: none;
+}
+.map-legend::-webkit-scrollbar { display: none; }
+.map-legend-item {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px 0 5px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  background: var(--card);
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  pointer-events: auto;
+}
+.map-legend-swatch {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.map-view.leaflet-container,
+.detail-map.leaflet-container { font-family: var(--font); }
+.leaflet-container .leaflet-popup-content-wrapper { border-radius: var(--radius-md); background: var(--card); color: var(--ink); box-shadow: var(--shadow-lg); }
+.leaflet-container .leaflet-popup-tip { background: var(--card); }
+.leaflet-container .leaflet-popup-content { min-width: 180px; margin: 14px 16px; line-height: 1.4; }
+.leaflet-container .leaflet-popup a.leaflet-popup-close-button { color: var(--ink-faint); }
+.map-popup-name { display: block; font-family: var(--font-display); font-size: 18px; font-weight: 800; letter-spacing: -0.02em; }
+.map-popup-branch { display: block; color: var(--ink-soft); font-family: var(--font); font-size: 13px; font-weight: 500; letter-spacing: 0; }
+.map-popup-address { display: block; margin: 4px 0 12px; color: var(--ink-soft); font-size: 13px; }
+.leaflet-container a.map-popup-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-fill);
+  color: var(--on-accent);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.leaflet-container a.map-popup-link:hover { background: var(--accent-fill-hover); }
+
+@media (max-width: 767px) {
+  .map-view,
+  .map-view-loading { height: 66vh; }
+}

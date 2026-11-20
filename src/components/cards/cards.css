@@ -333,9 +333,14 @@
   box-shadow: var(--shadow-lg);
   animation: modal-in var(--base) var(--ease-out) both;
 }
-.cx-sheet-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 20px 20px 14px 24px; border-bottom: 1px solid var(--line); }
-.cx-sheet-head h2 { font-family: var(--font-display); font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
-.cx-sheet-head p { margin-top: 2px; color: var(--ink-soft); font-size: 13.5px; }
+/* The offers open under the same red sign as the other list pop-ups. */
+.cx-sheet { overflow-x: hidden; }
+.cx-sheet-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 24px 20px 20px 24px; background: var(--sign); color: var(--on-sign); }
+.cx-sheet-head .close { border-color: transparent; background: #fff; color: #111; }
+.cx-sheet-head .close:hover { background: #f1f1f1; }
+.cx-sheet-head .close:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.cx-sheet-head h2 { font-family: var(--font-display); font-size: 26px; font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; }
+.cx-sheet-head p { margin-top: 6px; color: var(--on-sign); font-size: 14px; font-weight: 500; }
 .cx-offer-list { display: grid; gap: 10px; margin: 0; padding: 16px 20px; list-style: none; }
 .cx-offer-item { display: flex; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: var(--radius-md); }
 .cx-offer-app { display: grid; place-items: center; flex: 0 0 auto; width: 44px; height: 44px; overflow: hidden; border-radius: 12px; background: var(--surface); color: var(--accent); }

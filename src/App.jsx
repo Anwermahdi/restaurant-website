@@ -25,6 +25,10 @@ import {
 import "./App.css";
 import "./components/cards/cards.css";
 import "./styles/home.css";
+import "./styles/filters.css";
+import "./styles/map.css";
+import "./styles/popups.css";
+import "./styles/footer.css";
 
 // Tag-based categories worth a place in the strip next to the real cuisines.
 const EXTRA_CATEGORIES = ["Bahraini", "Seafood", "Breakfast"];
