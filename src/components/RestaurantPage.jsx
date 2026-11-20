@@ -109,6 +109,7 @@ export default function RestaurantPage({
   onOpenMenuPage,
   onOpenLocations,
   isSaved = false,
+  paused = false,
 }) {
   const storefront = storefrontPhotoFor(restaurant);
   const photoItems = (() => {
@@ -160,6 +161,8 @@ export default function RestaurantPage({
   };
 
   useEffect(() => {
+    // The menu viewer on top owns the keyboard while it is open.
+    if (paused) return undefined;
     const onKeyDown = (event) => {
       if (event.key === "Escape") {
         event.preventDefault();
@@ -175,7 +178,7 @@ export default function RestaurantPage({
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [onClose, photoCount, lightbox]);
+  }, [onClose, photoCount, lightbox, paused]);
 
   const offers = getOfferDetails(restaurant.id);
   const foodTypes = cuisineBadgesFor(restaurant).slice(0, 3);
@@ -269,21 +272,26 @@ export default function RestaurantPage({
   const stripOffsets = [2, 3].filter((offset) => offset < photoCount);
   const stripIndexes = stripOffsets.map(at);
   const hiddenCount = Math.max(0, photoCount - 4);
-  const heroRatio = currentPhoto
-    ? Number((currentPhoto.width || 0) / (currentPhoto.height || 0)) || 0
-    : 0;
-  const splitHero = photoCount === 1 && mainFrame.fit === "contain" && heroRatio > 0;
 
   return (
     <div className="restaurant-page">
       {/* Sticky top bar */}
       <nav className="rpage-nav" aria-label="Restaurant page navigation">
-        <button type="button" className="rpage-back" onClick={onClose} aria-label="Back to restaurants">
+        <button type="button" className="rpage-back" onClick={onClose}>
           {CHEVRON_LEFT_ICON}
-          <span>Restaurants</span>
+          <span>All restaurants</span>
         </button>
         <span className="rpage-nav-name" aria-hidden="true">{restaurant.name}</span>
         <div className="rpage-nav-tools">
+          <button
+            type="button"
+            className="detail-tool"
+            aria-label={`Share ${restaurant.name}`}
+            onClick={() => onShare?.(restaurant)}
+          >
+            {SHARE_ICON}
+            <span className="detail-tool-text">Share</span>
+          </button>
           <button
             type="button"
             className={`detail-tool ${isSaved ? "is-saved" : ""}`}
@@ -292,23 +300,38 @@ export default function RestaurantPage({
             onClick={() => onToggleSave?.(restaurant.id)}
           >
             <HeartIcon filled={isSaved} />
-          </button>
-          <button
-            type="button"
-            className="detail-tool"
-            aria-label={`Share ${restaurant.name}`}
-            onClick={() => onShare?.(restaurant)}
-          >
-            {SHARE_ICON}
+            <span className="detail-tool-text">{isSaved ? "Saved" : "Save"}</span>
           </button>
         </div>
       </nav>
 
       <div className="rpage-body">
-        <div
-          className={`detail-hero ${splitHero ? "detail-hero--portrait" : ""}`}
-          style={splitHero ? { "--photo-ratio": heroRatio } : undefined}
-        >
+        <header className="rpage-head">
+          <span className="detail-logo">
+            <RestaurantLogo restaurant={restaurant} />
+          </span>
+          <div className="detail-intro">
+            <h1 id="rpage-title">{restaurant.name}</h1>
+            <p className="detail-meta">
+              {rating ? (
+                <span className="detail-rating">
+                  <StarIcon />
+                  <strong>{rating}</strong>
+                  {reviews ? <em>({reviews} reviews)</em> : null}
+                </span>
+              ) : null}
+              <span>{restaurant.cuisine}</span>
+              {locationLabel ? <span>{locationLabel}</span> : null}
+              {isVerified && (
+                <span className="detail-verified" title={checkedLabel(lastChecked)}>
+                  <VerifiedIcon />
+                  Verified on Google
+                </span>
+              )}
+            </p>
+          </div>
+        </header>
+
           {/* Photo collage */}
           <section
             className={`detail-gallery ${photoCount === 1 ? "detail-gallery--1" : photoCount === 2 ? "detail-gallery--2" : ""} ${mainFrame.fit === "contain" ? "detail-gallery--portrait" : ""}`}
@@ -422,33 +445,87 @@ export default function RestaurantPage({
             )}
           </section>
 
-          {/* Identity */}
-          <div className="detail-overview">
-            <span className="detail-logo">
-              <RestaurantLogo restaurant={restaurant} />
-            </span>
+        <div className="rpage-layout">
+          {/* The plan card: what a visitor does next, kept in view while
+              they read on a wide screen, and right under the photos on a phone. */}
+          <aside className="rpage-aside" aria-label="Plan your visit">
+            <div className="detail-plan">
+              <p className={`detail-plan-status ${openState === true ? "is-open" : openState === false ? "is-closed" : ""}`}>
+                <span className="detail-plan-dot" aria-hidden="true" />
+                {hoursLine}
+              </p>
 
-            <div className="detail-intro">
-              <h1 id="rpage-title">
-                {restaurant.name}
-                {isVerified && (
-                  <span className="detail-verified" title={checkedLabel(lastChecked)}>
-                    <VerifiedIcon />
-                    <span className="sr-only">{checkedLabel(lastChecked)}</span>
-                  </span>
+              <div className="detail-actions">
+                {menuUrl ? (
+                  <a className="detail-btn detail-btn--primary" href={menuUrl} target="_blank" rel="noopener noreferrer">
+                    <MenuIcon />
+                    <span>View menu</span>
+                    <span className="detail-btn-arrow" aria-hidden="true">{ARROW_ICON}</span>
+                  </a>
+                ) : canOpenMenuPhotos ? (
+                  <button
+                    type="button"
+                    className="detail-btn detail-btn--primary"
+                    onClick={() => onOpenMenuPage?.(restaurant, 0)}
+                  >
+                    <MenuIcon />
+                    <span>View menu</span>
+                    <span className="detail-btn-count">{restaurant.menuPhotos.length} pages</span>
+                  </button>
+                ) : (
+                  <p className="detail-plan-note">No menu on file yet.</p>
                 )}
-              </h1>
-
-              <div className="detail-meta">
-                {rating ? (
-                  <span className="detail-rating">
-                    <StarIcon />
-                    <strong>{rating}</strong>
-                    {reviews ? <em>({reviews} reviews)</em> : null}
-                  </span>
-                ) : null}
               </div>
 
+              {mapUrl || phone || instagram ? (
+                <div className="detail-quick-actions">
+                  {mapUrl ? (
+                    <a className="detail-quick-btn" href={mapUrl} target="_blank" rel="noopener noreferrer">
+                      <span className="detail-quick-icon">{PIN_ICON}</span>
+                      <span>Directions</span>
+                    </a>
+                  ) : null}
+                  {phone ? (
+                    <a className="detail-quick-btn" href={callHref}>
+                      <span className="detail-quick-icon">{PHONE_ICON}</span>
+                      <span>Call</span>
+                    </a>
+                  ) : null}
+                  {instagram ? (
+                    <a className="detail-quick-btn" href={instagram.url} target="_blank" rel="noopener noreferrer">
+                      <span className="detail-quick-icon">{INSTAGRAM_ICON}</span>
+                      <span>Instagram</span>
+                    </a>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {offers.length > 0 && (
+                <ul className="detail-offers">
+                  {offers.map((offer) => (
+                    <li key={offer.app}>
+                      {offer.url ? (
+                        <a href={offer.url} target="_blank" rel="noopener noreferrer">
+                          <span className="detail-offers-app">{offer.app}</span>
+                          <span className="detail-offers-text">{offer.text}</span>
+                        </a>
+                      ) : (
+                        <span>
+                          <span className="detail-offers-app">{offer.app}</span>
+                          <span className="detail-offers-text">{offer.text}</span>
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </aside>
+
+          <div className="rpage-main">
+            <section className="detail-about" aria-labelledby="rpage-about">
+              <h2 id="rpage-about">About</h2>
+              {restaurant.description ? <p className="detail-desc">{restaurant.description}</p> : null}
               {foodTypes.length ? (
                 <div className="detail-tags">
                   {foodTypes.map((tag) => (
@@ -456,60 +533,12 @@ export default function RestaurantPage({
                   ))}
                 </div>
               ) : null}
-
               {businessStatusLabel ? (
                 <p className={`detail-business-status ${businessStatus === "CLOSED_PERMANENTLY" ? "is-closed" : ""}`}>
                   {businessStatusLabel}
                 </p>
               ) : null}
-            </div>
-
-            {restaurant.description ? <p className="detail-desc">{restaurant.description}</p> : null}
-
-            <div className="detail-actions">
-              {menuUrl ? (
-                <a className="detail-btn detail-btn--primary" href={menuUrl} target="_blank" rel="noopener noreferrer">
-                  <MenuIcon />
-                  <span>View menu</span>
-                  <span className="detail-btn-arrow" aria-hidden="true">{ARROW_ICON}</span>
-                </a>
-              ) : canOpenMenuPhotos ? (
-                <button
-                  type="button"
-                  className="detail-btn detail-btn--primary"
-                  onClick={() => onOpenMenuPage?.(restaurant, 0)}
-                >
-                  <MenuIcon />
-                  <span>View menu</span>
-                  <span className="detail-btn-arrow" aria-hidden="true">{ARROW_ICON}</span>
-                </button>
-              ) : null}
-            </div>
-
-            {/* Quick actions: the four things a visitor does right after
-                finding a place, one tap away instead of buried in a panel. */}
-            <div className="detail-quick-actions">
-              {mapUrl ? (
-                <a className="detail-quick-btn" href={mapUrl} target="_blank" rel="noopener noreferrer">
-                  <span className="detail-quick-icon">{PIN_ICON}</span>
-                  <span>Directions</span>
-                </a>
-              ) : null}
-              {phone ? (
-                <a className="detail-quick-btn" href={callHref}>
-                  <span className="detail-quick-icon">{PHONE_ICON}</span>
-                  <span>Call</span>
-                </a>
-              ) : null}
-              {instagram ? (
-                <a className="detail-quick-btn" href={instagram.url} target="_blank" rel="noopener noreferrer">
-                  <span className="detail-quick-icon">{INSTAGRAM_ICON}</span>
-                  <span>Instagram</span>
-                </a>
-              ) : null}
-            </div>
-          </div>
-        </div>
+            </section>
 
         {/* Info panels */}
         <section className="detail-info" aria-label="Restaurant information">
@@ -533,7 +562,7 @@ export default function RestaurantPage({
                   </Suspense>
                 ) : (
                   <p className="detail-map-note">
-                    A map preview is unavailable until this location&apos;s exact coordinates are verified.
+                    Map preview unavailable for this location.
                   </p>
                 )}
                 {mapUrl ? (
@@ -616,10 +645,12 @@ export default function RestaurantPage({
               ) : null}
             </div>
             {!phone && !instagram ? (
-              <p className="detail-info-empty">Contact details are not available yet.</p>
+              <p className="detail-info-empty">No phone or Instagram on file.</p>
             ) : null}
           </article>
         </section>
+          </div>
+        </div>
       </div>
 
       {/* Full-size photo viewer */}

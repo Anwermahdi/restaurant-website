@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { restaurants, hoursLabel } from "./data/restaurants";
 import { storyFrames } from "./data/stories";
+import { CLOSE_ICON } from "./components/icons.jsx";
 
 /**
  * Story highlights for one restaurant: a full-screen player like Instagram
@@ -195,7 +196,7 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
             </span>
           </div>
           <button type="button" className="story-close" onClick={close} aria-label="Close highlights" ref={closeRef}>
-            ✕
+            {CLOSE_ICON}
           </button>
         </div>
 

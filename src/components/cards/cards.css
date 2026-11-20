@@ -1,0 +1,384 @@
+/* ============================================================
+   Restaurant card: shared pieces first, then the card itself.
+   Reads the site's red theme tokens from App.css.
+   ============================================================ */
+
+/* ---------- shared shell ---------- */
+.cx {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  container: cx / inline-size;
+  transition: transform var(--base) var(--ease-out), box-shadow var(--base) var(--ease-out);
+}
+.cx:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.cx-media { position: relative; overflow: hidden; background: var(--surface); isolation: isolate; }
+.cx-photo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: var(--surface);
+}
+.cx-photo:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+.cx-img { opacity: 0; transition: opacity 0.45s ease; }
+.cx-img.is-ready { opacity: 1; }
+.cx-photo-fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--surface-2);
+  color: var(--ink-faint);
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 800;
+}
+
+.cx-offer {
+  position: absolute;
+  z-index: 3;
+  top: 12px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: calc(100% - 70px);
+  height: 32px;
+  padding: 0 12px 0 4px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: #fff;
+  color: #111;
+  font-size: 12.5px;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  transition: transform var(--fast);
+}
+.cx-offer:hover { transform: translateY(-1px); }
+.cx-offer:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.cx-offer-icon { display: grid; place-items: center; flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%; background: #e11d2e; color: #fff; }
+.cx-offer-icon svg { width: 13px; height: 13px; }
+.cx-offer-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cx-offer-more { flex: 0 0 auto; color: #e11d2e; }
+
+.cx-fav {
+  position: absolute;
+  z-index: 3;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: #111;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+  transition: transform var(--fast), background-color var(--fast), color var(--fast);
+}
+.cx-fav svg { width: 19px; height: 19px; }
+.cx-fav:hover { transform: scale(1.08); }
+.cx-fav:active { transform: scale(0.94); }
+/* Saved is unmistakable: a solid red disc with a white heart. */
+.cx-fav.is-saved { background: #e11d2e; color: #fff; }
+.cx-fav.is-saved svg { animation: heart-pop 0.35s var(--ease-out); }
+.cx-fav:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.cx-gallery {
+  position: absolute;
+  z-index: 3;
+  right: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: rgba(17, 17, 17, 0.72);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.cx-gallery svg { width: 14px; height: 14px; }
+.cx-gallery:hover { background: rgba(17, 17, 17, 0.9); }
+.cx-gallery:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+/* Narrow cards: an icon-only corner button, so it never meets the logo. */
+@container cx (max-width: 250px) {
+  .cx-gallery { right: 8px; bottom: 8px; width: 30px; height: 30px; padding: 0; justify-content: center; }
+  .cx-gallery span { display: none; }
+}
+
+.cx-verified { display: inline-grid; flex: 0 0 auto; color: var(--verified); }
+.cx-verified svg { width: 16px; height: 16px; }
+
+.cx-link {
+  min-width: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 30%, transparent);
+  text-overflow: ellipsis;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+.cx-link:hover { color: var(--accent); text-decoration-color: currentColor; }
+
+.cx-hours strong { font-weight: 700; }
+.cx-hours.is-open strong { color: var(--ok); }
+.cx-hours.is-closed strong { color: var(--accent); }
+.cx-hours.is-unknown { color: var(--ink-faint); }
+.cx-hours.is-unknown strong { font-weight: 500; }
+.cx-hours-detail { color: var(--ink-soft); }
+
+.cx-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; margin-top: auto; padding-top: 4px; }
+.cx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+  height: 44px;
+  padding: 0 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--fast), border-color var(--fast), transform var(--fast);
+}
+.cx-btn span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.cx-btn svg { width: 16px; height: 16px; }
+.cx-btn:active { transform: scale(0.98); }
+.cx-btn--primary { border: 0; background: var(--accent); color: var(--on-accent); }
+.cx-btn--primary:hover { background: var(--accent-dark); }
+.cx-btn--ghost { border: 1.5px solid var(--line-strong); background: var(--card); color: var(--ink); }
+.cx-btn--ghost:hover { border-color: var(--ink); }
+.cx-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+@container cx (max-width: 340px) { .cx-btn svg { display: none; } .cx-btn { padding: 0 8px; } }
+@container cx (max-width: 285px) {
+  .cx-actions { grid-template-columns: 1fr; gap: 6px; }
+  .cx-btn { height: 38px; font-size: 13px; border-radius: 10px; }
+}
+
+/* ============================================================
+   The card: a framed photo, a logo seal and centred type
+   ============================================================ */
+.cxa-mount { padding: 10px 10px 0; }
+.cxa-media { aspect-ratio: 1 / 1; border-radius: 16px; }
+.cxa-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px 20px;
+  text-align: center;
+}
+.cxa-logo {
+  position: relative;
+  z-index: 4;
+  display: block;
+  flex: 0 0 auto;
+  width: 60px;
+  height: 60px;
+  margin-top: -30px;
+  overflow: hidden;
+  border: 3px solid var(--card);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.cxa-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  max-width: 100%;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+.cxa-name button {
+  display: -webkit-box;
+  min-width: 0;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.cxa-name button:hover { color: var(--accent); }
+.cxa-rating { display: inline-flex; align-items: center; gap: 5px; margin-top: -4px; color: var(--ink-soft); font-size: 13.5px; }
+.cxa-rating svg { width: 15px; height: 15px; color: #dfa437; }
+.cxa-rating strong { color: var(--ink); font-size: 15px; }
+.cxa-desc {
+  display: -webkit-box;
+  max-width: 34ch;
+  overflow: hidden;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.cxa-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-height: 28px; margin: 0; padding: 0; overflow: hidden; list-style: none; }
+.cxa-tags li {
+  padding: 4px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 600;
+}
+.cxa-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  margin: 4px 0 0;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.cxa-info > div { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; padding: 0 8px; }
+.cxa-info > div + div { border-left: 1px solid var(--line); }
+.cxa-info dt { display: grid; color: var(--ink-faint); }
+.cxa-info dt svg { width: 16px; height: 16px; }
+.cxa-info dd { max-width: 100%; margin: 0; font-size: 13px; line-height: 1.35; overflow-wrap: anywhere; }
+.cxa-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.cxa-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.cxa-pill svg { width: 14px; height: 14px; color: var(--accent); }
+a.cxa-pill:hover,
+button.cxa-pill:hover { background: var(--surface-2); }
+.cxa-pill.is-static { background: none; border: 1px solid var(--line); }
+
+@container cx (max-width: 250px) {
+  .cxa-mount { padding: 6px 6px 0; }
+  .cxa-media { border-radius: 12px; }
+  .cxa-body { gap: 8px; padding: 0 10px 12px; }
+  .cxa-logo { width: 44px; height: 44px; margin-top: -22px; border-width: 2px; }
+  .cxa-name { font-size: 16px; }
+  .cxa-rating { font-size: 11.5px; }
+  .cxa-rating strong { font-size: 13px; }
+  .cxa-rating span { display: none; }
+  .cxa-desc,
+  .cxa-links { display: none; }
+  .cxa-tags { max-height: 24px; }
+  .cxa-tags li { padding: 3px 8px; font-size: 11px; }
+  .cxa-info { grid-template-columns: 1fr; gap: 8px; padding: 8px 0; }
+  .cxa-info > div + div { border-left: 0; }
+  .cxa-info dd { font-size: 12px; }
+}
+
+/* A place with highlights: the logo carries a red ring and plays them. */
+.cxa-logo.is-story { padding: 0; border-color: var(--card); box-shadow: 0 0 0 2px var(--accent), var(--shadow-sm); }
+.cxa-logo.is-story:hover .logo-play,
+.cxa-logo.is-story:focus-visible .logo-play { opacity: 1; }
+.cxa-logo.is-story:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* ---------- list view: photo on the left, details on the right ---------- */
+.list .cxa { flex-direction: row; align-items: stretch; }
+.list .cxa-mount { flex: 0 0 min(34%, 300px); padding: 10px; }
+.list .cxa-media { height: 100%; min-height: 240px; aspect-ratio: auto; }
+.list .cxa-body { align-items: flex-start; padding: 20px 22px 20px 12px; text-align: left; }
+.list .cxa-logo { margin-top: 0; }
+.list .cxa-name,
+.list .cxa-tags,
+.list .cxa-links { justify-content: flex-start; }
+.list .cxa-desc { max-width: 62ch; }
+.list .cxa-info { max-width: 480px; }
+.list .cxa-info > div { align-items: flex-start; }
+.list .cx-actions { max-width: 420px; }
+@media (max-width: 767px) {
+  .list .cxa { flex-direction: column; }
+  .list .cxa-mount { flex: none; padding: 10px 10px 0; }
+  .list .cxa-media { height: auto; min-height: 0; aspect-ratio: 1 / 1; }
+  .list .cxa-body { align-items: center; padding: 0 20px 20px; text-align: center; }
+  .list .cxa-logo { margin-top: -30px; }
+  .list .cxa-name,
+  .list .cxa-tags,
+  .list .cxa-links { justify-content: center; }
+  .list .cxa-info > div { align-items: center; }
+}
+
+/* ---------- loading placeholder ---------- */
+.cx--skeleton:hover { transform: none; box-shadow: var(--shadow-sm); }
+.cx--skeleton .cxa-body { padding-top: 18px; }
+.cx--skeleton .skeleton-line { align-self: stretch; margin-inline: auto; }
+
+/* ---------- offer details sheet ---------- */
+.cx-sheet {
+  width: min(100%, 460px);
+  max-height: 86vh;
+  overflow: auto;
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: var(--shadow-lg);
+  animation: modal-in var(--base) var(--ease-out) both;
+}
+.cx-sheet-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 20px 20px 14px 24px; border-bottom: 1px solid var(--line); }
+.cx-sheet-head h2 { font-family: var(--font-display); font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
+.cx-sheet-head p { margin-top: 2px; color: var(--ink-soft); font-size: 13.5px; }
+.cx-offer-list { display: grid; gap: 10px; margin: 0; padding: 16px 20px; list-style: none; }
+.cx-offer-item { display: flex; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: var(--radius-md); }
+.cx-offer-app { display: grid; place-items: center; flex: 0 0 auto; width: 44px; height: 44px; overflow: hidden; border-radius: 12px; background: var(--surface); color: var(--accent); }
+.cx-offer-app img { width: 28px; height: 28px; object-fit: contain; }
+.cx-offer-app svg { width: 18px; height: 18px; }
+.cx-offer-body { display: grid; gap: 4px; min-width: 0; }
+.cx-offer-app-name { color: var(--accent); font-size: 12px; font-weight: 700; }
+.cx-offer-body strong { font-size: 15.5px; line-height: 1.35; }
+.cx-offer-body a { display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; color: var(--ink); font-size: 13.5px; font-weight: 600; }
+.cx-offer-body a svg { width: 13px; height: 13px; }
+.cx-offer-body a:hover { color: var(--accent); }
+.cx-sheet-note { padding: 0 24px 20px; color: var(--ink-soft); font-size: 12.5px; line-height: 1.5; }
+@media (max-width: 767px) {
+  .cx-sheet-backdrop { align-items: flex-end; padding: 0; }
+  .cx-sheet { width: 100%; border-radius: var(--radius-lg) var(--radius-lg) 0 0; animation: sheet-in var(--base) var(--ease-out) both; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cx:hover { transform: none; }
+}

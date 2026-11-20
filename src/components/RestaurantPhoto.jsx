@@ -56,8 +56,9 @@ export default function RestaurantPhoto({
   // treatment instead of being stretched to fill a cover frame.
   const [measured, setMeasured] = useState({ for: "", ratio: null });
   const measuredRatio = measured.for === imageSrc ? measured.ratio : null;
-  const requestedFit = fit === "cover" ? "cover" : "contain";
-  const shownFit = requestedFit === "cover" && measuredRatio !== null && measuredRatio < 1.15 ? "contain" : requestedFit;
+  // fit="crop" always fills the frame, whatever the photo's shape.
+  const requestedFit = fit === "cover" || fit === "crop" ? "cover" : "contain";
+  const shownFit = fit !== "crop" && requestedFit === "cover" && measuredRatio !== null && measuredRatio < 1.15 ? "contain" : requestedFit;
 
   const fallbackList = (Array.isArray(fallbacks) ? fallbacks : String(fallbacks || "").split(","))
     .filter(Boolean);

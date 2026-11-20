@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 // Leaflet and its clustering plugin are only needed once a visitor actually
 // switches to the map, so they stay out of the initial bundle.
@@ -14,26 +14,19 @@ import RestaurantSearch from "./components/RestaurantSearch.jsx";
 import RestaurantFilters from "./components/RestaurantFilters.jsx";
 import RestaurantPage from "./components/RestaurantPage.jsx";
 import BranchPicker from "./components/BranchPicker.jsx";
+import { OfferDetails, PhotoGallery } from "./components/cards/CardDialogs.jsx";
+import { cardData } from "./components/cards/cardData.js";
 import { handleImgError, handleLogoError } from "./components/media.js";
 import {
-  CHEVRON_LEFT_ICON, CHEVRON_RIGHT_ICON,
-  CLOCHE_ICON, CLOSE_ICON, COMPASS_ICON, GRID_ICON, HeartIcon, LIST_ICON, MAP_ICON, MENU_ICON, MOON_ICON,
-  RESTAURANT_ICON, SEARCH_ICON, SPARKLES_ICON, SUN_ICON, TAG_ICON, TICKET_ICON,
-  BahrainFlagIcon,
+  ARROW_UP_ICON, CHEVRON_ICON, CHEVRON_LEFT_ICON, CHEVRON_RIGHT_ICON,
+  CLOSE_ICON, COMPASS_ICON, CuisineIcon, GRID_ICON, HeartIcon, LIST_ICON, MAP_ICON, MENU_ICON, MOON_ICON,
+  SEARCH_ICON, SLIDERS_ICON, SPARKLES_ICON, SUN_ICON,
 } from "./components/icons.jsx";
 import "./App.css";
+import "./components/cards/cards.css";
 
-// The little picture each popular shortcut carries. Bahrain keeps a drawn
-// flag instead of an emoji, because Windows has no flag emoji at all.
-const POPULAR_EMOJI = {
-  Burger: "🍔",
-  Shawarma: "🌯",
-  Pizza: "🍕",
-  Italian: "🍝",
-  Cafe: "☕",
-  Seafood: "🦐",
-  Indian: "🍛",
-};
+// Tag-based categories worth a place in the strip next to the real cuisines.
+const EXTRA_CATEGORIES = ["Bahraini", "Seafood", "Breakfast"];
 
 function menuPhotoDimensions(restaurant, index) {
   const declared = restaurant.menuPhotoDimensions?.[index];
@@ -165,6 +158,7 @@ export default function App() {
   // The branch the visitor picked, and the place whose branch list is open.
   const [selectedBranch, setSelectedBranch] = useState(null);
   const [branchPickerId, setBranchPickerId] = useState(null);
+  const [branchPickerMode, setBranchPickerMode] = useState("browse");
   const [modalView, setModalView] = useState("details");
   const [activeMenuPhoto, setActiveMenuPhoto] = useState(0);
   const [storyId, setStoryId] = useState(null);
@@ -174,8 +168,12 @@ export default function App() {
   const [theme, setTheme] = useState(readTheme);
   const modalRef = useRef(null);
   const closeButtonRef = useRef(null);
-  const menuButtonRefs = useRef(new Map());
   const lastFocusedElementRef = useRef(null);
+  const listScrollRef = useRef(0);
+  const onDetailsPageRef = useRef(false);
+  // True when the menu viewer was opened from a restaurant's own page, so
+  // closing it returns there instead of to the list.
+  const [menuOverPage, setMenuOverPage] = useState(false);
 
   const filtered = useMemo(() => {
     // "Recommended" keeps the order the data came in. The other two sorts are
@@ -379,9 +377,10 @@ export default function App() {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
         event.preventDefault();
-        setSelectedId(null);
         setModalView("details");
         setActiveMenuPhoto(0);
+        if (menuOverPage) setMenuOverPage(false);
+        else setSelectedId(null);
         return;
       }
       const pageCount = selected?.menuPhotos.length || 0;
@@ -418,13 +417,21 @@ export default function App() {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
     };
-  }, [selectedId, modalView, selected?.menuPhotos.length]);
+  }, [selectedId, modalView, selected?.menuPhotos.length, menuOverPage]);
 
-  // The branch list of one place, opened from its card.
-  const openBranchPicker = useCallback((restaurant, source) => {
+  // The branch list of one place, opened from its card. "directions" asks
+  // which branch to navigate to; "browse" opens that branch's details.
+  const openBranchPicker = useCallback((restaurant, source, mode = "browse") => {
     lastFocusedElementRef.current = source || document.activeElement;
+    setBranchPickerMode(mode);
     setBranchPickerId(restaurant.id);
   }, []);
+
+  // A card's offer details or full photo gallery, opened over the list.
+  const [cardDialog, setCardDialog] = useState(null);
+  const openOffers = useCallback((restaurant, trigger) => setCardDialog({ type: "offers", restaurant, trigger }), []);
+  const openGallery = useCallback((restaurant, trigger) => setCardDialog({ type: "gallery", restaurant, trigger }), []);
+  const closeCardDialog = useCallback(() => setCardDialog(null), []);
 
   const closeBranchPicker = useCallback(() => {
     setBranchPickerId(null);
@@ -459,8 +466,9 @@ export default function App() {
   }, [branchPickerId, closeBranchPicker]);
 
   function openRestaurant(restaurant, options = {}) {
+    if (!onDetailsPageRef.current) listScrollRef.current = window.scrollY;
     lastFocusedElementRef.current =
-      options.source ?? menuButtonRefs.current.get(restaurant.id) ?? document.activeElement;
+      options.source ?? document.activeElement;
     const openMenu = options.view === "menu" && restaurant.menuPhotos.length > 0;
     setSelectedId(restaurant.id);
     setModalView(openMenu ? "menu" : "details");
@@ -474,11 +482,30 @@ export default function App() {
     setSelectedId(null);
     setModalView("details");
     setActiveMenuPhoto(0);
+    setMenuOverPage(false);
+  }
+
+  function closeMenu() {
+    if (!menuOverPage) {
+      closeRestaurant();
+      return;
+    }
+    setModalView("details");
+    setActiveMenuPhoto(0);
+    setMenuOverPage(false);
   }
 
   // The branch list of one place, opened from its card.
   const branchPickerRestaurant = restaurants.find((r) => r.id === branchPickerId) || null;
   const branchPickerLocations = branchPickerRestaurant ? locationsFor(branchPickerRestaurant) : null;
+
+  // A restaurant page opens at its top; going back returns to the same spot
+  // in the list instead of wherever the page happened to be scrolled.
+  const onDetailsPage = Boolean(selectedId && selected && (modalView === "details" || menuOverPage));
+  useLayoutEffect(() => {
+    onDetailsPageRef.current = onDetailsPage;
+    window.scrollTo({ top: onDetailsPage ? 0 : listScrollRef.current, behavior: "instant" });
+  }, [onDetailsPage]);
 
   // The place whose details are on screen, and the branch picked for it.
   const locations = selected ? locationsFor(selected) : null;
@@ -583,15 +610,10 @@ export default function App() {
     scrollToResults();
   };
   const goToCuisines = () => {
-    // Land on the first cuisine that really has restaurants behind it, then
-    // drop the visitor into the results for it.
-    const firstCuisine = cuisines.find(
-      (item) => item && item !== "All" && restaurants.some((restaurant) => restaurant.cuisine === item),
-    );
-    if (firstCuisine) setCuisine(firstCuisine);
-    scrollToResults();
+    document.querySelector(".cats")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
   const goToOffers = () => {
+    setView("grid");
     setOffersOnly(true);
     scrollToResults();
   };
@@ -599,14 +621,24 @@ export default function App() {
     setView("map");
     scrollToResults();
   };
-  // Only one header link is the current one.
-  const activeNav = "explore";
+  const activeNav = view === "map" ? "map" : offersOnly ? "offers" : "explore";
 
-  // The food types the hero offers as a shortcut, in the order a visitor
-  // is most likely to want them. Only real types from the data are listed.
-  const popularCuisines = useMemo(() => {
-    const order = ["Burger", "Shawarma", "Pizza", "Italian", "Bahraini", "Cafe", "Seafood", "Indian"];
-    return order.filter((item) => cuisines.includes(item) || restaurants.some((restaurant) => (restaurant.tags || []).includes(item)));
+  // The category strip: every real cuisine, busiest first, then a few
+  // tag-based categories. The cuisine filter matches tags too, so the count
+  // next to each one is exactly what a click returns.
+  const categories = useMemo(() => {
+    const countFor = (name) =>
+      restaurants.filter((r) => r.cuisine === name || (r.tags || []).includes(name)).length;
+    const real = cuisines
+      .filter((name) => name !== "All")
+      .map((name) => ({ name, count: countFor(name) }))
+      .filter((item) => item.count > 0)
+      .sort((a, b) => b.count - a.count);
+    const extra = EXTRA_CATEGORIES
+      .filter((name) => !cuisines.includes(name))
+      .map((name) => ({ name, count: countFor(name) }))
+      .filter((item) => item.count > 0);
+    return [{ name: "All", count: restaurants.length }, ...real, ...extra];
   }, []);
   // The search field above the grid, so the hero can send you straight to it.
   const focusSearch = () => {
@@ -650,8 +682,118 @@ export default function App() {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [selectedId]);
 
+  // The menu viewer opens over whichever view it was opened from.
+  const menuViewer = selected && modalView === "menu" && selected.menuPhotos.length > 0 ? (
+        <div className="modal-backdrop menu-viewer-backdrop" onClick={closeMenu}>
+          <div
+            className="menu-viewer"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="menu-viewer-title"
+            ref={modalRef}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <header className="menu-viewer-header">
+              <div className="menu-viewer-identity">
+                <span className="highlight-wrap menu-viewer-logo">
+                  <span className="highlight-letter">{selected.name.charAt(0)}</span>
+                  <img
+                    className="highlight"
+                    src={selected.logoUpload}
+                    data-rid={selected.id}
+                    data-official={selected.logo}
+                    onError={handleLogoError}
+                    alt=""
+                    width="44"
+                    height="44"
+                  />
+                </span>
+                <div>
+                  <h2 id="menu-viewer-title">{selected.name} Menu</h2>
+                  <p>Page {activeMenuPhoto + 1} of {selected.menuPhotos.length}</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="close"
+                aria-label={`Close ${selected.name} menu`}
+                ref={closeButtonRef}
+                onClick={closeMenu}
+              >
+                {CLOSE_ICON}
+              </button>
+            </header>
+            <div className="menu-viewer-body">
+              <div className="menu-page-preview" aria-live="polite">
+                <a
+                  href={selected.menuPhotos[activeMenuPhoto]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open menu page ${activeMenuPhoto + 1} full size`}
+                >
+                  <img
+                    src={selected.menuPhotos[activeMenuPhoto]}
+                    data-fallbacks={(selected.menuPhotoFallbacks?.[activeMenuPhoto] || []).join(",")}
+                    onError={handleImgError}
+                    alt={`${selected.name} menu page ${activeMenuPhoto + 1}`}
+                    width={menuPhotoDimensions(selected, activeMenuPhoto)[0]}
+                    height={menuPhotoDimensions(selected, activeMenuPhoto)[1]}
+                    fetchPriority="high"
+                  />
+                </a>
+                {selected.menuPhotos.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      className="menu-page-arrow menu-page-arrow--prev"
+                      aria-label="Previous menu page"
+                      onClick={() => setActiveMenuPhoto((index) => (index - 1 + selected.menuPhotos.length) % selected.menuPhotos.length)}
+                    >
+                      {CHEVRON_LEFT_ICON}
+                    </button>
+                    <button
+                      type="button"
+                      className="menu-page-arrow menu-page-arrow--next"
+                      aria-label="Next menu page"
+                      onClick={() => setActiveMenuPhoto((index) => (index + 1) % selected.menuPhotos.length)}
+                    >
+                      {CHEVRON_RIGHT_ICON}
+                    </button>
+                  </>
+                )}
+              </div>
+              <div className="menu-thumbnails" role="group" aria-label={`${selected.name} menu pages`}>
+                {selected.menuPhotos.map((photo, index) => (
+                  <button
+                    type="button"
+                    className={
+                      menuPhotoDimensions(selected, index)[0] > menuPhotoDimensions(selected, index)[1]
+                        ? "landscape"
+                        : "portrait"
+                    }
+                    key={photo}
+                    aria-label={`Show menu page ${index + 1}`}
+                    aria-pressed={activeMenuPhoto === index}
+                    onClick={() => setActiveMenuPhoto(index)}
+                  >
+                    <img
+                      src={photo}
+                      alt=""
+                      width={menuPhotoDimensions(selected, index)[0]}
+                      height={menuPhotoDimensions(selected, index)[1]}
+                      loading="lazy"
+                    />
+                    <span>{index + 1}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+  ) : null;
+
   // Full restaurant page (replaces the listing)
-  if (selectedId && modalView === "details" && selected) {
+  if (onDetailsPage) {
     return (
       <>
         <RestaurantPage
@@ -663,12 +805,17 @@ export default function App() {
           onShare={shareRestaurant}
           onToggleSave={toggleFavourite}
           onOpenMenuPage={(place, index) => {
+            lastFocusedElementRef.current = document.activeElement;
             setActiveMenuPhoto(index);
-            openRestaurant(place, { view: "menu" });
+            setMenuOverPage(true);
+            setModalView("menu");
           }}
           onOpenLocations={openBranchPicker}
           isSaved={favourites.has(selected.id)}
+          paused={modalView === "menu"}
         />
+
+        {menuViewer}
 
         {branchPickerRestaurant && branchPickerLocations && (
           <BranchPicker
@@ -676,6 +823,7 @@ export default function App() {
             locations={branchPickerLocations}
             onSelect={pickBranch}
             onClose={closeBranchPicker}
+            mode={branchPickerMode}
           />
         )}
 
@@ -692,41 +840,32 @@ export default function App() {
 
       <nav className="nav">
         <div className="navin">
-          <a className="word" href="#restaurant-grid" aria-label="FoodFind, back to the restaurants">
-            foodfind
-            <span className="word-spark" aria-hidden="true">✳</span>
+          <a className="word" href="#top" aria-label="FoodFind, back to the top">
+            foodfind<span className="word-dot" aria-hidden="true">.</span>
           </a>
           <div className="navlinks">
             <button
               type="button"
               className={`navlink ${activeNav === "explore" ? "on" : ""}`}
+              aria-current={activeNav === "explore" ? "page" : undefined}
               onClick={goToExplore}
             >
-              {RESTAURANT_ICON}
-              Explore restaurants
-            </button>
-            <button
-              type="button"
-              className={`navlink ${activeNav === "cuisines" ? "on" : ""}`}
-              onClick={goToCuisines}
-            >
-              {CLOCHE_ICON}
-              Cuisines
+              Restaurants
             </button>
             <button
               type="button"
               className={`navlink ${activeNav === "offers" ? "on" : ""}`}
+              aria-current={activeNav === "offers" ? "page" : undefined}
               onClick={goToOffers}
             >
-              {TAG_ICON}
               Offers
             </button>
             <button
               type="button"
               className={`navlink ${activeNav === "map" ? "on" : ""}`}
+              aria-current={activeNav === "map" ? "page" : undefined}
               onClick={goToMap}
             >
-              {MAP_ICON}
               Map
             </button>
           </div>
@@ -807,25 +946,29 @@ export default function App() {
       <header className="hero" id="top">
         <div className="hero-main">
           <div className="hero-copy">
-            <p className="eyebrow">Big flavors. Local finds.</p>
-            <h1>Discover amazing food <em>in Bahrain</em></h1>
+            <p className="eyebrow">Bahrain&rsquo;s restaurant guide</p>
+            <h1>Where Bahrain <em>eats.</em></h1>
             <p className="lede">
-              Explore {restaurants.length}+ restaurants, local flavors and great experiences.
+              {restaurants.length} restaurants with real menus, hours and locations &mdash; from
+              Manama to Muharraq.
             </p>
           </div>
 
-            <div className="hero-visual">
-              <div className="hero-photo">
-                <img
-                  src="/hero-sunset.webp"
-                  alt="Bahrain sunset restaurant scene at golden hour"
-                  width="1350"
-                  height="548"
-                  fetchPriority="high"
-                />
-              </div>
-            </div>
-          </div>
+          <figure className="hero-visual">
+            <img
+              src="/hero-sunset.webp"
+              alt="Manama skyline at sunset from a waterfront restaurant terrace"
+              width="1350"
+              height="548"
+              fetchPriority="high"
+            />
+            <figcaption className="hero-stats">
+              <span><strong>{restaurants.length}</strong> places</span>
+              <span><strong>{cuisines.length - 1}</strong> cuisines</span>
+              <span><strong>{areas.length - 1}</strong> areas</span>
+            </figcaption>
+          </figure>
+        </div>
 
           <div className="search-shell">
             <RestaurantSearch
@@ -845,78 +988,79 @@ export default function App() {
             />
           </div>
 
-          <div className="popular-row">
-            <span className="popular-label">Popular:</span>
-            <div className="popular-chips" role="group" aria-label="Popular cuisine shortcuts">
-              {popularCuisines.map((item) => (
-                <button
-                  key={item}
-                  type="button"
-                  className={`popular-chip ${cuisine === item ? "is-on" : ""}`}
-                  aria-pressed={cuisine === item}
-                  onClick={() => setCuisine(cuisine === item ? "All" : item)}
-                >
-                  {item === "Bahraini"
-                    ? <BahrainFlagIcon />
-                    : <span className="popular-emoji" aria-hidden="true">{POPULAR_EMOJI[item] ?? "🍽️"}</span>}
-                  {item}
-                </button>
-              ))}
-            </div>
-          </div>
         </header>
 
-      <main className="grid-wrap" id="restaurant-grid">
-        <div className="section-top">
-          <div className="section-title">
-            <span className="kicker">Your table of discoveries</span>
-            <h2>Explore restaurants<span className="gold-dot">.</span></h2>
-            <p>Find a place worth coming back to.</p>
+      <nav className="cats" aria-label="Browse by cuisine">
+        <div className="cats-track">
+          {categories.map(({ name, count }) => (
+            <button
+              key={name}
+              type="button"
+              className={`cat ${cuisine === name ? "is-on" : ""}`}
+              aria-pressed={cuisine === name}
+              title={`${count} ${count === 1 ? "place" : "places"}`}
+              onClick={() => {
+                setCuisine(name);
+                // From the top of the page the grid is off screen, so a pick
+                // would look like it did nothing: bring the results into view.
+                const grid = document.getElementById("restaurant-grid");
+                if (grid && grid.getBoundingClientRect().top > window.innerHeight * 0.6) scrollToResults();
+              }}
+            >
+              <CuisineIcon name={name} />
+              <span className="cat-label">{name === "All" ? "All" : name}</span>
+            </button>
+          ))}
+        </div>
+      </nav>
+
+      <main className="results" id="restaurant-grid">
+        <div className="results-head">
+          <div className="results-title">
+            <h2>{savedOnly ? "Saved places" : cuisine === "All" ? "All restaurants" : cuisine}</h2>
+            <p className="result-count" role="status" aria-live="polite" aria-atomic="true">
+              <strong>{filtered.length}</strong> {filtered.length === 1 ? "place" : "places"}
+              {area !== "All" ? ` in ${area}` : " across Bahrain"}
+            </p>
+            {hasFilters && (
+              <button type="button" className="clear-link" onClick={clearAll}>
+                Clear all
+              </button>
+            )}
           </div>
-          <div className="section-controls">
-            <div className="sort-wrap">
-              <label className="sr-only" htmlFor="sort">Sort restaurants</label>
+          <div className="toolbar">
+            <button
+              type="button"
+              className={`more-filters ${filtersOpen || activeFilterCount > 0 ? "is-open" : ""}`}
+              aria-expanded={filtersOpen}
+              aria-controls="filter-panel"
+              onClick={() => setFiltersOpen((open) => !open)}
+            >
+              {SLIDERS_ICON}
+              <span>Filters</span>
+              {activeFilterCount > 0 && <span className="more-filters-count">{activeFilterCount}</span>}
+            </button>
+            <label className="sort-wrap">
+              <span className="sr-only">Sort restaurants</span>
               <select id="sort" value={sort} onChange={(e) => setSort(e.target.value)}>
                 <option value="recommended">Recommended</option>
                 <option value="rating">Top rated</option>
                 <option value="name">Name A–Z</option>
               </select>
-            </div>
+              {CHEVRON_ICON}
+            </label>
             <div className="view-toggle" role="group" aria-label="View">
-              <button type="button" className={`view-toggle-btn ${view === "grid" ? "on" : ""}`} aria-pressed={view === "grid"} onClick={() => setView("grid")}>
-                {GRID_ICON} Grid
+              <button type="button" className={`view-toggle-btn ${view === "grid" ? "on" : ""}`} aria-pressed={view === "grid"} aria-label="Grid view" title="Grid" onClick={() => setView("grid")}>
+                {GRID_ICON}
               </button>
-              <button type="button" className={`view-toggle-btn ${view === "list" ? "on" : ""}`} aria-pressed={view === "list"} onClick={() => setView("list")}>
-                {LIST_ICON} List
+              <button type="button" className={`view-toggle-btn ${view === "list" ? "on" : ""}`} aria-pressed={view === "list"} aria-label="List view" title="List" onClick={() => setView("list")}>
+                {LIST_ICON}
               </button>
-              <button type="button" className={`view-toggle-btn ${view === "map" ? "on" : ""}`} aria-pressed={view === "map"} onClick={() => setView("map")}>
-                {MAP_ICON} Map
+              <button type="button" className={`view-toggle-btn ${view === "map" ? "on" : ""}`} aria-pressed={view === "map"} aria-label="Map view" title="Map" onClick={() => setView("map")}>
+                {MAP_ICON}
               </button>
             </div>
-            <button
-              type="button"
-              className={`more-filters ${filtersOpen ? "is-open" : ""}`}
-              aria-expanded={filtersOpen}
-              aria-controls="filter-panel"
-              onClick={() => setFiltersOpen((open) => !open)}
-            >
-              {TICKET_ICON}
-              <span>More filters</span>
-              {activeFilterCount > 0 && <span className="more-filters-count">{activeFilterCount}</span>}
-            </button>
           </div>
-        </div>
-
-        <div className="count-row">
-          <span className="result-count" role="status" aria-live="polite" aria-atomic="true">
-            <strong>{filtered.length}</strong> {filtered.length === 1 ? "restaurant" : "restaurants"}
-            {savedOnly ? <span className="result-note"> · Saved only</span> : null}
-          </span>
-          {hasFilters && (
-            <button type="button" className="clear-link" onClick={clearAll}>
-              Clear filters
-            </button>
-          )}
         </div>
 
         <RestaurantFilters
@@ -960,26 +1104,61 @@ export default function App() {
             favourites={favourites}
             onToggleSaved={toggleFavourite}
             onOpen={(restaurant, trigger) => openRestaurant(restaurant, { source: trigger })}
-            onShare={shareRestaurant}
             hasStory={hasStory}
             onOpenStory={openStory}
             onOpenMenu={(restaurant, trigger) => openRestaurant(restaurant, { source: trigger, view: "menu" })}
-            onOpenLocations={openBranchPicker}
-            menuButtonRefs={menuButtonRefs}
+            onChooseBranch={openBranchPicker}
+            onOpenOffers={openOffers}
+            onOpenGallery={openGallery}
+          />
+        )}
+        {cardDialog?.type === "offers" && (
+          <OfferDetails
+            restaurant={cardDialog.restaurant}
+            offers={cardData(cardDialog.restaurant).offers}
+            onClose={closeCardDialog}
+            returnTo={cardDialog.trigger}
+          />
+        )}
+        {cardDialog?.type === "gallery" && (
+          <PhotoGallery
+            restaurant={cardDialog.restaurant}
+            photos={cardData(cardDialog.restaurant).gallery}
+            onClose={closeCardDialog}
+            returnTo={cardDialog.trigger}
           />
         )}
 
       </main>
 
       <nav className="mobile-bottom" aria-label="Quick navigation">
-        <button type="button" className={view === "grid" ? "on" : ""} onClick={goToExplore}>
+        <button
+          type="button"
+          className={view !== "map" && !savedOnly ? "on" : ""}
+          aria-current={view !== "map" && !savedOnly ? "page" : undefined}
+          onClick={() => { setSavedOnly(false); goToExplore(); }}
+        >
           {COMPASS_ICON} Explore
         </button>
         <button type="button" onClick={focusSearch}>
           {SEARCH_ICON} Search
         </button>
-        <button type="button" className={savedOnly ? "on" : ""} onClick={() => { setSavedOnly((on) => !on); scrollToResults(); }}>
+        <button
+          type="button"
+          className={view === "map" ? "on" : ""}
+          aria-current={view === "map" ? "page" : undefined}
+          onClick={goToMap}
+        >
+          {MAP_ICON} Map
+        </button>
+        <button
+          type="button"
+          className={savedOnly ? "on" : ""}
+          aria-pressed={savedOnly}
+          onClick={() => { setSavedOnly((on) => !on); scrollToResults(); }}
+        >
           <HeartIcon filled={savedOnly} /> Saved
+          {favourites.size > 0 && <span className="mobile-count">{favourites.size}</span>}
         </button>
       </nav>
 
@@ -987,114 +1166,7 @@ export default function App() {
         <p className="toast" role="status" aria-live="polite">{toast}</p>
       )}
 
-      {selected && modalView === "menu" && selected.menuPhotos.length > 0 && (
-        <div className="modal-backdrop menu-viewer-backdrop" onClick={closeRestaurant}>
-          <div
-            className="menu-viewer"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="menu-viewer-title"
-            ref={modalRef}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <header className="menu-viewer-header">
-              <div className="menu-viewer-identity">
-                <span className="highlight-wrap menu-viewer-logo">
-                  <span className="highlight-letter">{selected.name.charAt(0)}</span>
-                  <img
-                    className="highlight"
-                    src={selected.logoUpload}
-                    data-rid={selected.id}
-                    data-official={selected.logo}
-                    onError={handleLogoError}
-                    alt=""
-                    width="44"
-                    height="44"
-                  />
-                </span>
-                <div>
-                  <h2 id="menu-viewer-title">{selected.name} Menu</h2>
-                  <p>Page {activeMenuPhoto + 1} of {selected.menuPhotos.length}</p>
-                </div>
-              </div>
-              <button
-                type="button"
-                className="close"
-                aria-label={`Close ${selected.name} menu`}
-                ref={closeButtonRef}
-                onClick={closeRestaurant}
-              >
-                {CLOSE_ICON}
-              </button>
-            </header>
-            <div className="menu-viewer-body">
-              <div className="menu-page-preview" aria-live="polite">
-                <a
-                  href={selected.menuPhotos[activeMenuPhoto]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Open menu page ${activeMenuPhoto + 1} full size`}
-                >
-                  <img
-                    src={selected.menuPhotos[activeMenuPhoto]}
-                    data-fallbacks={(selected.menuPhotoFallbacks?.[activeMenuPhoto] || []).join(",")}
-                    onError={handleImgError}
-                    alt={`${selected.name} menu page ${activeMenuPhoto + 1}`}
-                    width={menuPhotoDimensions(selected, activeMenuPhoto)[0]}
-                    height={menuPhotoDimensions(selected, activeMenuPhoto)[1]}
-                    fetchPriority="high"
-                  />
-                </a>
-                {selected.menuPhotos.length > 1 && (
-                  <>
-                    <button
-                      type="button"
-                      className="menu-page-arrow menu-page-arrow--prev"
-                      aria-label="Previous menu page"
-                      onClick={() => setActiveMenuPhoto((index) => (index - 1 + selected.menuPhotos.length) % selected.menuPhotos.length)}
-                    >
-                      {CHEVRON_LEFT_ICON}
-                    </button>
-                    <button
-                      type="button"
-                      className="menu-page-arrow menu-page-arrow--next"
-                      aria-label="Next menu page"
-                      onClick={() => setActiveMenuPhoto((index) => (index + 1) % selected.menuPhotos.length)}
-                    >
-                      {CHEVRON_RIGHT_ICON}
-                    </button>
-                  </>
-                )}
-              </div>
-              <div className="menu-thumbnails" role="group" aria-label={`${selected.name} menu pages`}>
-                {selected.menuPhotos.map((photo, index) => (
-                  <button
-                    type="button"
-                    className={
-                      menuPhotoDimensions(selected, index)[0] > menuPhotoDimensions(selected, index)[1]
-                        ? "landscape"
-                        : "portrait"
-                    }
-                    key={photo}
-                    aria-label={`Show menu page ${index + 1}`}
-                    aria-pressed={activeMenuPhoto === index}
-                    onClick={() => setActiveMenuPhoto(index)}
-                  >
-                    <img
-                      src={photo}
-                      alt=""
-                      width={menuPhotoDimensions(selected, index)[0]}
-                      height={menuPhotoDimensions(selected, index)[1]}
-                      loading="lazy"
-                    />
-                    <span>{index + 1}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {menuViewer}
 
       {branchPickerRestaurant && branchPickerLocations && (
         <BranchPicker
@@ -1102,6 +1174,7 @@ export default function App() {
           locations={branchPickerLocations}
           onSelect={pickBranch}
           onClose={closeBranchPicker}
+          mode={branchPickerMode}
         />
       )}
 
@@ -1119,11 +1192,10 @@ export default function App() {
       <footer className="footer">
         <div className="footin">
           <div className="foot-brand">
-            <a className="word" href="#restaurant-grid" aria-label="FoodFind, back to the restaurants">
-              foodfind
-              <span className="word-spark" aria-hidden="true">✳</span>
+            <a className="word" href="#top" aria-label="FoodFind, back to the top">
+              foodfind<span className="word-dot" aria-hidden="true">.</span>
             </a>
-            <p>Restaurants, menus and locations across Bahrain — {restaurants.length} places and counting.</p>
+            <p>Restaurants, menus and locations across Bahrain &mdash; {restaurants.length} places and counting.</p>
           </div>
 
           <nav className="foot-col" aria-label="Explore">
@@ -1132,6 +1204,7 @@ export default function App() {
             <button type="button" onClick={goToCuisines}>Cuisines</button>
             <button type="button" onClick={goToOffers}>Offers</button>
             <button type="button" onClick={goToMap}>Map</button>
+            <button type="button" onClick={surpriseMe}>Surprise me</button>
           </nav>
 
           <nav className="foot-col" aria-label="Meal times">
@@ -1166,7 +1239,7 @@ export default function App() {
           aria-label="Back to top"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
-          ↑
+          {ARROW_UP_ICON}
         </button>
       )}
     </div>

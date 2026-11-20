@@ -1,4 +1,4 @@
-import { CLOCK_ICON, CHEVRON_ICON } from "./icons.jsx";
+import { CLOCK_ICON, CHEVRON_ICON, StarIcon } from "./icons.jsx";
 
 /**
  * The filters the main search bar does not already cover.
@@ -48,7 +48,7 @@ export default function RestaurantFilters({
         {ratingOptions.length > 0 && (
           <div className="filter-field">
             <label className="filter-label" htmlFor="filter-rating">
-              <span className="filter-star" aria-hidden="true">★</span>
+              <StarIcon />
               Rating
             </label>
             <div className="filter-select">

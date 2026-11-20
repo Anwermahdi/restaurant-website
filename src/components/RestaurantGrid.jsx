@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import RestaurantCard from "./RestaurantCard.jsx";
 import RestaurantCardSkeleton from "./RestaurantCardSkeleton.jsx";
-import useMediaQuery from "./useMediaQuery.js";
 
 // How many cards the grid shows at first, and how many more each time.
 const FIRST_PAGE = 16;
@@ -19,19 +18,16 @@ export default function RestaurantGrid({
   favourites,
   onToggleSaved,
   onOpen,
-  onShare,
   hasStory,
   onOpenStory,
   onOpenMenu,
-  onOpenLocations,
-  menuButtonRefs,
+  onChooseBranch,
+  onOpenOffers,
+  onOpenGallery,
 }) {
   const [visible, setVisible] = useState(FIRST_PAGE);
   const [loading, setLoading] = useState(false);
   const sentinelRef = useRef(null);
-  // Two cuisines on a phone, three from a tablet up.
-  const isNarrow = useMediaQuery("(max-width: 767px)");
-  const maxCuisines = isNarrow ? 2 : 3;
 
   // A new set of results starts again at the first page.
   useEffect(() => {
@@ -79,17 +75,12 @@ export default function RestaurantGrid({
             isSaved={favourites.has(restaurant.id)}
             onToggleSaved={onToggleSaved}
             onOpen={onOpen}
-            onShare={onShare}
             hasStory={Boolean(hasStory?.(restaurant.id))}
             onOpenStory={onOpenStory}
-            onOpenMenu={(place, trigger) => onOpenMenu?.(place, trigger)}
-            onOpenLocations={onOpenLocations}
-            maxCuisines={maxCuisines}
-            menuButtonRef={(node) => {
-              if (!menuButtonRefs) return;
-              if (node) menuButtonRefs.current.set(restaurant.id, node);
-              else menuButtonRefs.current.delete(restaurant.id);
-            }}
+            onOpenMenu={onOpenMenu}
+            onChooseBranch={onChooseBranch}
+            onOpenOffers={onOpenOffers}
+            onOpenGallery={onOpenGallery}
           />
         ))}
 

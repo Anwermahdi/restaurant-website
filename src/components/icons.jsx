@@ -344,6 +344,59 @@ export function tagTint(tag) {
   return TAG_TINTS[total % TAG_TINTS.length];
 }
 
+// One drawn icon per food type for the category strip. Falls back to the tag
+// rules above, then to a plain bowl, so a new cuisine never renders blank.
+const CUISINE_ICON_PATHS = {
+  all: <><rect x="4" y="4" width="7" height="7" rx="2" /><rect x="13" y="4" width="7" height="7" rx="2" /><rect x="4" y="13" width="7" height="7" rx="2" /><rect x="13" y="13" width="7" height="7" rx="2" /></>,
+  drumstick: <><ellipse cx="15.2" cy="8.8" rx="5.6" ry="4.4" transform="rotate(-45 15.2 8.8)" /><path d="M11.4 12.6 6.2 17.8" /><circle cx="5.2" cy="19.8" r="1.5" /><circle cx="4.2" cy="16.8" r="1.5" /></>,
+  taco: <><path d="M2.5 17.5a9.5 9.5 0 0 1 19 0z" /><path d="M6 13.4c1-.8 1.8-.2 2.8-1s1.7-1.3 2.8-.6 1.8.3 2.8-.4 1.8 0 2.6.8" /></>,
+  noodles: <><path d="M3.5 12h17a8.5 8.5 0 0 1-17 0z" /><path d="M13 9.5 19.5 3M10.2 9.5 15 2.5" /><path d="M9 20.5h6" /></>,
+  pasta: <><path d="M3.5 12h17a8.5 8.5 0 0 1-17 0z" /><path d="M6.5 9c1-1 2-1 3 0s2 1 3 0 2-1 3 0 2 1 2.5.5" /><path d="M8 6c1-1 2-1 3 0s2 1 3 0" /></>,
+  dining: <><circle cx="12" cy="12.5" r="5" /><path d="M3 4v5a1.5 1.5 0 0 0 3 0V4M4.5 9v11" /><path d="M21 4c-1.6 1-2.2 3-2.2 5.5V12H21v8" /></>,
+  sandwich: <><path d="M3 11 12 5.5l9 5.5z" /><path d="M3.5 14.2h17" /><path d="M4 17.5h16v.8a1.7 1.7 0 0 1-1.7 1.7H5.7A1.7 1.7 0 0 1 4 18.3z" /></>,
+  olive: <><path d="M4 20C8 16 13 11 20 5" /><ellipse cx="9.4" cy="11.4" rx="3.2" ry="1.6" transform="rotate(-45 9.4 11.4)" /><ellipse cx="14.6" cy="7.6" rx="3.2" ry="1.6" transform="rotate(-12 14.6 7.6)" /><circle cx="16.2" cy="13.8" r="2.1" /></>,
+  pot: <><path d="M4.5 10h15v5a5 5 0 0 1-5 5h-5a5 5 0 0 1-5-5z" /><path d="M2.5 10h19" /><path d="M9 7c0-1.2 1-1.4 1-2.6M13.5 7c0-1.2 1-1.4 1-2.6" /></>,
+  dallah: <><path d="M8.5 21h9" /><path d="M10 21l.9-7.5h5.2L17 21" /><path d="M11.3 13.5l.5-3h3.4l.5 3" /><path d="M13.5 10.5V8.8" /><circle cx="13.5" cy="7.6" r="1.2" /><path d="M11 15 5.2 10.2l-1.7.6" /></>,
+};
+const CUISINE_ICON_NAMES = {
+  All: "all",
+  "Fried Chicken": "drumstick",
+  Broasted: "drumstick",
+  Mexican: "taco",
+  Asian: "noodles",
+  Pasta: "pasta",
+  Italian: "dining",
+  Sandwiches: "sandwich",
+  Mediterranean: "olive",
+  Malghom: "pot",
+  Bahraini: "dallah",
+};
+
+export function CuisineIcon({ name }) {
+  const own = CUISINE_ICON_NAMES[name];
+  const rule = TAG_ICON_RULES.find(([pattern]) => pattern.test(name));
+  const paths = own ? CUISINE_ICON_PATHS[own] : TAG_ICON_PATHS[rule ? rule[1] : "bowl"];
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      {paths}
+    </svg>
+  );
+}
+
+export const SLIDERS_ICON = (
+  <Icon>
+    <path d="M4 7h10M18 7h2M4 17h4M12 17h8" />
+    <circle cx="16" cy="7" r="2" />
+    <circle cx="10" cy="17" r="2" />
+  </Icon>
+);
+
+export const ARROW_UP_ICON = (
+  <Icon>
+    <path d="M12 19V5M6 11l6-6 6 6" />
+  </Icon>
+);
+
 export function StarIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12" aria-hidden="true" focusable="false">
