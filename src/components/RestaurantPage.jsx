@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CHEVRON_LEFT_ICON, CHEVRON_RIGHT_ICON, CLOSE_ICON } from "./icons.jsx";
 import RestaurantPhoto from "./RestaurantPhoto.jsx";
 import useFocusTrap from "./useFocusTrap.js";
@@ -92,9 +92,15 @@ export default function RestaurantPage({
   onToggleSave,
   onOpenMenuPage,
   onOpenLocations,
+  onOpenRestaurant,
   isSaved = false,
   paused = false,
 }) {
+  // Moving from one restaurant's page to another (from "More like this")
+  // starts the new page at its top.
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [restaurant.id]);
   const storefront = storefrontPhotoFor(restaurant);
   const photoItems = (() => {
     const menuPhotoSrcs = new Set((restaurant.menuPhotos || []).map((src) => String(src)));
@@ -358,6 +364,7 @@ export default function RestaurantPage({
         lng,
         isMultiLocation,
         onOpenLocations,
+        onOpenRestaurant,
         onOpenMenuPage,
         onClose,
         onShare,

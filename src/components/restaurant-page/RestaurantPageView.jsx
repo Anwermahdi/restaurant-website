@@ -25,6 +25,7 @@ import {
 } from "../icons.jsx";
 import RestaurantLogo from "../RestaurantLogo.jsx";
 import RestaurantPhoto from "../RestaurantPhoto.jsx";
+import MoreLikeThis from "./MoreLikeThis.jsx";
 import { OFFER_APP_ICONS } from "../../data/restaurants.js";
 import "./restaurant-page.css";
 
@@ -298,6 +299,7 @@ export default function RestaurantPageView({ d }) {
           <Offers d={d} />
           <Thumbs d={d} />
           <Sections d={d} />
+          <MoreLikeThis restaurant={d.restaurant} onOpen={d.onOpenRestaurant} />
         </div>
       </main>
       <PhoneBar d={d} />

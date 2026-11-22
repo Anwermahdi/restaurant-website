@@ -16,6 +16,9 @@ import { handleImgError } from "./media.js";
  *                 stretched or zoomed; the blurred mount just fills the frame
  *                 so the photo reads as a deliberate print rather than a
  *                 letterboxed mistake.
+ *   fit="crop"    always fills the frame.
+ *   fit="card"    fills the frame with an upright photo; a wide one sits
+ *                 whole along the top over the blurred copy.
  */
 export default function RestaurantPhoto({
   photo,
@@ -58,7 +61,15 @@ export default function RestaurantPhoto({
   const measuredRatio = measured.for === imageSrc ? measured.ratio : null;
   // fit="crop" always fills the frame, whatever the photo's shape.
   const requestedFit = fit === "cover" || fit === "crop" ? "cover" : "contain";
-  const shownFit = fit !== "crop" && requestedFit === "cover" && measuredRatio !== null && measuredRatio < 1.15 ? "contain" : requestedFit;
+  const knownRatio = measuredRatio ?? (image.width && image.height ? image.width / image.height : null);
+  // fit="card" is for the card's tall frame. An upright or square photo
+  // fills it. A wide photo would lose both ends of its sign, so it is shown
+  // whole along the top over a blurred copy of itself, leaving the foot of
+  // the frame for the name.
+  const shownFit = fit === "card"
+    ? (knownRatio !== null && knownRatio > 1.1 ? "contain" : "cover")
+    : fit !== "crop" && requestedFit === "cover" && measuredRatio !== null && measuredRatio < 1.15 ? "contain" : requestedFit;
+  const position = fit === "card" && shownFit === "contain" ? "center top" : focus;
 
   const fallbackList = (Array.isArray(fallbacks) ? fallbacks : String(fallbacks || "").split(","))
     .filter(Boolean);
@@ -121,7 +132,7 @@ export default function RestaurantPhoto({
         loading={loading}
         fetchPriority={fetchPriority}
         decoding="async"
-        style={{ objectPosition: focus }}
+        style={{ objectPosition: position }}
         data-fit={shownFit}
         data-fallbacks={fallbackList.join(",")}
         data-fallback={fallback}

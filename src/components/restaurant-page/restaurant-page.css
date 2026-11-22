@@ -242,6 +242,71 @@
 .rp-contact-list a:hover { text-decoration: underline; }
 .rp-contact-list svg { width: 18px; height: 18px; }
 
+/* ---------- more like this ---------- */
+.rp-more { margin-top: var(--space-10); padding-top: var(--space-8); border-top: 1px solid var(--line); }
+.rp-more h2 { margin-bottom: var(--space-5); font-size: clamp(24px, 2.4vw, 30px); font-weight: 800; }
+.rp-more-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); margin: 0; padding: 0; list-style: none; }
+.rp-more-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  color: var(--ink);
+  text-align: left;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--fast), box-shadow var(--fast);
+}
+.rp-more-card:hover { border-color: var(--line-strong); box-shadow: var(--shadow-md); }
+.rp-more-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.rp-more-photo { position: relative; display: block; overflow: hidden; aspect-ratio: 4 / 5; background: #1a1a1a; isolation: isolate; }
+.rp-more-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.74) 0%, rgba(0, 0, 0, 0.38) 30%, rgba(0, 0, 0, 0) 52%);
+  pointer-events: none;
+}
+.rp-more-photo .restaurant-photo-mount { opacity: 1; filter: blur(26px) saturate(1.25) brightness(0.5); }
+.rp-more-over {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: var(--space-4);
+  color: #fff;
+}
+.rp-more-seal { display: block; flex: none; width: 40px; height: 40px; overflow: hidden; border: 2px solid #fff; border-radius: 50%; background: #fff; }
+.rp-more-seal img { width: 100%; height: 100%; object-fit: contain; }
+.rp-more-title { display: grid; gap: 3px; min-width: 0; }
+.rp-more-title strong {
+  display: -webkit-box;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.rp-more-cuisine { overflow: hidden; color: rgba(255, 255, 255, 0.86); font-size: 13px; white-space: nowrap; text-overflow: ellipsis; }
+.rp-more-card:hover .rp-more-title strong { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.rp-more-facts { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: var(--space-3) var(--space-4) var(--space-4); font-size: 13px; }
+.rp-more-facts > span { display: inline-flex; align-items: center; gap: 4px; min-width: 0; }
+.rp-more-facts svg { width: 13px; height: 13px; flex: none; color: var(--ink-soft); }
+.rp-more-rating { font-weight: 700; }
+.rp-more-rating svg { color: #dfa437; }
+
 /* ---------- phone ---------- */
 .rp-phonebar { display: none; }
 @media (max-width: 767px) {
@@ -258,6 +323,13 @@
   .rp-actions { display: none; }
   .rp-body { padding-top: var(--space-7); }
   .rp-sections { grid-template-columns: 1fr; gap: var(--space-8); }
+  .rp-more { margin-top: var(--space-9); }
+  .rp-more-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+  .rp-more-over { flex-direction: column; align-items: flex-start; gap: 6px; padding: var(--space-3); }
+  .rp-more-seal { width: 32px; height: 32px; }
+  .rp-more-title strong { font-size: 16px; }
+  .rp-more-cuisine { font-size: 12px; }
+  .rp-more-facts { padding: var(--space-3); font-size: 12px; }
   .rp-where { grid-row: auto; }
   .rp-phonebar {
     position: fixed;

@@ -11,6 +11,7 @@ import { hasStory } from "./data/stories";
 import { StoryViewer } from "./Stories";
 import RestaurantGrid from "./components/RestaurantGrid.jsx";
 import RestaurantSearch from "./components/RestaurantSearch.jsx";
+import HeroMeals from "./components/HeroMeals.jsx";
 import RestaurantFilters from "./components/RestaurantFilters.jsx";
 import RestaurantPage from "./components/RestaurantPage.jsx";
 import BranchPicker from "./components/BranchPicker.jsx";
@@ -833,6 +834,7 @@ export default function App() {
             setModalView("menu");
           }}
           onOpenLocations={openBranchPicker}
+          onOpenRestaurant={(place, trigger) => openRestaurant(place, { source: trigger })}
           isSaved={favourites.has(selected.id)}
           paused={modalView === "menu"}
         />
@@ -965,29 +967,12 @@ export default function App() {
         )}
       </nav>
 
-      {/* The front page's sign: the same red panel as each restaurant page,
-          with the Manama skyline beside it and the search across its foot. */}
+      {/* The front page: the meals banner with the search under it, then
+          the cuisine chips and the restaurants. */}
       <header className="hero" id="top">
-        <div className="hero-band">
-          <div className="hero-copy">
-            <h1>Where Bahrain eats.</h1>
-            <p className="lede">
-              {restaurants.length} restaurants in {areas.length - 1} areas, with real menus, hours
-              and locations, from Manama to Muharraq.
-            </p>
-          </div>
-
-          <figure className="hero-visual">
-            <img
-              src="/hero-sunset.webp"
-              alt="Manama skyline at sunset from a waterfront restaurant terrace"
-              width="1350"
-              height="548"
-              fetchPriority="high"
-            />
-          </figure>
-        </div>
-
+        <div className="hero-inner">
+          {/* The banner: a welcome slide, then the best meals, one per slide. */}
+          <HeroMeals total={restaurants.length} onOpen={(place, trigger) => openRestaurant(place, { source: trigger })} />
           <div className="search-shell">
             <RestaurantSearch
               query={query}
@@ -1005,8 +990,8 @@ export default function App() {
               onOfferAppChange={setOfferApp}
             />
           </div>
-
-        </header>
+        </div>
+      </header>
 
       <nav className="cats" aria-label="Browse by cuisine">
         <div className="cats-track">
