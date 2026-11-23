@@ -16,6 +16,9 @@
  *      (poster is the still image: optional for a video, the photo itself
  *      for a photo.)
  *
+ * Each meal also opens as the first frame of its restaurant's story (tap
+ * the logo on its card), with the dish name as the caption.
+ *
  * While this list is empty, the banner shows only its welcome slide
  * (the Manama sunset).
  */

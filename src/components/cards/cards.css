@@ -265,6 +265,7 @@
 .cxs-where svg { color: var(--ink-soft); }
 .cxs-where > span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .cxs-rating svg { color: #dfa437; }
+.cxs-distance strong { font-weight: 700; }
 .cxs-rating strong { font-weight: 700; }
 .cxs-reviews { color: var(--ink-soft); }
 .cxs-dot { width: 8px; height: 8px; flex: none; border-radius: 50%; background: var(--ink-soft); }
@@ -277,16 +278,26 @@
 .cxs-desc { display: none; }
 .cxs-extra { color: var(--ink-soft); font-size: 13px; }
 
-.cxs-actions { display: flex; gap: 8px; margin-top: auto; }
-/* The main button keeps one size on every card; the icons follow it. */
+/* Fixed slots: the main button is the same size on every card, and the
+   menu, directions and call icons sit in the same place across a row,
+   even when a card has fewer of them. */
+.cxs-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) repeat(3, 44px);
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+.cxs-menu { grid-column: 2; }
+.cxs-map { grid-column: 3; }
+.cxs-optional { grid-column: 4; }
 .cxs-btn {
   display: inline-flex;
-  flex: 0 1 auto;
   align-items: center;
   justify-content: center;
   min-width: 0;
   height: 44px;
-  padding: 0 20px;
+  padding: 0 10px;
   border: 0;
   border-radius: var(--radius-pill);
   font-size: 14px;
@@ -295,6 +306,7 @@
   transition: background-color var(--fast);
 }
 .cxs-btn--primary { background: var(--accent-fill); color: var(--on-accent); }
+.cxs-btn-short { display: none; }
 .cxs-btn--primary:hover { background: var(--accent-fill-hover); }
 .cxs-icon {
   display: grid;
@@ -318,9 +330,14 @@
 @container cx (max-width: 250px) {
   .cxs .cx-gallery { right: 15px; bottom: auto; }
 }
-/* Three-across on a tablet: only the main button and directions. */
+/* Three-across on a tablet: the main button, the menu and directions. */
 @container cx (max-width: 260px) {
+  .cxs-actions { grid-template-columns: minmax(0, 1fr) repeat(2, 42px); }
+  .cxs-btn { height: 42px; }
+  .cxs-icon { width: 42px; height: 42px; }
   .cxs-optional { display: none; }
+  .cxs-btn-long { display: none; }
+  .cxs-btn-short { display: inline; }
 }
 /* Two-across on a phone: the seal stacks over the name, everything tighter. */
 @container cx (max-width: 220px) {
@@ -331,9 +348,17 @@
   .cxs-body { gap: 8px; padding: 10px; }
   .cxs-facts { gap: 4px 10px; font-size: 12px; }
   .cxs-reviews, .cxs-extra { display: none; }
-  .cxs-actions { gap: 6px; }
-  .cxs-btn { flex: 1; height: 40px; padding: 0 8px; font-size: 13px; }
-  .cxs-icon { width: 40px; height: 40px; }
+  .cxs-actions { grid-template-columns: minmax(0, 1fr) repeat(2, 38px); gap: 6px; }
+  .cxs-btn { height: 38px; padding: 0 6px; font-size: 13px; }
+  .cxs-icon { width: 38px; height: 38px; }
+}
+
+/* The smallest phones (320px): the menu keeps its place; directions wait
+   for the details page. */
+@container cx (max-width: 150px) {
+  .cxs-actions { grid-template-columns: minmax(0, 1fr) 38px; }
+  .cxs-menu ~ .cxs-map { display: none; }
+  .cxs-map { grid-column: 2; }
 }
 
 /* ---------- list view: photo on the left, details on the right ---------- */

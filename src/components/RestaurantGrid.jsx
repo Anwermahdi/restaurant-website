@@ -19,6 +19,7 @@ export default function RestaurantGrid({
   onToggleSaved,
   onOpen,
   hasStory,
+  distances,
   onOpenStory,
   onOpenMenu,
   onChooseBranch,
@@ -76,6 +77,8 @@ export default function RestaurantGrid({
             onToggleSaved={onToggleSaved}
             onOpen={onOpen}
             hasStory={Boolean(hasStory?.(restaurant.id))}
+            // Only a real shop location earns a printed distance.
+            distanceKm={distances?.get(restaurant.id)?.exact ? distances.get(restaurant.id).km : null}
             onOpenStory={onOpenStory}
             onOpenMenu={onOpenMenu}
             onChooseBranch={onChooseBranch}

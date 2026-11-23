@@ -316,6 +316,10 @@ a.branch-pick { text-decoration: none; }
 .story-who strong { font-family: var(--font-display); font-size: 16px; font-weight: 700; }
 .story-who span { overflow: hidden; color: #fff; font-size: 12.5px; text-overflow: ellipsis; white-space: nowrap; }
 .story-close { position: static; flex: none; margin-left: auto; }
+.story-sound + .story-close { margin-left: 0; }
+/* An upright phone video fills the story frame, as on Instagram. */
+video.story-photo { display: block; background: transparent; }
+video.story-photo.is-tall { object-fit: cover; }
 .story-caption { position: absolute; z-index: 3; left: 18px; right: 18px; bottom: 78px; color: #fff; font-size: 16px; font-weight: 600; line-height: 1.4; text-align: center; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75); }
 .story-tap { position: absolute; z-index: 2; top: 64px; bottom: 64px; width: 34%; padding: 0; border: 0; background: transparent; }
 .story-tap-prev { left: 0; }

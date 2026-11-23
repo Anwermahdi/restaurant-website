@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { restaurants, hoursLabel } from "./data/restaurants";
 import { storyFrames } from "./data/stories";
-import { CLOSE_ICON } from "./components/icons.jsx";
+import { CLOSE_ICON, SOUND_OFF_ICON, SOUND_ON_ICON } from "./components/icons.jsx";
 
 /**
  * Story highlights for one restaurant: a full-screen player like Instagram
- * stories. It is opened from the logo seal on the restaurant's card; there is
- * no separate rail.
+ * stories. A frame is a photo or a meal video. It is opened from the logo
+ * seal on the restaurant's card; there is no separate rail.
  */
 
 const storyRestaurants = restaurants.filter((r) => storyFrames(r.id).length > 0);
@@ -51,11 +51,19 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
   const closeRef = useRef(null);
   const touchStart = useRef(null);
   const returnFocusTo = useRef(null);
+  const videoRef = useRef(null);
+  // Stories start muted (phones only autoplay silent video); one tap turns
+  // the sound on for every video after it too.
+  const [muted, setMuted] = useState(true);
+  // A video's length, once known, drives its progress bar.
+  const [videoMeta, setVideoMeta] = useState({ src: "", ms: 0, tall: false });
 
   const position = storyRestaurants.findIndex((r) => r.id === storyId);
   const restaurant = position >= 0 ? storyRestaurants[position] : null;
   const frames = restaurant ? storyFrames(restaurant.id) : [];
   const frame = frames[index] || null;
+  const isVideo = Boolean(frame?.video);
+  const meta = isVideo && videoMeta.src === frame.video ? videoMeta : null;
   const [reduceMotion] = useState(
     () => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
   );
@@ -88,11 +96,21 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
 
   // Auto-advance, paused on hold. With "reduce motion" on, nothing moves by
   // itself: the visitor taps or uses the arrow keys to go on.
+  // A video moves on when it ends instead.
   useEffect(() => {
-    if (!frame || paused || reduceMotion) return undefined;
+    if (!frame || isVideo || paused || reduceMotion) return undefined;
     const timer = setTimeout(advance, frame.duration);
     return () => clearTimeout(timer);
-  }, [frame, paused, advance, reduceMotion]);
+  }, [frame, isVideo, paused, advance, reduceMotion]);
+
+  // Holding the story pauses the video with it; the sound follows the toggle.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = muted;
+    if (paused) video.pause();
+    else video.play().catch(() => {});
+  }, [paused, muted, frame]);
 
   // Advancing to the next restaurant in the rail.
   useEffect(() => {
@@ -172,8 +190,46 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
       <div className="story-frame">
         {/* A blurred copy of the same photo fills the frame, so a landscape menu
             page or a portrait meal shot both sit well without being cropped. */}
-        <img className="story-backdrop" src={frame.src} alt="" aria-hidden="true" />
-        <img className="story-photo" src={frame.src} alt={frame.caption || `${restaurant.name} highlight ${index + 1}`} draggable="false" />
+        {isVideo ? (
+          <>
+            {frame.poster ? <img className="story-backdrop" src={frame.poster} alt="" aria-hidden="true" /> : null}
+            <video
+              key={frame.video}
+              ref={videoRef}
+              className={`story-photo ${meta?.tall ? "is-tall" : ""}`}
+              src={frame.video}
+              poster={frame.poster}
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              aria-label={frame.caption || `${restaurant.name} video ${index + 1}`}
+              onLoadedMetadata={(event) => {
+                const video = event.currentTarget;
+                setVideoMeta({
+                  src: frame.video,
+                  ms: Number.isFinite(video.duration) ? video.duration * 1000 : 0,
+                  // An upright phone video fills the frame like a real story.
+                  tall: video.videoWidth > 0 && video.videoHeight / video.videoWidth > 1.4,
+                });
+              }}
+              onEnded={(event) => {
+                // With "reduce motion" on, nothing moves on by itself.
+                if (reduceMotion) {
+                  event.currentTarget.currentTime = 0;
+                  event.currentTarget.play().catch(() => {});
+                } else {
+                  advance();
+                }
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <img className="story-backdrop" src={frame.src} alt="" aria-hidden="true" />
+            <img className="story-photo" src={frame.src} alt={frame.caption || `${restaurant.name} highlight ${index + 1}`} draggable="false" />
+          </>
+        )}
 
         <div className="story-bars" aria-hidden="true">
           {frames.map((item, i) => (
@@ -182,10 +238,11 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
                 className="story-bar-fill"
                 // Seen photos are full, the current one fills over its
                 // duration, and the ones still to come stay empty.
+                // A video's bar waits for its length, then runs with it.
                 style={
-                  i === index && !reduceMotion
-                    ? { animationDuration: `${item.duration}ms`, animationPlayState: paused ? "paused" : "running" }
-                    : { animation: "none", transform: i <= index ? "scaleX(1)" : "scaleX(0)" }
+                  i === index && !reduceMotion && (!item.video || meta?.ms)
+                    ? { animationDuration: `${item.video ? meta.ms : item.duration}ms`, animationPlayState: paused ? "paused" : "running" }
+                    : { animation: "none", transform: i < index || (i === index && !item.video) ? "scaleX(1)" : "scaleX(0)" }
                 }
               />
             </span>
@@ -201,6 +258,17 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
               {hoursLabel(restaurant) ? ` · ${hoursLabel(restaurant)}` : ""}
             </span>
           </div>
+          {isVideo ? (
+            <button
+              type="button"
+              className="story-close story-sound"
+              onClick={() => setMuted((value) => !value)}
+              aria-label={muted ? "Turn the sound on" : "Turn the sound off"}
+              aria-pressed={!muted}
+            >
+              {muted ? SOUND_OFF_ICON : SOUND_ON_ICON}
+            </button>
+          ) : null}
           <button type="button" className="story-close" onClick={close} aria-label="Close highlights" ref={closeRef}>
             {CLOSE_ICON}
           </button>
@@ -208,8 +276,8 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
 
         {frame.caption ? <p className="story-caption">{frame.caption}</p> : null}
 
-        <button type="button" className="story-tap story-tap-prev" onClick={previous} aria-label="Previous photo" />
-        <button type="button" className="story-tap story-tap-next" onClick={advance} aria-label="Next photo" />
+        <button type="button" className="story-tap story-tap-prev" onClick={previous} aria-label="Previous" />
+        <button type="button" className="story-tap story-tap-next" onClick={advance} aria-label="Next" />
 
         <div className="story-foot">
           <span className="story-counter">

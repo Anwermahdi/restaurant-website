@@ -188,6 +188,54 @@
 .rp-offer-text { display: flex; flex-direction: column; gap: 2px; }
 .rp-offer-text span { font-size: 13px; color: var(--ink-soft); }
 
+/* The menu pages, in a row you can swipe; each opens full size. */
+.rp-menu { margin: 0 0 var(--space-8); }
+.rp-menu h2 { margin-bottom: var(--space-1); }
+.rp-menu-note { margin: 0 0 var(--space-3); color: var(--ink-soft); font-size: 14px; overflow-wrap: anywhere; }
+.rp-menu-pages {
+  display: flex;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 2px 2px var(--space-2);
+  overflow-x: auto;
+  list-style: none;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+}
+.rp-menu-pages li { flex: none; scroll-snap-align: start; }
+.rp-menu-page {
+  position: relative;
+  display: block;
+  width: 136px;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  cursor: zoom-in;
+  transition: border-color var(--fast), box-shadow var(--fast);
+}
+.rp-menu-page:hover { border-color: var(--ink); box-shadow: var(--shadow-md); }
+.rp-menu-page:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.rp-menu-page img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.rp-menu-num {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 0, 0, 0.72);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+.rp-menu-more { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0, 0, 0, 0.55); color: #fff; font-size: 20px; font-weight: 800; }
+
 .rp-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); max-width: 520px; margin: 0 0 var(--space-8); }
 .rp-thumb { position: relative; aspect-ratio: 1; padding: 0; border: 0; border-radius: var(--radius-sm); overflow: hidden; background: var(--surface); cursor: zoom-in; }
 .rp-thumb-more { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; background: rgba(0, 0, 0, 0.5); color: #fff; font-weight: 700; }
@@ -322,6 +370,7 @@
   /* The phone bar below carries the actions. */
   .rp-actions { display: none; }
   .rp-body { padding-top: var(--space-7); }
+  .rp-menu-page { width: 118px; }
   .rp-sections { grid-template-columns: 1fr; gap: var(--space-8); }
   .rp-more { margin-top: var(--space-9); }
   .rp-more-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }

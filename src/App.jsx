@@ -12,6 +12,8 @@ import { StoryViewer } from "./Stories";
 import RestaurantGrid from "./components/RestaurantGrid.jsx";
 import RestaurantSearch from "./components/RestaurantSearch.jsx";
 import HeroMeals from "./components/HeroMeals.jsx";
+import MyMeals from "./components/MyMeals.jsx";
+import { nearestKm } from "./data/distance.js";
 import RestaurantFilters from "./components/RestaurantFilters.jsx";
 import RestaurantPage from "./components/RestaurantPage.jsx";
 import BranchPicker from "./components/BranchPicker.jsx";
@@ -165,6 +167,48 @@ export default function App() {
   const [minRating, setMinRating] = useState("Any");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [sort, setSort] = useState("recommended");
+  // "Nearest to me": the visitor's position, asked for only when they pick
+  // that sort. It stays in this tab and is never stored or sent anywhere.
+  const [here, setHere] = useState(null);
+  const [locating, setLocating] = useState("idle"); // idle | asking | denied | unavailable
+  const distances = useMemo(
+    () => (here ? new Map(restaurants.map((restaurant) => [restaurant.id, nearestKm(restaurant, here)])) : null),
+    [here]
+  );
+  // Asks the browser once; the sort and the map's "Near me" button share it.
+  const locate = useCallback(
+    (then) => {
+      if (here) {
+        setLocating("idle");
+        then?.(here);
+        return;
+      }
+      if (!navigator.geolocation) {
+        setLocating("unavailable");
+        return;
+      }
+      setLocating("asking");
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const point = { lat: position.coords.latitude, lng: position.coords.longitude };
+          setHere(point);
+          setLocating("idle");
+          then?.(point);
+        },
+        (error) => setLocating(error.code === 1 ? "denied" : "unavailable"),
+        { enableHighAccuracy: false, timeout: 12000, maximumAge: 300000 }
+      );
+    },
+    [here]
+  );
+  const chooseSort = (value) => {
+    if (value === "nearest") {
+      locate(() => setSort("nearest"));
+      return;
+    }
+    setLocating("idle");
+    setSort(value);
+  };
   const [selectedId, setSelectedId] = useState(null);
   // The branch the visitor picked, and the place whose branch list is open.
   const [selectedBranch, setSelectedBranch] = useState(null);
@@ -195,6 +239,10 @@ export default function App() {
       }
       if (sort === "name") {
         return [...list].sort((a, b) => a.name.localeCompare(b.name));
+      }
+      if (sort === "nearest" && distances) {
+        const km = (place) => distances.get(place.id)?.km ?? Infinity;
+        return [...list].sort((a, b) => km(a) - km(b));
       }
       return list;
     };
@@ -243,7 +291,7 @@ export default function App() {
       .sort((a, b) => b.score - a.score)
       .map(({ restaurant }) => restaurant);
     return order(scored);
-  }, [query, cuisine, area, offerApp, mealTime, offersOnly, openNowOnly, minRating, savedOnly, favourites, sort]);
+  }, [query, cuisine, area, offerApp, mealTime, offersOnly, openNowOnly, minRating, savedOnly, favourites, sort, distances]);
 
   const toggleFavourite = useCallback((id) => {
     setFavourites((current) => {
@@ -1018,6 +1066,10 @@ export default function App() {
       </nav>
 
       <main className="results" id="restaurant-grid">
+        {/* My own meal photos, only on the plain list (no search or filters). */}
+        {!hasFilters && !savedOnly && view !== "map" ? (
+          <MyMeals onOpen={(place, trigger) => openRestaurant(place, { source: trigger })} />
+        ) : null}
         <div className="results-head">
           <div className="results-title">
             <h2>{savedOnly ? "Saved places" : cuisine === "All" ? "All restaurants" : cuisine}</h2>
@@ -1025,6 +1077,18 @@ export default function App() {
               <strong>{filtered.length}</strong> {filtered.length === 1 ? "place" : "places"}
               {area !== "All" ? ` in ${area}` : " across Bahrain"}
             </p>
+            {/* What "Nearest to me" is doing, in plain words. */}
+            {locating !== "idle" || sort === "nearest" ? (
+              <p className={`sort-note ${locating === "denied" || locating === "unavailable" ? "is-problem" : ""}`} role="status">
+                {locating === "asking"
+                  ? "Finding where you are…"
+                  : locating === "denied"
+                    ? "Location is off for this site. Allow location in your browser settings, then try again."
+                    : locating === "unavailable"
+                      ? "We couldn't find where you are. Try again in a moment."
+                      : "Closest first, measured in a straight line from you."}
+              </p>
+            ) : null}
             {hasFilters && (
               <button type="button" className="clear-link" onClick={clearAll}>
                 Clear all
@@ -1045,8 +1109,9 @@ export default function App() {
             </button>
             <label className="sort-wrap">
               <span className="sr-only">Sort restaurants</span>
-              <select id="sort" value={sort} onChange={(e) => setSort(e.target.value)}>
+              <select id="sort" value={sort} onChange={(e) => chooseSort(e.target.value)}>
                 <option value="recommended">Recommended</option>
+                <option value="nearest">Nearest to me</option>
                 <option value="rating">Top rated</option>
                 <option value="name">Name A–Z</option>
               </select>
@@ -1098,7 +1163,7 @@ export default function App() {
 
         {view === "map" ? (
           <Suspense fallback={<div className="map-view-loading">Loading map…</div>}>
-            <MapView restaurants={filtered} onOpen={openFromMap} />
+            <MapView restaurants={filtered} onOpen={openFromMap} here={here} locating={locating === "asking"} onLocate={() => locate()} />
           </Suspense>
         ) : (
           <RestaurantGrid
@@ -1108,6 +1173,7 @@ export default function App() {
             onToggleSaved={toggleFavourite}
             onOpen={(restaurant, trigger) => openRestaurant(restaurant, { source: trigger })}
             hasStory={hasStory}
+            distances={distances}
             onOpenStory={openStory}
             onOpenMenu={(restaurant, trigger) => openRestaurant(restaurant, { source: trigger, view: "menu" })}
             onChooseBranch={openBranchPicker}

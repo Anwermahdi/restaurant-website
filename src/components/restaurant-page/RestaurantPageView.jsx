@@ -114,6 +114,57 @@ function Offers({ d }) {
   );
 }
 
+// The menu, out in the open: every page as a small preview that opens full
+// size, or a plain link when the menu lives on another website.
+function MenuPages({ d }) {
+  const pages = d.restaurant.menuPhotos || [];
+  if (!pages.length && !d.menuUrl) return null;
+  const shown = pages.slice(0, 8);
+  let host = "";
+  try {
+    host = d.menuUrl ? new URL(d.menuUrl).hostname.replace(/^www\./, "") : "";
+  } catch {
+    host = "";
+  }
+  return (
+    <section className="rp-menu" aria-labelledby="rp-menu">
+      <h2 id="rp-menu">Menu</h2>
+      {pages.length ? (
+        <>
+          <p className="rp-menu-note">{pages.length === 1 ? "One page. Tap it to read." : `${pages.length} pages. Tap one to read it full size.`}</p>
+          <ul className="rp-menu-pages">
+            {shown.map((src, index) => (
+              <li key={src}>
+                <button
+                  type="button"
+                  className="rp-menu-page"
+                  onClick={() => d.onOpenMenuPage?.(d.restaurant, index)}
+                  aria-label={`Open menu page ${index + 1} of ${pages.length}`}
+                >
+                  <img src={src} alt="" loading="lazy" decoding="async" />
+                  {index === shown.length - 1 && pages.length > shown.length ? (
+                    <span className="rp-menu-more">+{pages.length - shown.length}</span>
+                  ) : (
+                    <span className="rp-menu-num" aria-hidden="true">{index + 1}</span>
+                  )}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <>
+          {host ? <p className="rp-menu-note">This place keeps its menu on {host}.</p> : null}
+          <a className="rp-btn rp-btn--ghost" href={d.menuUrl} target="_blank" rel="noopener noreferrer">
+            <MenuIcon />
+            <span>Open the menu</span>
+          </a>
+        </>
+      )}
+    </section>
+  );
+}
+
 function Thumbs({ d }) {
   const rest = d.photoItems.slice(1);
   if (!rest.length) return null;
@@ -297,6 +348,7 @@ export default function RestaurantPageView({ d }) {
 
         <div className="rp-body">
           <Offers d={d} />
+          <MenuPages d={d} />
           <Thumbs d={d} />
           <Sections d={d} />
           <MoreLikeThis restaurant={d.restaurant} onOpen={d.onOpenRestaurant} />

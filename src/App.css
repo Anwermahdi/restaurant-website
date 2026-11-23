@@ -461,6 +461,9 @@ svg { flex: 0 0 auto; }
 }
 .result-count { color: var(--ink-soft); font-size: 15px; }
 .result-count strong { color: var(--ink); font-weight: 700; }
+/* What the "Nearest to me" sort is doing; a problem reads in red words. */
+.sort-note { flex-basis: 100%; margin-top: 2px; color: var(--ink-soft); font-size: 13.5px; line-height: 1.45; }
+.sort-note.is-problem { color: var(--accent-text); font-weight: 600; }
 .clear-link {
   padding: 0;
   border: 0;

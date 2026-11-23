@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef } from "react";
 import branchCoords from "./data/branch-coords.json";
+import { LOCATE_ICON } from "./components/icons.jsx";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet.markercluster";
@@ -86,7 +87,7 @@ const BAHRAIN_BOUNDS = [
   [26.35, 50.75],
 ];
 
-export default function MapView({ restaurants, onOpen }) {
+export default function MapView({ restaurants, onOpen, here = null, locating = false, onLocate }) {
   const ref = useRef(null);
   const mapRef = useRef(null);
   const legendRef = useRef(null);
@@ -159,6 +160,22 @@ export default function MapView({ restaurants, onOpen }) {
     };
   }, [restaurants, onOpen]);
 
+  // "You are here": a dot at the visitor's position, and the map moves to
+  // the restaurants around them. The position never leaves the browser.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !here) return undefined;
+    const you = L.marker([here.lat, here.lng], {
+      icon: L.divIcon({ className: "map-you-wrap", html: '<span class="map-you"></span>', iconSize: [22, 22], iconAnchor: [11, 11] }),
+      keyboard: false,
+      title: "You are here",
+      zIndexOffset: 1000,
+    }).addTo(map);
+    const still = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    map.setView([here.lat, here.lng], 14, { animate: !still });
+    return () => you.remove();
+  }, [here]);
+
   // The legend only lists codes that actually appear in the current result
   // set, so it never shows a key for a food type that has no pin.
   const legendEntries = useMemo(() => {
@@ -173,6 +190,19 @@ export default function MapView({ restaurants, onOpen }) {
   return (
     <div className="map-view-wrap">
       <div ref={ref} className="map-view" />
+      {onLocate ? (
+        <button
+          type="button"
+          className="map-locate"
+          // Once we know where they are, the button just brings the map back to them.
+          onClick={() => (here ? mapRef.current?.setView([here.lat, here.lng], 14) : onLocate())}
+          disabled={locating}
+          aria-label={here ? "Show where I am again" : "Show where I am on the map"}
+        >
+          {LOCATE_ICON}
+          <span>{locating ? "Finding you…" : "Near me"}</span>
+        </button>
+      ) : null}
       {legendEntries.length > 0 && (
         <div className="map-legend" ref={legendRef} aria-label="Map pin legend">
           {legendEntries.map((entry) => (

@@ -1,6 +1,7 @@
 import { MAP_ICON, MenuIcon, PHONE_ICON, PIN_ICON, PLAY_ICON, StarIcon, VerifiedIcon } from "./icons.jsx";
 import RestaurantLogo from "./RestaurantLogo.jsx";
 import { cardData } from "./cards/cardData.js";
+import { distanceLabel } from "../data/distance.js";
 import { CardPhoto, FavButton, GalleryButton, OfferBadge } from "./cards/CardParts.jsx";
 
 /**
@@ -11,7 +12,7 @@ import { CardPhoto, FavButton, GalleryButton, OfferBadge } from "./cards/CardPar
  */
 export default function RestaurantCard({
   restaurant, index = 0, isSaved = false, onToggleSaved, onOpen, onOpenOffers, onOpenGallery, onChooseBranch, onOpenMenu,
-  hasStory = false, onOpenStory,
+  hasStory = false, onOpenStory, distanceKm = null,
 }) {
   const data = cardData(restaurant);
   const titleId = `cxs-${restaurant.id}-title`;
@@ -23,6 +24,8 @@ export default function RestaurantCard({
     : data.hours;
   const directionsHref = data.directionsUrl || data.searchUrl;
   const hasMenu = Boolean(data.menuPages || data.menuUrl);
+  // Only once the visitor has shared where they are.
+  const distance = distanceLabel(distanceKm);
 
   const seal = hasStory && onOpenStory ? (
     <button
@@ -60,6 +63,12 @@ export default function RestaurantCard({
           <span>{data.area || "Bahrain"}</span>
         )}
       </li>
+      {distance ? (
+        <li className="cxs-distance" title={data.branches > 1 ? "To the closest branch, in a straight line" : "In a straight line"}>
+          <strong>{distance}</strong>
+          <span className="sr-only">{data.branches > 1 ? " to the closest branch" : " away"}</span>
+        </li>
+      ) : null}
       {data.rating ? (
         <li className="cxs-rating" title={data.reviews ? `${data.reviews} Google reviews` : undefined}>
           <StarIcon />
@@ -78,15 +87,32 @@ export default function RestaurantCard({
     </ul>
   );
 
+  // The menu comes first after the main button: it stays on every card,
+  // even the narrowest, because it is what people open most.
+  const menuButton = hasMenu ? (
+    data.menuPages ? (
+      <button type="button" className="cxs-icon cxs-menu" onClick={(event) => onOpenMenu?.(restaurant, event.currentTarget)} aria-label={`${restaurant.name} menu`} title="Menu">
+        <MenuIcon />
+      </button>
+    ) : (
+      <a className="cxs-icon cxs-menu" href={data.menuUrl} target="_blank" rel="noopener noreferrer" aria-label={`${restaurant.name} menu (opens in a new tab)`} title="Menu">
+        <MenuIcon />
+      </a>
+    )
+  ) : null;
+
   const actions = (
     <div className="cxs-actions">
       <button type="button" className="cxs-btn cxs-btn--primary" onClick={open}>
-        View details
+        {/* Narrow cards say just "Details", so the menu button fits beside it. */}
+        <span className="cxs-btn-long">View details</span>
+        <span className="cxs-btn-short">Details</span>
       </button>
+      {menuButton}
       {data.branches > 1 ? (
         <button
           type="button"
-          className="cxs-icon"
+          className="cxs-icon cxs-map"
           onClick={(event) => onChooseBranch?.(restaurant, event.currentTarget, "directions")}
           aria-label={`Directions to ${restaurant.name}: choose one of ${data.branches} branches`}
           title="Directions"
@@ -95,7 +121,7 @@ export default function RestaurantCard({
         </button>
       ) : directionsHref ? (
         <a
-          className="cxs-icon"
+          className="cxs-icon cxs-map"
           href={directionsHref}
           target="_blank"
           rel="noopener noreferrer"
@@ -109,17 +135,6 @@ export default function RestaurantCard({
         <a className="cxs-icon cxs-optional" href={data.callHref} aria-label={`Call ${restaurant.name}, ${data.phone}`} title={`Call ${data.phone}`}>
           {PHONE_ICON}
         </a>
-      ) : null}
-      {hasMenu ? (
-        data.menuPages ? (
-          <button type="button" className="cxs-icon cxs-optional" onClick={(event) => onOpenMenu?.(restaurant, event.currentTarget)} aria-label={`${restaurant.name} menu`} title="Menu">
-            <MenuIcon />
-          </button>
-        ) : (
-          <a className="cxs-icon cxs-optional" href={data.menuUrl} target="_blank" rel="noopener noreferrer" aria-label={`${restaurant.name} menu (opens in a new tab)`} title="Menu">
-            <MenuIcon />
-          </a>
-        )
       ) : null}
     </div>
   );

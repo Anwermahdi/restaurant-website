@@ -1,5 +1,12 @@
+import { MEAL_VIDEOS } from "./meal-videos.js";
+
 // ============================================================
 // Story highlights: the meals a restaurant wants to show off.
+//
+// MEAL VIDEOS COME FIRST, ON THEIR OWN
+//   Every meal in src/data/meal-videos.js (the front-page banner) also opens
+//   as a story frame for its restaurant, with the dish name as the caption.
+//   Add a meal there once and it shows in both places.
 //
 // HOW TO ADD A HIGHLIGHT
 //   1. Put the photo in  public/restaurants/stories/<restaurant-id>/
@@ -42,13 +49,21 @@ export const STORIES = {
 
 const DEFAULT_DURATION = 5000;
 
+// The banner's meals, as story frames: a video plays to its end, a photo
+// stays for the usual time.
+const mealFrames = (id) =>
+  MEAL_VIDEOS.filter((meal) => meal.restaurantId === id && (meal.src || meal.poster)).map((meal) =>
+    meal.src ? { video: meal.src, poster: meal.poster, caption: meal.dish } : { src: meal.poster, caption: meal.dish }
+  );
+
+const isPath = (value) => typeof value === "string" && value.length > 3;
+
 /** Normalised frames for one restaurant: [] when it has no highlights. */
 export function storyFrames(id) {
-  const raw = STORIES[id];
-  if (!Array.isArray(raw)) return [];
-  return raw
+  const raw = Array.isArray(STORIES[id]) ? STORIES[id] : [];
+  return [...mealFrames(id), ...raw]
     .map((frame) => (typeof frame === "string" ? { src: frame } : frame))
-    .filter((frame) => frame && typeof frame.src === "string" && frame.src.length > 3)
+    .filter((frame) => frame && (isPath(frame.video) || isPath(frame.src)))
     .map((frame) => ({ ...frame, duration: frame.duration || DEFAULT_DURATION }));
 }
 
