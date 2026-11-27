@@ -155,7 +155,10 @@
    under it, today's facts and the ways in. Only known facts are
    shown.
    ============================================================ */
-.cxs-media { aspect-ratio: 4 / 5; }
+/* A square photo: most storefronts on file are 3:4 or 4:3, and both fill a
+   square with a light trim. Anything narrower or wider is shown whole over
+   its blurred copy (fit="smart" in RestaurantPhoto), never zoomed in. */
+.cxs-media { aspect-ratio: 1 / 1; }
 /* A dark wash from the foot of the photo keeps the white words readable. */
 .cxs-media::after {
   content: "";
@@ -341,10 +344,16 @@
 }
 /* Two-across on a phone: the seal stacks over the name, everything tighter. */
 @container cx (max-width: 220px) {
-  .cxs-over { flex-direction: column; align-items: flex-start; gap: 6px; padding: 10px; }
-  .cxs-seal { width: 32px; height: 32px; }
+  /* The seal stays beside the name, so the words cover less of the photo. */
+  .cxs-over { gap: 8px; padding: 10px; }
+  .cxs-seal { width: 28px; height: 28px; border-width: 1.5px; }
   .cxs-name { font-size: 16px; }
   .cxs-cuisine { font-size: 12px; }
+  .cxs-cuisine-more { display: none; }
+  /* A longer offer wraps onto two short lines instead of being cut off. */
+  .cx-offer { top: 8px; left: 8px; height: auto; min-height: 30px; padding: 3px 10px 3px 3px; font-size: 11.5px; line-height: 1.15; }
+  .cx-offer-icon { width: 22px; height: 22px; }
+  .cx-offer-text { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .cxs-body { gap: 8px; padding: 10px; }
   .cxs-facts { gap: 4px 10px; font-size: 12px; }
   .cxs-reviews, .cxs-extra { display: none; }
@@ -355,6 +364,11 @@
 
 /* The smallest phones (320px): the menu keeps its place; directions wait
    for the details page. */
+/* On the smallest phones a two-line name reaches the photos button, so the
+   photos wait for the restaurant page. */
+@container cx (max-width: 160px) {
+  .cxs .cx-gallery { display: none; }
+}
 @container cx (max-width: 150px) {
   .cxs-actions { grid-template-columns: minmax(0, 1fr) 38px; }
   .cxs-menu ~ .cxs-map { display: none; }

@@ -309,6 +309,7 @@ export default function RestaurantPage({
         photo={photoItems[lightbox]}
         alt={`${restaurant.name}, photo ${lightbox + 1} of ${photoCount}`}
         frameClassName="detail-lightbox-photo"
+        maxUpscale={1.6}
         loading="eager"
         fallback={restaurant.fallbackImage}
         fallbackFinal={restaurant.fallbackFinal}

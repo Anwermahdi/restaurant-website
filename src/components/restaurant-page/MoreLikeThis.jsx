@@ -44,7 +44,8 @@ export default function MoreLikeThis({ restaurant, onOpen }) {
                   <RestaurantPhoto
                     photo={data.photo}
                     alt=""
-                    fit="card"
+                    fit="smart"
+                    maxCrop={0.26}
                     focus={data.focus}
                     loading="lazy"
                     fallbacks={data.fallbacks}
@@ -55,7 +56,10 @@ export default function MoreLikeThis({ restaurant, onOpen }) {
                     <span className="rp-more-seal" aria-hidden="true"><RestaurantLogo restaurant={place} /></span>
                     <span className="rp-more-title">
                       <strong>{place.name}</strong>
-                      <span className="rp-more-cuisine">{data.tags.slice(0, 2).join(", ") || place.cuisine}</span>
+                      <span className="rp-more-cuisine">
+                        {data.tags[0] || place.cuisine}
+                        {data.tags[1] ? <span className="rp-more-cuisine-more">, {data.tags[1]}</span> : null}
+                      </span>
                     </span>
                   </span>
                 </span>

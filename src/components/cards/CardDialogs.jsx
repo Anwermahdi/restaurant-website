@@ -127,6 +127,7 @@ export function PhotoGallery({ restaurant, photos, onClose, returnTo }) {
         photo={photos[index]}
         alt={`${restaurant.name}, photo ${index + 1} of ${count}`}
         frameClassName="detail-lightbox-photo"
+        maxUpscale={1.6}
         loading="eager"
         fallback={restaurant.fallbackImage}
         fallbackFinal={restaurant.fallbackFinal}

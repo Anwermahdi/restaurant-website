@@ -23,7 +23,8 @@ export function CardPhoto({ restaurant, data, index = 0, onOpen, className = "" 
         <RestaurantPhoto
           photo={data.photo}
           alt=""
-          fit="card"
+          fit="smart"
+          maxCrop={0.26}
           focus={data.focus}
           className={`cx-img ${ready ? "is-ready" : ""}`}
           imgRef={imgRef}

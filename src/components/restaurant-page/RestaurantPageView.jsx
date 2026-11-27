@@ -278,6 +278,11 @@ function PhoneBar({ d }) {
 
 export default function RestaurantPageView({ d }) {
   const photo = d.photoItems[0];
+  // On a phone the photo frame takes the photo's own shape (between 4:5 and
+  // 3:2), so a storefront is neither cut down nor zoomed in.
+  const heroRatio = photo?.width && photo?.height
+    ? Math.min(1.5, Math.max(0.8, photo.width / photo.height)).toFixed(3)
+    : null;
   const sub = [d.restaurant.cuisine, d.locationLabel].filter(Boolean).join(", ");
   return (
     <div className={`rp ${d.photoItems.length ? "" : "rp--no-photo"}`.trim()}>
@@ -288,13 +293,16 @@ export default function RestaurantPageView({ d }) {
             <button
               type="button"
               className="rp-photo"
+              style={heroRatio ? { "--rp-photo-ratio": heroRatio } : undefined}
               onClick={() => d.setLightbox(0)}
               aria-label={`View ${d.photoCount === 1 ? "the photo" : `all ${d.photoCount} photos`} of ${d.name} full size`}
             >
               <RestaurantPhoto
                 photo={photo}
                 alt={`${d.name} storefront`}
-                fit="crop"
+                fit="smart"
+                maxCrop={0.3}
+                maxUpscale={1.25}
                 focus={d.photoFocus}
                 loading="eager"
                 fetchPriority="high"
