@@ -10,6 +10,7 @@ export default function RestaurantSearch({
   onQueryChange,
   onSubmit,
   cuisines = [],
+  cuisineGroups = [],
   foodCounts = {},
   cuisine = "All",
   onCuisineChange,
@@ -50,7 +51,7 @@ export default function RestaurantSearch({
       <div className="finder-field">
         {icon(RESTAURANT_ICON)}
         <span className="finder-field-label" aria-hidden="true">{rich ? "Type of food" : "Cuisine"}</span>
-        <span className="finder-field-value" aria-hidden="true">{cuisine === "All" ? (rich ? "All cuisines" : "Any cuisine") : cuisine}</span>
+        <span className="finder-field-value" aria-hidden="true">{cuisine === "All" ? (rich ? "All cuisines" : "Any cuisine") : cuisineGroups.find((group) => group.id === cuisine)?.name || cuisine}</span>
         <select
           className="finder-field-select"
           name="cuisine"
@@ -59,9 +60,18 @@ export default function RestaurantSearch({
           onChange={(event) => onCuisineChange?.(event.target.value)}
         >
           <option value="All">Any cuisine</option>
-          {cuisines.filter((item) => item !== "All").map((item) => (
-            <option key={item} value={item}>{item} ({foodCounts[item] ?? 0})</option>
-          ))}
+          {cuisineGroups.length ? (
+            <optgroup label="Dishes">
+              {cuisineGroups.map((group) => (
+                <option key={group.id} value={group.id}>{group.name} ({group.count})</option>
+              ))}
+            </optgroup>
+          ) : null}
+          <optgroup label="Cuisines">
+            {cuisines.filter((item) => item !== "All").map((item) => (
+              <option key={item} value={item}>{item} ({foodCounts[item] ?? 0})</option>
+            ))}
+          </optgroup>
         </select>
         {CHEVRON_ICON}
       </div>

@@ -11,10 +11,12 @@ import { hasStory } from "./data/stories";
 import { StoryViewer } from "./Stories";
 import RestaurantGrid from "./components/RestaurantGrid.jsx";
 import RestaurantSearch from "./components/RestaurantSearch.jsx";
-import HeroMeals from "./components/HeroMeals.jsx";
-import MyMeals from "./components/MyMeals.jsx";
+import HomeHero from "./components/HomeHero.jsx";
+import HomeSections from "./components/HomeSections.jsx";
+import { DISH_GROUPS, dishGroupById, inDishGroup } from "./data/dish-sections.js";
 import { MEAL_HIGHLIGHTS } from "./data/meal-highlights.js";
 import { nearestKm } from "./data/distance.js";
+import { normalizeSearchText } from "./data/search-text.js";
 import { sortRecommended } from "./data/recommended.js";
 import RestaurantFilters from "./components/RestaurantFilters.jsx";
 import RestaurantPage from "./components/RestaurantPage.jsx";
@@ -30,6 +32,7 @@ import {
 import "./App.css";
 import "./components/cards/cards.css";
 import "./styles/home.css";
+import "./styles/home-dish.css";
 import "./styles/filters.css";
 import "./styles/map.css";
 import "./styles/popups.css";
@@ -57,22 +60,6 @@ function menuPhotoDimensions(restaurant, index) {
   // A 0 means the generator could not read the header; keep the page portrait.
   if (!declared || !declared[0] || !declared[1]) return [720, 1280];
   return declared;
-}
-
-function normalizeSearchText(value) {
-  return String(value ?? "")
-    .normalize("NFKD")
-    .toLocaleLowerCase("en")
-    .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g, "")
-    .replace(/[أإآٱ]/g, "ا")
-    .replace(/ى/g, "ي")
-    .replace(/ؤ/g, "و")
-    .replace(/ئ/g, "ي")
-    .replace(/ة/g, "ه")
-    .replace(/[’'`]/g, "")
-    .replace(/[^a-z0-9\u0600-\u06FF]+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
 }
 
 function buildSearchIndex(restaurant) {
@@ -170,6 +157,9 @@ function readTheme() {
 export default function App() {
   const [query, setQuery] = useState("");
   const [cuisine, setCuisine] = useState("All");
+  // A dish group from the home page (Burgers, Grills...): several cuisines at
+  // once. It is picked in the same Cuisine choice as a single cuisine.
+  const [dishGroup, setDishGroup] = useState("All");
   const [area, setArea] = useState("All");
   const [offerApp, setOfferApp] = useState("All");
   const [mealTime, setMealTime] = useState("All");
@@ -262,6 +252,7 @@ export default function App() {
       return list;
     };
 
+    const activeDishGroup = dishGroup === "All" ? null : dishGroupById(dishGroup);
     const normalizedQuery = normalizeSearchText(query);
     const tokens = normalizedQuery ? normalizedQuery.split(" ").filter(Boolean) : [];
     const normalizedArea = normalizeSearchText(area);
@@ -271,6 +262,7 @@ export default function App() {
     // promises is what you get.
     const candidates = restaurants.filter((restaurant) => {
       if (cuisine !== "All" && restaurant.cuisine !== cuisine && !(restaurant.tags || []).some((tag) => tag === cuisine)) return false;
+      if (activeDishGroup && !inDishGroup(restaurant, activeDishGroup)) return false;
       if (area !== "All") {
         // Branches win when they exist; otherwise the researched area, and the
         // full address as a last resort so nothing becomes unfilterable.
@@ -285,7 +277,7 @@ export default function App() {
       // Offers only: the place has a real, published offer behind it.
       if (offersOnly && getOfferDetails(restaurant.id).length === 0) return false;
       // Open now: only for places with a researched week of opening hours.
-      if (openNowOnly && isOpenNow(restaurant.openingHours) !== true) return false;
+      if (openNowOnly && !(hasValidHours(restaurant) && isOpenNow(restaurant.openingHours) === true)) return false;
       // Rating: only places that really have one can be counted.
       if (minRating !== "Any" && !(restaurant.rating >= Number(minRating))) return false;
       // Saved places only.
@@ -306,7 +298,7 @@ export default function App() {
       .sort((a, b) => b.score - a.score)
       .map(({ restaurant }) => restaurant);
     return order(scored);
-  }, [query, cuisine, area, offerApp, mealTime, offersOnly, openNowOnly, minRating, savedOnly, favourites, sort, distances]);
+  }, [query, cuisine, dishGroup, area, offerApp, mealTime, offersOnly, openNowOnly, minRating, savedOnly, favourites, sort, distances]);
 
   const toggleFavourite = useCallback((id) => {
     setFavourites((current) => {
@@ -357,6 +349,21 @@ export default function App() {
     }
   }, []);
 
+  // The full list has its own page, at #restaurants. The home page is the
+  // dish sections.
+  const [listPage, setListPage] = useState(() => window.location.hash === "#restaurants");
+  const listPageRef = useRef(listPage);
+  useEffect(() => {
+    listPageRef.current = listPage;
+  }, [listPage]);
+
+  // The app remembers the scroll spot itself (see the restore effect below),
+  // so the browser must not also restore one a moment later, which would
+  // send the home page back to the top.
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
+  }, []);
+
   // Deep-link: /#restaurant-<id> opens that restaurant's details popup.
   useEffect(() => {
     const m = window.location.hash.match(/^#restaurant\/([a-z0-9-]+)/i);
@@ -374,9 +381,10 @@ export default function App() {
         window.history.pushState(null, "", hash);
       }
     } else {
-      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+      // Closing a restaurant goes back to the page it was opened from.
+      window.history.replaceState(null, "", window.location.pathname + window.location.search + (listPage ? "#restaurants" : ""));
     }
-  }, [selectedId]);
+  }, [selectedId, listPage]);
 
   // Sync state when the user presses the browser back button.
   useEffect(() => {
@@ -389,6 +397,11 @@ export default function App() {
       setSelectedId(null);
       setModalView("details");
       setActiveMenuPhoto(0);
+      const toList = window.location.hash === "#restaurants";
+      // Going back from the full list to the home page undoes what "See all"
+      // set up, so the home sections come back instead of a filtered list.
+      if (listPageRef.current && !toList) resetToHome();
+      setListPage(toList);
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
@@ -652,8 +665,13 @@ export default function App() {
   }, []);
 
   const hasFilters =
-    cuisine !== "All" || area !== "All" || offerApp !== "All" || mealTime !== "All" ||
+    cuisine !== "All" || dishGroup !== "All" || area !== "All" || offerApp !== "All" || mealTime !== "All" ||
     offersOnly || openNowOnly || minRating !== "Any" || Boolean(query);
+
+  // The home page shows the sections only while nothing narrows or reorders
+  // the list; search, filters, saved places, the map and the list view all
+  // show the results instead.
+  const homeMode = !listPage && !hasFilters && !savedOnly && view === "grid" && sort === "recommended";
 
   // How many of the extra filters are on. The type of food, the area and the
   // offers are in the search bar, so they are not counted here.
@@ -663,6 +681,7 @@ export default function App() {
   const clearAll = () => {
     setQuery("");
     setCuisine("All");
+    setDishGroup("All");
     setArea("All");
     setOfferApp("All");
     setMealTime("All");
@@ -675,13 +694,59 @@ export default function App() {
     document.getElementById("restaurant-grid")?.scrollIntoView({ behavior: scrollMotion(), block: "start" });
   };
 
+  // The full list, on its own page.
+  const showList = () => {
+    if (!listPage) window.history.pushState(null, "", "#restaurants");
+    setListPage(true);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+  // Every filter off, the grid view and the Recommended order: the state the
+  // home page shows its sections in.
+  function resetToHome() {
+    setQuery("");
+    setCuisine("All");
+    setDishGroup("All");
+    setArea("All");
+    setOfferApp("All");
+    setMealTime("All");
+    setOffersOnly(false);
+    setOpenNowOnly(false);
+    setMinRating("Any");
+    setSavedOnly(false);
+    setView("grid");
+    setSort("recommended");
+  }
+  const goHome = () => {
+    resetToHome();
+    if (listPage) window.history.pushState(null, "", window.location.pathname + window.location.search);
+    setListPage(false);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+  // Dish tiles jump to their row; the row's heading takes focus for keyboards.
+  const jumpToDish = (id) => {
+    const row = document.getElementById(`dish-${id}`);
+    row?.scrollIntoView({ behavior: scrollMotion(), block: "start" });
+    row?.querySelector("h2")?.focus({ preventScroll: true });
+  };
+  // The Cuisine choice holds single cuisines and dish groups ("group:burgers").
+  const changeCuisine = (value) => {
+    if (String(value).startsWith("group:")) {
+      setDishGroup(String(value).slice(6));
+      setCuisine("All");
+    } else {
+      setDishGroup("All");
+      setCuisine(value);
+    }
+  };
+
   // The header links: each one takes the visitor to the grid and puts it in
   // the right state.
   const goToExplore = () => {
     setView("grid");
     setCuisine("All");
+    setDishGroup("All");
     setOffersOnly(false);
-    scrollToResults();
+    showList();
   };
   const goToCuisines = () => {
     document.querySelector(".search-shell")?.scrollIntoView({ behavior: scrollMotion(), block: "center" });
@@ -690,11 +755,11 @@ export default function App() {
   const goToOffers = () => {
     setView("grid");
     setOffersOnly(true);
-    scrollToResults();
+    showList();
   };
   const goToMap = () => {
     setView("map");
-    scrollToResults();
+    showList();
   };
   const activeNav = view === "map" ? "map" : offersOnly ? "offers" : "explore";
 
@@ -948,9 +1013,10 @@ export default function App() {
       onQueryChange={setQuery}
       onSubmit={scrollToResults}
       cuisines={categories.map((item) => item.name)}
+      cuisineGroups={DISH_GROUPS.map((group) => ({ id: `group:${group.id}`, name: group.name, count: group.total }))}
       foodCounts={categoryCounts}
-      cuisine={cuisine}
-      onCuisineChange={setCuisine}
+      cuisine={dishGroup !== "All" ? `group:${dishGroup}` : cuisine}
+      onCuisineChange={changeCuisine}
       areas={areas}
       area={area}
       onAreaChange={setArea}
@@ -967,7 +1033,7 @@ export default function App() {
 
       <nav className={`nav ${NEW_HEADER ? "nav--new" : ""} ${NEW_HEADER && navClear ? "nav--clear" : ""}`.trim().replace(/ +/g, " ")}>
         <div className="navin">
-          <a className="word" href="#top" aria-label="FoodFind, back to the top">
+          <a className="word" href="#top" aria-label="FoodFind, back to the home page" onClick={(event) => { event.preventDefault(); goHome(); }}>
             foodfind<span className="word-dot" aria-hidden="true">.</span>
           </a>
           <div className="navlinks">
@@ -1077,7 +1143,18 @@ export default function App() {
 
       {/* The front page: the meals banner with the search under it, then
           the cuisine chips and the restaurants. */}
-      {NEW_HEADER ? (
+      {listPage ? (
+        <header className="listhead" id="top">
+          <div className="listhead-inner">
+            <button type="button" className="listhead-back" onClick={goHome}>
+              {CHEVRON_LEFT_ICON}
+              <span>Home</span>
+            </button>
+            <h1>Find a restaurant</h1>
+            <div className="listhead-search">{searchBox}</div>
+          </div>
+        </header>
+      ) : NEW_HEADER ? (
         /* Light, with the Manama sunset on the right melting into the page;
            the headline on the left and the full search across the bottom. */
         <header className="lighthead" id="top">
@@ -1090,24 +1167,44 @@ export default function App() {
           </div>
         </header>
       ) : (
-        <header className="hero" id="top">
-          <div className="hero-inner">
-            {/* The banner: a welcome slide, then the best meals, one per slide. */}
-            <HeroMeals total={restaurants.length} onOpen={(place, trigger) => openRestaurant(place, { source: trigger })} />
-            <div className="search-shell">{searchBox}</div>
-          </div>
-        </header>
+        <HomeHero total={restaurants.length} search={searchBox} />
       )}
 
 
       <main className="results" id="restaurant-grid">
-        {/* My own meal photos, only on the plain list (no search or filters). */}
-        {!hasFilters && !savedOnly && view !== "map" ? (
-          <MyMeals onOpenStory={(id, trigger) => openStory(id, trigger, "meals")} />
+        {/* The home page: dish tiles, then the rows. */}
+        {homeMode ? (
+          <HomeSections
+            total={restaurants.length}
+            favourites={favourites}
+            distances={distances}
+            locating={locating}
+            onLocate={locate}
+            cardProps={{
+              favourites,
+              onToggleSaved: toggleFavourite,
+              onOpen: (restaurant, trigger) => openRestaurant(restaurant, { source: trigger }),
+              hasStory,
+              distances,
+              onOpenStory: openStory,
+              onOpenMenu: (restaurant, trigger) => openRestaurant(restaurant, { source: trigger, view: "menu" }),
+              onChooseBranch: openBranchPicker,
+              onOpenOffers: openOffers,
+              onOpenGallery: openGallery,
+            }}
+            onJumpToDish={jumpToDish}
+            onSeeDish={(id) => { setDishGroup(id); showList(); }}
+            onSeeSaved={() => { setSavedOnly(true); showList(); }}
+            onSeeOpenNow={() => { setOpenNowOnly(true); showList(); }}
+            onSeeArea={(name) => { setArea(name); showList(); }}
+            onSeeEverything={() => { resetToHome(); showList(); }}
+          />
         ) : null}
+        {!homeMode ? (
+        <>
         <div className="results-head">
           <div className="results-title">
-            <h2>{savedOnly ? "Saved places" : cuisine === "All" ? "All restaurants" : cuisine}</h2>
+            <h2>{savedOnly ? "Saved places" : dishGroup !== "All" ? dishGroupById(dishGroup)?.name : cuisine === "All" ? "All restaurants" : cuisine}</h2>
             <p className="result-count" role="status" aria-live="polite" aria-atomic="true">
               <strong>{filtered.length}</strong> {filtered.length === 1 ? "place" : "places"}
               {area !== "All" ? ` in ${area}` : " across Bahrain"}
@@ -1216,6 +1313,8 @@ export default function App() {
             onOpenGallery={openGallery}
           />
         )}
+        </>
+        ) : null}
         {cardDialog?.type === "offers" && (
           <OfferDetails
             restaurant={cardDialog.restaurant}
@@ -1318,7 +1417,7 @@ export default function App() {
               <button
                 key={meal}
                 type="button"
-                onClick={() => { setMealTime(meal); scrollToResults(); }}
+                onClick={() => { setMealTime(meal); showList(); }}
               >
                 {meal}
               </button>
