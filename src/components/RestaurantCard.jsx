@@ -17,7 +17,9 @@ export default function RestaurantCard({
   const data = cardData(restaurant);
   const titleId = `cxs-${restaurant.id}-title`;
   const open = (event) => onOpen?.(restaurant, event.currentTarget);
-  const cuisineLine = data.tags.slice(0, 3).join(", ");
+  // Two cuisines fit on one line in every column count; the page lists all.
+  // On a narrow phone card only the first one shows.
+  const [firstTag, secondTag] = data.tags;
   // Today's hours only when they are known; an unknown day stays quiet.
   const hours = data.hours.tone === "unknown"
     ? (data.hours.detail ? { tone: "unknown", text: "Today", detail: data.hours.detail } : null)
@@ -49,7 +51,12 @@ export default function RestaurantCard({
       )}
     </h3>
   );
-  const cuisine = cuisineLine ? <p className="cxs-cuisine">{cuisineLine}</p> : null;
+  const cuisine = firstTag ? (
+    <p className="cxs-cuisine">
+      {firstTag}
+      {secondTag ? <span className="cxs-cuisine-more">, {secondTag}</span> : null}
+    </p>
+  ) : null;
 
   const facts = (
     <ul className="cxs-facts">

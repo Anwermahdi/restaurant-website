@@ -72,6 +72,17 @@ function verifiedPrice(restaurant) {
   return restaurant.priceSource ? restaurant.priceRange || "" : "";
 }
 
+// "Burger" and "Burgers" are one cuisine: keep the first spelling only.
+function distinctTags(tags) {
+  const seen = new Set();
+  return tags.filter((tag) => {
+    const key = String(tag).toLowerCase().replace(/(?:es|s)$/, "");
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 const reviewCount = (value) => {
   const count = Number(value);
   return Number.isFinite(count) && count > 0 ? count.toLocaleString("en-US") : "";
@@ -93,7 +104,7 @@ export function cardData(restaurant) {
     ),
     gallery: galleryPhotos(restaurant, storefront),
     offers: getOfferDetails(restaurant.id).map((offer) => ({ ...offer, icon: OFFER_APP_ICONS[offer.app] || "" })),
-    tags: cuisineBadgesFor(restaurant),
+    tags: distinctTags(cuisineBadgesFor(restaurant)),
     description: realDescription(restaurant),
     rating: restaurant.rating ? Number(restaurant.rating).toFixed(1) : "",
     reviews: reviewCount(restaurant.reviews),

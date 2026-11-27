@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { handleImgError } from "./media.js";
 
 /**
@@ -17,6 +17,14 @@ import { handleImgError } from "./media.js";
  *                 so the photo reads as a deliberate print rather than a
  *                 letterboxed mistake.
  *   fit="crop"    always fills the frame.
+ *   fit="smart"   decides from the real frame and the real photo: it fills
+ *                 the frame only when that crops at most `maxCrop` of the
+ *                 photo and enlarges it at most `maxUpscale` times. Anything
+ *                 else is shown whole over the blurred copy, never blown up
+ *                 past `maxUpscale`, so small photos stay sharp.
+ *
+ * `maxUpscale` also caps "contain": a small photo is shown at most that many
+ * times its real size instead of being stretched to the frame.
  */
 export default function RestaurantPhoto({
   photo,
@@ -31,6 +39,8 @@ export default function RestaurantPhoto({
   fallbacks = [],
   fallback = "",
   fallbackFinal = "",
+  maxCrop = 0.26,
+  maxUpscale = Infinity,
   imgRef,
   onLoad,
   onError,
@@ -55,11 +65,60 @@ export default function RestaurantPhoto({
   // itself has loaded, its real aspect ratio is the source of truth: a photo
   // that turns out not to be landscape drops straight to the safe "contain"
   // treatment instead of being stretched to fill a cover frame.
-  const [measured, setMeasured] = useState({ for: "", ratio: null });
-  const measuredRatio = measured.for === imageSrc ? measured.ratio : null;
+  const [measured, setMeasured] = useState({ for: "", ratio: null, width: 0, height: 0 });
+  const isMeasured = measured.for === imageSrc;
+  const measuredRatio = isMeasured ? measured.ratio : null;
+  const naturalWidth = isMeasured ? measured.width : Number(image.width || 0);
+  const naturalHeight = isMeasured ? measured.height : Number(image.height || 0);
+
+  // The frame's real size, for fit="smart" and the upscale cap. A callback
+  // ref keeps one ResizeObserver per frame, with no effect to sync.
+  const [frame, setFrame] = useState(null);
+  const observer = useRef(null);
+  const needsFrame = fit === "smart" || Number.isFinite(maxUpscale);
+  const frameRef = useCallback(
+    (node) => {
+      observer.current?.disconnect();
+      observer.current = null;
+      if (!node || !needsFrame || typeof ResizeObserver === "undefined") return;
+      const ro = new ResizeObserver(([entry]) => {
+        const { width, height } = entry.contentRect;
+        setFrame((old) => (old && old.w === Math.round(width) && old.h === Math.round(height)
+          ? old
+          : { w: Math.round(width), h: Math.round(height) }));
+      });
+      ro.observe(node);
+      observer.current = ro;
+    },
+    [needsFrame]
+  );
   // fit="crop" always fills the frame, whatever the photo's shape.
   const requestedFit = fit === "cover" || fit === "crop" ? "cover" : "contain";
-  const shownFit = fit !== "crop" && requestedFit === "cover" && measuredRatio !== null && measuredRatio < 1.15 ? "contain" : requestedFit;
+  const knownRatio = measuredRatio ?? (image.width && image.height ? image.width / image.height : null);
+  const hasSizes = Boolean(frame && frame.w > 0 && frame.h > 0 && naturalWidth > 0 && naturalHeight > 0);
+  let shownFit;
+  if (fit === "smart") {
+    if (hasSizes) {
+      const coverScale = Math.max(frame.w / naturalWidth, frame.h / naturalHeight);
+      const shownShare = (frame.w * frame.h) / (naturalWidth * naturalHeight * coverScale * coverScale);
+      shownFit = shownShare >= 1 - maxCrop && coverScale <= maxUpscale ? "cover" : "contain";
+    } else {
+      // Before the frame is measured, the recorded shape decides.
+      shownFit = knownRatio !== null && (knownRatio < 0.62 || knownRatio > 1.9) ? "contain" : "cover";
+    }
+  } else {
+    shownFit = fit !== "crop" && requestedFit === "cover" && measuredRatio !== null && measuredRatio < 1.15 ? "contain" : requestedFit;
+  }
+  const position = shownFit === "contain" ? "center" : focus;
+  // A photo shown whole is never enlarged past maxUpscale: a small file
+  // stays crisp at a smaller size rather than going soft at full size.
+  let capped = null;
+  if (shownFit === "contain" && hasSizes && Number.isFinite(maxUpscale)) {
+    const fitScale = Math.min(frame.w / naturalWidth, frame.h / naturalHeight);
+    if (fitScale > maxUpscale) {
+      capped = { width: Math.round(naturalWidth * maxUpscale), height: Math.round(naturalHeight * maxUpscale) };
+    }
+  }
 
   const fallbackList = (Array.isArray(fallbacks) ? fallbacks : String(fallbacks || "").split(","))
     .filter(Boolean);
@@ -67,7 +126,7 @@ export default function RestaurantPhoto({
   const handleLoad = (event) => {
     const node = event.currentTarget;
     if (node.naturalWidth > 0 && node.naturalHeight > 0) {
-      setMeasured({ for: imageSrc, ratio: node.naturalWidth / node.naturalHeight });
+      setMeasured({ for: imageSrc, ratio: node.naturalWidth / node.naturalHeight, width: node.naturalWidth, height: node.naturalHeight });
     }
     setReadyFor(imageSrc);
     onLoad?.(event);
@@ -79,7 +138,7 @@ export default function RestaurantPhoto({
     (node) => {
       imgRef?.(node);
       if (node?.complete && node.naturalWidth > 0) {
-        setMeasured({ for: imageSrc, ratio: node.naturalWidth / node.naturalHeight });
+        setMeasured({ for: imageSrc, ratio: node.naturalWidth / node.naturalHeight, width: node.naturalWidth, height: node.naturalHeight });
         setReadyFor(imageSrc);
       }
     },
@@ -102,6 +161,7 @@ export default function RestaurantPhoto({
 
   return (
     <span
+      ref={frameRef}
       className={`restaurant-photo-frame ${shownFit === "contain" ? "is-portrait" : "is-landscape"} ${frameClassName}`.trim()}
     >
       {shownFit === "contain" && loaded ? (
@@ -122,7 +182,7 @@ export default function RestaurantPhoto({
         loading={loading}
         fetchPriority={fetchPriority}
         decoding="async"
-        style={{ objectPosition: focus }}
+        style={capped ? { objectPosition: position, width: capped.width, height: capped.height } : { objectPosition: position }}
         data-fit={shownFit}
         data-fallbacks={fallbackList.join(",")}
         data-fallback={fallback}

@@ -64,7 +64,11 @@
 .rp-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  min-height: min(78vh, 760px);
+  /* Tall enough for the sign, short enough that the photo is never blown up. */
+  min-height: clamp(420px, 62vh, 600px);
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .rp-hero { min-height: clamp(380px, 46vh, 500px); }
 }
 .rp--no-photo .rp-hero { grid-template-columns: 1fr; min-height: 0; }
 .rp-photo {
@@ -294,6 +298,8 @@
 .rp-more { margin-top: var(--space-10); padding-top: var(--space-8); border-top: 1px solid var(--line); }
 .rp-more h2 { margin-bottom: var(--space-5); font-size: clamp(24px, 2.4vw, 30px); font-weight: 800; }
 .rp-more-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); margin: 0; padding: 0; list-style: none; }
+/* A tablet has room for two big cards a row, not four cramped ones. */
+@media (max-width: 1023px) { .rp-more-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .rp-more-card {
   display: flex;
   flex-direction: column;
@@ -374,10 +380,11 @@
   .rp-sections { grid-template-columns: 1fr; gap: var(--space-8); }
   .rp-more { margin-top: var(--space-9); }
   .rp-more-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
-  .rp-more-over { flex-direction: column; align-items: flex-start; gap: 6px; padding: var(--space-3); }
-  .rp-more-seal { width: 32px; height: 32px; }
+  .rp-more-over { gap: 8px; padding: var(--space-3); }
+  .rp-more-seal { width: 28px; height: 28px; }
   .rp-more-title strong { font-size: 16px; }
   .rp-more-cuisine { font-size: 12px; }
+  .rp-more-cuisine-more { display: none; }
   .rp-more-facts { padding: var(--space-3); font-size: 12px; }
   .rp-where { grid-row: auto; }
   .rp-phonebar {

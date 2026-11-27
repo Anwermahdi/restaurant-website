@@ -294,7 +294,9 @@ export default function RestaurantPageView({ d }) {
               <RestaurantPhoto
                 photo={photo}
                 alt={`${d.name} storefront`}
-                fit="crop"
+                fit="smart"
+                maxCrop={0.3}
+                maxUpscale={1.25}
                 focus={d.photoFocus}
                 loading="eager"
                 fetchPriority="high"
