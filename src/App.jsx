@@ -13,7 +13,9 @@ import RestaurantGrid from "./components/RestaurantGrid.jsx";
 import RestaurantSearch from "./components/RestaurantSearch.jsx";
 import HeroMeals from "./components/HeroMeals.jsx";
 import MyMeals from "./components/MyMeals.jsx";
+import { MEAL_HIGHLIGHTS } from "./data/meal-highlights.js";
 import { nearestKm } from "./data/distance.js";
+import { sortRecommended } from "./data/recommended.js";
 import RestaurantFilters from "./components/RestaurantFilters.jsx";
 import RestaurantPage from "./components/RestaurantPage.jsx";
 import BranchPicker from "./components/BranchPicker.jsx";
@@ -21,9 +23,9 @@ import { OfferDetails, PhotoGallery } from "./components/cards/CardDialogs.jsx";
 import { cardData } from "./components/cards/cardData.js";
 import { handleImgError, handleLogoError } from "./components/media.js";
 import {
-  ARROW_UP_ICON, CHEVRON_ICON, CHEVRON_LEFT_ICON, CHEVRON_RIGHT_ICON,
-  CLOSE_ICON, COMPASS_ICON, CuisineIcon, GRID_ICON, HeartIcon, LIST_ICON, MAP_ICON, MENU_ICON, MOON_ICON,
-  SEARCH_ICON, SLIDERS_ICON, SPARKLES_ICON, SUN_ICON,
+  ARROW_UP_ICON, CHEVRON_ICON, CHEVRON_LEFT_ICON, CHEVRON_RIGHT_ICON, CLOCHE_ICON,
+  CLOSE_ICON, COMPASS_ICON, GRID_ICON, HeartIcon, LIST_ICON, MAP_ICON, MENU_ICON, MOON_ICON,
+  RESTAURANT_ICON, SEARCH_ICON, SLIDERS_ICON, SPARKLES_ICON, SUN_ICON, TAG_ICON,
 } from "./components/icons.jsx";
 import "./App.css";
 import "./components/cards/cards.css";
@@ -33,8 +35,17 @@ import "./styles/map.css";
 import "./styles/popups.css";
 import "./styles/footer.css";
 
-// Tag-based categories worth a place in the strip next to the real cuisines.
+// Tag-based categories offered in the Cuisine choice next to the real cuisines.
 const EXTRA_CATEGORIES = ["Bahraini", "Seafood", "Breakfast"];
+
+// PREVIEW ONLY (dev): ?header=new shows the proposed header (light, with
+// the Manama sunset on the right), so it can be judged before it goes live.
+const NEW_HEADER = import.meta.env.DEV && new URLSearchParams(window.location.search).get("header") === "new";
+
+// The page's own title and description, kept so they can be put back when a
+// restaurant page is closed.
+const DEFAULT_TITLE = document.title;
+const DEFAULT_DESCRIPTION = document.querySelector('meta[name="description"]')?.getAttribute("content") || "";
 
 // Scrolls glide, unless the visitor has asked their device to reduce motion.
 function scrollMotion() {
@@ -217,6 +228,8 @@ export default function App() {
   const [modalView, setModalView] = useState("details");
   const [activeMenuPhoto, setActiveMenuPhoto] = useState(0);
   const [storyId, setStoryId] = useState(null);
+  // Which highlights are playing: the restaurants' own, or my meals.
+  const [storySet, setStorySet] = useState("restaurants");
   const [favourites, setFavourites] = useState(readFavourites);
   const [savedOnly, setSavedOnly] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
@@ -231,9 +244,11 @@ export default function App() {
   const [menuOverPage, setMenuOverPage] = useState(false);
 
   const filtered = useMemo(() => {
-    // "Recommended" keeps the order the data came in. The other two sorts are
-    // plain and stable, so a place never jumps around while you browse.
+    // "Recommended" puts the best-rated, most complete listings first (see
+    // data/recommended.js); with words typed in, relevance stays in charge.
+    // The other sorts are plain and stable, so a place never jumps around.
     const order = (list) => {
+      if (sort === "recommended" && !hasTextQuery) return sortRecommended(list);
       if (sort === "rating") {
         return [...list].sort((a, b) => (b.rating ?? -1) - (a.rating ?? -1) || a.name.localeCompare(b.name));
       }
@@ -584,8 +599,9 @@ export default function App() {
 
   // Story highlights: opening one from a card circle or the details page.
   const [storyTrigger, setStoryTrigger] = useState(null);
-  const openStory = useCallback((id, trigger) => {
+  const openStory = useCallback((id, trigger, set = "restaurants") => {
     if (!id) return;
+    setStorySet(set);
     setStoryTrigger(trigger || document.activeElement);
     lastFocusedElementRef.current = document.activeElement;
     setStoryId(id);
@@ -596,19 +612,6 @@ export default function App() {
     if (!id) return;
     const restaurant = restaurants.find((r) => r.id === id);
     if (restaurant) openRestaurant(restaurant, { source: document.activeElement, view: "details" });
-  }, []);
-
-  // How many restaurants each type actually is. Because the filter is an exact
-  // type match, this number is exactly how many results you get.
-  const foodCounts = useMemo(() => {
-    const counts = {};
-    for (const item of cuisines) {
-      counts[item] =
-        item === "All"
-          ? restaurants.length
-          : restaurants.filter((r) => r.cuisine === item).length;
-    }
-    return counts;
   }, []);
 
   // How many places can do each meal. Same rule as the filter, so the
@@ -681,7 +684,8 @@ export default function App() {
     scrollToResults();
   };
   const goToCuisines = () => {
-    document.querySelector(".cats")?.scrollIntoView({ behavior: scrollMotion(), block: "start" });
+    document.querySelector(".search-shell")?.scrollIntoView({ behavior: scrollMotion(), block: "center" });
+    window.setTimeout(() => document.querySelector('.finder select[name="cuisine"]')?.focus(), 320);
   };
   const goToOffers = () => {
     setView("grid");
@@ -694,9 +698,9 @@ export default function App() {
   };
   const activeNav = view === "map" ? "map" : offersOnly ? "offers" : "explore";
 
-  // The category strip: every real cuisine, busiest first, then a few
-  // tag-based categories. The cuisine filter matches tags too, so the count
-  // next to each one is exactly what a click returns.
+  // The Cuisine choice in the search box: every real cuisine, busiest first,
+  // then a few tag-based categories. The cuisine filter matches tags too, so
+  // the count next to each one is exactly what picking it returns.
   const categories = useMemo(() => {
     const countFor = (name) =>
       restaurants.filter((r) => r.cuisine === name || (r.tags || []).includes(name)).length;
@@ -711,6 +715,7 @@ export default function App() {
       .filter((item) => item.count > 0);
     return [{ name: "All", count: restaurants.length }, ...real, ...extra];
   }, []);
+  const categoryCounts = useMemo(() => Object.fromEntries(categories.map((item) => [item.name, item.count])), [categories]);
   // The search field above the grid, so the hero can send you straight to it.
   const focusSearch = () => {
     scrollToResults();
@@ -864,6 +869,37 @@ export default function App() {
   ) : null;
 
   // Full restaurant page (replaces the listing)
+  // A restaurant page gets its own tab title and description (real text
+  // only: a templated description is never used); closing it restores both.
+  useEffect(() => {
+    const meta = document.querySelector('meta[name="description"]');
+    if (!selected || !onDetailsPage) {
+      document.title = DEFAULT_TITLE;
+      meta?.setAttribute("content", DEFAULT_DESCRIPTION);
+      return undefined;
+    }
+    const where = selected.area || "Bahrain";
+    const about = [selected.cuisine, where].filter(Boolean).join(" in ");
+    document.title = `${selected.name}${about ? ` – ${about}` : ""} | FoodFind`;
+    const real = cardData(selected).description;
+    meta?.setAttribute("content", real || `${selected.name}${about ? `, ${about}` : ""}. Find it on FoodFind.`);
+    return () => {
+      document.title = DEFAULT_TITLE;
+      meta?.setAttribute("content", DEFAULT_DESCRIPTION);
+    };
+  }, [selected, onDetailsPage]);
+
+  // With the new header, the top bar sits clear over the photo while you are
+  // at the top of the page, and turns back into the solid bar once you scroll.
+  const [navClear, setNavClear] = useState(true);
+  useEffect(() => {
+    if (!NEW_HEADER) return undefined;
+    const check = () => setNavClear(window.scrollY < 12);
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    return () => window.removeEventListener("scroll", check);
+  }, [onDetailsPage]);
+
   if (onDetailsPage) {
     return (
       <>
@@ -906,11 +942,30 @@ export default function App() {
     );
   }
 
+  const searchBox = (
+    <RestaurantSearch
+      query={query}
+      onQueryChange={setQuery}
+      onSubmit={scrollToResults}
+      cuisines={categories.map((item) => item.name)}
+      foodCounts={categoryCounts}
+      cuisine={cuisine}
+      onCuisineChange={setCuisine}
+      areas={areas}
+      area={area}
+      onAreaChange={setArea}
+      offerApps={OFFER_APPS}
+      offerApp={offerApp}
+      onOfferAppChange={setOfferApp}
+      rich={NEW_HEADER}
+    />
+  );
+
   return (
     <div className="page">
       <a className="skip-link" href="#restaurant-grid">Skip to restaurants</a>
 
-      <nav className="nav">
+      <nav className={`nav ${NEW_HEADER ? "nav--new" : ""} ${NEW_HEADER && navClear ? "nav--clear" : ""}`.trim().replace(/ +/g, " ")}>
         <div className="navin">
           <a className="word" href="#top" aria-label="FoodFind, back to the top">
             foodfind<span className="word-dot" aria-hidden="true">.</span>
@@ -922,15 +977,20 @@ export default function App() {
               aria-current={activeNav === "explore" ? "page" : undefined}
               onClick={goToExplore}
             >
-              Restaurants
+              {NEW_HEADER ? <>{RESTAURANT_ICON}Explore restaurants</> : "Restaurants"}
             </button>
+            {NEW_HEADER ? (
+              <button type="button" className="navlink" onClick={goToCuisines}>
+                {CLOCHE_ICON}Cuisines
+              </button>
+            ) : null}
             <button
               type="button"
               className={`navlink ${activeNav === "offers" ? "on" : ""}`}
               aria-current={activeNav === "offers" ? "page" : undefined}
               onClick={goToOffers}
             >
-              Offers
+              {NEW_HEADER ? TAG_ICON : null}Offers
             </button>
             <button
               type="button"
@@ -938,7 +998,7 @@ export default function App() {
               aria-current={activeNav === "map" ? "page" : undefined}
               onClick={goToMap}
             >
-              Map
+              {NEW_HEADER ? MAP_ICON : null}Map
             </button>
           </div>
           <div className="navright">
@@ -1017,58 +1077,33 @@ export default function App() {
 
       {/* The front page: the meals banner with the search under it, then
           the cuisine chips and the restaurants. */}
-      <header className="hero" id="top">
-        <div className="hero-inner">
-          {/* The banner: a welcome slide, then the best meals, one per slide. */}
-          <HeroMeals total={restaurants.length} onOpen={(place, trigger) => openRestaurant(place, { source: trigger })} />
-          <div className="search-shell">
-            <RestaurantSearch
-              query={query}
-              onQueryChange={setQuery}
-              onSubmit={scrollToResults}
-              cuisines={cuisines}
-              foodCounts={foodCounts}
-              cuisine={cuisine}
-              onCuisineChange={setCuisine}
-              areas={areas}
-              area={area}
-              onAreaChange={setArea}
-              offerApps={OFFER_APPS}
-              offerApp={offerApp}
-              onOfferAppChange={setOfferApp}
-            />
+      {NEW_HEADER ? (
+        /* Light, with the Manama sunset on the right melting into the page;
+           the headline on the left and the full search across the bottom. */
+        <header className="lighthead" id="top">
+          <div className="lighthead-photo" aria-hidden="true" />
+          <div className="lighthead-inner">
+            <p className="lighthead-eyebrow">Big flavours. Local finds.</p>
+            <h1>Discover amazing food <span>in Bahrain</span></h1>
+            <p className="lighthead-sub">Explore {restaurants.length} restaurants with real menus, hours and locations.</p>
+            <div className="lighthead-search">{searchBox}</div>
           </div>
-        </div>
-      </header>
+        </header>
+      ) : (
+        <header className="hero" id="top">
+          <div className="hero-inner">
+            {/* The banner: a welcome slide, then the best meals, one per slide. */}
+            <HeroMeals total={restaurants.length} onOpen={(place, trigger) => openRestaurant(place, { source: trigger })} />
+            <div className="search-shell">{searchBox}</div>
+          </div>
+        </header>
+      )}
 
-      <nav className="cats" aria-label="Browse by cuisine">
-        <div className="cats-track">
-          {categories.map(({ name, count }) => (
-            <button
-              key={name}
-              type="button"
-              className={`cat ${cuisine === name ? "is-on" : ""}`}
-              aria-pressed={cuisine === name}
-              title={`${count} ${count === 1 ? "place" : "places"}`}
-              onClick={() => {
-                setCuisine(name);
-                // From the top of the page the grid is off screen, so a pick
-                // would look like it did nothing: bring the results into view.
-                const grid = document.getElementById("restaurant-grid");
-                if (grid && grid.getBoundingClientRect().top > window.innerHeight * 0.6) scrollToResults();
-              }}
-            >
-              <CuisineIcon name={name} />
-              <span className="cat-label">{name === "All" ? "All" : name}</span>
-            </button>
-          ))}
-        </div>
-      </nav>
 
       <main className="results" id="restaurant-grid">
         {/* My own meal photos, only on the plain list (no search or filters). */}
         {!hasFilters && !savedOnly && view !== "map" ? (
-          <MyMeals onOpen={(place, trigger) => openRestaurant(place, { source: trigger })} />
+          <MyMeals onOpenStory={(id, trigger) => openStory(id, trigger, "meals")} />
         ) : null}
         <div className="results-head">
           <div className="results-title">
@@ -1249,8 +1284,9 @@ export default function App() {
 
       {storyId && (
         <StoryViewer
-          key={storyId}
+          key={`${storySet}-${storyId}`}
           storyId={storyId}
+          groups={storySet === "meals" ? MEAL_HIGHLIGHTS : undefined}
           trigger={storyTrigger}
           onClose={() => setStoryId(null)}
           onStoryChange={setStoryId}

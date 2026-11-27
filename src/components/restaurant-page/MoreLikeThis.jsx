@@ -44,7 +44,7 @@ export default function MoreLikeThis({ restaurant, onOpen }) {
                   <RestaurantPhoto
                     photo={data.photo}
                     alt=""
-                    fit="card"
+                    fit="crop"
                     focus={data.focus}
                     loading="lazy"
                     fallbacks={data.fallbacks}

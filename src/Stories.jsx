@@ -10,6 +10,8 @@ import { CLOSE_ICON, SOUND_OFF_ICON, SOUND_ON_ICON } from "./components/icons.js
  */
 
 const storyRestaurants = restaurants.filter((r) => storyFrames(r.id).length > 0);
+// The restaurants' own highlights. Other sets (like my meals) pass their own.
+const RESTAURANT_STORIES = storyRestaurants.map((restaurant) => ({ restaurant, frames: storyFrames(restaurant.id) }));
 
 function Circle({ restaurant, large }) {
   return (
@@ -44,7 +46,7 @@ function Circle({ restaurant, large }) {
 }
 
 /** Full-screen story player. Null when no story is open. */
-export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, trigger }) {
+export function StoryViewer({ storyId, groups = RESTAURANT_STORIES, onClose, onStoryChange, onOpenDetails, trigger }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const dialogRef = useRef(null);
@@ -58,9 +60,9 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
   // A video's length, once known, drives its progress bar.
   const [videoMeta, setVideoMeta] = useState({ src: "", ms: 0, tall: false });
 
-  const position = storyRestaurants.findIndex((r) => r.id === storyId);
-  const restaurant = position >= 0 ? storyRestaurants[position] : null;
-  const frames = restaurant ? storyFrames(restaurant.id) : [];
+  const position = groups.findIndex((group) => group.restaurant.id === storyId);
+  const restaurant = position >= 0 ? groups[position].restaurant : null;
+  const frames = position >= 0 ? groups[position].frames : [];
   const frame = frames[index] || null;
   const isVideo = Boolean(frame?.video);
   const meta = isVideo && videoMeta.src === frame.video ? videoMeta : null;
@@ -80,19 +82,19 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
       setIndex(index + 1);
       return;
     }
-    const nextRestaurant = storyRestaurants[position + 1];
+    const nextRestaurant = groups[position + 1]?.restaurant;
     if (nextRestaurant) onStoryChange(nextRestaurant.id);
     else close();
-  }, [index, frames.length, position, close, onStoryChange]);
+  }, [index, frames.length, position, groups, close, onStoryChange]);
 
   const previous = useCallback(() => {
     if (index > 0) {
       setIndex(index - 1);
       return;
     }
-    const previousRestaurant = storyRestaurants[position - 1];
+    const previousRestaurant = groups[position - 1]?.restaurant;
     if (previousRestaurant) onStoryChange(previousRestaurant.id);
-  }, [index, position, onStoryChange]);
+  }, [index, position, groups, onStoryChange]);
 
   // Auto-advance, paused on hold. With "reduce motion" on, nothing moves by
   // itself: the visitor taps or uses the arrow keys to go on.
@@ -274,7 +276,12 @@ export function StoryViewer({ storyId, onClose, onStoryChange, onOpenDetails, tr
           </button>
         </div>
 
-        {frame.caption ? <p className="story-caption">{frame.caption}</p> : null}
+        {frame.caption ? (
+          <p className="story-caption">
+            {frame.caption}
+            {frame.note ? <span className="story-note">{frame.note}</span> : null}
+          </p>
+        ) : null}
 
         <button type="button" className="story-tap story-tap-prev" onClick={previous} aria-label="Previous" />
         <button type="button" className="story-tap story-tap-next" onClick={advance} aria-label="Next" />
