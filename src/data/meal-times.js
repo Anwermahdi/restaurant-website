@@ -1,8 +1,10 @@
 // ============================================================
 // Manual meal times.
 //
-// Every restaurant in the directory serves dinner and nothing else.
-// THIS file is where you give a place breakfast or lunch.
+// A place's meals are worked out from its researched opening hours (open
+// inside the meal's window on at least half of its open days), plus
+// "Coffee and desserts" for cafes. A place with no researched hours is not
+// placed in any meal. THIS file is where you correct a place by hand.
 //
 // How to add one:
 //
@@ -16,24 +18,24 @@
 //   - { Dinner: false } switches a meal OFF, which is how you take
 //     a place out of a meal it does not really serve.
 //
-// A restaurant you leave out stays dinner-only, so you only list the
-// ones you want to change. A meal only shows up in the filter once
-// at least one restaurant has it.
+// A restaurant you leave out keeps the meals worked out from its hours,
+// so you only list the ones you want to change. A meal only shows up in
+// the filter once at least one restaurant has it.
 //
 // Two things are checked for you, so a typo never disappears
 // quietly:
 //   - a key that matches no restaurant is reported in the console
-//   - a meal name that is not Breakfast / Lunch / Dinner is too
+//   - a meal name that is not one of MEAL_TIMES is too
 //
 // Run `npm run meals:list` to print every restaurant with its id,
 // its name and the meals the site works out for it right now.
 // ============================================================
 
-export const MEAL_TIMES = ["Breakfast", "Lunch", "Dinner"];
+export const MEAL_TIMES = ["Breakfast", "Lunch", "Dinner", "Coffee and desserts", "Late night"];
 
 /**
- * The meal every restaurant serves. A card only shows a badge for a meal
- * that is not this one, so the badge means something.
+ * The meal most places serve. Kept for older code; nothing is assumed any
+ * more: a place's meals now come from its researched opening hours.
  */
 export const DEFAULT_MEAL = "Dinner";
 
@@ -113,7 +115,7 @@ export function applyMealOverrides(restaurants) {
   }
   if (unknownMeals.length) {
     console.warn(
-      `meal-times: not a meal name - ${unknownMeals.join(", ")}. Use Breakfast, Lunch or Dinner.`,
+      `meal-times: not a meal name - ${unknownMeals.join(", ")}. Use ${MEAL_TIMES.join(", ")}.`,
     );
   }
 }

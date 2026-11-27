@@ -4228,9 +4228,63 @@ export const cuisines = ["All", ...new Set(restaurants.map((r) => r.cuisine))];
 // decide, and your own list in meal-times.js is the only thing that adds
 // them - nothing here is guessed at.
 
-/** The meals a restaurant serves: dinner, unless your list says otherwise. */
-function deriveMealTimes() {
-  return [DEFAULT_MEAL];
+// Each meal's window, in minutes from midnight. Late night runs from 1 AM to
+// 6 AM, which is "tomorrow" for a place that opens in the evening.
+const MEAL_WINDOWS = {
+  Breakfast: [6 * 60, 11 * 60],
+  Lunch: [12 * 60, 15 * 60],
+  Dinner: [18 * 60, 22 * 60],
+  "Late night": [25 * 60, 30 * 60],
+};
+// A place has to be open for at least this long inside a window to count.
+const MIN_OVERLAP = { Breakfast: 60, Lunch: 60, Dinner: 60, "Late night": 15 };
+
+/**
+ * Which meals a place's researched opening hours cover, a meal counting when
+ * the place is open inside its window on at least half of its open days.
+ * Only ever reads real hours; a place without them gets nothing here.
+ */
+function mealsFromHours(hours) {
+  const spans = [];
+  for (const day of DAY_ORDER) {
+    const text = hours?.[day];
+    if (!text || /closed/i.test(text)) continue;
+    if (/24\s*hours/i.test(text)) {
+      spans.push([0, 30 * 60]);
+      continue;
+    }
+    const parts = String(text).split(/[–—-]/);
+    if (parts.length < 2) continue;
+    const from = parseClock(parts[0]);
+    let to = parseClock(parts[1]);
+    if (from === null || to === null) continue;
+    if (to <= from) to += 24 * 60; // runs past midnight
+    spans.push([from, to]);
+  }
+  if (!spans.length) return [];
+  const need = Math.ceil(spans.length / 2);
+  return Object.keys(MEAL_WINDOWS).filter((meal) => {
+    const [start, end] = MEAL_WINDOWS[meal];
+    const days = spans.filter(([from, to]) => Math.min(to, end) - Math.max(from, start) >= MIN_OVERLAP[meal]).length;
+    return days >= need;
+  });
+}
+
+// Cafes and dessert places are placed by what they are, not by their hours.
+const COFFEE_AND_DESSERTS = /^(cafe|coffee|dessert|desserts|bakery|ice cream)$/i;
+
+/**
+ * The meals a place belongs to: from its researched opening hours, plus
+ * "Coffee and desserts" for cafes. A place with neither is not placed in
+ * any meal (nothing is assumed), and your own list in meal-times.js still
+ * wins over all of it.
+ */
+function deriveMealTimes(restaurant) {
+  const meals = new Set(hasValidHours(restaurant) ? mealsFromHours(restaurant.openingHours) : []);
+  if ([restaurant.cuisine, ...(restaurant.tags || [])].some((tag) => COFFEE_AND_DESSERTS.test(String(tag).trim()))) {
+    meals.add("Coffee and desserts");
+  }
+  return MEAL_TIMES.filter((meal) => meals.has(meal));
 }
 
 /** The meals one restaurant serves: ["Breakfast", "Lunch", ...]. */
@@ -4386,7 +4440,7 @@ for (const restaurant of restaurants) {
   const kept = restaurant.tags.filter((tag) => !CUISINE_FIX[tag] || CUISINE_FIX[tag] === restaurant.cuisine);
   restaurant.tags = kept.length ? kept : [restaurant.cuisine];
   // Meal times are read last: they need the cleaned tags.
-  restaurant.mealTimes = deriveMealTimes();
+  restaurant.mealTimes = deriveMealTimes(restaurant);
 }
 
 // Your own list wins over the hours-based guess.

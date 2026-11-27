@@ -13,6 +13,8 @@ import RestaurantGrid from "./components/RestaurantGrid.jsx";
 import RestaurantSearch from "./components/RestaurantSearch.jsx";
 import HeroMeals from "./components/HeroMeals.jsx";
 import MyMeals from "./components/MyMeals.jsx";
+import MealSections from "./components/MealSections.jsx";
+import { buildMealSections } from "./data/meal-sections.js";
 import { MEAL_HIGHLIGHTS } from "./data/meal-highlights.js";
 import { nearestKm } from "./data/distance.js";
 import { sortRecommended } from "./data/recommended.js";
@@ -357,6 +359,14 @@ export default function App() {
     }
   }, []);
 
+  // The full list has its own page, at #restaurants. The home page is the
+  // sections by time of day.
+  const [listPage, setListPage] = useState(() => window.location.hash === "#restaurants");
+  const listPageRef = useRef(listPage);
+  useEffect(() => {
+    listPageRef.current = listPage;
+  }, [listPage]);
+
   // Deep-link: /#restaurant-<id> opens that restaurant's details popup.
   useEffect(() => {
     const m = window.location.hash.match(/^#restaurant\/([a-z0-9-]+)/i);
@@ -374,9 +384,10 @@ export default function App() {
         window.history.pushState(null, "", hash);
       }
     } else {
-      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+      // Closing a restaurant goes back to the page it was opened from.
+      window.history.replaceState(null, "", window.location.pathname + window.location.search + (listPage ? "#restaurants" : ""));
     }
-  }, [selectedId]);
+  }, [selectedId, listPage]);
 
   // Sync state when the user presses the browser back button.
   useEffect(() => {
@@ -389,6 +400,11 @@ export default function App() {
       setSelectedId(null);
       setModalView("details");
       setActiveMenuPhoto(0);
+      const toList = window.location.hash === "#restaurants";
+      // Going back from the full list to the home page undoes what "See all"
+      // set up, so the sections come back instead of a filtered list.
+      if (listPageRef.current && !toList) resetToHome();
+      setListPage(toList);
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
@@ -655,6 +671,12 @@ export default function App() {
     cuisine !== "All" || area !== "All" || offerApp !== "All" || mealTime !== "All" ||
     offersOnly || openNowOnly || minRating !== "Any" || Boolean(query);
 
+  // The home page shows the sections only while nothing narrows or reorders
+  // the list; search, filters, saved places, the map and the list view all
+  // show the results instead.
+  const homeMode = !listPage && !hasFilters && !savedOnly && view === "grid" && sort === "recommended";
+  const mealSections = useMemo(() => buildMealSections(), []);
+
   // How many of the extra filters are on. The type of food, the area and the
   // offers are in the search bar, so they are not counted here.
   const activeFilterCount =
@@ -675,13 +697,41 @@ export default function App() {
     document.getElementById("restaurant-grid")?.scrollIntoView({ behavior: scrollMotion(), block: "start" });
   };
 
+  // The full list, on its own page.
+  const showList = () => {
+    if (!listPage) window.history.pushState(null, "", "#restaurants");
+    setListPage(true);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+  // Every filter off, the grid view and the Recommended order: the state the
+  // home page shows its sections in.
+  function resetToHome() {
+    setQuery("");
+    setCuisine("All");
+    setArea("All");
+    setOfferApp("All");
+    setMealTime("All");
+    setOffersOnly(false);
+    setOpenNowOnly(false);
+    setMinRating("Any");
+    setSavedOnly(false);
+    setView("grid");
+    setSort("recommended");
+  }
+  const goHome = () => {
+    resetToHome();
+    if (listPage) window.history.pushState(null, "", window.location.pathname + window.location.search);
+    setListPage(false);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+
   // The header links: each one takes the visitor to the grid and puts it in
   // the right state.
   const goToExplore = () => {
     setView("grid");
     setCuisine("All");
     setOffersOnly(false);
-    scrollToResults();
+    showList();
   };
   const goToCuisines = () => {
     document.querySelector(".search-shell")?.scrollIntoView({ behavior: scrollMotion(), block: "center" });
@@ -690,11 +740,11 @@ export default function App() {
   const goToOffers = () => {
     setView("grid");
     setOffersOnly(true);
-    scrollToResults();
+    showList();
   };
   const goToMap = () => {
     setView("map");
-    scrollToResults();
+    showList();
   };
   const activeNav = view === "map" ? "map" : offersOnly ? "offers" : "explore";
 
@@ -967,7 +1017,7 @@ export default function App() {
 
       <nav className={`nav ${NEW_HEADER ? "nav--new" : ""} ${NEW_HEADER && navClear ? "nav--clear" : ""}`.trim().replace(/ +/g, " ")}>
         <div className="navin">
-          <a className="word" href="#top" aria-label="FoodFind, back to the top">
+          <a className="word" href="#top" aria-label="FoodFind, back to the home page" onClick={(event) => { event.preventDefault(); goHome(); }}>
             foodfind<span className="word-dot" aria-hidden="true">.</span>
           </a>
           <div className="navlinks">
@@ -1077,7 +1127,18 @@ export default function App() {
 
       {/* The front page: the meals banner with the search under it, then
           the cuisine chips and the restaurants. */}
-      {NEW_HEADER ? (
+      {listPage ? (
+        <header className="listhead" id="top">
+          <div className="listhead-inner">
+            <button type="button" className="listhead-back" onClick={goHome}>
+              {CHEVRON_LEFT_ICON}
+              <span>Home</span>
+            </button>
+            <h1>Find a restaurant</h1>
+            <div className="listhead-search">{searchBox}</div>
+          </div>
+        </header>
+      ) : NEW_HEADER ? (
         /* Light, with the Manama sunset on the right melting into the page;
            the headline on the left and the full search across the bottom. */
         <header className="lighthead" id="top">
@@ -1101,10 +1162,33 @@ export default function App() {
 
 
       <main className="results" id="restaurant-grid">
-        {/* My own meal photos, only on the plain list (no search or filters). */}
-        {!hasFilters && !savedOnly && view !== "map" ? (
-          <MyMeals onOpenStory={(id, trigger) => openStory(id, trigger, "meals")} />
+        {/* The home page: my meal highlights, then the sections by time of day. */}
+        {homeMode ? (
+          <>
+            <MyMeals onOpenStory={(id, trigger) => openStory(id, trigger, "meals")} />
+            <MealSections
+              sections={mealSections}
+              total={restaurants.length}
+              cardProps={{
+                favourites,
+                onToggleSaved: toggleFavourite,
+                onOpen: (restaurant, trigger) => openRestaurant(restaurant, { source: trigger }),
+                hasStory,
+                distances,
+                onOpenStory: openStory,
+                onOpenMenu: (restaurant, trigger) => openRestaurant(restaurant, { source: trigger, view: "menu" }),
+                onChooseBranch: openBranchPicker,
+                onOpenOffers: openOffers,
+                onOpenGallery: openGallery,
+              }}
+              onOpen={(restaurant, trigger) => openRestaurant(restaurant, { source: trigger })}
+              onSeeAll={(section) => { setMealTime(section.meal); showList(); }}
+              onSeeEverything={() => { clearAll(); showList(); }}
+            />
+          </>
         ) : null}
+        {!homeMode ? (
+        <>
         <div className="results-head">
           <div className="results-title">
             <h2>{savedOnly ? "Saved places" : cuisine === "All" ? "All restaurants" : cuisine}</h2>
@@ -1216,6 +1300,8 @@ export default function App() {
             onOpenGallery={openGallery}
           />
         )}
+        </>
+        ) : null}
         {cardDialog?.type === "offers" && (
           <OfferDetails
             restaurant={cardDialog.restaurant}
@@ -1318,7 +1404,7 @@ export default function App() {
               <button
                 key={meal}
                 type="button"
-                onClick={() => { setMealTime(meal); scrollToResults(); }}
+                onClick={() => { setMealTime(meal); showList(); }}
               >
                 {meal}
               </button>

@@ -15,6 +15,7 @@ If Vite serves stale modules after a large edit (an old CSS rule, "does not prov
 
 - `src/data/restaurants.js`: every restaurant. `mk()` sets defaults. `priceRange` defaults to "$$" and is **not** real data.
 - `src/components/cards/cardData.js`: the only place that decides what a card shows. Add new card fields here, not in JSX.
+- The home page is sections by time of day (`src/data/meal-sections.js`, `src/components/MealSections.jsx`). A place's meals come from its researched opening hours (`mealsFromHours` in `restaurants.js`; cafes also go in "Coffee and desserts"), and a place with no hours is in no section. Each section's "See all" opens the full list (its own page, `#restaurants`) with the same meal filter, so the counts always match.
 - The design language is the "signboard": a red sign panel (`--sign`) beside the storefront or skyline photo, bold left-aligned display type, and quiet cards. Keep new screens in it.
 - `src/components/RestaurantCard.jsx`: the card (an edge-to-edge photo with the logo seal, left-aligned facts, "View details" plus icon buttons). Shared parts are in `cards/CardParts.jsx`, and the offer and photo dialogs are in `cards/CardDialogs.jsx`.
 - `src/components/RestaurantPage.jsx` works out the restaurant page's data. `restaurant-page/RestaurantPageView.jsx` and `restaurant-page.css` draw it.
