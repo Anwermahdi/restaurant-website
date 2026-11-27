@@ -326,7 +326,6 @@
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.74) 0%, rgba(0, 0, 0, 0.38) 30%, rgba(0, 0, 0, 0) 52%);
   pointer-events: none;
 }
-.rp-more-photo .restaurant-photo-mount { opacity: 1; filter: blur(26px) saturate(1.25) brightness(0.5); }
 .rp-more-over {
   position: absolute;
   z-index: 2;
@@ -367,8 +366,8 @@
   .rp { padding-bottom: 88px; }
   .rp-hide-sm, .rp-back span { display: none; }
   .rp-hero { grid-template-columns: 1fr; min-height: 0; }
-  /* The frame follows the photo's own shape (set inline, 4:5 to 3:2). */
-  .rp-photo { width: 100%; aspect-ratio: var(--rp-photo-ratio, 4 / 5); max-height: 62vh; }
+  /* Short enough that the name and facts come up on the first screen. */
+  .rp-photo { width: 100%; height: min(75vw, 40vh); }
   .rp-sign { padding: var(--space-6) var(--space-5) var(--space-7); }
   .rp-seal { position: relative; z-index: 2; width: 64px; height: 64px; margin: -64px 0 0; border: 3px solid var(--rp-sign); }
   .rp--no-photo .rp-seal { margin: 0; }

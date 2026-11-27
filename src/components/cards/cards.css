@@ -168,8 +168,6 @@
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.74) 0%, rgba(0, 0, 0, 0.38) 26%, rgba(0, 0, 0, 0) 46%);
   pointer-events: none;
 }
-/* Under a wide photo, its blurred copy is a deep band the name sits on. */
-.cxs .restaurant-photo-mount { opacity: 1; filter: blur(26px) saturate(1.25) brightness(0.5); }
 /* The photos button sits under the heart, clear of the name. */
 .cxs .cx-gallery { top: 58px; right: 10px; bottom: auto; }
 

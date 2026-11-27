@@ -450,23 +450,29 @@ const BADGES = {  "nino": "https://talabat.dhmedia.io/image/talabat/restaurants/
 
 // Real areas + branches from Talabat/Maps listings.
 // Unknown locations are omitted (site shows the Manama default).
+// Area centres, checked against OpenStreetMap (Nominatim place nodes) on
+// 2026-11-27 by scripts/check-locations-osm.mjs. They are only used to place a
+// restaurant we have no exact pin for (coordSource "area"), never as a pin.
 const AREA_COORDS = {
-  "Hamad Town": [26.106, 50.508], "East Riffa": [26.145, 50.552], "Riffa": [26.134, 50.555],
-  "Dar Kulaib": [26.202, 50.511], "Seef": [26.236, 50.586], "Saar": [26.208, 50.467],
-  "Manama": [26.223, 50.587], "Bilad Al Qadeem": [26.241, 50.586], "Zayed Town": [26.256, 50.587],
-  "Isa Town": [26.173, 50.546], "Zinj": [26.232, 50.582], "Malkiya": [26.166, 50.509],
-  "Jidhafs": [26.234, 50.583], "Budaiya": [26.215, 50.481], "A'ali": [26.177, 50.592],
-  "Muqaba": [26.232, 50.602], "Juffair": [26.224, 50.576], "Tubli": [26.183, 50.537],
-  "Jerdab": [26.214, 50.648], "Samaheej": [26.233, 50.617], "Janabiyah": [26.181, 50.481],
-  "Riffa Views": [26.143, 50.561], "Jannusan": [26.251, 50.624], "Al Sayh": [26.153, 50.545],
-  "Sitra": [26.157, 50.624], "Galaly": [26.23, 50.569], "Busaiteen": [26.226, 50.564],
-  "Sanad": [26.027, 50.644], "Hidd": [26.218, 50.653], "Karzakkan": [26.085, 50.495],
-  "Arad": [26.239, 50.667], "Hamala": [26.151, 50.568], "Jid Ali": [26.146, 50.599],
-  "Adliya": [26.227, 50.574], "Al Hoora": [26.223, 50.576], "Muharraq": [26.258, 50.609],
-  "Amwaj": [26.254, 50.613], "Shakura": [26.077, 50.654], "Zallaq": [26.045, 50.618],
-  "Maqabah": [26.232, 50.602], "Diyar": [26.212, 50.478], "City Centre": [26.236, 50.59],
-  "Umm Al Hassam": [26.236, 50.606], "Al Lawzi": [26.094, 50.595], "Daih": [26.222, 50.64],
-  "Qudaibiya": [26.237, 50.569], "Sea Front": [26.239, 50.589], "Al Hidd": [26.218, 50.653],
+  "Hamad Town": [26.12675, 50.49834], "East Riffa": [26.145, 50.552], "Riffa": [26.134, 50.555],
+  "Dar Kulaib": [26.06511, 50.51222], "Seef": [26.2382, 50.53849], "Saar": [26.18983, 50.49417],
+  "Manama": [26.223, 50.587], "Bilad Al Qadeem": [26.20649, 50.55581], "Zayed Town": [26.16994, 50.53887],
+  "Isa Town": [26.173, 50.546], "Zinj": [26.21054, 50.5612], "Malkiya": [26.09963, 50.48517],
+  "Jidhafs": [26.21634, 50.54072], "Budaiya": [26.21563, 50.45235], "A'ali": [26.15445, 50.52736],
+  "Muqaba": [26.21133, 50.49545], "Juffair": [26.21463, 50.60413], "Tubli": [26.183, 50.537],
+  "Jerdab": [26.16836, 50.57202], "Samaheej": [26.28264, 50.63348], "Janabiyah": [26.18307, 50.46611],
+  "Riffa Views": [26.09355, 50.56483], "Jannusan": [26.22611, 50.49542],
+  // Al Sayh (Al Sayah) is part of Busaiteen. OSM has no node for it; this is the
+  // middle of the four Google pins labelled Al Sayh, which OSM puts in Busaiteen.
+  "Al Sayh": [26.2755, 50.5952],
+  "Sitra": [26.14797, 50.63151], "Galaly": [26.27422, 50.65199], "Busaiteen": [26.27192, 50.60284],
+  "Sanad": [26.15019, 50.58412], "Hidd": [26.24405, 50.65289], "Karzakkan": [26.11383, 50.481],
+  "Arad": [26.25361, 50.63885], "Hamala": [26.14409, 50.48298], "Jid Ali": [26.17891, 50.56258],
+  "Adliya": [26.21388, 50.58617], "Al Hoora": [26.23067, 50.58739], "Muharraq": [26.24659, 50.61641],
+  "Amwaj": [26.29474, 50.66645], "Shakura": [26.20976, 50.50579], "Zallaq": [26.04846, 50.48698],
+  "Maqabah": [26.21133, 50.49545], "Diyar": [26.314, 50.63719], "City Centre": [26.23322, 50.55506],
+  "Umm Al Hassam": [26.20167, 50.587], "Al Lawzi": [26.13226, 50.48492], "Daih": [26.22566, 50.53556],
+  "Qudaibiya": [26.22597, 50.59307], "Sea Front": [26.239, 50.589], "Al Hidd": [26.24405, 50.65289],
 };
 
 export const AREA_COORDS_EXPORT = AREA_COORDS;
@@ -483,9 +489,10 @@ const ID_COORDS = {
   "phillys": [26.212971, 50.6028899],
   "milano": [26.1303311, 50.57419],
   "klakiz": [26.2235305, 50.5875935],
-  "uplift": [26.151, 50.568],
-  "storia": [26.0996229, 50.4851777],
-  "yebilna-pasta": [26.0996229, 50.4851777],
+  // Otto and Soul: OpenStreetMap has a same-name restaurant at the address we
+  // list (Hamala Hills; Road 1823, Zayed Town). Checked 2026-11-27.
+  "otto": [26.163, 50.4731],
+  "soul": [26.16553, 50.54182],
   "le-pasta": [26.1273372, 50.543959],
 };
 
@@ -552,6 +559,35 @@ const LOCATIONS = {
   "arabian-broasted": { area: "Tubli", branches: ["Tubli", "Umm Al Hassam", "Al Lawzi", "Sitra", "Saar"] },
   "chicket": { area: "Hidd", branches: ["Hidd", "Daih", "Riffa", "Janabiyah"] },
   "the-cap-burger": { area: "Zallaq", branches: ["Zallaq"] },
+  // Areas read from each restaurant's own address (checked 2026-11-27).
+  "nino": { area: "Seef" },
+  "sando-x-urban": { area: "Manama" },
+  "ghancha": { area: "Manama" },
+  "5-spoons": { area: "Manama" },
+  "alkofeia": { area: "Manama" },
+  "slider-station": { area: "Manama" },
+  "rustic-cafe": { area: "Manama" },
+  "l-avenue-cafe": { area: "Manama" },
+  "beefko": { area: "Adliya" },
+  "empire-pizza": { area: "A'ali" },
+  "nu-asia": { area: "Seef" },
+  "engineer-burger": { area: "Manama" },
+  "jan-burger": { area: "Manama" },
+  "al-mihwar": { area: "Bilad Al Qadeem" },
+  "adam-subs": { area: "Manama" },
+  "daveburger": { area: "Manama" },
+  "mama-joz": { area: "Riffa" },
+  "little-caesars": { area: "Malkiya" },
+  "pizzaro": { area: "Zayed Town" },
+  "ic-pizza": { area: "Al Hidd" },
+  "the72": { area: "Sanad" },
+  "welayat-ali": { area: "Jidhafs" },
+  "al-furat-nights": { area: "Sitra" },
+  "al-farhan": { area: "Malkiya" },
+  "swaikhat": { area: "Janabiyah" },
+  "tikka-numee": { area: "Janabiyah" },
+  "aljabriya": { area: "Busaiteen" },
+  "chico-chicken": { area: "Manama" },
 };
 
 // Only TRUE high-res covers — tiny logos stay as badge, never main photo.
@@ -1574,7 +1610,7 @@ const RESEARCHED = {
     cuisine: "Burger",
     address: "Road 3306 Block 933 Building A172, Riffa",
     shortAddress: "Riffa",
-    area: "Manama",
+    area: "Riffa",
     phone: "+973 1761 1117",
     rating: 4.3,
     reviews: 698,
@@ -2741,11 +2777,13 @@ const RAW = [
   mk(
     "zulu",
     "Zulu",
-    "Indian",
+    "Italian",
     IMG.general,
     mixedMenu,
-    "South-Asian kitchen in Qudaibiya — tandoori chicken, biryani and samosa.",
-    ["Indian", "Tandoori", "Biryani", "South Asian"],
+    // The old South-Asian description was wrong (confirmed Italian, 2026-11-27).
+    // This stand-in is hidden on the site until there is real copy.
+    "Zulu — Italian in Qudaibiya.",
+    ["Italian"],
     "zulu.bh",
     {
       image: "/restaurants/zulu.png",
@@ -2950,7 +2988,7 @@ const RAW = [
   mk("adam-subs", "Adam Subs", "Sandwiches", IMG.sandwich, mixedMenu, "Subs & sandwiches.", ["Subs"]),
   mk("sahburger", "Sahburger", "Burgers", IMG.burger, burgerMenu),
   mk("lost-burger", "Lost Burger", "Burgers", IMG.burger, burgerMenu),
-  mk("neon-burger", "Neon Burger", "Burgers", IMG.burger, burgerMenu, "Neon-lit burger joint.", ["Burgers"], "", { menuUrl: "https://neonburgerbh.com/", area: "Manama", branches: ["Manama"] }),
+  mk("neon-burger", "Neon Burger", "Burgers", IMG.burger, burgerMenu, "Neon-lit burger joint.", ["Burgers"], "", { menuUrl: "https://neonburgerbh.com/", area: "Riffa", branches: ["Riffa"] }),
   mk(
     "burger-waqif",
     "Burger Waqif",
@@ -3245,8 +3283,6 @@ const RAW = [
       phone: "+973 17900907",
       hours: "Weekdays · 4:00 PM - 11:30 PM · Weekends 12:30 PM - 1:00 AM",
       menuUrl: "https://qr.finedinemenu.com/the-bossman/menu/69d64c1a5d3e202fc4f33beb",
-      lat: 26.236,
-      lng: 50.586,
       dataSource: "researched"
     }
   ),

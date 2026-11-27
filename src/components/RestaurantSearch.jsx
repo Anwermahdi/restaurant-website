@@ -1,4 +1,4 @@
-import { SEARCH_ICON, CHEVRON_ICON } from "./icons.jsx";
+import { CHEVRON_ICON, CHEVRON_RIGHT_ICON, PIN_ICON, RESTAURANT_ICON, SEARCH_ICON, TAG_ICON } from "./icons.jsx";
 
 /**
  * The main search bar: the words a visitor types, plus cuisine, area and
@@ -19,10 +19,13 @@ export default function RestaurantSearch({
   offerApps = [],
   offerApp = "All",
   onOfferAppChange,
+  // The home header's look: an icon on every part and plainer words.
+  rich = false,
 }) {
+  const icon = (glyph) => (rich ? <span className="finder-icon" aria-hidden="true">{glyph}</span> : null);
   return (
     <form
-      className="finder"
+      className={`finder ${rich ? "finder--rich" : ""}`.trim()}
       role="search"
       onSubmit={(event) => {
         event.preventDefault();
@@ -30,22 +33,24 @@ export default function RestaurantSearch({
       }}
     >
       <label className="finder-field finder-field--search">
-        <span className="finder-field-label">Search</span>
+        {icon(SEARCH_ICON)}
+        <span className={rich ? "sr-only" : "finder-field-label"}>Search</span>
         <input
           type="search"
           name="restaurant-search"
           autoComplete="off"
           aria-label="Search restaurants, cuisines, areas and dishes"
           aria-controls="restaurant-grid"
-          placeholder="Restaurant, dish or cuisine"
+          placeholder={rich ? "Restaurants or dishes" : "Restaurant, dish or cuisine"}
           value={query}
           onChange={(event) => onQueryChange?.(event.target.value)}
         />
       </label>
 
       <div className="finder-field">
-        <span className="finder-field-label" aria-hidden="true">Cuisine</span>
-        <span className="finder-field-value" aria-hidden="true">{cuisine === "All" ? "Any cuisine" : cuisine}</span>
+        {icon(RESTAURANT_ICON)}
+        <span className="finder-field-label" aria-hidden="true">{rich ? "Type of food" : "Cuisine"}</span>
+        <span className="finder-field-value" aria-hidden="true">{cuisine === "All" ? (rich ? "All cuisines" : "Any cuisine") : cuisine}</span>
         <select
           className="finder-field-select"
           name="cuisine"
@@ -62,8 +67,9 @@ export default function RestaurantSearch({
       </div>
 
       <div className="finder-field">
-        <span className="finder-field-label" aria-hidden="true">Area</span>
-        <span className="finder-field-value" aria-hidden="true">{area === "All" ? "All areas" : area}</span>
+        {icon(PIN_ICON)}
+        <span className="finder-field-label" aria-hidden="true">{rich ? "Location" : "Area"}</span>
+        <span className="finder-field-value" aria-hidden="true">{area === "All" ? (rich ? <>All areas<span className="finder-long"> in Bahrain</span></> : "All areas") : area}</span>
         <select
           className="finder-field-select"
           name="area"
@@ -80,6 +86,7 @@ export default function RestaurantSearch({
       </div>
 
       <div className="finder-field">
+        {icon(TAG_ICON)}
         <span className="finder-field-label" aria-hidden="true">Offers</span>
         <span className="finder-field-value" aria-hidden="true">{offerApp === "All" ? "Any app" : offerApp}</span>
         <select
@@ -99,7 +106,8 @@ export default function RestaurantSearch({
 
       <button className="finder-go" type="submit">
         {SEARCH_ICON}
-        <span className="finder-go-text">Search</span>
+        <span className="finder-go-text">{rich ? "Find restaurants" : "Search"}</span>
+        {rich ? <span className="finder-go-more" aria-hidden="true">{CHEVRON_RIGHT_ICON}</span> : null}
       </button>
     </form>
   );
